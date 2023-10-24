@@ -1,7 +1,5 @@
 package com.da.ojtproject.admin.dao;
 
-import com.da.ojtproject.admin.domain.Domain;
-import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

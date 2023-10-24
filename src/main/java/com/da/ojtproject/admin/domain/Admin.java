@@ -7,7 +7,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Domain {
+public class Admin {
     private int adminId;
     private String password;
+
+    public Admin() {
+
+    }
 }
