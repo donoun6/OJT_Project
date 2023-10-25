@@ -117,18 +117,17 @@ END;
 CREATE TRIGGER ReceivingAndCountInventory AFTER INSERT ON Receiving
     FOR EACH ROW
 BEGIN
-    DECLARE quantity INT;
-    DECLARE product_id INT;
+    DECLARE var_quantity INT;
+    DECLARE var_product_id INT;
 
     -- 커서를 사용하지 않고 직접 INSERTED 테이블의 데이터에 접근
-    SET quantity = NEW.quantity;
-    SET product_id = NEW.product_id;
+    SET var_quantity = NEW.quantity;
+    SET var_product_id = NEW.product_id;
 
     -- 재고 업데이트
-    UPDATE Inventory SET quantity = quantity + quantity
-    WHERE product_id = product_id;
+    UPDATE Inventory SET quantity = quantity + var_quantity
+    WHERE product_id = var_product_id;
 END;
-
 
 
 
