@@ -1,14 +1,16 @@
 package com.da.ojtproject.admin.service;
 
 import com.da.ojtproject.admin.dao.AdminDao;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class AdminServiceImpl implements AdminService{
 
-    @Autowired
-    AdminDao adminDao;
+    private final AdminDao adminDao;
 
     @Override
     public void saveAdmin(String password) {

@@ -1,24 +1,20 @@
 package com.da.ojtproject.admin.dao;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.sql.DataSource;
-
 @Repository
 @Transactional
+@RequiredArgsConstructor
 public class AdminDao {
 
-    private final JdbcTemplate jdbcTemplate;
-
-    public AdminDao(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
+    private final JdbcTemplate tmeTemplate;
 
     public void saveAdmin(String passWord) {
-        String sql = "INSERT INTO admin (password)\n" +
+        String sql = "INSERT INTO daojt.admin (password)" +
                 "VALUES (?)";
-        jdbcTemplate.update(sql,passWord);
+        tmeTemplate.update(sql,passWord);
     }
 }

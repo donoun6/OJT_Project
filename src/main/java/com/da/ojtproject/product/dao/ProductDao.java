@@ -1,14 +1,14 @@
-package com.da.ojtproject.home.dao;
+package com.da.ojtproject.product.dao;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-@AllArgsConstructor
-public class HomeDao {
+@RequiredArgsConstructor
+public class ProductDao {
 
     private final JdbcTemplate template;
 
