@@ -95,39 +95,4 @@ CONSTRAINT Selling_product_id_FK FOREIGN KEY (product_id) REFERENCES Product(pro
 CONSTRAINT Selling_orders_id_FK FOREIGN KEY (orders_id) REFERENCES Orders(orders_id)
 )AUTO_INCREMENT = 1;
 
-# Trigger
-
-# 아이템 판매시 재고처리
-CREATE TRIGGER SellingAndCountInventory AFTER INSERT ON Selling
-    FOR EACH ROW
-BEGIN
-    DECLARE var_quantity INT;
-    DECLARE var_product_id INT;
-
-    -- 커서 대신 각 행에 대한 트리거를 사용
-    SET var_quantity = NEW.quantity;
-    SET var_product_id = NEW.product_id;
-
-    -- 재고 업데이트
-    UPDATE Inventory SET quantity = quantity - var_quantity
-    WHERE product_id = var_product_id;
-END;
-
-# 아이템 입고시 재고처리
-CREATE TRIGGER ReceivingAndCountInventory AFTER INSERT ON Receiving
-    FOR EACH ROW
-BEGIN
-    DECLARE var_quantity INT;
-    DECLARE var_product_id INT;
-
-    -- 커서를 사용하지 않고 직접 INSERTED 테이블의 데이터에 접근
-    SET var_quantity = NEW.quantity;
-    SET var_product_id = NEW.product_id;
-
-    -- 재고 업데이트
-    UPDATE Inventory SET quantity = quantity + var_quantity
-    WHERE product_id = var_product_id;
-END;
-
-
 
