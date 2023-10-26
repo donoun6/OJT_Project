@@ -1,4 +1,6 @@
 $(function () {
+    $("aside").load("common/aside.html")
+
     //aside slide
     $(".arrow-back-ios").click(function () {
         $("aside").stop().animate({ left : "-14%" },500,"easeInExpo");

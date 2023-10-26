@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* common */
+/* global */
 body {
     background: #F3F1F5;
     color: black;
@@ -50,7 +50,6 @@ aside span {
 }
 
 /* slide button*/
-
 .arrow-back-ios {
     position: absolute;
     display: flex;
@@ -93,7 +92,6 @@ aside span {
 .arrow-forward-ios:hover {
     margin-left: 1%;
 }
-
 
 /* main*/
 main {
