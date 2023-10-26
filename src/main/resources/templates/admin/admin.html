@@ -2,13 +2,46 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <!--  초기화,고정 css  -->
+    <link rel="stylesheet" href="/static/css/global/init.css">
+    <link rel="stylesheet" href="/static/css/global/default.css">
+    <!--  커스텀 css  -->
+    <link rel="stylesheet" href="/static/css/admin/admin.css">
+    <!--  svg link  -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!--  jquey cdn  -->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <!--  script  -->
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/admin/aside.js"></script>
+    <script src="/static/js/admin/main/section.js"></script>
+    <title>admin</title>
 </head>
 <body>
-<form th:object="${admin}" action="/admin" method="post">
-    <input type="text" th:field="*{adminId}">
-    <input type="text" th:field="*{password}" >
-    <input type="submit">
-</form>
+<aside>
+    <h1 class="logo">Logo</h1>
+    <nav>
+        <ul>
+            <li><a href="">Main</a></li>
+            <li><a href="">TestList</a></li>
+            <li><a href="">TestList</a></li>
+            <li><a href="">TestList</a></li>
+            <li><a href="">TestList</a></li>
+            <li><a href="">TestList</a></li>
+        </ul>
+    </nav>
+    <span>&copy copyright</span>
+</aside>
+<div class="arrow-back-ios">
+    <span class="material-symbols-outlined" style="position: absolute; left: 30%;">arrow_back_ios</span>
+</div>
+<div class="arrow-forward-ios">
+    <span class="material-symbols-outlined">arrow_forward_ios</span>
+</div>
+<main>
+    <div id="main-wrap">
+        <!--  section include   -->
+    </div>
+</main>
 </body>
 </html>

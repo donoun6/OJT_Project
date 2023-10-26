@@ -6,7 +6,6 @@ DROP PROCEDURE AddOrCountCart;
 DROP PROCEDURE AddSellingAndClearCart;
 
 # 프로시저 생성
-
 -- 카테고리 등록 이전에 삭제했던 카테고리면 삭제 취소, 아니면 새로 등록
 CREATE PROCEDURE AddOrResetCategory(IN param_name VARCHAR(20))
 BEGIN

@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+/* common */
+body {
+    background: #F3F1F5;
+    color: black;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* aside */
+aside {
+    position: fixed;
+    display: block;
+    height: 100%;
+    width: 13%;
+    background: #333;
+    color: #F3F1F5;
+    font-size: 18px;
+    border-radius: 0 25px 25px 0;
+}
+
+aside h1 {
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+aside nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+aside nav li {
+    margin-bottom: 50px;
+}
+
+aside span {
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    color: #a1a1a1;
+}
+
+/* slide button*/
+
+.arrow-back-ios {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: calc(50% - 22.5px);
+    left: 11.8%;
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    background: #F3F1F5;
+    z-index: 1;
+    cursor: pointer;
+    transition: .5s;
+    overflow: hidden;
+}
+
+.arrow-back-ios:hover {
+    margin-left: -0.5%;
+}
+
+.arrow-forward-ios {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: calc(50% - 22.5px);
+    left: -3%;
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    background: #333333;
+    color: #F3F1F5;
+    z-index: 1;
+    cursor: pointer;
+    transition: .5s;
+    overflow: hidden;
+}
+
+.arrow-forward-ios:hover {
+    margin-left: 1%;
+}
+
+
+/* main*/
+main {
+    height: 100%;
+    width: 100%;
+}
+
+main #main-wrap {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 87%;
+    height: 100%;
+    margin-left: 13%;
+}
+
+
+
+
