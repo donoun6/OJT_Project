@@ -46,7 +46,6 @@ main {
     border-radius: 0 60px 0 0;
     background: #e7e7e7;
     box-shadow: 0 10px 30px rgb(0 0 0 / 60%);
-    box-shadow: 0 10px 30px rgb(0 0 0 / 60%);
     z-index: 1;
 }
 
@@ -87,7 +86,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 30px;
+    font-size: 32px;
     flex-wrap: wrap;
     overflow: hidden;
 }
@@ -101,7 +100,7 @@ main {
 }
 
 #product-list-wrap nav li:hover {
-    color: #333333;
+    color: rgba(0, 34, 255, 0.68);
     font-weight: bold;
     transition: .5s;
 }
