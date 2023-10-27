@@ -257,18 +257,14 @@ main {
     margin-left: 20px;
 }
 
-#order-list-wrap .order-list .order-wrap .order h3 {
+#order-list-wrap .order-list .order-wrap .order h3, #order-list-wrap .order-list .order-wrap .order span {
     position: absolute;
     top: 10%;
     display: inline-block;
     font-size: 32px;
 }
-
-#order-list-wrap .order-list .order-wrap .order span {
-    position: absolute;
+#order-list-wrap .order-list .order-wrap .order span{
     top: 30%;
-    display: inline-block;
-    font-size: 32px;
 }
 
 /* footer */
