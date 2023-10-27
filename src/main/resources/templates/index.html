@@ -2,9 +2,51 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <!--  초기화,고정 css  -->
+    <link rel="stylesheet" href="/static/css/global/init.css">
+    <link rel="stylesheet" href="/static/css/global/default.css">
+    <!--  커스텀 css  -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!--  jquey cdn  -->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <!--  script  -->
+    <script src="/static/js/common.js"></script>
+    <title>main</title>
 </head>
 <body>
-index
+<div class="logo">
+    <h1>Logo</h1>
+    <span>kiosk</span>
+</div>
+<main>
+    <!--  main area  -->
+    <div id="product-list-wrap">
+        <!--  product list area  -->
+        <nav>
+            <h2>CHOOSE CATEGORY</h2>
+            <!--  nav area  -->
+            <ol>
+                <li>cate</li>
+                <li>cate</li>
+                <li>cate</li>
+                <li>cate</li>
+                <li>cate</li>
+                <li>cate</li>
+                <li>cate</li>
+                <li>cate</li>
+            </ol>
+        </nav>
+        <footer>
+            <!--  footer area  -->
+            <span>&copycopyright</span><br>
+        </footer>
+    </div>
+    <div id="order-list-wrap">
+        <div class="order-list">
+            <h2>MY ORDER</h2>
+        </div>
+        <!--  order list area  -->
+    </div>
+</main>
 </body>
 </html>
