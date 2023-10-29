@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <!--  초기화,고정 css  -->
+  <link rel="stylesheet" href="/static/css/global/init.css">
+  <link rel="stylesheet" href="/static/css/global/default.css">
+  <!--  커스텀 css  -->
+  <link rel="stylesheet" href="/static/css/admin/admin.css">
+  <link rel="stylesheet" href="/static/css/admin/product/product.css">
+  <!--  svg link  -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <!--  jquey cdn  -->
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <!--  script  -->
+  <script src="/static/js/common.js"></script>
+  <script src="/static/js/admin/aside.js"></script>
+  <title>product</title>
+</head>
+<body>
+<aside>
+  <!--  aside area  -->
+</aside>
+<div class="arrow-back-ios">
+  <span class="material-symbols-outlined" style="position: absolute; left: 30%;">arrow_back_ios</span>
+</div>
+<div class="arrow-forward-ios">
+  <span class="material-symbols-outlined">arrow_forward_ios</span>
+</div>
+<main>
+  <div id="main-wrap">
+    <!--    main area    -->
+    <section class="section1">
+      <h1>Product</h1>
+      <div class="search-wrap">
+        <div class="search-box">
+          <table class="search-table">
+            <form action="">
+            <tr>
+              <th scope="row">category</th>
+              <td>
+                <select>
+                  <optgroup label="">
+                    <option>-</option>
+                    <option>cate1</option>
+                    <option>cate2</option>
+                    <option>cate3</option>
+                  </optgroup>
+                </select>
+              </td>
+              <th scope="row">product name</th>
+              <td>
+                <input type="text">
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">inventory</th>
+              <td>
+                <input type='radio' name='inventory' value='1' checked />high
+                <input type='radio' name='inventory' value='2' />low
+              </td>
+              <th scope="row">항목명</th>
+              <td>내용이 들어갑니다.</td>
+            </tr>
+            <tr>
+              <th scope="row">sell</th>
+              <td>
+                <input type='radio' name='sell' value='1' checked />high
+                <input type='radio' name='sell' value='2' />low
+              </td>
+              <th scope="row">항목명</th>
+              <td>내용이 들어갑니다.</td>
+            </tr>
+            </form>
+          </table>
+          <div class="search-btn-box">
+            <button>전체조회</button>
+            <button>검색하기</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+</body>
+</html>
