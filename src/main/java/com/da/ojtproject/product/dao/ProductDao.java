@@ -85,6 +85,11 @@ public class ProductDao {
                 "ON product.product_id = selling.product_id " +
                 "WHERE product.check_product = true " +
                 "AND category.check_category = true ");
+        if(data.get("checkName").equals("Y")) {
+            sb.append("AND fn_choSearch(Product.name) LIKE CONCAT('%', '"+data.get("name")+"', '%')");
+        } else {
+            sb.append("AND Product.name LIKE'%"+data.get("name")+"%'" );
+        }
         if(!data.get("category").equals("all") ) {
             sb.append("AND product.category_id = "+data.get("category")+" ");
         }
