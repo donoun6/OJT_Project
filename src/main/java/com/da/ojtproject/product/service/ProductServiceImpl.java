@@ -1,12 +1,16 @@
 package com.da.ojtproject.product.service;
 
+import com.da.ojtproject.category.domain.Category;
 import com.da.ojtproject.product.dao.ProductDao;
 import com.da.ojtproject.product.domain.Product;
+import com.da.ojtproject.product.domain.ProductList;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -15,30 +19,18 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductDao productDao;
 
-    // 제일 중요합니다.
     @Override
-    public void saveProduct(Product product) {
-        productDao.saveProduct(product);
-    }
-
-    @Override
-    public Product getProductById(int productId) {
-        return productDao.getProductById(productId);
-    }
-
-
-    @Override
-    public List<Product> getAllProducts() {
-
+    public List<ProductList> getAllProducts() {
         return productDao.getAllProducts();
-
     }
 
     @Override
-    public void updateProduct(Product product) {
+    public List<ProductList> getSearchProducts(Map<String, Object> data) {
+        return productDao.getSelectProducts(data);
     }
 
     @Override
-    public void deleteProduct(int productId) {
+    public List<Category> getAllCategory() {
+        return productDao.getAllCategory();
     }
 }

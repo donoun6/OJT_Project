@@ -5,7 +5,7 @@ INSERT INTO Category (name)
 VALUES ('커피'),('디저트'),('음료');
 
 # 물품 등록
-INSERT INTO Product (category_id, name, code, sell_price, image)
+INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES (1,'AAA-0000-0001','아메리카노',2500,'file/img1')
 ,(1,'AAA-0000-0002','카푸치노',3000,'file/img2')
 ,(1,'AAA-0000-0003','디카페인',2500,'file/img3')

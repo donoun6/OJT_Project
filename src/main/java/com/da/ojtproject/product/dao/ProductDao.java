@@ -1,92 +1,125 @@
 package com.da.ojtproject.product.dao;
 
 import com.da.ojtproject.category.domain.Category;
-import com.da.ojtproject.product.domain.Product;
+import com.da.ojtproject.product.domain.ProductList;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-// RestAPI로 CRUD를 구현한다고 해도 DAO 는 일반적인 컨트롤러를 사용했을때와 차이점이 없다는것이 매우 신기했다.
 @Repository
 @Transactional
+@RequiredArgsConstructor
 public class ProductDao {
 
     private final JdbcTemplate template;
 
-    private SimpleJdbcCall addOrResetCategoryProcedure;
-    private SimpleJdbcCall updateCategoryIfNotExistsProcedure;
-
-    public ProductDao(DataSource dataSource) {
-        this.template = new JdbcTemplate(dataSource);
-        this.addOrResetCategoryProcedure = new SimpleJdbcCall(template)
-                .withProcedureName("AddOrResetCategory");
-        this.updateCategoryIfNotExistsProcedure = new SimpleJdbcCall(template)
-                .withProcedureName("UpdateCategoryIfNotExists");
-    }
-
-    // 관리자가 상품을 등록합니다.
-    public void saveProduct(Product product) {
-
-        String sql = "INSERT INTO product (product_id, category_id, name, code, sell_price, image, check_product, register_date) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())";
-        template.update(sql, product.getProductId(), product.getCategoryId(), product.getName(), product.getCode(), product.getSellPrice(), product.getImage(), product.isCheckProduct());
-
-    }
-
-    public Product getProductById(int productId) {
-        String sql = "SELECT * FROM product WHERE product_id = ?";
-        return template.queryForObject(sql, new BeanPropertyRowMapper<>(Product.class), productId);
-    }
-
-
-    // 모든 상품의 리스트를 출력하는 메서드
-    public List<Product> getAllProducts() {
-        String sql = "SELECT * FROM product";
-        return template.query(sql, (resultSet, rowNum) -> {
-            Product product = new Product();
-            try {
-                product.setProductId(resultSet.getInt("product_id"));
-                product.setCategoryId(resultSet.getInt("category_id"));
-                product.setName(resultSet.getString("name"));
-                product.setCode(resultSet.getString("code"));
-                product.setSellPrice(resultSet.getInt("sell_price"));
-                product.setImage(resultSet.getString("image"));
-                product.setCheckProduct(resultSet.getBoolean("check_product"));
-                product.setRegisterDate(resultSet.getTimestamp("register_date"));
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-            return product;
-
+    public List<ProductList> getAllProducts() {
+                String sql = "SELECT " +
+                "product.product_id, " +
+                "product.name, " +
+                "product.code, " +
+                "product.sell_price, " +
+                "product.image, " +
+                "product.category_id, " +
+                "category.name, " +
+                "inventory.inventory_id, " +
+                "inventory.quantity, " +
+                "IFNULL(SUM(selling.selling_id), 0) AS selling_id, " +
+                "IFNULL(SUM(selling.quantity), 0) AS selling_quantity, " +
+                "IFNULL(SUM(selling.total_price), 0) AS total_price " +
+                "FROM product " +
+                "INNER JOIN category " +
+                "ON product.category_id = category.category_id " +
+                "INNER JOIN inventory " +
+                "ON product.product_id = inventory.product_id " +
+                "LEFT JOIN selling " +
+                "ON product.product_id = selling.product_id " +
+                "WHERE product.check_product = true " +
+                "AND category.check_category = true " +
+                "GROUP BY product.product_id, product.name, product.code, product.sell_price, " +
+                "product.image, product.category_id, category.name, " +
+                "inventory.inventory_id, inventory.quantity";
+        return template.query(sql, (rs, rowNum) -> {
+            ProductList productList = new ProductList();
+            productList.setProductId(rs.getInt("product_id"));
+            productList.setName(rs.getString("product.name"));
+            productList.setCode(rs.getString("code"));
+            productList.setSellPrice((rs.getInt("sell_price")));
+            productList.setImage(rs.getString("image"));
+            productList.setCategoryId(rs.getInt("category_id"));
+            productList.setCategoryName(rs.getString("category.name"));
+            productList.setInventoryId(rs.getInt("inventory_id"));
+            productList.setInventoryQuantity(rs.getInt("inventory.quantity"));
+            productList.setSellingId(rs.getInt("selling_id"));
+            productList.setSellingQuantity(rs.getInt("selling_quantity"));
+            productList.setTotalPrice(rs.getInt("total_price"));
+            return productList;
         });
+    };
 
-    }
+    public List<ProductList> getSelectProducts(Map<String, Object> data) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT " +
+                "product.product_id, " +
+                "product.name, " +
+                "product.code, " +
+                "product.sell_price, " +
+                "product.image, " +
+                "product.category_id, " +
+                "category.name, " +
+                "inventory.inventory_id, " +
+                "inventory.quantity, " +
+                "IFNULL(SUM(selling.selling_id), 0) AS selling_id, " +
+                "IFNULL(SUM(selling.quantity), 0) AS selling_quantity, " +
+                "IFNULL(SUM(selling.total_price), 0) AS total_price " +
+                "FROM product " +
+                "INNER JOIN category " +
+                "ON product.category_id = category.category_id " +
+                "INNER JOIN inventory " +
+                "ON product.product_id = inventory.product_id " +
+                "LEFT JOIN selling " +
+                "ON product.product_id = selling.product_id " +
+                "WHERE product.check_product = true " +
+                "AND category.check_category = true ");
+        if(!data.get("category").equals("all") ) {
+            sb.append("AND product.category_id = "+data.get("category")+" ");
+        }
+        sb.append("GROUP BY product.product_id, product.name, product.code, product.sell_price, " +
+                "product.image, product.category_id, category.name, " +
+                "inventory.inventory_id, inventory.quantity");
+        String sql = sb.toString();
+        return template.query(sql, (rs, rowNum) -> {
+            ProductList productList = new ProductList();
+            productList.setProductId(rs.getInt("product_id"));
+            productList.setName(rs.getString("product.name"));
+            productList.setCode(rs.getString("code"));
+            productList.setSellPrice((rs.getInt("sell_price")));
+            productList.setImage(rs.getString("image"));
+            productList.setCategoryId(rs.getInt("category_id"));
+            productList.setCategoryName(rs.getString("category.name"));
+            productList.setInventoryId(rs.getInt("inventory_id"));
+            productList.setInventoryQuantity(rs.getInt("inventory.quantity"));
+            productList.setSellingId(rs.getInt("selling_id"));
+            productList.setSellingQuantity(rs.getInt("selling_quantity"));
+            productList.setTotalPrice(rs.getInt("total_price"));
+            return productList;
+        });
+    };
 
-    // 관리자가 상품을 업데이트 합니다.
-    public void updateProduct(Product product) {
-
-        String sql = "UPDATE product SET categoryId = ?, name = ?, code = ?, sellPrice = ?, image = ?, checkProduct = ?, registerDate = ? WHERE productId = ?";
-        template.update(sql, product.getCategoryId(), product.getName(), product.getCode(), product.getSellPrice(), product.getImage(), product.isCheckProduct(), product.getRegisterDate(), product.getProductId());
-
-    }
-
-    public void deleteProduct(int productId) {
-
-        String sql = "DELETE FROM product WHERE product_id = ?";
-        template.update(sql, productId);
-
-    }
-
+    public List<Category> getAllCategory() {
+        String sql = "SELECT * FROM Category " +
+                "WHERE check_category = TRUE";
+        return template.query(sql, (rs, rowNum) -> {
+            Category category = new Category();
+            category.setCategoryId(rs.getInt("category_id"));
+            category.setName(rs.getString("name"));
+            category.setCheckCategory(rs.getBoolean("check_category"));
+            category.setRegisterDate(rs.getTimestamp("register_date"));
+            return category;
+        });
+    };
 }

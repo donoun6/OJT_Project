@@ -41,7 +41,7 @@ UPDATE Product set check_product = FALSE
 WHERE product_id = 1;
 
 -- 장바구니 담기 만약 해당 제품이 이미 장바구니에 있는경우 수량만 높이기
-CALL AddOrCountCart(2);
+CALL AddOrCountCart(5);
 
 -- 장바구니 정보 출력
 SELECT *
