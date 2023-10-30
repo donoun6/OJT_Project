@@ -1,5 +1,4 @@
 $(function () {
-    $("aside").load("/templates/admin/common/aside.html")
 
     //aside slide
     $(".arrow-back-ios").click(function () {

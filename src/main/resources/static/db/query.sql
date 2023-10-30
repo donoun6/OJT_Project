@@ -4,6 +4,7 @@
 SELECT * FROM Category
 WHERE check_category = TRUE;
 
+
 -- 카테고리 변경
 UPDATE Category set name = '커피'
 WHERE category_id = 1;
