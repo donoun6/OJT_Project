@@ -1,46 +1,24 @@
 $(function () {
 
+    let data = {
+        "category" : "all",
+        "checkName" : "Y",
+        "name" : ""
+    }
+
     $(".all-search").click(function () {
-        let data = {
-            "category" : "all"
-        }
-        $.ajax({
-            async: true,
-            type: 'GET',
-            data: data,
-            url: 'product/product-list',
-            dataType: 'html',
-            contentType: 'application/json; charset=UTF-8',
-            success: function (data) {
-                $('.product-list').html(data);
-            },
-            error: function (data) {
-                alert("잠시후 다시 시도해 주세요");
-            }
-        });
+        productList(data);
     });
 
     $(".select-search").click(function () {
         let category = $(".select-category").val();
 
         let data = {
-            "category" : category
+            "category" : category,
+            "checkName" : "Y",
+            "name" : ""
         }
-        console.log(data);
-        $.ajax({
-            async: true,
-            type: 'GET',
-            data: data,
-            url: 'product/product-list',
-            dataType: 'html',
-            contentType: 'application/json; charset=UTF-8',
-            success: function (data) {
-                $('.product-list').html(data);
-            },
-            error: function (data) {
-                alert("잠시후 다시 시도해 주세요");
-            }
-        });
+        productList(data);
     });
 
     $(".search-name").keyup(function () {
@@ -48,6 +26,8 @@ $(function () {
 
         let name = $(this).val().toUpperCase();
         let concatName = choHangul($(this).val());
+
+        checkName = 'Y';
 
         //초성검색 구분
         if (name!="" && concatName==""){
@@ -61,7 +41,11 @@ $(function () {
             "checkName" : checkName,
             "name" : name,
         }
-        console.log(data);
+
+        productList(data);
+    });
+
+    function productList(data) {
         $.ajax({
             async: true,
             type: 'GET',
@@ -76,7 +60,7 @@ $(function () {
                 alert("잠시후 다시 시도해 주세요");
             }
         });
-    });
+    }
 
     /* 초성추출 */
     function choHangul(str) {
