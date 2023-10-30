@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class OjtProjectApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OjtProjectApplication.class, args);
-	}
 
+		SpringApplication.run(OjtProjectApplication.class, args);
+
+	}
 }

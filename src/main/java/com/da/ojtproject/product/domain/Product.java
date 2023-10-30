@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 
@@ -18,6 +19,7 @@ public class Product {
     private String code;
     private int sellPrice;
     private String image;
+    private MultipartFile imageFile;
     private boolean checkProduct;
     private Date registerDate;
 }

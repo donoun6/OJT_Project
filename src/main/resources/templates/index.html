@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
     <!--  초기화,고정 css  -->
-    <link rel="stylesheet" href="/static/css/global/init.css">
-    <link rel="stylesheet" href="/static/css/global/default.css">
+    <link rel="stylesheet" href="/css/global/init.css">
+    <link rel="stylesheet" href="/css/global/default.css">
     <!--  커스텀 css  -->
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <!--  jquey cdn  -->
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <!--  script  -->
-    <script src="/static/js/common.js"></script>
+    <script src="/js/common.js"></script>
     <title>main</title>
 </head>
 <body>
@@ -27,14 +27,7 @@
             <h2>CHOOSE CATEGORY</h2>
             <!--  nav area  -->
             <ol>
-                <li>cate</li>
-                <li>cate/cate</li>
-                <li>test</li>
-                <li>list</li>
-                <li>cate</li>
-                <li>dd</li>
-                <li>cate</li>
-                <li>ssdddddddd</li>
+                <li th:each="category : ${categories}" th:text="${category.name}" th:value="${category.categoryId}"></li>
             </ol>
         </nav>
         <div class="product-list">

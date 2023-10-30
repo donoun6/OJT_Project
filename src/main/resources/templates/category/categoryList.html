@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Category List</title>
+    <style>
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            text-decoration: none; /* 링크의 밑줄 제거 */
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #337ab7;
+            border-color: #2e6da4;
+        }
+
+        .btn-danger {
+            color: #fff;
+            background-color: #d9534f;
+            border-color: #d43f00;
+        }
+
+        .btn-info {
+            color: #fff;
+            background-color: #5bc0de;
+            border-color: #46b8da;
+        }
+
+        .btn-primary:hover, .btn-danger:hover, .btn-info:hover {
+            opacity: 0.9;
+        }
+
+    </style>
+</head>
+<body>
+<h2>Category List</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Category ID</th>
+        <th>Name</th>
+        <th>Check Category</th>
+        <th>Register Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="category : ${categories}">
+        <td th:text="${category.categoryId}"></td>
+        <td th:text="${category.name}"></td>
+        <td th:text="${category.checkCategory}"></td>
+        <td th:text="${category.registerDate}"></td>
+        <td>
+            <a th:href="@{/deleteCategory/{id}(id=${category.categoryId})}" class="btn btn-danger"
+               onclick="return confirm('정말로 이 카테고리를 삭제하시겠습니까?');">삭제</a>
+        </td>
+        <td>
+            <!-- 수정 버튼을 링크로 변경 -->
+            <a href="#" class="btn btn-info" th:attr="onclick=|javascript:editCategory(${category.categoryId}, '${category.name}');|">수정</a>
+        </td>
+    </tr>
+    <br>
+    <td>
+        <a href="/registerCategory" class="btn btn-primary">RegisterCategory</a>
+    </td>
+    </tbody>
+</table>
+<script>
+    function editCategory(categoryId, currentName) {
+        var newName = prompt("카테고리 이름을 수정하세요:", currentName);
+
+        // 사용자가 동일한 이름을 입력했을 경우 바로 알림 창을 띄움
+        if (newName === currentName) {
+
+            alert("동일한 이름입니다!");
+            return;
+
+        }
+
+        if (newName === null || newName === "") {
+
+            return;
+
+        }
+
+        fetch('/editCategory', {
+
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `oldName=${currentName}&newName=${encodeURIComponent(newName)}`
+        }).then(response => {
+            if (response.ok) {
+                window.location.href = '/categoryList';
+            } else {
+                alert('Error updating category.');
+            }
+        });
+    }
+</script>
+</body>
+</html>

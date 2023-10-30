@@ -1,0 +1,26 @@
+<!--관리자가 새로운 카테고리 항목을 등록합니다.-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:object="${category}" action="/category" method="post">
+    <input type="hidden" th:field="*{categoryId}">
+    <label for="name">Name:</label>
+    <input type="text" th:field="*{name}" id="name">
+
+<!--    삭제할때만 필요한 것이라서 의미가 굳이 타임리프로 표시할 필요가 없습니다.-->
+<!--    <label for="deleteCheck">Delete Check:</label>-->
+<!--    <input type="checkbox" th:field="*{checkCategory}" id="deleteCheck">-->
+    <input type="submit">
+</form>
+<br>
+<br>
+<a href="/categoryList" class="btn btn-primary">View Categories List</a>
+<br>
+<br>
+</body>
+</html>

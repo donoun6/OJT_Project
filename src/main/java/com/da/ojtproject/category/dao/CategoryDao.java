@@ -1,7 +1,6 @@
-package com.da.ojtproject.home.dao;
+package com.da.ojtproject.category.dao;
 
 import com.da.ojtproject.category.domain.Category;
-import com.da.ojtproject.home.domain.Home;
 import com.da.ojtproject.product.domain.Product;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
@@ -16,12 +15,12 @@ import java.util.Map;
 
 @Repository
 @Transactional
-public class HomeDao {
+public class CategoryDao {
     private final JdbcTemplate jdbcTemplate;
     private SimpleJdbcCall addOrResetCategoryProcedure;
     private SimpleJdbcCall updateCategoryIfNotExistsProcedure;
 
-    public HomeDao(DataSource dataSource) {
+    public CategoryDao(DataSource dataSource) {
 
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.addOrResetCategoryProcedure = new SimpleJdbcCall(jdbcTemplate)
@@ -53,16 +52,16 @@ public class HomeDao {
     }
 
     // 모든 카테고리 목록을 출력하는 메서드(현재 존재하는 모든 카테고리 목록을 출력하는 메서드입니다.)
-    public List<Home> findAllCategories() {
+    public List<Category> findAllCategories() {
         String sql = "SELECT * FROM Category";
         return jdbcTemplate.query(sql, (resultSet, rowNum) -> {
-            Home home = new Home();
+            Category category = new Category();
             try {
 
-                home.setCategoryId(resultSet.getInt("category_id"));
-                home.setName(resultSet.getString("name"));
-                home.setCheckCategory(resultSet.getBoolean("check_category"));
-                home.setRegisterDate(resultSet.getTimestamp("register_date"));
+                category.setCategoryId(resultSet.getInt("category_id"));
+                category.setName(resultSet.getString("name"));
+                category.setCheckCategory(resultSet.getBoolean("check_category"));
+                category.setRegisterDate(resultSet.getTimestamp("register_date"));
 
             } catch (SQLException e) {
 
@@ -70,14 +69,35 @@ public class HomeDao {
 
             }
 
-            return home;
+            return category;
 
         });
     }
 
     public void deleteCategory(int id) {
-
     }
+
+//     모든 상품의 리스트를 출력하는 메서드
+//    public List<Product> getAllProducts() {
+//        String sql = "SELECT * FROM product";
+//        return template.query(sql, (resultSet, rowNum) -> {
+//            Product product = new Product();
+//            try {
+//                product.setProductId(resultSet.getInt("product_id"));
+//                product.setCategoryId(resultSet.getInt("category_id"));
+//                product.setName(resultSet.getString("name"));
+//                product.setCode(resultSet.getString("code"));
+//                product.setSellPrice(resultSet.getInt("sell_price"));
+//                product.setImage(resultSet.getString("image"));
+//                product.setCheckProduct(resultSet.getBoolean("check_product"));
+//                product.setRegisterDate(resultSet.getTimestamp("register_date"));
+//
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//            return product;
+//        });
+//    }
 
 
 }

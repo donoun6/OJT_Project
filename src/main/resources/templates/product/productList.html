@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>상품 목록</title>
+</head>
+<body>
+
+<h2>상품 목록</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>상품 ID</th>
+        <th>카테고리 ID</th>
+        <th>상품 이름</th>
+        <th>상품 코드</th>
+        <th>판매 가격</th>
+        <th>상품 이미지</th>
+        <th>상품 확인</th>
+        <th>등록 날짜</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- 상품 목록 반복 출력 -->
+    <tr th:each="product : ${products}">
+        <td th:text="${product.productId}"></td>
+        <td th:text="${product.categoryId}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.code}"></td>
+        <td th:text="${product.sellPrice}"></td>
+        <!-- 이미지 경로 동적 바인딩 -->
+        <td><img th:src="@{'/img/' + ${product.image}}" alt="상품 이미지" width="100"/></td>
+        <!-- 상품 확인 여부 조건부 텍스트 출력 -->
+        <!-- 공부하면서 매우 신기헸던 방법입니다. 컬럼의 데이터를 바탕으로 출력하는 방식을 달리 할 수 있다. -->
+        <td th:text="${product.checkProduct ? '확인됨' : '확인 안됨'}"></td>
+        <td th:text="${product.registerDate}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

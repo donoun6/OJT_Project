@@ -1,4 +1,4 @@
-package com.da.ojtproject.home.domain;
+package com.da.ojtproject.category.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Home {
+public class Category {
 
     private int categoryId;
     private String name;
