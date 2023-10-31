@@ -33,11 +33,11 @@
   <div id="main-wrap">
     <!--    main area    -->
     <section class="section1">
+      <!--    section1 area    -->
       <h1>Product</h1>
       <div class="search-wrap">
         <div class="search-box">
           <table class="search-table">
-            <form action="">
             <tr>
               <th scope="row">category</th>
               <td>
@@ -56,8 +56,8 @@
             <tr>
               <th scope="row">inventory</th>
               <td>
-                <input type='radio' name='inventory' value='1' />high
-                <input type='radio' name='inventory' value='2' />low
+                <input type='radio' name='inventory' value='1'/>high
+                <input type='radio' name='inventory' value='2'/>low
               </td>
               <th scope="row">삭제여부</th>
               <td>내용이 들어갑니다.</td>
@@ -65,13 +65,12 @@
             <tr>
               <th scope="row">sell</th>
               <td>
-                <input type='radio' name='sell' value='1' checked />high
-                <input type='radio' name='sell' value='2' />low
+                <input type='radio' name='sell' value='1' checked/>high
+                <input type='radio' name='sell' value='2'/>low
               </td>
               <th scope="row">판매금액</th>
               <td>내용이 들어갑니다.</td>
             </tr>
-            </form>
           </table>
           <div class="search-btn-box">
             <button class="all-search">전체조회</button>
@@ -82,36 +81,56 @@
       </div>
     </section>
     <section class="section2">
+      <!--    section2 area    -->
       <table>
         <thead>
         <tr>
-          <th>no</th>
-          <th>image</th>
-          <th>name</th>
-          <th>code</th>
-          <th>category</th>
-          <th>Inventory_quantity</th>
-          <th>selling_quantity</th>
-          <th>sell_price</th>
-          <th>total_price</th>
+          <th style="width: 15px">no</th>
+          <th style="width: 30px">image</th>
+          <th style="width: 140px">name</th>
+          <th style="width: 150px">code</th>
+          <th style="width: 100px">category</th>
+          <th style="width: 80px">I_quantity</th>
+          <th style="width: 80px">S_quantity</th>
+          <th style="width: 100px">sell_price</th>
+          <th style="width: 100px">total_price</th>
+          <th style="width: 80px">cencel</th>
+          <th style="width: 150px">register_date</th>
+          <th>add</th>
         </tr>
         <img src=""/>
         </thead>
         <tbody class="product-list">
         <tr th:each="productList : ${productList}">
+          <!--     index     -->
           <td th:text="${productListStat.count}"></td>
-          <td><img style="width: 40px; height: 40px" th:src="@{${productList.getImage()}}"></td>
+          <!--     product_img     -->
+          <td style="text-align: center;"><img th:src="@{${productList.getImage()}}"></td>
+          <!--     product_name     -->
           <td th:text="${productList.getName()}"></td>
+          <!--     product_code     -->
           <td th:text="${productList.getCode()}"></td>
-          <td th:text="${productList.getCategoryName()}"></td>
-          <td th:text="${productList.getInventoryQuantity()}"></td>
-          <td th:text="${productList.getSellingQuantity()}"></td>
-          <td th:text="${productList.getSellPrice()}"></td>
-          <td th:text="${productList.getTotalPrice()}"></td>
+          <!--     category     -->
+          <td th:text="${productList.getCategory().getName()}"></td>
+          <!--     inventory_quantity     -->
+          <td th:text="${productList.getInventory().getQuantity+ '개'}"></td>
+          <!--     sell_quantity     -->
+          <td th:text="${productList.getSelling().getQuantity + '개'}"></td>
+          <!--     sell_price     -->
+          <td th:text="${#numbers.formatInteger(productList.getSellPrice(), 3, 'COMMA') + '원'}"}>-</td>
+          <!--     total_price     -->
+          <td th:if="${productList.getSelling().getTotalPrice} == 0"}>-</td>
+          <td th:if="${productList.getSelling().getTotalPrice} != 0" th:text="${#numbers.formatInteger(productList.getSelling().getTotalPrice, 3, 'COMMA') + '원'}"}>-</td>
+          <!--     check_product     -->
+          <td th:if="${productList.isCheckProduct()} == false"}>Y</td>
+          <td th:if="${productList.isCheckProduct()} == true"}>N</td>
+          <!--     register_date     -->
+          <td th:text="${#dates.format(productList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}"></td>
+          <td><button>수정</button><button>삭제</button></td>
         </tr>
         </tbody>
       </table>
-      <div class="page-nav">1 2 3 4 5 6 페이징 처리 area </div>
+      <div class="page-nav">1 2 3 4 5 6</div>
     </section>
   </div>
 </main>

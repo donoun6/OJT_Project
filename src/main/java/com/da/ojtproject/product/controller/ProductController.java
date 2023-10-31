@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -18,7 +17,6 @@ public class ProductController {
 
     @GetMapping()
     public String productForm(Model model) {
-        Map<String, Object> data = new HashMap<>();
         model.addAttribute("productList", productService.getAllProducts());
         model.addAttribute("categoryList", productService.getAllCategory());
         return "admin/product/product";

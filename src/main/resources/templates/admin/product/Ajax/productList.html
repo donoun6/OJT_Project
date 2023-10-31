@@ -1,13 +1,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <tr th:each="productList : ${productList}">
+    <!--     index     -->
     <td th:text="${productListStat.count}"></td>
-    <td th:text="${productList.getImage()}"></td>
+    <!--     product_img     -->
+    <td style="text-align: center;"><img th:src="@{${productList.getImage()}}"></td>
+    <!--     product_name     -->
     <td th:text="${productList.getName()}"></td>
+    <!--     product_code     -->
     <td th:text="${productList.getCode()}"></td>
-    <td th:text="${productList.getCategoryName()}"></td>
-    <td th:text="${productList.getInventoryQuantity()}"></td>
-    <td th:text="${productList.getSellingQuantity()}"></td>
-    <td th:text="${productList.getSellPrice()}"></td>
-    <td th:text="${productList.getTotalPrice()}"></td>
+    <!--     category     -->
+    <td th:text="${productList.getCategory().getName()}"></td>
+    <!--     inventory_quantity     -->
+    <td th:text="${productList.getInventory().getQuantity+ '개'}"></td>
+    <!--     sell_quantity     -->
+    <td th:text="${productList.getSelling().getQuantity + '개'}"></td>
+    <!--     sell_price     -->
+    <td th:text="${#numbers.formatInteger(productList.getSellPrice(), 3, 'COMMA') + '원'}"}>-</td>
+    <!--     total_price     -->
+    <td th:if="${productList.getSelling().getTotalPrice} == 0"}>-</td>
+    <td th:if="${productList.getSelling().getTotalPrice} != 0" th:text="${#numbers.formatInteger(productList.getSelling().getTotalPrice, 3, 'COMMA') + '원'}"}>-</td>
+    <!--     check_product     -->
+    <td th:if="${productList.isCheckProduct()} == false"}>Y</td>
+    <td th:if="${productList.isCheckProduct()} == true"}>N</td>
+    <!--     register_date     -->
+    <td th:text="${#dates.format(productList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}"></td>
+    <td><button>수정</button><button>삭제</button></td>
 </tr>

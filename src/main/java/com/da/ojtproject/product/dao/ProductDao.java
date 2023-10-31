@@ -1,7 +1,7 @@
 package com.da.ojtproject.product.dao;
 
 import com.da.ojtproject.category.domain.Category;
-import com.da.ojtproject.product.domain.ProductList;
+import com.da.ojtproject.product.domain.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -17,7 +17,7 @@ public class ProductDao {
 
     private final JdbcTemplate template;
 
-    public List<ProductList> getAllProducts() {
+    public List<Product> getAllProducts() {
                 String sql = "SELECT " +
                 "product.product_id, " +
                 "product.name, " +
@@ -25,6 +25,8 @@ public class ProductDao {
                 "product.sell_price, " +
                 "product.image, " +
                 "product.category_id, " +
+                "product.check_product, " +
+                "product.register_date, " +
                 "category.name, " +
                 "inventory.inventory_id, " +
                 "inventory.quantity, " +
@@ -43,25 +45,10 @@ public class ProductDao {
                 "GROUP BY product.product_id, product.name, product.code, product.sell_price, " +
                 "product.image, product.category_id, category.name, " +
                 "inventory.inventory_id, inventory.quantity";
-        return template.query(sql, (rs, rowNum) -> {
-            ProductList productList = new ProductList();
-            productList.setProductId(rs.getInt("product_id"));
-            productList.setName(rs.getString("product.name"));
-            productList.setCode(rs.getString("code"));
-            productList.setSellPrice((rs.getInt("sell_price")));
-            productList.setImage(rs.getString("image"));
-            productList.setCategoryId(rs.getInt("category_id"));
-            productList.setCategoryName(rs.getString("category.name"));
-            productList.setInventoryId(rs.getInt("inventory_id"));
-            productList.setInventoryQuantity(rs.getInt("inventory.quantity"));
-            productList.setSellingId(rs.getInt("selling_id"));
-            productList.setSellingQuantity(rs.getInt("selling_quantity"));
-            productList.setTotalPrice(rs.getInt("total_price"));
-            return productList;
-        });
+        return template.query(sql, new ProductListRowMapper());
     };
 
-    public List<ProductList> getSelectProducts(Map<String, Object> data) {
+    public List<Product> getSelectProducts(Map<String, Object> data) {
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT " +
                 "product.product_id, " +
@@ -70,6 +57,8 @@ public class ProductDao {
                 "product.sell_price, " +
                 "product.image, " +
                 "product.category_id, " +
+                "product.check_product, " +
+                "product.register_date, " +
                 "category.name, " +
                 "inventory.inventory_id, " +
                 "inventory.quantity, " +
@@ -97,22 +86,7 @@ public class ProductDao {
                 "product.image, product.category_id, category.name, " +
                 "inventory.inventory_id, inventory.quantity");
         String sql = sb.toString();
-        return template.query(sql, (rs, rowNum) -> {
-            ProductList productList = new ProductList();
-            productList.setProductId(rs.getInt("product_id"));
-            productList.setName(rs.getString("product.name"));
-            productList.setCode(rs.getString("code"));
-            productList.setSellPrice((rs.getInt("sell_price")));
-            productList.setImage(rs.getString("image"));
-            productList.setCategoryId(rs.getInt("category_id"));
-            productList.setCategoryName(rs.getString("category.name"));
-            productList.setInventoryId(rs.getInt("inventory_id"));
-            productList.setInventoryQuantity(rs.getInt("inventory.quantity"));
-            productList.setSellingId(rs.getInt("selling_id"));
-            productList.setSellingQuantity(rs.getInt("selling_quantity"));
-            productList.setTotalPrice(rs.getInt("total_price"));
-            return productList;
-        });
+        return template.query(sql, new ProductListRowMapper());
     };
 
     public List<Category> getAllCategory() {
@@ -127,4 +101,5 @@ public class ProductDao {
             return category;
         });
     };
+
 }

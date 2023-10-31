@@ -5,6 +5,8 @@ SELECT
     product.sell_price,
     product.image,
     product.category_id,
+    product.register_date,
+    product.check_product,
     category.name,
     inventory.inventory_id,
     inventory.quantity,
