@@ -62,3 +62,29 @@ BEGIN
     SET quantity = quantity + var_quantity
     WHERE product_id = var_product_id;
 END;
+
+# 카테 삭제 -> 아이템 삭제
+CREATE TRIGGER CategoryCencelAndProductCencel
+    AFTER UPDATE ON Category
+    FOR EACH ROW
+BEGIN
+    IF NEW.check_category = FALSE THEN
+        -- 카테고리의 check_category가 FALSE로 변경된 경우
+        UPDATE Product
+        SET check_product = FALSE
+        WHERE category_id = NEW.category_id;
+    END IF;
+END;
+
+# 카테 복원  -> 아이템 복원
+CREATE TRIGGER CategoryRestoreAndProductRestore
+    AFTER UPDATE ON Category
+    FOR EACH ROW
+BEGIN
+    IF NEW.check_category = TRUE THEN
+        -- 카테고리의 check_category가 TRUE로 변경된 경우
+        UPDATE Product
+        SET check_product = TRUE
+        WHERE category_id = NEW.category_id;
+    END IF;
+END;

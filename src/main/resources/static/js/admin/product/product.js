@@ -1,9 +1,34 @@
 $(function () {
 
+    $(document).ready(function () {
+        $("#startDate").datepicker({
+            dateFormat: "yy-mm-dd", // 날짜의 형식
+            nextText: ">",
+            prevText: "<",
+            onSelect: function (date) {
+                var endDate = $('#endDate');
+                var startDate = $(this).datepicker('getDate');
+                var minDate = $(this).datepicker('getDate');
+                endDate.datepicker('setDate', minDate);
+                startDate.setDate(startDate.getDate() + 30);
+                endDate.datepicker('option', 'minDate', minDate);
+            }
+        });
+        $('#endDate').datepicker({
+            dateFormat: "yy-mm-dd", // 날짜의 형식
+            nextText: ">",
+            prevText: "<"
+        });
+    });
+
     let data = {
         "category" : "all",
         "checkName" : "Y",
-        "name" : ""
+        "name" : "",
+        "productDeleteCheck" : "N",
+        "categoryDeleteCheck" : "N",
+        "startRegisterDate" : "",
+        "endRegisterDate" : ""
     }
 
     $(".all-search").click(function () {
@@ -12,22 +37,33 @@ $(function () {
 
     $(".select-search").click(function () {
         let category = $(".select-category").val();
+        let productDeleteCheck = $(".product-delete-check:checked").val();
+        let categoryDeleteCheck = $(".category-delete-check:checked").val();
+        let startRegisterDate = $("#startDate").val();
+        let endRegisterDate = $("#endDate").val();
 
         let data = {
             "category" : category,
             "checkName" : "Y",
-            "name" : ""
+            "name" : "",
+            "productDeleteCheck" : productDeleteCheck,
+            "categoryDeleteCheck" : categoryDeleteCheck,
+            "startRegisterDate" : startRegisterDate,
+            "endRegisterDate" : endRegisterDate
         }
+        console.log(data)
         productList(data);
     });
 
     $(".search-name").keyup(function () {
         let category = $(".select-category").val();
-
+        let checkName = 'Y';
         let name = $(this).val().toUpperCase();
+        let productDeleteCheck = $(".product-delete-check:checked").val();
+        let categoryDeleteCheck = $(".category-delete-check:checked").val();
         let concatName = choHangul($(this).val());
-
-        checkName = 'Y';
+        let startRegisterDate = $("#startDate").val();
+        let endRegisterDate = $("#endDate").val();
 
         //초성검색 구분
         if (name!="" && concatName==""){
@@ -40,8 +76,11 @@ $(function () {
             "category" : category,
             "checkName" : checkName,
             "name" : name,
+            "productDeleteCheck" : productDeleteCheck,
+            "categoryDeleteCheck" : categoryDeleteCheck,
+            "startRegisterDate" : startRegisterDate,
+            "endRegisterDate" : endRegisterDate
         }
-
         productList(data);
     });
 
@@ -72,5 +111,9 @@ $(function () {
         }
         return result;
     }
+
+
+
+
 });
 

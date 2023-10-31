@@ -32,6 +32,7 @@ public class ProductDao {
                 "product.check_product, " +
                 "product.register_date, " +
                 "category.name, " +
+                "category.check_category, " +
                 "inventory.inventory_id, " +
                 "inventory.quantity, " +
                 "IFNULL(SUM(selling.selling_id), 0) AS selling_id, " +
@@ -44,8 +45,8 @@ public class ProductDao {
                 "ON product.product_id = inventory.product_id " +
                 "LEFT JOIN selling " +
                 "ON product.product_id = selling.product_id " +
-                "WHERE product.check_product = true " +
-                "AND category.check_category = true " +
+                "WHERE category.check_category = true " +
+                "AND product.check_product = true " +
                 "GROUP BY product.product_id, product.name, product.code, product.sell_price, " +
                 "product.image, product.category_id, category.name, " +
                 "inventory.inventory_id, inventory.quantity";
@@ -69,6 +70,7 @@ public class ProductDao {
                 "product.check_product, " +
                 "product.register_date, " +
                 "category.name, " +
+                "category.check_category, " +
                 "inventory.inventory_id, " +
                 "inventory.quantity, " +
                 "IFNULL(SUM(selling.selling_id), 0) AS selling_id, " +
@@ -80,14 +82,42 @@ public class ProductDao {
                 "INNER JOIN inventory " +
                 "ON product.product_id = inventory.product_id " +
                 "LEFT JOIN selling " +
-                "ON product.product_id = selling.product_id " +
-                "WHERE product.check_product = true " +
-                "AND category.check_category = true ");
+                "ON product.product_id = selling.product_id ");
+        /**
+         * categoryDeleteCheck : 카테고리 삭제 여부 출력
+         */
+        if(data.get("categoryDeleteCheck").equals("N")){
+            sb.append("WHERE category.check_category = true ");
+        }else {
+            sb.append("WHERE product.check_product IS NOT NULL ");
+        }
+        /**
+         * deleteCheck : 상품 삭제 여부 출력
+         */
+        if(data.get("productDeleteCheck").equals("N")){
+            sb.append("AND product.check_product = true ");
+        }else {
+            sb.append("AND product.check_product IS NOT NULL ");
+        }
+        /**
+         * checkName : 검색 value (상품 이름 검색, 초성 검색)
+         */
         if(data.get("checkName").equals("Y")) {
             sb.append("AND fn_choSearch(Product.name) LIKE CONCAT('%', '"+data.get("name")+"', '%')");
         } else {
             sb.append("AND Product.name LIKE'%"+data.get("name")+"%'" );
         }
+        /**
+         * startRegisterDate : 시작 날짜
+         * endRegisterDate : 종료 날짜
+         * 범위 지정 검색
+         */
+        if(!data.get("startRegisterDate").equals("") && !data.get("endRegisterDate").equals("")) {
+            sb.append("AND DATE(product.register_date) BETWEEN '"+data.get("startRegisterDate")+"' AND '"+data.get("endRegisterDate")+"'");
+        }
+        /**
+         * category : 카테고리 별 상품 출력
+         */
         if(!data.get("category").equals("all") ) {
             sb.append("AND product.category_id = "+data.get("category")+" ");
         }

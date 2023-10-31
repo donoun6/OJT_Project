@@ -33,6 +33,7 @@ public class ProductListRowMapper implements RowMapper<Product> {
         product.setCheckProduct(rs.getBoolean("check_product"));
         product.setRegisterDate(rs.getTimestamp("register_date"));
         category.setName(rs.getString("category.name"));
+        category.setCheckCategory(rs.getBoolean("check_category"));
         inventory.setInventoryId(rs.getInt("inventory_id"));
         inventory.setQuantity(rs.getInt("inventory.quantity"));
         selling.setSellingId(rs.getInt("selling_id"));

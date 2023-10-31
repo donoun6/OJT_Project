@@ -10,7 +10,7 @@ UPDATE Category set name = '커피'
 WHERE category_id = 1;
 
 -- 카테고리 삭제 처리
-UPDATE Category set check_category = FALSE
+UPDATE Category set check_category = TRUE
 WHERE category_id = 1;
 
 -- 카테고리 등록 이전에 삭제했던 카테고리면 삭제 취소, 아니면 새로 등록
@@ -37,8 +37,8 @@ UPDATE Product set category_id = 1
 WHERE product_id = 1;
 
 -- 상품 삭제처리
-UPDATE Product set check_product = FALSE
-WHERE product_id = 1;
+UPDATE Product set check_product = TRUE
+WHERE product_id = 6;
 
 -- 장바구니 담기 만약 해당 제품이 이미 장바구니에 있는경우 수량만 높이기
 CALL AddOrCountCart(5);

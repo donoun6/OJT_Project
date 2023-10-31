@@ -8,6 +8,8 @@ $(function () {
         $(".arrow-back-ios").stop().animate({ opacity : "0" },250,"easeOutExpo");
         $(".arrow-forward-ios").stop().animate({ opacity : "1" , left : "-1.5%"},500,"easeInExpo");
         $("#main-wrap").stop().animate({ marginLeft : "0" , width : "100%" },550,"easeInExpo");
+        console.log()
+        ;
     });
 
     $(".arrow-forward-ios").click(function () {

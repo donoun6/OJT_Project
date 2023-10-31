@@ -7,6 +7,10 @@ h1 {
     font-weight: bold;
 }
 
+button {
+    cursor: pointer;
+}
+
 /* search section1 area */
 .section1 {
     position: relative;
@@ -74,6 +78,12 @@ h1 {
     right: 3%;
 }
 
+.section1 .search-wrap .search-box .search-bar {
+    position: absolute;
+    right: 0%;
+    bottom: -20%;
+}
+
 /* list section2 area*/
 .section2 {
     position: relative;
@@ -84,6 +94,7 @@ h1 {
 }
 
 .section2 table {
+    margin-top: -1.1%;
     border-collapse: separate;
     border-spacing: 0;
     width: 100%;
@@ -145,4 +156,5 @@ h1 {
     width: 100%;
     height: 10%;
 }
+
 
