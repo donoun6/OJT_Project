@@ -17,6 +17,10 @@ public class ProductDao {
 
     private final JdbcTemplate template;
 
+    /**
+     * 전체 product list 반환
+     * @return
+     */
     public List<Product> getAllProducts() {
                 String sql = "SELECT " +
                 "product.product_id, " +
@@ -48,6 +52,11 @@ public class ProductDao {
         return template.query(sql, new ProductListRowMapper());
     };
 
+    /**
+     * 검색 조건에 맞는 product list 반환
+     * @param data 해당 데이터의 검색 조건에 맞게 쿼리문 추가
+     * @return
+     */
     public List<Product> getSelectProducts(Map<String, Object> data) {
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT " +
@@ -89,6 +98,10 @@ public class ProductDao {
         return template.query(sql, new ProductListRowMapper());
     };
 
+    /**
+     * 전체 category 반환
+     * @return
+     */
     public List<Category> getAllCategory() {
         String sql = "SELECT * FROM Category " +
                 "WHERE check_category = TRUE";

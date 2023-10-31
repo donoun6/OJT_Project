@@ -25,6 +25,7 @@ public class Product {
     private MultipartFile imageFile;
     private boolean checkProduct;
     private Date registerDate;
+
     //외부 객체
     private Category category;
     private Inventory inventory;

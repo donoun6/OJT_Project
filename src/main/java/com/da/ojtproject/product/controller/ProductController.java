@@ -15,6 +15,10 @@ public class ProductController {
 
     private final ProductService productService;
 
+    /**
+     * @param model
+     * @return
+     */
     @GetMapping()
     public String productForm(Model model) {
         model.addAttribute("productList", productService.getAllProducts());
@@ -22,6 +26,12 @@ public class ProductController {
         return "admin/product/product";
     }
 
+    /**
+     * Ajax html 비동기 화면 반환
+     * @param model
+     * @param data Ajax 받아온 데이터 묶음
+     * @return
+     */
     @GetMapping("/product-list")
     public String productList(Model model,
                               @RequestParam(required = false) Map<String, Object> data) {
