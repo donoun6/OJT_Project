@@ -95,11 +95,12 @@
           <th>sell_price</th>
           <th>total_price</th>
         </tr>
+        <img src=""/>
         </thead>
         <tbody class="product-list">
         <tr th:each="productList : ${productList}">
           <td th:text="${productListStat.count}"></td>
-          <td th:text="${productList.getImage()}"></td>
+          <td><img style="width: 40px; height: 40px" th:src="@{${productList.getImage()}}"></td>
           <td th:text="${productList.getName()}"></td>
           <td th:text="${productList.getCode()}"></td>
           <td th:text="${productList.getCategoryName()}"></td>
