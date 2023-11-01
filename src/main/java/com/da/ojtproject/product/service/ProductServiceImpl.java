@@ -28,7 +28,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Category> getAllCategory() {
-        return productDao.getAllCategory();
+    public void saveProduct(Product product) {
+        productDao.saveProduct(product);
     }
 }

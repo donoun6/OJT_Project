@@ -4,18 +4,26 @@ import com.da.ojtproject.category.domain.Category;
 import com.da.ojtproject.product.domain.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.sql.DataSource;
 import java.util.List;
 import java.util.Map;
 
 @Repository
 @Transactional
-@RequiredArgsConstructor
 public class ProductDao {
 
-    private final JdbcTemplate template;
+    private JdbcTemplate template;
+    private SimpleJdbcCall addOrResetCategoryProcedure;
+
+    public ProductDao(DataSource dataSource) {
+        this.template = new JdbcTemplate(dataSource);
+        this.addOrResetCategoryProcedure = new SimpleJdbcCall(template)
+                .withProcedureName("AddOrResetCategory");
+    }
 
     /**
      * 전체 product list 반환
@@ -135,21 +143,10 @@ public class ProductDao {
         return template.query(sql, new ProductListRowMapper());
     };
 
-    /**
-     * 전체 category 반환
-     * @return category
-     */
-    public List<Category> getAllCategory() {
-        String sql = "SELECT * FROM Category " +
-                "WHERE check_category = TRUE";
-        return template.query(sql, (rs, rowNum) -> {
-            Category category = new Category();
-            category.setCategoryId(rs.getInt("category_id"));
-            category.setName(rs.getString("name"));
-            category.setCheckCategory(rs.getBoolean("check_category"));
-            category.setRegisterDate(rs.getTimestamp("register_date"));
-            return category;
-        });
-    };
+    public void saveProduct(Product product) {
+        String sql = "INSERT INTO product (category_id, name, code, sell_price, image) VALUES (?, ?, ?, ?, ?)";
+        template.update(sql, product.getCategoryId(), product.getName(), product.getCode(), product.getSellPrice(), product.getImage());
+    }
+
 
 }

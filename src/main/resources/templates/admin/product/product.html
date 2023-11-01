@@ -99,8 +99,9 @@
                             </td>
                         </tr>
                     </table>
-                    <div class="search-bar">product name:
-                        <input class="search-name" type="text">
+                    <div class="search-bar">
+                        <input class="search-name" type="text" placeholder="product_name">
+                        <span class="material-symbols-outlined search-img">search</span>
                     </div>
                     <div class="search-btn-box">
                         <button class="all-search">전체조회</button>
@@ -118,41 +119,46 @@
                     <th style="width: 1%;">no</th>
                     <th style="width: 2%;">image</th>
                     <th style="width: 10%;">name
-                        <span id="product.name-desc" class="material-symbols-outlined desc">expand_less</span>
-                        <span id="product.name-asc" class="material-symbols-outlined asc">expand_more</span>
+                        <span id="product.name-desc" class="material-symbols-outlined desc order">expand_less</span>
+                        <span id="product.name-asc" class="material-symbols-outlined asc order">expand_more</span>
                     </th>
                     <th style="width: 10%;">code
-                        <span id="product.code-desc" class="material-symbols-outlined desc">expand_less</span>
-                        <span id="product.code-asc" class="material-symbols-outlined asc">expand_more</span>
+                        <span id="product.code-desc" class="material-symbols-outlined desc order">expand_less</span>
+                        <span id="product.code-asc" class="material-symbols-outlined asc order">expand_more</span>
                     </th>
                     <th style="width: 8%;">category
-                        <span id="category.name-desc" class="material-symbols-outlined desc">expand_less</span>
-                        <span id="category.name-asc" class="material-symbols-outlined asc">expand_more</span>
+                        <span id="category.name-desc" class="material-symbols-outlined desc order">expand_less</span>
+                        <span id="category.name-asc" class="material-symbols-outlined asc order">expand_more</span>
                     </th>
                     <th style="width: 7%;">I_quan
-                        <span id="inventory.quantity-desc" class="material-symbols-outlined desc">expand_less</span>
-                        <span id="inventory.quantity-asc" class="material-symbols-outlined asc">expand_more</span>
+                        <span id="inventory.quantity-desc"
+                              class="material-symbols-outlined desc order">expand_less</span>
+                        <span id="inventory.quantity-asc" class="material-symbols-outlined asc order">expand_more</span>
                     </th>
                     <th style="width: 7%;">S_quan
-                        <span id="selling_quantity-desc" class="material-symbols-outlined desc">expand_less</span>
-                        <span id="selling_quantity-asc" class="material-symbols-outlined asc">expand_more</span>
+                        <span id="selling_quantity-desc" class="material-symbols-outlined desc order">expand_less</span>
+                        <span id="selling_quantity-asc" class="material-symbols-outlined asc order">expand_more</span>
                     </th>
                     <th style="width: 8%;">sell_price
-                        <span id="product.sell_price-desc" class="material-symbols-outlined desc">expand_less</span>
-                        <span id="product.sell_price-asc" class="material-symbols-outlined asc">expand_more</span>
+                        <span id="product.sell_price-desc"
+                              class="material-symbols-outlined desc order">expand_less</span>
+                        <span id="product.sell_price-asc" class="material-symbols-outlined asc order">expand_more</span>
                     </th>
-                    <th style="width: 10%;">total_price
-                        <span id="total_price-desc" class="material-symbols-outlined desc">expand_less</span>
-                        <span id="total_price-asc" class="material-symbols-outlined asc">expand_more</span>
+                    <th style="width: 9%;">total_price
+                        <span id="total_price-desc" class="material-symbols-outlined desc order">expand_less</span>
+                        <span id="total_price-asc" class="material-symbols-outlined asc order">expand_more</span>
                     </th>
-                    <th style="width: 6%;">cencel</th>
-                    <th style="width: 15%;">register_date
-                        <span id="product.register_date-desc" class="material-symbols-outlined desc">expand_less</span>
-                        <span id="product.register_date-asc" class="material-symbols-outlined asc">expand_more</span>
+                    <th style="width: 5%;">cencel</th>
+                    <th style="width: 13%;">register_date
+                        <span id="product.register_date-desc"
+                              class="material-symbols-outlined desc order">expand_less</span>
+                        <span id="product.register_date-asc"
+                              class="material-symbols-outlined asc order">expand_more</span>
                     </th>
-                    <th>add</th>
+                    <th>-</th>
+                    <th>-</th>
                 </tr>
-                <img src=""/>
+                <img>
                 </thead>
                 <tbody class="product-list">
                 <tr th:each="productList : ${productList}">
@@ -190,6 +196,9 @@
                     <!--     register_date     -->
                     <td th:text="${#dates.format(productList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}"></td>
                     <td>
+                        <button>카테삭제</button>
+                    </td>
+                    <td>
                         <button>수정</button>
                         <button>삭제</button>
                     </td>
@@ -199,6 +208,49 @@
             <div class="page-nav">1 2 3 4 5 6</div>
         </section>
     </div>
+    <!--   category add form     -->
+    <form id="productForm" action="/api/product/save" method="post" enctype="multipart/form-data">
+    <div class="product-save-from-wrap">
+        <div class="product-save-form">
+            <table>
+                <tr>
+                    <td>카테고리:</td>
+                    <td>
+                        <!-- 카테고리 선택 dropdown -->
+                        <select class="category" name="categoryId" required>
+                            <option disabled>카테고리 선택</option>
+                            <!-- 서버로부터 가져온 카테고리 목록을 동적으로 추가 -->
+                            <option th:each="categoryList : ${categoryList}"
+                                    th:value="${categoryList.categoryId}"
+                                    th:text="${categoryList.name}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>상품 이름:</td>
+                    <td><input class="product-name" type="text" name="name" required></td>
+                </tr>
+                <tr>
+                    <td>상품 코드:</td>
+                    <td><input class="product-code" type="text" name="code" required></td>
+                </tr>
+                <tr>
+                    <td>판매 가격:</td>
+                    <td><input class="product-sellPrice" type="number" name="sellPrice" required></td>
+                </tr>
+                <tr>
+                    <td>상품 이미지:</td>
+                    <td><input class="product-image" type="file" name="imageFile" accept="image/*" required></td>
+                </tr>
+            </table>
+
+            <div class="product-save-btn-box">
+                <button class="product-save-btn">추가</button>
+                <button class="product-save- cancel-btn">취소</button>
+            </div>
+        </div>
+    </div>
+    </form>
 </main>
 </body>
 </html>

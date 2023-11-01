@@ -10,11 +10,15 @@
     <!--     product_code     -->
     <td th:text="${productList.getCode()}"></td>
     <!--     category     -->
-    <td th:if="${productList.getCategory().isCheckCategory()} == false" th:text="${productList.getCategory().getName()}" style="color: red; font-weight: bold"></td>
-    <td th:if="${productList.getCategory().isCheckCategory()} == true" th:text="${productList.getCategory().getName()}"></td>
+    <td th:if="${productList.getCategory().isCheckCategory()} == false"
+        th:text="${productList.getCategory().getName()}" style="color: red; font-weight: bold"></td>
+    <td th:text="${productList.getCategory().getName()}"></td>
     <!--     inventory_quantity     -->
-    <td th:if="${productList.getInventory().getQuantity} <= 5" th:text="${productList.getInventory().getQuantity+ '개'}" style="font-weight: bold; color: red"></td>
-    <td th:if="${productList.getInventory().getQuantity} > 5" th:text="${productList.getInventory().getQuantity+ '개'}"></td>
+    <td th:if="${productList.getInventory().getQuantity} <= 5"
+        th:text="${productList.getInventory().getQuantity+ '개'}"
+        style="font-weight: bold; color: red"></td>
+    <td th:if="${productList.getInventory().getQuantity} > 5"
+        th:text="${productList.getInventory().getQuantity+ '개'}"></td>
     <!--     sell_quantity     -->
     <td th:text="${productList.getSelling().getQuantity + '개'}"></td>
     <!--     sell_price     -->
@@ -30,6 +34,9 @@
     <td th:if="${productList.isCheckProduct()} == true" }>N</td>
     <!--     register_date     -->
     <td th:text="${#dates.format(productList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}"></td>
+    <td>
+        <button>카테삭제</button>
+    </td>
     <td>
         <button>수정</button>
         <button>삭제</button>

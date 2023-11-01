@@ -18,7 +18,7 @@ public interface ProductService {
     List<Product> getSearchProducts(Map<String, Object> data);
 
     /**
-     * 전체 category list 반환
+     * 상품 등록
      */
-    List<Category> getAllCategory();
+    void saveProduct(Product product);
 }

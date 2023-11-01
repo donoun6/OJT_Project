@@ -12,10 +12,8 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Category {
-
     private int categoryId;
     private String name;
     private boolean checkCategory;
     private Timestamp registerDate;
-
 }

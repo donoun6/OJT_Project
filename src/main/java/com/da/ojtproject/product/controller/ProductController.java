@@ -1,5 +1,8 @@
 package com.da.ojtproject.product.controller;
 
+import com.da.ojtproject.category.domain.Category;
+import com.da.ojtproject.category.service.CategoryService;
+import com.da.ojtproject.product.domain.Product;
 import com.da.ojtproject.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -14,6 +17,7 @@ import java.util.Map;
 public class ProductController {
 
     private final ProductService productService;
+    private final CategoryService categoryService;
 
     /**
      * @param model
@@ -22,14 +26,14 @@ public class ProductController {
     @GetMapping()
     public String productForm(Model model) {
         model.addAttribute("productList", productService.getAllProducts());
-        model.addAttribute("categoryList", productService.getAllCategory());
+        model.addAttribute("categoryList", categoryService.getAllCategory());
         return "admin/product/product";
     }
 
     /**
      * Ajax html 비동기 화면 반환
      * @param model
-     * @param data Ajax 받아온 데이터 묶음
+     * @param data
      * @return
      */
     @GetMapping("/product-list")
