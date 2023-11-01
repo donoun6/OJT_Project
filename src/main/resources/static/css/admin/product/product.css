@@ -116,6 +116,38 @@ button {
     height: 30px;
 }
 
+.section2 th .asc {
+    position: absolute;
+    bottom: 6%;
+    right: 5%;
+    cursor: pointer;
+    height: 50%;
+    transition: .3s;
+}
+
+.section2 th .asc:hover {
+    color: #2e6da4;
+}
+
+.section2 th .desc {
+    position: absolute;
+    top: 12%;
+    right: 5%;
+    cursor: pointer;
+    height: 50%;
+}
+
+.section2 th .desc:hover {
+    color: #2e6da4;
+}
+
+.order-by {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .section2 tr:first-child th:first-child {
     border-top-left-radius: 6px;
 }

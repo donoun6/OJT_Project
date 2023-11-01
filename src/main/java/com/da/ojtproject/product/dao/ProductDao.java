@@ -123,14 +123,21 @@ public class ProductDao {
         }
         sb.append("GROUP BY product.product_id, product.name, product.code, product.sell_price, " +
                 "product.image, product.category_id, category.name, " +
-                "inventory.inventory_id, inventory.quantity");
+                "inventory.inventory_id, inventory.quantity ");
+        /**
+         * col : 조건 컬럼
+         * order : 정렬 상태
+         */
+        if(!data.get("col").equals("") && !data.get("order").equals("")) {
+            sb.append("ORDER BY "+data.get("col")+" "+data.get("order"));
+        }
         String sql = sb.toString();
         return template.query(sql, new ProductListRowMapper());
     };
 
     /**
      * 전체 category 반환
-     * @return
+     * @return category
      */
     public List<Category> getAllCategory() {
         String sql = "SELECT * FROM Category " +

@@ -37,7 +37,7 @@ UPDATE Product set category_id = 1
 WHERE product_id = 1;
 
 -- 상품 삭제처리
-UPDATE Product set check_product = TRUE
+UPDATE Product set check_product = false
 WHERE product_id = 6;
 
 -- 장바구니 담기 만약 해당 제품이 이미 장바구니에 있는경우 수량만 높이기

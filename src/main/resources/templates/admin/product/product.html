@@ -23,6 +23,13 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <title>product</title>
+    <!--    google icon 커스텀    -->
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'wght' 350;
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
 <!--  aside area  -->
@@ -58,9 +65,11 @@
                             </td>
                             <th scope="row">product_cancel</th>
                             <td>
-                                <input type="radio" id="product-include" class="product-delete-check" name="product-delete" value="N" checked>
+                                <input type="radio" id="product-include" class="product-delete-check"
+                                       name="product-delete" value="N" checked>
                                 <label for="product-include">미포함</label>
-                                <input type="radio" id="product-notInclude" class="product-delete-check" name="product-delete" value="Y">
+                                <input type="radio" id="product-notInclude" class="product-delete-check"
+                                       name="product-delete" value="Y">
                                 <label for="product-notInclude">포함</label>
                             </td>
                         </tr>
@@ -72,9 +81,11 @@
                             </td>
                             <th scope="row">category_cancel</th>
                             <td>
-                                <input type="radio" id="cateogory-include" class="category-delete-check" name="category-delete" value="N" checked>
+                                <input type="radio" id="cateogory-include" class="category-delete-check"
+                                       name="category-delete" value="N" checked>
                                 <label for="cateogory-include">미포함</label>
-                                <input type="radio" id="cateogory-notInclude" class="category-delete-check" name="category-delete" value="Y">
+                                <input type="radio" id="cateogory-notInclude" class="category-delete-check"
+                                       name="category-delete" value="Y">
                                 <label for="cateogory-notInclude">포함</label>
                             </td>
                         </tr>
@@ -106,15 +117,39 @@
                 <tr>
                     <th style="width: 1%;">no</th>
                     <th style="width: 2%;">image</th>
-                    <th style="width: 10%;">name</th>
-                    <th style="width: 12%;">code</th>
-                    <th style="width: 8%;">category</th>
-                    <th style="width: 7%;">I_quantity</th>
-                    <th style="width: 7%;">S_quantity</th>
-                    <th style="width: 8%;">sell_price</th>
-                    <th style="width: 10%;">total_price</th>
+                    <th style="width: 10%;">name
+                        <span id="product.name-desc" class="material-symbols-outlined desc">expand_less</span>
+                        <span id="product.name-asc" class="material-symbols-outlined asc">expand_more</span>
+                    </th>
+                    <th style="width: 10%;">code
+                        <span id="product.code-desc" class="material-symbols-outlined desc">expand_less</span>
+                        <span id="product.code-asc" class="material-symbols-outlined asc">expand_more</span>
+                    </th>
+                    <th style="width: 8%;">category
+                        <span id="category.name-desc" class="material-symbols-outlined desc">expand_less</span>
+                        <span id="category.name-asc" class="material-symbols-outlined asc">expand_more</span>
+                    </th>
+                    <th style="width: 7%;">I_quan
+                        <span id="inventory.quantity-desc" class="material-symbols-outlined desc">expand_less</span>
+                        <span id="inventory.quantity-asc" class="material-symbols-outlined asc">expand_more</span>
+                    </th>
+                    <th style="width: 7%;">S_quan
+                        <span id="selling_quantity-desc" class="material-symbols-outlined desc">expand_less</span>
+                        <span id="selling_quantity-asc" class="material-symbols-outlined asc">expand_more</span>
+                    </th>
+                    <th style="width: 8%;">sell_price
+                        <span id="product.sell_price-desc" class="material-symbols-outlined desc">expand_less</span>
+                        <span id="product.sell_price-asc" class="material-symbols-outlined asc">expand_more</span>
+                    </th>
+                    <th style="width: 10%;">total_price
+                        <span id="total_price-desc" class="material-symbols-outlined desc">expand_less</span>
+                        <span id="total_price-asc" class="material-symbols-outlined asc">expand_more</span>
+                    </th>
                     <th style="width: 6%;">cencel</th>
-                    <th style="width: 15%;">register_date</th>
+                    <th style="width: 15%;">register_date
+                        <span id="product.register_date-desc" class="material-symbols-outlined desc">expand_less</span>
+                        <span id="product.register_date-asc" class="material-symbols-outlined asc">expand_more</span>
+                    </th>
                     <th>add</th>
                 </tr>
                 <img src=""/>
@@ -130,11 +165,15 @@
                     <!--     product_code     -->
                     <td th:text="${productList.getCode()}"></td>
                     <!--     category     -->
-                    <td th:if="${productList.getCategory().isCheckCategory()} == false" th:text="${productList.getCategory().getName()}" style="color: red; font-weight: bold"></td>
+                    <td th:if="${productList.getCategory().isCheckCategory()} == false"
+                        th:text="${productList.getCategory().getName()}" style="color: red; font-weight: bold"></td>
                     <td th:text="${productList.getCategory().getName()}"></td>
                     <!--     inventory_quantity     -->
-                    <td th:if="${productList.getInventory().getQuantity} <= 5" th:text="${productList.getInventory().getQuantity+ '개'}" style="font-weight: bold; color: red"></td>
-                    <td th:if="${productList.getInventory().getQuantity} > 5" th:text="${productList.getInventory().getQuantity+ '개'}"></td>
+                    <td th:if="${productList.getInventory().getQuantity} <= 5"
+                        th:text="${productList.getInventory().getQuantity+ '개'}"
+                        style="font-weight: bold; color: red"></td>
+                    <td th:if="${productList.getInventory().getQuantity} > 5"
+                        th:text="${productList.getInventory().getQuantity+ '개'}"></td>
                     <!--     sell_quantity     -->
                     <td th:text="${productList.getSelling().getQuantity + '개'}"></td>
                     <!--     sell_price     -->
