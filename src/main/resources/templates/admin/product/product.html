@@ -29,6 +29,15 @@
             font-variation-settings: 'wght' 350;
             font-size: 20px;
         }
+        .up-slide {
+            position: absolute;
+            bottom: 0;
+        }
+        .down-slide {
+            position: absolute;
+            top: 0;
+        }
+
     </style>
 </head>
 <body>
@@ -99,18 +108,24 @@
                             </td>
                         </tr>
                     </table>
-                    <div class="search-bar">
-                        <input class="search-name" type="text" placeholder="product_name">
-                        <span class="material-symbols-outlined search-img">search</span>
-                    </div>
                     <div class="search-btn-box">
                         <button class="all-search">전체조회</button>
                         <button class="select-search">검색하기</button>
                         <button class="save-btn">등록하기</button>
                     </div>
+                    <div class="search-bar">
+                        <input class="search-name" type="text" placeholder="product_name">
+                        <span class="material-symbols-outlined search-img">search</span>
+                    </div>
                 </div>
             </div>
         </section>
+        <div class="up-slide-box">
+            <span class="material-symbols-outlined up-slide" style="font-size: 50px">stat_2</span>
+        </div>
+        <div class="down-slide-box">
+            <span class="material-symbols-outlined down-slide" style="font-size: 50px">stat_minus_2</span>
+        </div>
         <!--    section2 area    -->
         <section class="section2">
             <table>
@@ -209,48 +224,32 @@
         </section>
     </div>
     <!--   category add form     -->
-    <form id="productForm" action="/api/product/save" method="post" enctype="multipart/form-data">
     <div class="product-save-from-wrap">
-        <div class="product-save-form">
-            <table>
-                <tr>
-                    <td>카테고리:</td>
-                    <td>
-                        <!-- 카테고리 선택 dropdown -->
-                        <select class="category" name="categoryId" required>
-                            <option disabled>카테고리 선택</option>
-                            <!-- 서버로부터 가져온 카테고리 목록을 동적으로 추가 -->
-                            <option th:each="categoryList : ${categoryList}"
-                                    th:value="${categoryList.categoryId}"
-                                    th:text="${categoryList.name}"></option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>상품 이름:</td>
-                    <td><input class="product-name" type="text" name="name" required></td>
-                </tr>
-                <tr>
-                    <td>상품 코드:</td>
-                    <td><input class="product-code" type="text" name="code" required></td>
-                </tr>
-                <tr>
-                    <td>판매 가격:</td>
-                    <td><input class="product-sellPrice" type="number" name="sellPrice" required></td>
-                </tr>
-                <tr>
-                    <td>상품 이미지:</td>
-                    <td><input class="product-image" type="file" name="imageFile" accept="image/*" required></td>
-                </tr>
-            </table>
-
+        <form class="product-save-form" action="product/save" method="post" enctype="multipart/form-data" th:object="${prodcut}">
+            <ol>
+                <li><label for="categoryId">category</label></li>
+                <li>
+                    <select class="category" th:field="*{categoryId}">
+                        <!-- 서버로부터 가져온 카테고리 목록을 동적으로 추가 -->
+                        <option th:each="categoryList : ${categoryList}" th:value="${categoryList.categoryId}" th:text="${categoryList.name}"></option>
+                    </select>
+                    <button type="button">카테추가</button>
+                </li>
+                <li><label for="name">product_name</label></li>
+                <li><input class="product-name" type="text" th:field="*{name}"></li>
+                <li><label for="code">prodcut_code</label></li>
+                <li><input class="product-code" type="text" th:field="*{code}"></li>
+                <li><label for="sellPrice">sell_price</label></li>
+                <li><input class="product-sellPrice" type="number" th:field="*{sellPrice}"></li>
+                <li><label for="imageFile">product_image</label></li>
+                <li><input class="product-image" type="file" th:field="*{imageFile}" accept="image/*"></li>
+            </ol>
             <div class="product-save-btn-box">
                 <button class="product-save-btn">추가</button>
-                <button class="product-save- cancel-btn">취소</button>
+                <button type="reset" class="product-save-cancel-btn">취소</button>
             </div>
-        </div>
+        </form>
     </div>
-    </form>
 </main>
 </body>
 </html>

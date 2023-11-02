@@ -120,62 +120,38 @@ $(function () {
     $(".save-btn").click(function () {
         $(".product-save-from-wrap").css("display","flex");
     });
-
-    // $(".product-save-btn").click(function () {
-    //     let allData = {
-    //         "categoryId" : $(".category").val(),
-    //         "name": $(".product-name").val(),
-    //         "code": $(".product-code").val(),
-    //         "sellPrice": $(".product-sellPrice").val(),
-    //     }
-    //     $.ajax({
-    //         type: 'POST',
-    //         url: '/api/product/save',
-    //         data: JSON.stringify(allData),
-    //         contentType: "application/json; charset=utf-8",
-    //         dataType: 'json',
-    //         success: function (resp) {
-    //             console.log(resp);
-    //             alert("상품이 등록 되었습니다.")
-    //             $(".product-save-from-wrap").css("display","none");
-    //         },
-    //         error: function (request, status, error) {
-    //             console.log("code: " + request.status)
-    //             console.log("message: " + request.responseText)
-    //             console.log("error: " + error);
-    //             alert("잠시후 다시 시도해 주세요");
-    //             $(".product-save-from-wrap").css("display","none");
-    //         }
-    //     });
-    // });
-
-    $(".product-save-btn").click(function () {
-        let form = $("#productForm");
-        let formData = new FormData(form);
-
-        $.ajax({
-            async: true,
-            type: 'POST',
-            data: formData,
-            url: '/api/product/save',
-            contentType: false,
-            processData: false,
-            success: function (resp) {
-                alert("상품이 등록 되었습니다.")
-                console.log(resp)
-                window.location.replace("/");
-                $(".product-save-from-wrap").css("display","none");
-            },
-            error: function (data) {
-                alert("잠시후 다시 시도해 주세요");
-                $(".product-save-from-wrap").css("display","none");
-            }
-        });
+    $(".product-save-cancel-btn").click(function () {
+        $(".product-save-from-wrap").css("display","none");
     });
 
+    /**
+     * up/down slide animation
+     */
+    $(".up-slide-box").mouseover(function () {
+        $(".up-slide").addClass("up-slide-on");
+    });
+    $(".up-slide-box").mouseout(function () {
+        $(".up-slide").removeClass("up-slide-on");
+    });
 
-    $(".product-save-").click(function () {
-        $(".product-save-from-wrap").css("display","none");
+    $(".down-slide-box").mouseover(function () {
+        $(".down-slide").addClass("down-slide-on");
+    });
+    $(".down-slide-box").mouseout(function () {
+        $(".down-slide").removeClass("down-slide-on");
+    });
+
+    $(".up-slide-box").click(function () {
+        $(".up-slide-box").stop().animate({ opacity : "0" },500,"easeInExpo");
+        $(".section1").stop().animate({ marginTop : "-22%" },600,"easeInExpo");
+        $(".section2").stop().animate({ height : "100%" },600,"easeInExpo");
+        $(".down-slide-box").stop().animate({ top : "-2%" },500,"easeInExpo");
+    });
+    $(".down-slide-box").click(function () {
+        $(".up-slide-box").stop().animate({ opacity : "1" },600,"easeInExpo");
+        $(".section1").stop().animate({ marginTop : "0" },600,"easeInExpo");
+        $(".section2").stop().animate({ height : "58%" },600,"easeInExpo");
+        $(".down-slide-box").stop().animate({ top : "-10%" },500,"easeInExpo");
     });
 
     /**

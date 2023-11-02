@@ -1,8 +1,6 @@
 package com.da.ojtproject.product.dao;
 
-import com.da.ojtproject.category.domain.Category;
 import com.da.ojtproject.product.domain.Product;
-import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
@@ -49,7 +47,7 @@ public class ProductDao {
                 "FROM product " +
                 "INNER JOIN category " +
                 "ON product.category_id = category.category_id " +
-                "INNER JOIN inventory " +
+                "LEFT JOIN inventory " +
                 "ON product.product_id = inventory.product_id " +
                 "LEFT JOIN selling " +
                 "ON product.product_id = selling.product_id " +
@@ -87,7 +85,7 @@ public class ProductDao {
                 "FROM product " +
                 "INNER JOIN category " +
                 "ON product.category_id = category.category_id " +
-                "INNER JOIN inventory " +
+                "LEFT JOIN inventory " +
                 "ON product.product_id = inventory.product_id " +
                 "LEFT JOIN selling " +
                 "ON product.product_id = selling.product_id ");
@@ -143,8 +141,13 @@ public class ProductDao {
         return template.query(sql, new ProductListRowMapper());
     };
 
+    /**
+     * product 등록
+     * @param product
+     */
     public void saveProduct(Product product) {
-        String sql = "INSERT INTO product (category_id, name, code, sell_price, image) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO product (category_id, name, code, sell_price, image) " +
+                "VALUES (?, ?, ?, ?, ?)";
         template.update(sql, product.getCategoryId(), product.getName(), product.getCode(), product.getSellPrice(), product.getImage());
     }
 

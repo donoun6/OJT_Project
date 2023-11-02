@@ -216,7 +216,7 @@ button {
     z-index: 2;
 }
 
-.product-save-form {
+.product-save-from-wrap .product-save-form {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -229,10 +229,66 @@ button {
     border-radius: 20px;
 }
 
+.product-save-from-wrap .product-save-form ol {
+
+}
 
 .product-save-form .product-save-cancel-btn-box {
     position: absolute;
     bottom: 15%;
 }
+
+.up-slide-box {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 50%;
+    top: 37%;
+    width: 80px;
+    height: 10%;
+    cursor: pointer;
+}
+
+.down-slide-box {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 50%;
+    top: -10%;
+    width: 80px;
+    height: 10%;
+    cursor: pointer;
+}
+
+.up-slide-on {
+    animation-name: up-slide-ani;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+.down-slide-on {
+    animation-name: down-slide-ani;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes up-slide-ani {
+    from {
+        bottom: 0;
+    }to {
+        bottom:40px;
+     }
+}
+
+@keyframes down-slide-ani {
+    from {
+        top: 0;
+    }to {
+        top:25px;
+     }
+}
+
 
 
