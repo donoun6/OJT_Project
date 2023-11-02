@@ -61,6 +61,6 @@ BEGIN
     INSERT INTO Selling (product_id, orders_id, quantity, total_price)
     SELECT product_id, @orders_id, quantity, total_price FROM Cart;
     -- cart 비우기
-    TRUNCATE TABLE Cart;
+    TRUNCATE
+TABLE Cart;
 END;
-

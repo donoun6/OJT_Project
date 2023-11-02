@@ -42,7 +42,7 @@ $(function () {
             data.categoryDeleteCheck = $(".category-delete-check:checked").val();
             data.startRegisterDate = $("#startDate").val();
             data.endRegisterDate = $("#endDate").val();
-            console.log(data);
+            
             productList(data);
         });
 
