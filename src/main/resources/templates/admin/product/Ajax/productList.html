@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
-<tr th:each="productList : ${productList}">
+<tr th:each="productList : ${productList}" class="product-hover" >
     <!--     index     -->
     <td th:text="${productListStat.count}"></td>
     <!--     product_img     -->

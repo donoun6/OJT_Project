@@ -31,13 +31,12 @@
         }
         .up-slide {
             position: absolute;
-            bottom: 0;
+            bottom: 15px;
         }
         .down-slide {
             position: absolute;
             top: 0;
         }
-
     </style>
 </head>
 <body>
@@ -62,7 +61,7 @@
                 <div class="search-box">
                     <table class="search-table">
                         <tr>
-                            <th scope="row">category</th>
+                            <th scope="row">카테고리</th>
                             <td>
                                 <select class="select-category" style="width: 130px">
                                     <option selected value="all">전체</option>
@@ -72,7 +71,7 @@
                                     </th:block>
                                 </select>
                             </td>
-                            <th scope="row">product_cancel</th>
+                            <th scope="row">상품 삭제</th>
                             <td>
                                 <input type="radio" id="product-include" class="product-delete-check"
                                        name="product-delete" value="N" checked>
@@ -83,12 +82,12 @@
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row">register_date</th>
+                            <th scope="row">기간 조회</th>
                             <td>
                                 <input type="text" id="startDate" value="" placeholder=" 연-월-일" style="width: 100px;"> -
                                 <input type="text" id="endDate" value="" placeholder=" 연-월-일" style="width: 100px;">
                             </td>
-                            <th scope="row">category_cancel</th>
+                            <th scope="row">카테고리 삭제</th>
                             <td>
                                 <input type="radio" id="cateogory-include" class="category-delete-check"
                                        name="category-delete" value="N" checked>
@@ -99,7 +98,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row">inventory</th>
+                            <th scope="row">-</th>
                             <td>
                             </td>
                             <th scope="row">-</th>
@@ -132,39 +131,39 @@
                 <thead>
                 <tr>
                     <th style="width: 1%;">no</th>
-                    <th style="width: 2%;">image</th>
-                    <th style="width: 10%;">name
+                    <th style="width: 2%;">img</th>
+                    <th style="width: 10%;">상품명
                         <span id="product.name-desc" class="material-symbols-outlined desc order">expand_less</span>
                         <span id="product.name-asc" class="material-symbols-outlined asc order">expand_more</span>
                     </th>
-                    <th style="width: 10%;">code
+                    <th style="width: 10%;">상품코드
                         <span id="product.code-desc" class="material-symbols-outlined desc order">expand_less</span>
                         <span id="product.code-asc" class="material-symbols-outlined asc order">expand_more</span>
                     </th>
-                    <th style="width: 8%;">category
+                    <th style="width: 8%;">카테고리
                         <span id="category.name-desc" class="material-symbols-outlined desc order">expand_less</span>
                         <span id="category.name-asc" class="material-symbols-outlined asc order">expand_more</span>
                     </th>
-                    <th style="width: 7%;">I_quan
+                    <th style="width: 7%;">재고
                         <span id="inventory.quantity-desc"
                               class="material-symbols-outlined desc order">expand_less</span>
                         <span id="inventory.quantity-asc" class="material-symbols-outlined asc order">expand_more</span>
                     </th>
-                    <th style="width: 7%;">S_quan
+                    <th style="width: 7%;">판매수량
                         <span id="selling_quantity-desc" class="material-symbols-outlined desc order">expand_less</span>
                         <span id="selling_quantity-asc" class="material-symbols-outlined asc order">expand_more</span>
                     </th>
-                    <th style="width: 8%;">sell_price
+                    <th style="width: 8%;">판매금액
                         <span id="product.sell_price-desc"
                               class="material-symbols-outlined desc order">expand_less</span>
                         <span id="product.sell_price-asc" class="material-symbols-outlined asc order">expand_more</span>
                     </th>
-                    <th style="width: 9%;">total_price
+                    <th style="width: 9%;">총 판매금액
                         <span id="total_price-desc" class="material-symbols-outlined desc order">expand_less</span>
                         <span id="total_price-asc" class="material-symbols-outlined asc order">expand_more</span>
                     </th>
-                    <th style="width: 5%;">cencel</th>
-                    <th style="width: 13%;">register_date
+                    <th style="width: 5%;">삭제</th>
+                    <th style="width: 13%;">등록일자
                         <span id="product.register_date-desc"
                               class="material-symbols-outlined desc order">expand_less</span>
                         <span id="product.register_date-asc"
@@ -175,8 +174,8 @@
                 </tr>
                 <img>
                 </thead>
-                <tbody class="product-list">
-                <tr th:each="productList : ${productList}">
+                <tbody class="product-list">\
+                <tr th:each="productList : ${productList}" class="product-hover" >
                     <!--     index     -->
                     <td th:text="${productListStat.count}"></td>
                     <!--     product_img     -->
@@ -229,11 +228,11 @@
             <ol>
                 <li><label for="categoryId">category</label></li>
                 <li>
-                    <select class="category" th:field="*{categoryId}">
+                    <select class="category" id="categoryId" name="categoryId">
+                        <option disabled selected>선택</option>
                         <!-- 서버로부터 가져온 카테고리 목록을 동적으로 추가 -->
-                        <option th:each="categoryList : ${categoryList}" th:value="${categoryList.categoryId}" th:text="${categoryList.name}"></option>
                     </select>
-                    <button type="button">카테추가</button>
+                    <button class="category-save" type="button">카테추가</button>
                 </li>
                 <li><label for="name">product_name</label></li>
                 <li><input class="product-name" type="text" th:field="*{name}"></li>
@@ -249,6 +248,9 @@
                 <button type="reset" class="product-save-cancel-btn">취소</button>
             </div>
         </form>
+    </div>
+    <div class="category-form-wrap">
+        <!--  category save form -->
     </div>
 </main>
 </body>

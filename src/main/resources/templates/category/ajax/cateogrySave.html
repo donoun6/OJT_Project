@@ -1,0 +1,9 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div class="category-save-form" th:object="${cateogry}">
+    <input type="text" th:field="*{name}" class="categoryName">
+    <div class="category-save-btn-box">
+        <button class="category-save-btn">추가</button>
+        <button class="category-save-cancel-btn">취소</button>
+    </div>
+</div>

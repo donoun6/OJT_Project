@@ -238,6 +238,39 @@ button {
     bottom: 15%;
 }
 
+/* category from area */
+.category-form-wrap {
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: rgb(0 0 0 / -0.5);
+    backdrop-filter: blur(4px);
+}
+
+.category-form-wrap .category-save-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    flex-direction: column;
+    height: 12%;
+    width: 17%;
+    background: #F3F1F5;
+    box-shadow: 0 7px 30px rgb(0 0 0 / 40%);
+}
+
+.category-form-wrap .category-save-form .category-save-btn-box {
+    margin-top: 10px;
+}
+
+
+/* up/down slide animation area*/
 .up-slide-box {
     position: absolute;
     display: flex;
@@ -289,6 +322,8 @@ button {
         top:25px;
      }
 }
+
+
 
 
 

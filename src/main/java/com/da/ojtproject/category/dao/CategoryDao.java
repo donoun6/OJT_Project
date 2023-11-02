@@ -43,4 +43,12 @@ public class CategoryDao {
         });
     };
 
+    /**
+     * 카테고리 저장 Or 재활용
+     * @param category
+     */
+    public void addOrResetCategory(Category category) {
+        addOrResetCategoryProcedure.execute(category.getName());
+    }
+
 }

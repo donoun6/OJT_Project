@@ -19,4 +19,9 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Category> getAllCategory() {
         return categoryDao.getAllCategory();
     }
+
+    @Override
+    public void addOrResetCategory(Category category) {
+        categoryDao.addOrResetCategory(category);
+    }
 }

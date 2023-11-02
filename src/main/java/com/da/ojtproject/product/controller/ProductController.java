@@ -44,8 +44,8 @@ public class ProductController {
      */
     @PostMapping("/save")
     public String productSave(@ModelAttribute Product product) throws IOException {
-
         MultipartFile imageFile = product.getImageFile();
+
         if (!imageFile.isEmpty()) {
 
             String fileName = imageFile.getOriginalFilename();
