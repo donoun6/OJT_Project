@@ -15,12 +15,12 @@ import java.util.Map;
 public class ProductDao {
 
     private JdbcTemplate template;
-    private SimpleJdbcCall addOrResetCategoryProcedure;
+    private SimpleJdbcCall AddProductAndAddInventory;
 
     public ProductDao(DataSource dataSource) {
         this.template = new JdbcTemplate(dataSource);
-        this.addOrResetCategoryProcedure = new SimpleJdbcCall(template)
-                .withProcedureName("AddOrResetCategory");
+        this.AddProductAndAddInventory = new SimpleJdbcCall(template)
+                .withProcedureName("AddProductAndAddInventory");
     }
 
     /**
@@ -142,13 +142,12 @@ public class ProductDao {
     };
 
     /**
-     * product 등록
+     * product 등록, 재고 수량 등록
      * @param product
      */
     public void saveProduct(Product product) {
-        String sql = "INSERT INTO product (category_id, name, code, sell_price, image) " +
-                "VALUES (?, ?, ?, ?, ?)";
-        template.update(sql, product.getCategoryId(), product.getName(), product.getCode(), product.getSellPrice(), product.getImage());
+        AddProductAndAddInventory.execute(product.getCategoryId(), product.getName(),product.getCode(),
+                product.getSellPrice(), product.getImage(),product.getInventory().getQuantity());
     }
 
 

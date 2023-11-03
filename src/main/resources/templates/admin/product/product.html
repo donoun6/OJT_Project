@@ -31,7 +31,7 @@
         }
         .up-slide {
             position: absolute;
-            bottom: 15px;
+            bottom: 8px;
         }
         .down-slide {
             position: absolute;
@@ -187,7 +187,8 @@
                     <!--     category     -->
                     <td th:if="${productList.getCategory().isCheckCategory()} == false"
                         th:text="${productList.getCategory().getName()}" style="color: red; font-weight: bold"></td>
-                    <td th:text="${productList.getCategory().getName()}"></td>
+                    <td th:if="${productList.getCategory().isCheckCategory()} == true"
+                        th:text="${productList.getCategory().getName()}"></td>
                     <!--     inventory_quantity     -->
                     <td th:if="${productList.getInventory().getQuantity} <= 5"
                         th:text="${productList.getInventory().getQuantity+ '개'}"
@@ -210,7 +211,7 @@
                     <!--     register_date     -->
                     <td th:text="${#dates.format(productList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}"></td>
                     <td>
-                        <button>카테삭제</button>
+                        <button class="category-delete" th:value="${productList.getCategoryId()}">카테삭제</button>
                     </td>
                     <td>
                         <button>수정</button>
@@ -221,6 +222,16 @@
             </table>
             <div class="page-nav">1 2 3 4 5 6</div>
         </section>
+    </div>
+    <div class="category-delete-from-wrap">
+        <div class="category-delete-form">
+            <p>카테고리를 삭제하면 해당 카테고리에 등록된 모든 상품이 삭제처리 됩니다.</p>
+            <P>그래도 삭제하시겠습니까?</P>
+            <div class="category-delete-btn-box">
+                <button type="button" class="category-delete-btn">삭제</button>
+                <button type="button" class="category-delete-cancel-btn">취소</button>
+            </div>
+        </div>
     </div>
     <!--   category add form     -->
     <div class="product-save-from-wrap">
@@ -234,13 +245,15 @@
                     </select>
                     <button class="category-save" type="button">카테추가</button>
                 </li>
-                <li><label for="name">product_name</label></li>
+                <li><label for="name">상품명</label></li>
                 <li><input class="product-name" type="text" th:field="*{name}"></li>
-                <li><label for="code">prodcut_code</label></li>
+                <li><label for="code">상품코드</label></li>
                 <li><input class="product-code" type="text" th:field="*{code}"></li>
-                <li><label for="sellPrice">sell_price</label></li>
+                <li><label for="sellPrice">판매금액</label></li>
                 <li><input class="product-sellPrice" type="number" th:field="*{sellPrice}"></li>
-                <li><label for="imageFile">product_image</label></li>
+                <li><label for="inventory.quantity">재고수량</label></li>
+                <li><input class="inventory-quantity" type="number" th:field="*{inventory.quantity}"></li>
+                <li><label for="imageFile">사진</label></li>
                 <li><input class="product-image" type="file" th:field="*{imageFile}" accept="image/*"></li>
             </ol>
             <div class="product-save-btn-box">

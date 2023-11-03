@@ -201,8 +201,8 @@ button {
     height: 10%;
 }
 
-/* product save form area*/
-.product-save-from-wrap {
+/* product save form / cateogry delete form area*/
+.product-save-from-wrap, .category-delete-from-wrap {
     display: none;
     position: fixed;
     justify-content: center;
@@ -216,7 +216,8 @@ button {
     z-index: 2;
 }
 
-.product-save-from-wrap .product-save-form {
+.product-save-from-wrap .product-save-form,
+.category-delete-from-wrap .category-delete-form {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -229,11 +230,15 @@ button {
     border-radius: 20px;
 }
 
-.product-save-from-wrap .product-save-form ol {
-
+.category-delete-from-wrap .category-delete-form {
+    width: 35%;
+    height: 25%;
+    font-size: 18px;
+    font-weight: bold;
 }
 
-.product-save-form .product-save-cancel-btn-box {
+.product-save-form .product-save-cancel-btn-box,
+.category-delete-form .category-delete-btn-box{
     position: absolute;
     bottom: 15%;
 }

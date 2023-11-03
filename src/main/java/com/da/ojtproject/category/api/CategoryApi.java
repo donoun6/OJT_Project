@@ -4,10 +4,7 @@ import com.da.ojtproject.category.domain.Category;
 import com.da.ojtproject.category.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,6 +31,12 @@ public class CategoryApi {
     @PostMapping("/api/category")
     public HttpStatus categorySave(@RequestBody Category category) {
         categoryService.addOrResetCategory(category);
+        return HttpStatus.OK;
+    }
+
+    @DeleteMapping("/api/category/{categoryId}")
+    public HttpStatus categoryDelete(@PathVariable int categoryId) {
+        categoryService.deleteCateogory(categoryId);
         return HttpStatus.OK;
     }
 

@@ -16,5 +16,11 @@ public interface CategoryService {
      * @param category
      */
     void addOrResetCategory(Category category);
+
+    /**
+     * 카테고리 삭제처리
+     * @param categoryId
+     */
+    void deleteCateogory(int categoryId);
 }
 

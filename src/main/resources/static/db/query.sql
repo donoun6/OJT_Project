@@ -11,7 +11,7 @@ WHERE category_id = 1;
 
 -- 카테고리 삭제 처리
 UPDATE Category set check_category = TRUE
-WHERE category_id = 1;
+WHERE category_id = 4;
 
 -- 카테고리 등록 이전에 삭제했던 카테고리면 삭제 취소, 아니면 새로 등록
 CALL AddOrResetCategory('커피');

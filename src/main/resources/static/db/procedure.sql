@@ -52,11 +52,8 @@ BEGIN
     INSERT INTO Orders (check_orders)
     VALUES (TRUE);
 
-    SET @orders_id = NULL;
-    SELECT orders_id INTO @orders_id
-                     FROM Orders
-                     ORDER BY orders_id DESC
-                     LIMIT 1;
+    SET @orders_id = LAST_INSERT_ID();
+
     -- cart 정보 가져와서 판매정보 담기
     INSERT INTO Selling (product_id, orders_id, quantity, total_price)
     SELECT product_id, @orders_id, quantity, total_price FROM Cart;
@@ -64,3 +61,18 @@ BEGIN
     TRUNCATE
 TABLE Cart;
 END;
+
+CREATE PROCEDURE AddProductAndAddInventory(IN category_id INT, IN product_name VARCHAR(255),
+                                           IN product_code VARCHAR(255), IN product_sell_price INT, IN product_image VARCHAR(255), IN inventory_quantity INT)
+BEGIN
+    -- Add product
+    INSERT INTO product (category_id, name, code, sell_price, image)
+    VALUES (category_id, product_name, product_code, product_sell_price, product_image);
+
+    -- Get the last inserted product_id
+    SET @product_id = LAST_INSERT_ID();
+
+    -- Add inventory
+    INSERT INTO inventory (product_id, quantity)
+    VALUES (@product_id, inventory_quantity);
+END

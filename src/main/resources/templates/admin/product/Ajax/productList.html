@@ -12,7 +12,8 @@
     <!--     category     -->
     <td th:if="${productList.getCategory().isCheckCategory()} == false"
         th:text="${productList.getCategory().getName()}" style="color: red; font-weight: bold"></td>
-    <td th:text="${productList.getCategory().getName()}"></td>
+    <td th:if="${productList.getCategory().isCheckCategory()} == true"
+        th:text="${productList.getCategory().getName()}"></td>
     <!--     inventory_quantity     -->
     <td th:if="${productList.getInventory().getQuantity} <= 5"
         th:text="${productList.getInventory().getQuantity+ '개'}"
@@ -35,7 +36,7 @@
     <!--     register_date     -->
     <td th:text="${#dates.format(productList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}"></td>
     <td>
-        <button>카테삭제</button>
+        <button class="category-delete" th:value="${productList.getCategoryId()}">카테삭제</button>
     </td>
     <td>
         <button>수정</button>

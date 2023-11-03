@@ -42,7 +42,7 @@ $(function () {
             data.categoryDeleteCheck = $(".category-delete-check:checked").val();
             data.startRegisterDate = $("#startDate").val();
             data.endRegisterDate = $("#endDate").val();
-            
+
             productList(data);
         });
 
@@ -138,7 +138,6 @@ $(function () {
                 url: '/api/category',
                 contentType: 'application/json; charset=UTF-8',
                 success: function (data) {
-                    console.log()
                     for (let i = 0; i < data.length; i++) {
                         if($("option").hasClass("cate"+data[i].categoryId)){
                             continue;
@@ -174,13 +173,12 @@ $(function () {
         });
 
         /**
-         * 카테고리 추가
+         * 카테고리 추가 from
          */
         $(document).on("click", ".category-save-btn", function () {
             let data = {
                 "name" : $(".categoryName").val(),
             };
-            console.log(data)
             $.ajax({
                 async: true,
                 type: 'POST',
@@ -189,7 +187,6 @@ $(function () {
                 dataType: 'json',
                 contentType: 'application/json; charset=UTF-8',
                 success: function (data) {
-                    console.log(data)
                     $(".category-form-wrap").css("display", "none");
                     $(".save-btn").trigger("click");
                 },
@@ -270,6 +267,37 @@ $(function () {
         $(".product-list").on("mouseout", ".product-hover", function() {
             $(this).children().css("font-weight", "normal");
         });
+
+        /**
+         * 카테고리 삭제처리
+         */
+        $(document).on("click", ".category-delete", function () {
+            $(".category-delete-from-wrap").css("display","flex");
+
+            let cateogryId = $(this).val();
+            $(".category-delete-btn").click(function () {
+                $.ajax({
+                    type: 'DELETE',
+                    url: '/api/category/'+cateogryId,
+                    dataType: 'json',
+                    success: function (data) {
+                        $(".category-delete-from-wrap").css("display","none")
+                        $(".select-search").trigger("click");
+                    },
+                    error: function (data) {
+                        alert("잠시후 다시 시도해 주세요");
+                    }
+                });
+            });
+        });
+
+        /**
+         * display none
+         */
+        $(".category-delete-cancel-btn").click(function (){
+            $(".category-delete-from-wrap").css("display","none")
+        });
+
     });
 });
 

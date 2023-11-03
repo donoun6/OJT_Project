@@ -37,7 +37,7 @@ public class ProductController {
     }
 
     /**
-     * product 등록
+     * product , inventory 등록
      * @param product
      * @return
      * @throws IOException

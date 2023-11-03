@@ -51,4 +51,10 @@ public class CategoryDao {
         addOrResetCategoryProcedure.execute(category.getName());
     }
 
+    public void deleteCateogory(int categoryId) {
+        String sql = "UPDATE Category set check_category = FALSE " +
+                "WHERE category_id = ?";
+        template.update(sql,categoryId);
+    }
+
 }
