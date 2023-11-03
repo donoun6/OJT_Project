@@ -223,7 +223,7 @@ button {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 20%;
+    width: 17%;
     height: 50%;
     background: #F3F1F5;
     box-shadow: 0 7px 30px rgb(0 0 0 / 40%);
@@ -232,15 +232,42 @@ button {
 
 .category-delete-from-wrap .category-delete-form {
     width: 35%;
-    height: 25%;
+    height: 20%;
     font-size: 18px;
     font-weight: bold;
 }
 
 .product-save-form .product-save-cancel-btn-box,
-.category-delete-form .category-delete-btn-box{
+.category-delete-form .category-delete-btn-box {
     position: absolute;
     bottom: 15%;
+}
+
+.category-delete-form .text-box {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.product-save-from-wrap .product-save-form ol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.product-save-from-wrap .product-save-form ol li {
+    margin-bottom: 7px;
+}
+
+.product-save-from-wrap .product-save-form ol li label {
+    display: block;
+    width: 9vw;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.product-save-btn-box {
+    margin-top: 7%;
 }
 
 /* category from area */
@@ -265,8 +292,8 @@ button {
     border-radius: 25px;
     flex-direction: column;
     height: 12%;
-    width: 17%;
-    background: #F3F1F5;
+    width: 14%;
+    background: white;
     box-shadow: 0 7px 30px rgb(0 0 0 / 40%);
 }
 
@@ -315,20 +342,73 @@ button {
 @keyframes up-slide-ani {
     from {
         bottom: 0;
-    }to {
-        bottom:40px;
-     }
+    }
+    to {
+        bottom: 40px;
+    }
 }
 
 @keyframes down-slide-ani {
     from {
         top: 0;
-    }to {
-        top:25px;
-     }
+    }
+    to {
+        top: 25px;
+    }
 }
 
+/* button hover */
+.cancel-btn, .search-btn, .category-save,
+.recover-btn, .check-btn, .none-btn {
+    background: #be9a9a;
+    border: none;
+    width: 60px;
+    height: 30px;
+    border-radius: 10px;
+    color: white;
+    transition: .2s;
+}
 
+.cancel-btn:hover {
+    background: #aa6e6e;
+    font-weight: bold;
+}
+
+.category-delete.cancel-btn, .search-btn,
+.category-save, .none-btn, .product-recover-btn {
+    background: #939393;
+}
+
+.category-delete.cancel-btn:hover, .search-btn:hover,
+.category-save:hover, .product-recover-btn:hover {
+    background: #595959;
+    font-weight: bold;
+}
+
+.check-btn {
+    background: #a1a8be;
+}
+
+.check-btn:hover {
+    background: #7f8ebb;
+    font-weight: bold;
+}
+
+.product-recover, .category-recover {
+    background: #91a894;
+}
+
+.product-recover:hover, .category-recover:hover {
+    background: #7cb682;
+}
+
+.view {
+    display: table-cell;
+}
+
+.view-off {
+    display: none;
+}
 
 
 

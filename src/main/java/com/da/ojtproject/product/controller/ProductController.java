@@ -30,7 +30,7 @@ public class ProductController {
      */
     @GetMapping()
     public String productForm(Model model) {
-        model.addAttribute("prodcut", new Product());
+        model.addAttribute("product", new Product());
         model.addAttribute("productList", productService.getAllProducts());
         model.addAttribute("categoryList", categoryService.getAllCategory());
         return "admin/product/product";
@@ -70,8 +70,9 @@ public class ProductController {
     @GetMapping("/product-list")
     public String productList(Model model,
                               @RequestParam(required = false) Map<String, Object> data) {
+        model.addAttribute("product", new Product());
         model.addAttribute("productList", productService.getSearchProducts(data));
-        return "admin/product/Ajax/productList";
+        return "admin/product/ajax/productList";
     }
 
 }

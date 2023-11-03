@@ -110,12 +110,12 @@
                         </tr>
                     </table>
                     <div class="search-btn-box">
-                        <button class="all-search">전체조회</button>
-                        <button class="select-search">검색하기</button>
-                        <button class="save-btn">등록하기</button>
+                        <button class="all-search search-btn" style="width: 80px;height: 32px;">전체조회</button>
+                        <button class="select-search search-btn" style="width: 80px;height: 32px;">검색하기</button>
+                        <button class="save-btn check-btn" style="width: 90px;height: 32px;">등록하기</button>
                     </div>
                     <div class="search-bar">
-                        <input class="search-name" type="text" placeholder="product_name">
+                        <input class="search-name" type="text" placeholder="상품명을 입력하세요.">
                         <span class="material-symbols-outlined search-img">search</span>
                     </div>
                 </div>
@@ -160,7 +160,7 @@
                               class="material-symbols-outlined desc order">expand_less</span>
                         <span id="product.sell_price-asc" class="material-symbols-outlined asc order">expand_more</span>
                     </th>
-                    <th style="width: 9%;">총 판매금액
+                    <th style="width: 8%;">총 판매금액
                         <span id="total_price-desc" class="material-symbols-outlined desc order">expand_less</span>
                         <span id="total_price-asc" class="material-symbols-outlined asc order">expand_more</span>
                     </th>
@@ -171,98 +171,60 @@
                         <span id="product.register_date-asc"
                               class="material-symbols-outlined asc order">expand_more</span>
                     </th>
-                    <th>-</th>
-                    <th>-</th>
+                    <th>카테고리</th>
+                    <th>상품</th>
                 </tr>
                 <img>
                 </thead>
                 <tbody class="product-list">\
-                <tr th:each="productList : ${productList}" class="product-hover">
-                    <!--     index     -->
-                    <td th:text="${productListStat.count}"></td>
-                    <!--     product_img     -->
-                    <td style="text-align: center;"><img th:src="@{${productList.getImage()}}"></td>
-                    <!--     product_name     -->
-                    <td th:text="${productList.getName()}"></td>
-                    <!--     product_code     -->
-                    <td th:text="${productList.getCode()}"></td>
-                    <!--     category     -->
-                    <td th:if="${productList.getCategory().isCheckCategory()} == false"
-                        th:text="${productList.getCategory().getName()}" style="color: red; font-weight: bold"></td>
-                    <td th:if="${productList.getCategory().isCheckCategory()} == true"
-                        th:text="${productList.getCategory().getName()}"></td>
-                    <!--     inventory_quantity     -->
-                    <td th:if="${productList.getInventory().getQuantity} <= 5"
-                        th:text="${productList.getInventory().getQuantity+ '개'}"
-                        style="font-weight: bold; color: red"></td>
-                    <td th:if="${productList.getInventory().getQuantity} > 5"
-                        th:text="${productList.getInventory().getQuantity+ '개'}"></td>
-                    <!--     sell_quantity     -->
-                    <td th:text="${productList.getSelling().getQuantity + '개'}"></td>
-                    <!--     sell_price     -->
-                    <td th:text="${#numbers.formatInteger(productList.getSellPrice(), 3, 'COMMA') + '원'}" }>-</td>
-                    <!--     total_price     -->
-                    <td th:if="${productList.getSelling().getTotalPrice} == 0" }>-</td>
-                    <td th:if="${productList.getSelling().getTotalPrice} != 0"
-                        th:text="${#numbers.formatInteger(productList.getSelling().getTotalPrice, 3, 'COMMA') + '원'}" }>
-                        -
-                    </td>
-                    <!--     check_product     -->
-                    <td th:if="${productList.isCheckProduct()} == false" } style="color: red; font-weight: bold">Y</td>
-                    <td th:if="${productList.isCheckProduct()} == true" }>N</td>
-                    <!--     register_date     -->
-                    <td th:text="${#dates.format(productList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}"></td>
-                    <td>
-                        <button class="category-delete" th:value="${productList.getCategoryId()}">카테삭제</button>
-                    </td>
-                    <td>
-                        <button>수정</button>
-                        <button>삭제</button>
-                    </td>
-                </tr>
+                    <th:block th:replace="admin/product/ajax/productList.html"></th:block>
                 </tbody>
             </table>
             <div class="page-nav">1 2 3 4 5 6</div>
         </section>
     </div>
-    <!--   category delete pop-up     -->
+    <!--   delete pop-up     -->
     <div class="category-delete-from-wrap">
         <div class="category-delete-form">
-            <p>카테고리를 삭제하면 해당 카테고리에 등록된 모든 상품이 삭제처리 됩니다.</p>
-            <P>그래도 삭제하시겠습니까?</P>
+            <div class="text-box">
+                <p class="text">카테고리를 삭제하면 해당 카테고리에 등록된 모든 상품이 삭제처리 됩니다.</p>
+                <P>그래도 삭제하시겠습니까?</P>
+            </div>
             <div class="category-delete-btn-box">
-                <button type="button" class="category-delete-btn">삭제</button>
-                <button type="button" class="category-delete-cancel-btn">취소</button>
+                <button type="button" class="category-delete-btn cancel-btn" style="margin-right: 17px;">삭제</button>
+                <button type="button" class="category-delete-cancel-btn check-btn">취소</button>
             </div>
         </div>
     </div>
-    <!--   category add form     -->
+    <!--   product / category add form     -->
     <div class="product-save-from-wrap">
         <form class="product-save-form" action="product/save" method="post" enctype="multipart/form-data"
-              th:object="${prodcut}">
+              th:object="${product}">
             <ol>
                 <li><label for="categoryId">category</label></li>
                 <li>
-                    <select class="category" id="categoryId" name="categoryId">
+                    <select class="category" id="categoryId" name="categoryId" style="width: 87px">
                         <option disabled selected>선택</option>
-                        <!-- 서버로부터 가져온 카테고리 목록을 동적으로 추가 -->
                     </select>
-                    <button class="category-save" type="button">카테추가</button>
+                    <button class="category-save" type="button" style="width: 80px">카테추가</button>
                 </li>
                 <li><label for="name">상품명</label></li>
-                <li><input class="product-name" type="text" th:field="*{name}"></li>
+                <li><input class="product-name" type="text" th:field="*{name}" placeholder="상품명을 입력하세요."></li>
                 <li><label for="code">상품코드</label></li>
-                <li><input class="product-code" type="text" th:field="*{code}"></li>
+                <li><input class="product-code" type="text" th:field="*{code}" placeholder="상품코드를 입력하세요."></li>
                 <li><label for="sellPrice">판매금액</label></li>
-                <li><input class="product-sellPrice" type="number" th:field="*{sellPrice}"></li>
+                <li><input class="product-sellPrice" type="text" th:field="*{sellPrice}" placeholder="판매금액을 입력하세요.">
+                </li>
                 <li><label for="inventory.quantity">재고수량</label></li>
-                <li><input class="inventory-quantity" type="number" th:field="*{inventory.quantity}"></li>
+                <li><input class="inventory-quantity" type="text" th:field="*{inventory.quantity}"
+                           placeholder="재고수량을 입력하세요."></li>
                 <li><label for="imageFile">사진</label></li>
-                <li><input class="product-image" type="file" th:field="*{imageFile}" accept="image/*"></li>
+                <li><input class="product-image" type="file" th:field="*{imageFile}" accept="image/*"
+                           style="margin-left: 15%"></li>
             </ol>
             <div class="product-save-btn-box">
-                <button class="product-save-btn">추가</button>
-                <button type="reset" class="product-save-cancel-btn">취소</button>
+                <button class="product-save-btn check-btn" style="margin-right: 15px;">추가</button>
+                <button type="reset" class="product-save-cancel-btn cancel-btn">취소</button>
             </div>
         </form>
     </div>

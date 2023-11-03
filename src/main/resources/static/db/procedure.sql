@@ -6,7 +6,7 @@ DROP PROCEDURE AddOrCountCart;
 DROP PROCEDURE AddSellingAndClearCart;
 
 # 프로시저 생성
--- 카테고리 등록 이전에 삭제했던 카테고리면 삭제 취소, 아니면 새로 등록
+-- 카테고리 등록 이전에 삭제했던 카테고리면 등록 X, 아니면 새로 등록
 CREATE PROCEDURE AddOrResetCategory(IN param_name VARCHAR(20))
 BEGIN
     SET @cate_id = NULL;
@@ -15,10 +15,7 @@ BEGIN
                        FROM Category
                        WHERE name = param_name;
 
-    IF (@cate_id IS NOT NULL) THEN
-        UPDATE Category SET check_category = TRUE
-                        WHERE category_id = @cate_id;
-    ELSE
+    IF (@cate_id IS NULL) THEN
         INSERT INTO Category (name, check_category)
         VALUES (param_name, TRUE);
     END IF;

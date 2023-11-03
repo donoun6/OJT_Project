@@ -22,5 +22,11 @@ public interface CategoryService {
      * @param categoryId
      */
     void deleteCateogory(int categoryId);
+
+    /**
+     * 카테고리 복구
+     * @param categoryId
+     */
+    void recoverCategory(int categoryId);
 }
 

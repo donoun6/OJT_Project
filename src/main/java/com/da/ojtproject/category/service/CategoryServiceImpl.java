@@ -29,4 +29,9 @@ public class CategoryServiceImpl implements CategoryService {
     public void deleteCateogory(int categoryId) {
         categoryDao.deleteCateogory(categoryId);
     }
+
+    @Override
+    public void recoverCategory(int categoryId) {
+        categoryDao.recoverCateogory(categoryId);
+    }
 }

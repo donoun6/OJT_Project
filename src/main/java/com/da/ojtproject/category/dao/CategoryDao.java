@@ -60,4 +60,13 @@ public class CategoryDao {
         template.update(sql,categoryId);
     }
 
+    /**
+     * 카테고리 복구
+     */
+    public void recoverCateogory(int categoryId) {
+        String sql = "UPDATE Category set check_category = TRUE " +
+                "WHERE category_id = ?";
+        template.update(sql,categoryId);
+    }
+
 }

@@ -1,9 +1,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <div class="category-save-form" th:object="${cateogry}">
-    <input type="text" th:field="*{name}" class="categoryName">
+    <input type="text" th:field="*{name}" class="categoryName" placeholder="카테고리명을 입력하세요.">
     <div class="category-save-btn-box">
-        <button class="category-save-btn">추가</button>
-        <button class="category-save-cancel-btn">취소</button>
+        <button class="category-save-btn check-btn" style="margin-right: 20px">추가</button>
+        <button class="category-save-cancel-btn cancel-btn">취소</button>
     </div>
 </div>

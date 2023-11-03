@@ -21,4 +21,10 @@ public interface ProductService {
      * 상품 등록
      */
     void saveProduct(Product product);
+
+    void DeleteProduct(int productId);
+
+    void RecoverProdcut(int productId);
+
+    void updateProduct(Product product);
 }

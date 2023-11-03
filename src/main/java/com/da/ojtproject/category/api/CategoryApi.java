@@ -45,5 +45,11 @@ public class CategoryApi {
         return HttpStatus.OK;
     }
 
+    @PutMapping("/api/category/{categoryId}")
+    public HttpStatus categoryRecover(@PathVariable int categoryId) {
+        categoryService.recoverCategory(categoryId);
+        return HttpStatus.OK;
+    }
+
 
 }

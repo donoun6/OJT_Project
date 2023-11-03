@@ -150,5 +150,30 @@ public class ProductDao {
                 product.getSellPrice(), product.getImage(),product.getInventory().getQuantity());
     }
 
+    public void deleteProduct(int productId) {
+        String sql = "UPDATE Product SET check_product = FALSE " +
+                "WHERE product_id = ?";
+        template.update(sql, productId);
+    }
+
+    public void recoverProdcut (int productId) {
+        String sql = "UPDATE Product SET check_product = TRUE " +
+                "WHERE product_id = ?";
+        template.update(sql, productId);
+    }
+
+    public void updateProduct(Product product) {
+        String sql = "UPDATE Product SET name = ?, code = ?, " +
+                "category_id = ?, sell_price = ? " +
+                "WHERE product_id = ?";
+        template.update(sql,
+                product.getName(),
+                product.getCode(),
+                product.getCategoryId(),
+                product.getSellPrice(),
+                product.getProductId()
+        );
+    }
+
 
 }

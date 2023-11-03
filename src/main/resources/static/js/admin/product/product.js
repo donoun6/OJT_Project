@@ -104,6 +104,77 @@ $(function () {
         }
 
         /**
+         * product delete
+         */
+        $(document).on("click", ".product-delete-btn", function (){
+            let productId = $(this).val();
+            $.ajax({
+                type: 'DELETE',
+                url: '/api/product/'+ productId,
+                dataType: 'json',
+                success: function (data) {
+                    alert("삭제가 완료되었습니다.")
+                    $(".select-search").trigger("click");
+                },
+                error: function (data) {
+                    alert("잠시후 다시 시도해 주세요");
+                }
+            });
+        });
+
+        /**
+         * product recover
+         */
+        $(document).on("click", ".product-recover", function (){
+            let productId = $(this).val();
+            $.ajax({
+                type: 'PUT',
+                url: '/api/product/'+ productId,
+                dataType: 'json',
+                success: function (data) {
+                    alert("복구가 완료되었습니다.")
+                    $(".select-search").trigger("click");
+                },
+                error: function (data) {
+                    alert("잠시후 다시 시도해 주세요");
+                }
+            });
+        });
+
+        $(document).on("click", ".product-update-btn", function (){
+            $(this).closest('.product-hover').children(".view").css("display","none");
+            $(this).closest('.product-hover').children(".view-off").css("display","table-cell");
+        });
+
+        $(document).on("click", ".product-recover-btn", function (){
+            let data = {
+                "productId" : $(this).val(),
+                "name" : $(this).closest('.product-hover').children(".view-off").children("#name").val(),
+                "categoryId" : $(this).closest('.product-hover').children(".view-off").children("#categoryId").val(),
+                "code" : $(this).closest('.product-hover').children(".view-off").children("#code").val(),
+                "sellPrice" : $(this).closest('.product-hover').children(".view-off").children("#sellPrice").val(),
+            };
+            console.log(data);
+            $.ajax({
+                async: true,
+                type: 'PATCH',
+                data: JSON.stringify(data),
+                url: '/api/product',
+                dataType: 'json',
+                contentType: 'application/json; charset=UTF-8',
+                success: function (data) {
+                    // alert("수정이 완료되었습니다.")
+                    $(".select-search").trigger("click");
+                },
+                error: function (data) {
+                    alert("잠시후 다시 시도해 주세요");
+                }
+            });
+        });
+
+
+
+        /**
          * pop-up display
          */
         $(".save-btn").click(function () {
@@ -142,17 +213,17 @@ $(function () {
         /**
          * 카테고리 리스트 출력
          */
-        $(".category").click(function (){
+        $(document).on("click", ".category", function (){
+            console.log("dddd")
             $.ajax({
                 async: true,
                 type: 'GET',
                 url: '/api/category',
                 contentType: 'application/json; charset=UTF-8',
                 success: function (data) {
+                    console.log(data)
                     for (let i = 0; i < data.length; i++) {
-                        if($("option").hasClass("cate"+data[i].categoryId)){
-                            continue;
-                        }else {
+                        if(!$("option").hasClass("cate"+data[i].categoryId)){
                             $(".category").append('<option class="cate'+data[i].categoryId+'" value="' +data[i].categoryId+ '">'+ data[i].name+ '</option>');
                         }
                     }
@@ -198,6 +269,7 @@ $(function () {
                 dataType: 'json',
                 contentType: 'application/json; charset=UTF-8',
                 success: function (data) {
+                    alert("카테고리가 등록 되었습니다.")
                     $(".category-form-wrap").css("display", "none");
                     $(".save-btn").trigger("click");
                 },
@@ -210,23 +282,41 @@ $(function () {
         /**
          * 카테고리 삭제처리
          */
+        let categoryId;
         $(document).on("click", ".category-delete", function () {
-            let cateogryId = $(this).val();
-
+            cateogryId = $(this).val();
             $(".category-delete-from-wrap").css("display","flex");
-            $(".category-delete-btn").click(function () {
-                $.ajax({
-                    type: 'DELETE',
-                    url: '/api/category/'+cateogryId,
-                    dataType: 'json',
-                    success: function (data) {
-                        $(".category-delete-from-wrap").css("display","none")
-                        $(".select-search").trigger("click");
-                    },
-                    error: function (data) {
-                        alert("잠시후 다시 시도해 주세요");
-                    }
-                });
+        });
+        $(".category-delete-btn").click(function () {
+            $.ajax({
+                type: 'DELETE',
+                url: '/api/category/'+ cateogryId,
+                dataType: 'json',
+                success: function (data) {
+                    alert("삭제가 완료 되었습니다.")
+                    $(".category-delete-from-wrap").css("display","none")
+                    $(".select-search").trigger("click");
+                },
+                error: function (data) {
+                    alert("잠시후 다시 시도해 주세요");
+                }
+            });
+        });
+
+        $(document).on("click", ".category-recover", function () {
+            let cateogryId = $(this).val();
+            console.log(cateogryId);
+            $.ajax({
+                type: 'PUT',
+                url: '/api/category/'+ cateogryId,
+                dataType: 'json',
+                success: function (data) {
+                    alert("복구가 완료 되었습니다.")
+                    $(".select-search").trigger("click");
+                },
+                error: function (data) {
+                    alert("잠시후 다시 시도해 주세요");
+                }
             });
         });
 

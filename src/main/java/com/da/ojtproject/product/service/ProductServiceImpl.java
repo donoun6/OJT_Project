@@ -1,6 +1,5 @@
 package com.da.ojtproject.product.service;
 
-import com.da.ojtproject.category.domain.Category;
 import com.da.ojtproject.product.dao.ProductDao;
 import com.da.ojtproject.product.domain.Product;
 import lombok.RequiredArgsConstructor;
@@ -30,5 +29,20 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void saveProduct(Product product) {
         productDao.saveProduct(product);
+    }
+
+    @Override
+    public void DeleteProduct(int productId) {
+        productDao.deleteProduct(productId);
+    }
+
+    @Override
+    public void RecoverProdcut(int productId) {
+        productDao.recoverProdcut(productId);
+    }
+
+    @Override
+    public void updateProduct(Product product) {
+        productDao.updateProduct(product);
     }
 }
