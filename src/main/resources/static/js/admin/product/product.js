@@ -3,6 +3,7 @@ $(function () {
      * 문서 객체 모델(DOM)이 완전히 로드된 후 스크립트가 실행
      */
     $(document).ready(function() {
+        //************ PRODUCT EVENT FUNCTION ************//
         let data = {
             "category" : "all",
             "checkName" : "Y",
@@ -73,7 +74,7 @@ $(function () {
         });
 
         /**
-         * 조건에 맞는 순서 정렬
+         * product list 조건 순서 정렬
          */
         $(".order").click(function (){
             spl = this.getAttribute('id').split('-');
@@ -84,7 +85,6 @@ $(function () {
 
         /**
          * product list 조건 검색
-         * @param data
          */
         function productList(data) {
             $.ajax({
@@ -104,9 +104,17 @@ $(function () {
         }
 
         /**
+         * pop-up display
+         */
+        $(".save-btn").click(function () {
+            $(".product-save-from-wrap").css("display","flex");
+        });
+        $(".product-save-cancel-btn").click(function () {
+            $(".product-save-from-wrap").css("display","none");
+        });
+
+        /**
          * 초성 추출
-         * @param str
-         * @returns {string}
          */
         function choHangul(str) {
             cho = ["ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ","ㅅ","ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
@@ -119,15 +127,18 @@ $(function () {
         }
 
         /**
-         * display 속성 변경
+         * mouse event handler
          */
-        $(".save-btn").click(function () {
-            $(".product-save-from-wrap").css("display","flex");
+        // mouseover 이벤트 핸들러
+        $(".product-list").on("mouseover", ".product-hover", function() {
+            $(this).children().css("font-weight", "bold");
         });
-        $(".product-save-cancel-btn").click(function () {
-            $(".product-save-from-wrap").css("display","none");
+        // mouseout 이벤트 핸들러
+        $(".product-list").on("mouseout", ".product-hover", function() {
+            $(this).children().css("font-weight", "normal");
         });
 
+        //************ CATEOGRY EVENT FUNCTION ************//
         /**
          * 카테고리 리스트 출력
          */
@@ -197,8 +208,34 @@ $(function () {
         });
 
         /**
-         * display none
+         * 카테고리 삭제처리
          */
+        $(document).on("click", ".category-delete", function () {
+            let cateogryId = $(this).val();
+
+            $(".category-delete-from-wrap").css("display","flex");
+            $(".category-delete-btn").click(function () {
+                $.ajax({
+                    type: 'DELETE',
+                    url: '/api/category/'+cateogryId,
+                    dataType: 'json',
+                    success: function (data) {
+                        $(".category-delete-from-wrap").css("display","none")
+                        $(".select-search").trigger("click");
+                    },
+                    error: function (data) {
+                        alert("잠시후 다시 시도해 주세요");
+                    }
+                });
+            });
+        });
+
+        /**
+         * pop-up display
+         */
+        $(".category-delete-cancel-btn").click(function (){
+            $(".category-delete-from-wrap").css("display","none")
+        });
         $(document).on("click", ".category-save-cancel-btn", function () {
             $(".category-form-wrap").css("display", "none");
         });
@@ -212,14 +249,12 @@ $(function () {
         $(".up-slide-box").mouseout(function () {
             $(".up-slide").removeClass("up-slide-on");
         });
-
         $(".down-slide-box").mouseover(function () {
             $(".down-slide").addClass("down-slide-on");
         });
         $(".down-slide-box").mouseout(function () {
             $(".down-slide").removeClass("down-slide-on");
         });
-
         $(".up-slide-box").click(function () {
             $(".up-slide-box").stop().animate({ opacity : "0" },500,"easeInExpo");
             $(".section1").stop().animate({ marginTop : "-22%" },600,"easeInExpo");
@@ -234,7 +269,7 @@ $(function () {
         });
 
         /**
-         * datepicker 기간 선택
+         * start/end date picker
          */
         $("#startDate").datepicker({
             dateFormat: "yy-mm-dd", // 날짜의 형식
@@ -254,50 +289,6 @@ $(function () {
             nextText: ">",
             prevText: "<"
         });
-
-        /**
-         * 마우스 커서에 위치한 제품 강조
-         */
-        // mouseover 이벤트 핸들러
-        $(".product-list").on("mouseover", ".product-hover", function() {
-            $(this).children().css("font-weight", "bold");
-        });
-
-        // mouseout 이벤트 핸들러
-        $(".product-list").on("mouseout", ".product-hover", function() {
-            $(this).children().css("font-weight", "normal");
-        });
-
-        /**
-         * 카테고리 삭제처리
-         */
-        $(document).on("click", ".category-delete", function () {
-            $(".category-delete-from-wrap").css("display","flex");
-
-            let cateogryId = $(this).val();
-            $(".category-delete-btn").click(function () {
-                $.ajax({
-                    type: 'DELETE',
-                    url: '/api/category/'+cateogryId,
-                    dataType: 'json',
-                    success: function (data) {
-                        $(".category-delete-from-wrap").css("display","none")
-                        $(".select-search").trigger("click");
-                    },
-                    error: function (data) {
-                        alert("잠시후 다시 시도해 주세요");
-                    }
-                });
-            });
-        });
-
-        /**
-         * display none
-         */
-        $(".category-delete-cancel-btn").click(function (){
-            $(".category-delete-from-wrap").css("display","none")
-        });
-
     });
 });
 

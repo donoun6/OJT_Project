@@ -51,6 +51,9 @@ public class CategoryDao {
         addOrResetCategoryProcedure.execute(category.getName());
     }
 
+    /**
+     * 카테고리 삭제 처리
+     */
     public void deleteCateogory(int categoryId) {
         String sql = "UPDATE Category set check_category = FALSE " +
                 "WHERE category_id = ?";

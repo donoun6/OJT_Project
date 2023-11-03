@@ -29,10 +29,12 @@
             font-variation-settings: 'wght' 350;
             font-size: 20px;
         }
+
         .up-slide {
             position: absolute;
             bottom: 8px;
         }
+
         .down-slide {
             position: absolute;
             top: 0;
@@ -175,7 +177,7 @@
                 <img>
                 </thead>
                 <tbody class="product-list">\
-                <tr th:each="productList : ${productList}" class="product-hover" >
+                <tr th:each="productList : ${productList}" class="product-hover">
                     <!--     index     -->
                     <td th:text="${productListStat.count}"></td>
                     <!--     product_img     -->
@@ -223,6 +225,7 @@
             <div class="page-nav">1 2 3 4 5 6</div>
         </section>
     </div>
+    <!--   category delete pop-up     -->
     <div class="category-delete-from-wrap">
         <div class="category-delete-form">
             <p>카테고리를 삭제하면 해당 카테고리에 등록된 모든 상품이 삭제처리 됩니다.</p>
@@ -235,7 +238,8 @@
     </div>
     <!--   category add form     -->
     <div class="product-save-from-wrap">
-        <form class="product-save-form" action="product/save" method="post" enctype="multipart/form-data" th:object="${prodcut}">
+        <form class="product-save-form" action="product/save" method="post" enctype="multipart/form-data"
+              th:object="${prodcut}">
             <ol>
                 <li><label for="categoryId">category</label></li>
                 <li>

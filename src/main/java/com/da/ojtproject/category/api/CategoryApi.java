@@ -34,6 +34,11 @@ public class CategoryApi {
         return HttpStatus.OK;
     }
 
+    /**
+     * 카테고리 삭제 처리
+     * @param categoryId
+     * @return
+     */
     @DeleteMapping("/api/category/{categoryId}")
     public HttpStatus categoryDelete(@PathVariable int categoryId) {
         categoryService.deleteCateogory(categoryId);
