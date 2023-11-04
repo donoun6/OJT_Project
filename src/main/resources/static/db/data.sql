@@ -22,6 +22,7 @@ VALUES (1,'AAA-0000-0001','아메리카노',2500,'/img/am.png')
 ,(3,'AAA-0000-0024','사이다',1500,'/img/hb.jpg')
 ,(3,'AAA-0000-0025','박카스',1000,'/img/it.jpg');
 
+
 # 재고 수량 등록
 INSERT INTO Inventory (product_id, quantity)
 VALUES (1,50),(2,24),(3,12),(4,34),(5,22),
