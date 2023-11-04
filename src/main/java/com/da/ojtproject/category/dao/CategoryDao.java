@@ -19,8 +19,11 @@ public class CategoryDao {
     private final JdbcTemplate template;
     private SimpleJdbcCall addOrResetCategoryProcedure;
 
+    /**
+     * bean 객체 등록 생성자 주입
+     * @param dataSource
+     */
     public CategoryDao(DataSource dataSource) {
-
         this.template = new JdbcTemplate(dataSource);
         this.addOrResetCategoryProcedure = new SimpleJdbcCall(template)
                 .withProcedureName("AddOrResetCategory");

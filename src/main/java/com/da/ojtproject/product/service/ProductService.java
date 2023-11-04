@@ -22,9 +22,21 @@ public interface ProductService {
      */
     void saveProduct(Product product);
 
+    /**
+     * 상품 삭제
+     * @param productId
+     */
     void DeleteProduct(int productId);
 
+    /**
+     * 상품 복구
+     * @param productId
+     */
     void RecoverProdcut(int productId);
 
+    /**
+     * 상품 정보 수정
+     * @param product
+     */
     void updateProduct(Product product);
 }

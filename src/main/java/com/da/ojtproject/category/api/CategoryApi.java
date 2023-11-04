@@ -45,6 +45,11 @@ public class CategoryApi {
         return HttpStatus.OK;
     }
 
+    /**
+     * 상품 복구
+     * @param categoryId
+     * @return
+     */
     @PutMapping("/api/category/{categoryId}")
     public HttpStatus categoryRecover(@PathVariable int categoryId) {
         categoryService.recoverCategory(categoryId);

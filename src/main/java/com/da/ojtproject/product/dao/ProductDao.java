@@ -150,18 +150,30 @@ public class ProductDao {
                 product.getSellPrice(), product.getImage(),product.getInventory().getQuantity());
     }
 
+    /**
+     * 상품삭제
+     * @param productId
+     */
     public void deleteProduct(int productId) {
         String sql = "UPDATE Product SET check_product = FALSE " +
                 "WHERE product_id = ?";
         template.update(sql, productId);
     }
 
+    /**
+     * 상품 복구
+     * @param productId
+     */
     public void recoverProdcut (int productId) {
         String sql = "UPDATE Product SET check_product = TRUE " +
                 "WHERE product_id = ?";
         template.update(sql, productId);
     }
 
+    /**
+     * 상품 수정
+     * @param product
+     */
     public void updateProduct(Product product) {
         String sql = "UPDATE Product SET name = ?, code = ?, " +
                 "category_id = ?, sell_price = ? " +
@@ -174,6 +186,5 @@ public class ProductDao {
                 product.getProductId()
         );
     }
-
 
 }

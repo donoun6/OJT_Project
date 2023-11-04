@@ -1,19 +1,27 @@
 $(function () {
     /**
+     * 개선해야할 사항
+     * const로 url을 동적으로 구현
+     * Ajax 코드가 너무 많아 필요한 function을 만들고 
+     * 파라미터 값을 받아 동적으로 적용
+     */
+    
+    
+    /**
      * 문서 객체 모델(DOM)이 완전히 로드된 후 스크립트가 실행
      */
-    $(document).ready(function() {
+    $(document).ready(function () {
         //************ PRODUCT EVENT FUNCTION ************//
         let data = {
-            "category" : "all",
-            "checkName" : "Y",
-            "name" : "",
-            "productDeleteCheck" : "N",
-            "categoryDeleteCheck" : "N",
-            "startRegisterDate" : "",
-            "endRegisterDate" : "",
-            "col" : "",
-            "order" : ""
+            "category": "all",
+            "checkName": "Y",
+            "name": "",
+            "productDeleteCheck": "N",
+            "categoryDeleteCheck": "N",
+            "startRegisterDate": "",
+            "endRegisterDate": "",
+            "col": "",
+            "order": ""
         }
 
         /**
@@ -21,15 +29,15 @@ $(function () {
          */
         $(".all-search").click(function () {
             data = {
-                "category" : "all",
-                "checkName" : "Y",
-                "name" : "",
-                "productDeleteCheck" : "N",
-                "categoryDeleteCheck" : "N",
-                "startRegisterDate" : "",
-                "endRegisterDate" : "",
-                "col" : "",
-                "order" : ""
+                "category": "all",
+                "checkName": "Y",
+                "name": "",
+                "productDeleteCheck": "N",
+                "categoryDeleteCheck": "N",
+                "startRegisterDate": "",
+                "endRegisterDate": "",
+                "col": "",
+                "order": ""
             }
             productList(data);
         });
@@ -56,9 +64,9 @@ $(function () {
             let concatName = choHangul($(this).val());
 
             //초성검색 구분
-            if (name!="" && concatName==""){
+            if (name != "" && concatName == "") {
                 checkName = 'Y';
-            }else{
+            } else {
                 checkName = 'N';
             }
 
@@ -76,7 +84,7 @@ $(function () {
         /**
          * product list 조건 순서 정렬
          */
-        $(".order").click(function (){
+        $(".order").click(function () {
             spl = this.getAttribute('id').split('-');
             data.col = spl.at(0);
             data.order = spl.at(1);
@@ -106,11 +114,11 @@ $(function () {
         /**
          * product delete
          */
-        $(document).on("click", ".product-delete-btn", function (){
+        $(document).on("click", ".product-delete-btn", function () {
             let productId = $(this).val();
             $.ajax({
                 type: 'DELETE',
-                url: '/api/product/'+ productId,
+                url: '/api/product/' + productId,
                 dataType: 'json',
                 success: function (data) {
                     alert("삭제가 완료되었습니다.")
@@ -125,11 +133,11 @@ $(function () {
         /**
          * product recover
          */
-        $(document).on("click", ".product-recover", function (){
+        $(document).on("click", ".product-recover", function () {
             let productId = $(this).val();
             $.ajax({
                 type: 'PUT',
-                url: '/api/product/'+ productId,
+                url: '/api/product/' + productId,
                 dataType: 'json',
                 success: function (data) {
                     alert("복구가 완료되었습니다.")
@@ -141,20 +149,28 @@ $(function () {
             });
         });
 
-        $(document).on("click", ".product-update-btn", function (){
-            $(this).closest('.product-hover').children(".view").css("display","none");
-            $(this).closest('.product-hover').children(".view-off").css("display","table-cell");
+        /**
+         * 상품 등록 from 출력
+         */
+        $(document).on("click", ".product-update-btn", function () {
+            $(".view-off").css("display", "none");
+            $(".view").css("display", "table-cell");
+            $(this).closest('.product-hover').children(".view").css("display", "none");
+            $(this).closest('.product-hover').children(".view-off").css("display", "table-cell");
+            $(this).closest('.product-hover').children(".view-off").children(".categoryId-list").trigger("click");
         });
 
-        $(document).on("click", ".product-recover-btn", function (){
+        /**
+         * 상품 수정
+         */
+        $(document).on("click", ".product-recover-btn", function () {
             let data = {
-                "productId" : $(this).val(),
-                "name" : $(this).closest('.product-hover').children(".view-off").children("#name").val(),
-                "categoryId" : $(this).closest('.product-hover').children(".view-off").children("#categoryId").val(),
-                "code" : $(this).closest('.product-hover').children(".view-off").children("#code").val(),
-                "sellPrice" : $(this).closest('.product-hover').children(".view-off").children("#sellPrice").val(),
+                "productId": $(this).val(),
+                "name": $(this).closest('.product-hover').children(".view-off").children("#name").val(),
+                "categoryId": $(this).closest('.product-hover').children(".view-off").children("#categoryId").val(),
+                "code": $(this).closest('.product-hover').children(".view-off").children("#code").val(),
+                "sellPrice": $(this).closest('.product-hover').children(".view-off").children("#sellPrice").val(),
             };
-            console.log(data);
             $.ajax({
                 async: true,
                 type: 'PATCH',
@@ -172,27 +188,25 @@ $(function () {
             });
         });
 
-
-
         /**
          * pop-up display
          */
         $(".save-btn").click(function () {
-            $(".product-save-from-wrap").css("display","flex");
+            $(".product-save-from-wrap").css("display", "flex");
         });
         $(".product-save-cancel-btn").click(function () {
-            $(".product-save-from-wrap").css("display","none");
+            $(".product-save-from-wrap").css("display", "none");
         });
 
         /**
          * 초성 추출
          */
         function choHangul(str) {
-            cho = ["ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ","ㅅ","ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
+            cho = ["ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ", "ㅂ", "ㅃ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅉ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"];
             result = "";
-            for(i=0;i<str.length;i++) {
-                code = str.charCodeAt(i)-44032;
-                if(code>-1 && code<11172) result += cho[Math.floor(code/588)];
+            for (i = 0; i < str.length; i++) {
+                code = str.charCodeAt(i) - 44032;
+                if (code > -1 && code < 11172) result += cho[Math.floor(code / 588)];
             }
             return result;
         }
@@ -201,11 +215,11 @@ $(function () {
          * mouse event handler
          */
         // mouseover 이벤트 핸들러
-        $(".product-list").on("mouseover", ".product-hover", function() {
+        $(".product-list").on("mouseover", ".product-hover", function () {
             $(this).children().css("font-weight", "bold");
         });
         // mouseout 이벤트 핸들러
-        $(".product-list").on("mouseout", ".product-hover", function() {
+        $(".product-list").on("mouseout", ".product-hover", function () {
             $(this).children().css("font-weight", "normal");
         });
 
@@ -213,18 +227,39 @@ $(function () {
         /**
          * 카테고리 리스트 출력
          */
-        $(document).on("click", ".category", function (){
-            console.log("dddd")
+        $(document).on("click", ".category", function () {
             $.ajax({
                 async: true,
                 type: 'GET',
                 url: '/api/category',
                 contentType: 'application/json; charset=UTF-8',
                 success: function (data) {
-                    console.log(data)
                     for (let i = 0; i < data.length; i++) {
-                        if(!$("option").hasClass("cate"+data[i].categoryId)){
-                            $(".category").append('<option class="cate'+data[i].categoryId+'" value="' +data[i].categoryId+ '">'+ data[i].name+ '</option>');
+                        if (!$("option").hasClass("cate" + data[i].categoryId)) {
+                            $(".category").append('<option class="cate' + data[i].categoryId + '" value="' + data[i].categoryId + '">' + data[i].name + '</option>');
+                        }
+                    }
+                },
+                error: function (data) {
+                    alert("잠시후 다시 시도해 주세요");
+                }
+            });
+        });
+
+        /**
+         * 카테고리 리스트 출력 - product list
+         */
+        $(document).on("click", ".categoryId-list", function () {
+            let check = $(this).children("option");
+            $.ajax({
+                async: true,
+                type: 'GET',
+                url: '/api/category',
+                contentType: 'application/json; charset=UTF-8',
+                success: function (data) {
+                    for (let i = 0; i < data.length; i++) {
+                        if (!check.hasClass("cate" + data[i].categoryId)) {
+                            $(".categoryId-list").append('<option class="cate' + data[i].categoryId + '" value="' + data[i].categoryId + '">' + data[i].name + '</option>');
                         }
                     }
                 },
@@ -238,7 +273,7 @@ $(function () {
          * 카테고리 save form 출력
          */
         $(".category-save").click(function () {
-            $(".category-form-wrap").css("display","flex");
+            $(".category-form-wrap").css("display", "flex");
             $.ajax({
                 async: true,
                 type: 'GET',
@@ -259,7 +294,7 @@ $(function () {
          */
         $(document).on("click", ".category-save-btn", function () {
             let data = {
-                "name" : $(".categoryName").val(),
+                "name": $(".categoryName").val(),
             };
             $.ajax({
                 async: true,
@@ -285,16 +320,16 @@ $(function () {
         let categoryId;
         $(document).on("click", ".category-delete", function () {
             cateogryId = $(this).val();
-            $(".category-delete-from-wrap").css("display","flex");
+            $(".category-delete-from-wrap").css("display", "flex");
         });
         $(".category-delete-btn").click(function () {
             $.ajax({
                 type: 'DELETE',
-                url: '/api/category/'+ cateogryId,
+                url: '/api/category/' + cateogryId,
                 dataType: 'json',
                 success: function (data) {
                     alert("삭제가 완료 되었습니다.")
-                    $(".category-delete-from-wrap").css("display","none")
+                    $(".category-delete-from-wrap").css("display", "none")
                     $(".select-search").trigger("click");
                 },
                 error: function (data) {
@@ -303,12 +338,14 @@ $(function () {
             });
         });
 
+        /**
+         * 카테고리 복구
+         */
         $(document).on("click", ".category-recover", function () {
             let cateogryId = $(this).val();
-            console.log(cateogryId);
             $.ajax({
                 type: 'PUT',
-                url: '/api/category/'+ cateogryId,
+                url: '/api/category/' + cateogryId,
                 dataType: 'json',
                 success: function (data) {
                     alert("복구가 완료 되었습니다.")
@@ -323,8 +360,8 @@ $(function () {
         /**
          * pop-up display
          */
-        $(".category-delete-cancel-btn").click(function (){
-            $(".category-delete-from-wrap").css("display","none")
+        $(".category-delete-cancel-btn").click(function () {
+            $(".category-delete-from-wrap").css("display", "none")
         });
         $(document).on("click", ".category-save-cancel-btn", function () {
             $(".category-form-wrap").css("display", "none");
@@ -346,16 +383,16 @@ $(function () {
             $(".down-slide").removeClass("down-slide-on");
         });
         $(".up-slide-box").click(function () {
-            $(".up-slide-box").stop().animate({ opacity : "0" },500,"easeInExpo");
-            $(".section1").stop().animate({ marginTop : "-22%" },600,"easeInExpo");
-            $(".section2").stop().animate({ height : "100%" },600,"easeInExpo");
-            $(".down-slide-box").stop().animate({ top : "-2%" },500,"easeInExpo");
+            $(".up-slide-box").stop().animate({opacity: "0"}, 500, "easeInExpo");
+            $(".section1").stop().animate({marginTop: "-22%"}, 600, "easeInExpo");
+            $(".section2").stop().animate({height: "100%"}, 600, "easeInExpo");
+            $(".down-slide-box").stop().animate({top: "-2%"}, 500, "easeInExpo");
         });
         $(".down-slide-box").click(function () {
-            $(".up-slide-box").stop().animate({ opacity : "1" },600,"easeInExpo");
-            $(".section1").stop().animate({ marginTop : "0" },600,"easeInExpo");
-            $(".section2").stop().animate({ height : "58%" },600,"easeInExpo");
-            $(".down-slide-box").stop().animate({ top : "-10%" },500,"easeInExpo");
+            $(".up-slide-box").stop().animate({opacity: "1"}, 600, "easeInExpo");
+            $(".section1").stop().animate({marginTop: "0"}, 600, "easeInExpo");
+            $(".section2").stop().animate({height: "58%"}, 600, "easeInExpo");
+            $(".down-slide-box").stop().animate({top: "-10%"}, 500, "easeInExpo");
         });
 
         /**

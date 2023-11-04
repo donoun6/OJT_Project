@@ -19,8 +19,8 @@
         <td class="view" th:if="${productList.getCategory().isCheckCategory()} == true"
             th:text="${productList.getCategory().getName()}"></td>
         <td class="view-off">
-            <select style="width: 80%" id="categoryId" class="category">
-                <option disabled>선택</option>
+            <select style="width: 80%" id="categoryId" class="categoryId-list">
+                <option disabled selected>선택</option>
             </select>
         </td>
         <!--     inventory_quantity     -->
