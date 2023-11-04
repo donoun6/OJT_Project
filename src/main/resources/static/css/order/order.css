@@ -48,11 +48,11 @@ main .main-wrap {
     background: #F3F1F5;
     box-shadow: 0 10px 30px rgb(0 0 0 / 60%);
     z-index: 1;
-    overflow: scroll;
+    overflow: hidden;
 }
 
 main .main-wrap ul {
-    margin-top: 5%;
+    margin-top: 1%;
     padding: 10%;
     width: 80%;
     text-align: center;
