@@ -70,12 +70,22 @@ FROM Selling
         ON Selling.product_id = Product.product_id;
 
 -- 입고 등록
-INSERT INTO Receiving (product_id, quantity)
-VALUES (2,100);
+INSERT INTO Receiving (product_id, quantity, description)
+VALUES (4,-50,'입고 취소 처리');
+
+UPDATE receiving set quantity = 20
+WHERE receiving_id = 1;
 
 -- 입고 내역 가져오기
-SELECT * FROM Receiving
-ORDER BY register_date desc;
+SELECT *
+FROM Receiving
+    INNER JOIN product
+        ON Receiving.product_id = product.product_id
+    INNER JOIN inventory
+        on product.product_id = inventory.product_id
+    INNER JOIN category
+        ON product.category_id = category.category_id
+ORDER BY receiving.register_date desc;
 
 -- 제품 삭제
 UPDATE Product

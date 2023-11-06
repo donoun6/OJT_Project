@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!--  초기화,고정 css  -->
+    <link rel="stylesheet" href="/css/global/init.css">
+    <link rel="stylesheet" href="/css/global/default.css">
+    <!--  커스텀 css  -->
+    <link rel="stylesheet" href="/css/admin/admin.css">
+    <link rel="stylesheet" href="/css/admin/receiving/receiving.css">
+    <link rel="stylesheet" href="/css/global/jqueryUi.css">
+    <!--  svg link  -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <!--  jquey cdn  -->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <!--  script  -->
+    <script src="/js/common.js"></script>
+    <script src="/js/admin/aside.js"></script>
+    <script src="/js/admin/receiving/receiving.js"></script>
+    <!--  jQuery UI  -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!--    google icon 커스텀    -->
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'wght' 350;
+            font-size: 20px;
+        }
+    </style>
+    <title>admin</title>
+</head>
+<body>
+<!--  aside area  -->
+<aside>
+    <th:block th:replace="admin/common/aside.html"></th:block>
+</aside>
+<!--  aside slide button  -->
+<div class="arrow-back-ios">
+    <span class="material-symbols-outlined" style="position: absolute; left: 30%;">arrow_back_ios</span>
+</div>
+<div class="arrow-forward-ios">
+    <span class="material-symbols-outlined">arrow_forward_ios</span>
+</div>
+<!--    main area    -->
+<main>
+    <div id="main-wrap">
+        <section class="section1">
+            <h1>Receiving</h1>
+            <div class="date-picker-wrap">
+                <input type="text" id="startDate" value="" placeholder=" 연-월-일" style="width: 100px;"> -
+                <input type="text" id="endDate" value="" placeholder=" 연-월-일" style="width: 100px;">
+                <button class="date-search btn" type="button">검색</button>
+            </div>
+            <div class="receiving-list-wrap">
+                <div class="receiving-save">
+                    <button class="all-search btn" type="button" style="width: 75px">전체조회</button>
+                    <button class="btn save-btn" type="button" style="margin-left: 10px">등록</button>
+                </div>
+                <div class="search-bar">
+                    <select>
+                        <option selected value="product">상품명</option>
+                        <option value="receiving_number">입고번호</option>
+                    </select>
+                    <input class="search-name" type="text">
+                    <span class="material-symbols-outlined search-img">search</span>
+                    <button class="trigger-btn" type="button" style="position: absolute; right: -100%"></button>
+                </div>
+                <div class="receiving-list-layout">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th style="width: 3%;">No</th>
+                            <th style="width: 4%;">img</th>
+                            <th style="width: 8%;">상품이름</th>
+                            <th style="width: 11%;">상품코드</th>
+                            <th style="width: 7%;">카테고리</th>
+                            <th style="width: 7%;">판매가격</th>
+                            <th style="width: 4%;">삭제</th>
+                            <th style="width: 7%; text-align: center">입고번호</th>
+                            <th style="width: 7%;">입고수량</th>
+                            <th style="width: 7%;">재고수량</th>
+                            <th style="width: 14%;">입고일자
+                                <span id="desc" class="material-symbols-outlined desc order">expand_less</span>
+                                <span id="asc" class="material-symbols-outlined asc order">expand_more</span>
+                            </th>
+                            <th style="width: 15%;">설명</th>
+                            <th>-</th>
+                        </tr>
+                        </thead>
+                        <tbody class="receiving-list">
+                            <th:block th:replace="admin/receiving/ajax/receivingList"></th:block>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="page-nav">
+                    [1] [2] [3] [4] [5] [6]
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+</body>
+</html>

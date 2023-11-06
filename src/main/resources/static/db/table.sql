@@ -65,9 +65,11 @@ CREATE TABLE Receiving (
 receiving_id            INT                 PRIMARY KEY AUTO_INCREMENT,
 product_id              INT                 NOT NULL,
 quantity                INT                 NOT NULL,
+description             VARCHAR(100)        NULL,
+check_receiving         BOOLEAN             NOT NULL DEFAULT TRUE,
 register_date           TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
 CONSTRAINT Receiving_product_id_FK FOREIGN KEY (product_id) REFERENCES Product(product_id)
-)AUTO_INCREMENT = 1;
+)AUTO_INCREMENT = 1000;
 
 CREATE TABLE Cart (
 Cart_id                 INT                 PRIMARY KEY AUTO_INCREMENT,

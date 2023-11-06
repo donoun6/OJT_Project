@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:each="receivingList : ${receivingList}">
+  <tr class="product-hover">
+    <!--  index  -->
+    <td th:text="${receivingListStat.count}"></td>
+    <!--  product_img  -->
+    <td style="text-align: center"><img style="width: 30px; height: 30px" th:src="@{${receivingList.getProduct().getImage()}}"></td>
+    <!--  product_name  -->
+    <td th:text="${receivingList.getProduct().getName()}"></td>
+    <!--  product_code  -->
+    <td th:text="${receivingList.getProduct().getCode()}"></td>
+    <!--  category  -->
+    <td th:text="${receivingList.getCategory().getName()}"></td>
+    <!--  product_sell_Price  -->
+    <td th:text="${#numbers.formatInteger(receivingList.getProduct().getSellPrice(), 3, 'COMMA') + '원'}" }></td>
+    <!--  product_delete_check  -->
+    <td th:if="${receivingList.getProduct().isCheckProduct()} == false" } style="color: red;">Y</td>
+    <td th:if="${receivingList.getProduct().isCheckProduct()} == true" }>N</td>
+    <!--  receiving_id  -->
+    <td th:text="${receivingList.getReceivingId()}" style="text-align: center"></td>
+    <!--  receiving_quantity  -->
+    <td th:if="${receivingList.getQuantity()} < 0" th:text="${receivingList.getQuantity()+ '개'}" style="color: red;"></td>
+    <td th:if="${receivingList.getQuantity()} >= 0" th:text="${receivingList.getQuantity()+ '개'}"></td>
+    <!--  inventory_quantity  -->
+    <td th:text="${receivingList.getInventory().getQuantity()+ '개'}"></td>
+    <!--  receiving_register_date  -->
+    <td th:text="${#dates.format(receivingList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}"></td>
+    <!--  receiving_description  -->
+    <td th:if="${receivingList.getDescription()} == null">-</td>
+    <td th:if="${receivingList.getDescription()} != null" th:text="${receivingList.getDescription()}"></td>
+    <!--  button  -->
+    <td style="text-align: center">
+      <button th:if="${receivingList.getQuantity()} > 0 AND ${receivingList.isCheckReceiving()} == true" class="receiving-cancel-btn btn" type="button" th:value="${receivingList.getReceivingId()}">취소</button>
+      <span th:if="${receivingList.getQuantity()} < 0 OR ${receivingList.isCheckReceiving()} == false" style="color: red">취소처리</span>
+      <input type="hidden" th:value="${receivingList.getQuantity()}">
+      <input type="hidden" th:value="${receivingList.getProduct().getProductId()}">
+      <input type="hidden" th:value="${receivingList.getReceivingId()}">
+    </td>
+  </tr>
+</th:block>
