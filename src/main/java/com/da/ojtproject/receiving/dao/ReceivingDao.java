@@ -23,6 +23,9 @@ public class ReceivingDao {
         this.template = new JdbcTemplate(dataSource);
     }
 
+    /**
+     * 기본 전체 조회
+     */
     public List<Receiving> getAllReceiving() {
         String sql = "SELECT " +
                 "receiving_id, " +
@@ -51,6 +54,11 @@ public class ReceivingDao {
         return template.query(sql, new ReceivingRowMapper());
     }
 
+    /**
+     * 조건 검색
+     * @param data
+     * @return
+     */
     public List<Receiving> getSelectReceiving(Map<String, Object> data) {
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT " +
@@ -86,12 +94,9 @@ public class ReceivingDao {
             sb.append("AND DATE(receiving.register_date) BETWEEN '" + data.get("startDate") + "' AND '" + data.get("endDate") + "'");
         }
         /**
-         * 상품 검색 or 입고번호 검색
+         * option 상품 or 입고번호 검색
          */
         if (data.get("option").equals("product")) {
-            /**
-             * checkName : 검색 value (상품 이름 검색, 초성 검색)
-             */
             if (data.get("checkName").equals("Y")) {
                 sb.append("AND fn_choSearch(Product.name) LIKE CONCAT('%', '" + data.get("name") + "', '%')");
             } else {
@@ -114,7 +119,6 @@ public class ReceivingDao {
 
     /**
      * 입고 등록
-     * @param receiving
      */
     public void saveReceiving(Receiving receiving) {
         String sql = "INSERT INTO receiving (product_id, quantity, description)" +
