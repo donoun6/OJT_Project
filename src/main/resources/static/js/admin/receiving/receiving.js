@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    const receivingListUrl = "receiving/receiving-list";
+    const url = "/api/receiving";
+
     let data = {
         startDate: "N",
         endDate: "N",
@@ -20,7 +23,7 @@ $(document).ready(function () {
             name: "",
             order: ""
         }
-        receivingList(data);
+        receivingList(data, receivingListUrl);
     });
 
     /**
@@ -30,7 +33,7 @@ $(document).ready(function () {
         if ($("#startDate").val() != "" && $("#endDate").val() != "") {
             data.startDate = $("#startDate").val();
             data.endDate = $("#endDate").val();
-            receivingList(data);
+            receivingList(data, receivingListUrl);
         }
     });
 
@@ -52,11 +55,11 @@ $(document).ready(function () {
         data.option = $("select").val();
         data.checkName = checkName;
         data.name = name;
-        receivingList(data);
+        receivingList(data, receivingListUrl);
     });
 
     $(".trigger-btn").click(function (){
-        receivingList(data);
+        receivingList(data, receivingListUrl);
     })
 
     /**
@@ -64,14 +67,13 @@ $(document).ready(function () {
      */
     $(".order").click(function () {
         data.order = this.getAttribute('id');
-        receivingList(data);
+        receivingList(data, receivingListUrl);
     });
 
     /**
      * 입고 취소처리
      */
     $(document).on("click", ".receiving-cancel-btn", function (){
-        const url = "/api/receiving";
         let data = {
             quantity: $(this).next().val() * -1,
             productId: $(this).next().next().val(),
@@ -81,16 +83,80 @@ $(document).ready(function () {
         Cancel(data, url);
     });
 
+    $(".save-btn").click(function (){
+        $(".receiving-save-form-wrap").css("display","flex");
+        $(".receiving-save-form").css("display","flex");
+    });
+
+
+    //입고 등록 category 별 product 출력 area
+    /**
+     * 카테고리 별 product List 출력
+     */
+    $(document).on("change", ".select-category", function (){
+        let data = {
+            "category": $(this).val(),
+            "checkName": "Y",
+            "name": "",
+            "productDeleteCheck": "N",
+            "categoryDeleteCheck": "N",
+            "startRegisterDate": "",
+            "endRegisterDate": "",
+            "col": "",
+            "order": ""
+        }
+        productList(data);
+    });
+    
+    /**
+     * list 클릭 해당 product id를 가져옴
+     */
+    let productId;
+    $(".category-list").on("click", ".category-hover", function () {
+        $(this).closest(".category-list").children("tr").children("td").css("color","black")
+        $(this).children().css("color", "red");
+        productId = $(this).children("input").val();
+    });
+
+    /**
+     * 아이템 선택 후 다음단계 display on
+     */
+    $(".category-select-next").click(function (){
+        if(productId != null) {
+            $(".receiving-save-form").css("display","none");
+            $(".receiving-save-form2").css("display","flex");
+        }
+    });
+
+    /**
+     * 취소버튼 누를시 pop-up 종료
+     */
+    $(".category-select-cancel").click(function (){
+        $(".receiving-save-form-wrap").css("display","none");
+        $(".receiving-save-form2").css("display","none");
+    });
+
+    /**
+     * 입고 등록
+     */
+    $(".category-select-last").click(function (){
+        let data = {
+            quantity: $(".quantity").val(),
+            productId: productId,
+            description: $(".description").val()
+        }
+        save(data,url);
+    });
+
     /**
      * receiving list HTML 출력 Ajax
-     * @param data
      */
-    function receivingList(data) {
+    function receivingList(data, url) {
         $.ajax({
             async: true,
             type: 'GET',
             data: data,
-            url: 'receiving/receiving-list',
+            url: url,
             dataType: 'html',
             contentType: 'application/json; charset=UTF-8',
             success: function (data) {
@@ -104,9 +170,6 @@ $(document).ready(function () {
 
     /**
      * Delete Method Ajax
-     * @param data
-     * @param url
-     * @constructor
      */
     function Cancel(data, url) {
         $.ajax({
@@ -119,6 +182,53 @@ $(document).ready(function () {
             success: function (data) {
                 alert("취소 처리 완료");
                 $(".trigger-btn").trigger("click");
+            },
+            error: function (data) {
+                alert("잠시후 다시 시도해 주세요");
+            }
+        });
+    }
+
+    /**
+     * 입고 등록
+     */
+    function save(data, url) {
+        $.ajax({
+            async: true,
+            type: 'POST',
+            data: JSON.stringify(data),
+            url: url,
+            dataType: 'json',
+            contentType: 'application/json; charset=UTF-8',
+            success: function (data) {
+                alert("입고 완료");
+                $(".receiving-save-form-wrap").css("display","none");
+                $(".receiving-save-form2").css("display","none");
+                $(".receiving-save-form1").css("display","flex");
+                $(".quantity").val(null);
+                $(".description").val(null);
+                $(".trigger-btn").trigger("click");
+            },
+            error: function (data) {
+                alert("잠시후 다시 시도해 주세요");
+            }
+        });
+    }
+
+    /**
+     * 카테고리별 product 출력
+     * @param data
+     */
+    function productList(data) {
+        $.ajax({
+            async: true,
+            type: 'GET',
+            data: data,
+            url: 'receiving/product-list',
+            dataType: 'html',
+            contentType: 'application/json; charset=UTF-8',
+            success: function (data) {
+                $('.category-list').html(data);
             },
             error: function (data) {
                 alert("잠시후 다시 시도해 주세요");
@@ -148,6 +258,14 @@ $(document).ready(function () {
     });
     // mouseout 이벤트 핸들러
     $(".receiving-list").on("mouseout", ".product-hover", function () {
+        $(this).children().css("font-weight", "normal");
+    });
+
+    $(".category-list").on("mouseover", ".category-hover", function () {
+        $(this).children().css("font-weight", "bold");
+    });
+    // mouseout 이벤트 핸들러
+    $(".category-list").on("mouseout", ".category-hover", function () {
         $(this).children().css("font-weight", "normal");
     });
 

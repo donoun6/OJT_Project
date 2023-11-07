@@ -22,4 +22,10 @@ public class ReceivingApi {
         return HttpStatus.OK;
     }
 
+    @PostMapping("/api/receiving")
+    public HttpStatus receivingSave(@RequestBody Receiving receiving) {
+        receivingService.saveReceiving(receiving);
+        return HttpStatus.OK;
+    }
+
 }

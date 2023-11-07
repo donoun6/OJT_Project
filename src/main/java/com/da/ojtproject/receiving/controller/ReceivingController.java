@@ -1,5 +1,8 @@
 package com.da.ojtproject.receiving.controller;
 
+import com.da.ojtproject.category.service.CategoryService;
+import com.da.ojtproject.product.domain.Product;
+import com.da.ojtproject.product.service.ProductService;
 import com.da.ojtproject.receiving.service.ReceivingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,8 @@ import java.util.Map;
 @RequestMapping("admin/receiving")
 public class ReceivingController {
 
+    private final ProductService productService;
+    private final CategoryService categoryService;
     private final ReceivingService receivingService;
 
     /**
@@ -23,6 +28,8 @@ public class ReceivingController {
     @GetMapping()
     public String receiving(Model model) {
         model.addAttribute("receivingList", receivingService.getAllReceiving());
+        model.addAttribute("categoryList",categoryService.getAllCategory());
+        model.addAttribute("productList",productService.getAllProducts());
         return "admin/receiving/receiving";
     }
 
@@ -34,5 +41,13 @@ public class ReceivingController {
                                 @RequestParam(required = false) Map<String, Object> data) {
         model.addAttribute("receivingList",receivingService.getSelectReceiving(data));
         return "admin/receiving/ajax/receivingList";
+    }
+
+    @GetMapping("/product-list")
+    public String productList(Model model,
+                              @RequestParam(required = false) Map<String, Object> data) {
+        model.addAttribute("product", new Product());
+        model.addAttribute("productList", productService.getSearchProducts(data));
+        return "admin/receiving/ajax/receivingCategory";
     }
 }
