@@ -41,8 +41,8 @@ public class HomeController {
         Integer currentOrderUid = (Integer) session.getAttribute("currentOrderUid");
 
         if (currentMerchantUid == null || currentOrderUid == null) {
-            currentMerchantUid = 4299; // 시작 값 설정
-            currentOrderUid = 4299; // 시작 값 설정
+            currentMerchantUid = 15654; // 시작 값 설정
+            currentOrderUid = 245156; // 시작 값 설정
         } else {
             currentMerchantUid++;
             currentOrderUid++;

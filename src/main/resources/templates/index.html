@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <meta name="viewport" content="width=1920, height=1920, initial-scale=1">
     <!--  초기화,고정 css  -->
     <link rel="stylesheet" href="/css/global/init.css">
     <link rel="stylesheet" href="/css/global/default.css">
@@ -208,7 +209,9 @@
                 name: '주문명:결제테스트',
                 amount: totalAmount,
                 buyer_name: currentOrderUid.toString(),
+                m_redirect_url : 'http://localhost:8080/',
             }, function (rsp) {
+                console.log(rsp)
                 if (rsp.success) {
                     $.ajax({
                         type: 'POST',

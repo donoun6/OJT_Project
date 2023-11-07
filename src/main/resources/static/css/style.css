@@ -2,8 +2,9 @@
 
 /* global*/
 body {
+    margin: 0 auto;
     -ms-overflow-style: none;
-    background: #cfcfcf;
+    background: white;
     color: black;
     width: 1920px;
     height: 1920px;
@@ -18,9 +19,10 @@ body {
 /* logo */
 .logo{
     position: absolute;
-    top: 3%;
-    left: 3%;
+    top: 2.5%;
+    margin-left: 60px;
     color: #333333;
+    z-index: 1;
 }
 
 .logo>h1 {
@@ -38,6 +40,7 @@ main {
     position: relative;
     height: 100%;
     padding-top: 10%;
+    background: #cfcfcf;
 }
 
 /* product list*/
@@ -47,7 +50,7 @@ main {
     height: 100%;
     border-radius: 0 60px 0 0;
     background: #F3F1F5;
-    box-shadow: 0 10px 30px rgb(0 0 0 / 60%);
+    box-shadow: 9px 5px 30px rgb(0 0 0 / 60%);
     z-index: 1;
     overflow: scroll;
 }
