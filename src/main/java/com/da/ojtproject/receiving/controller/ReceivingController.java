@@ -51,6 +51,7 @@ public class ReceivingController {
                               @RequestParam(required = false) Map<String, Object> data) {
         model.addAttribute("product", new Product());
         model.addAttribute("productList", productService.getSearchProducts(data));
+//        @RequestMapping("admin/receiving")
         return "admin/receiving/ajax/receivingCategory";
     }
 }

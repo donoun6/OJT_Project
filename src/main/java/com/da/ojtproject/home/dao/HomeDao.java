@@ -54,7 +54,8 @@ public class HomeDao {
 
     // 모든 카테고리 목록을 출력하는 메서드(현재 존재하는 모든 카테고리 목록을 출력하는 메서드입니다.)
     public List<Home> findAllCategories() {
-        String sql = "SELECT * FROM Category";
+        String sql = "SELECT * FROM Category " +
+                "WHERE check_category = TRUE";
         return jdbcTemplate.query(sql, (resultSet, rowNum) -> {
             Home home = new Home();
             try {
@@ -78,7 +79,8 @@ public class HomeDao {
     public List<Product> findItemsOfFirstCategory() {
         String sql = "SELECT p.*, i.quantity FROM Product p " +
                 "LEFT JOIN inventory i ON p.product_id = i.product_id " +
-                "WHERE p.category_id = ?";
+                "WHERE p.category_id = ? " +
+                "AND p.check_product = TRUE";
         int firstCategoryId = 1; // 첫 번째 카테고리의 ID (실제 ID에 따라 변경해야 합니다.)
         return jdbcTemplate.query(sql, new Object[]{firstCategoryId}, (resultSet, rowNum) -> {
             Product product = new Product();
@@ -106,7 +108,8 @@ public class HomeDao {
     public List<Product> findProductsByCategoryId(int categoryId) {
         String sql = "SELECT p.*, i.quantity FROM Product p " +
                 "LEFT JOIN inventory i ON p.product_id = i.product_id " +
-                "WHERE p.category_id = ?";
+                "WHERE p.category_id = ? " +
+                "AND check_product = TRUE";
         return jdbcTemplate.query(sql, new Object[]{categoryId}, (resultSet, rowNum) -> {
             Product product = new Product();
             product.setProductId(resultSet.getInt("product_id"));

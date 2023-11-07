@@ -3,6 +3,7 @@ package com.da.ojtproject.product.controller;
 import com.da.ojtproject.category.service.CategoryService;
 import com.da.ojtproject.product.domain.Product;
 import com.da.ojtproject.product.service.ProductService;
+import com.da.ojtproject.receiving.service.ReceivingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,7 @@ public class ProductController {
 
     private final ProductService productService;
     private final CategoryService categoryService;
+//    private final ReceivingService receivingService;
     private static final String UPLOAD_DIR = "src/main/resources/static/img/";
 
     /**
