@@ -29,27 +29,33 @@
             style="color: red"></td>
         <td class="view" th:if="${productList.getInventory().getQuantity} > 5"
             th:text="${productList.getInventory().getQuantity+ '개'}"></td>
-        <td class="view-off"><input readonly="true" type="text" th:value="${productList.getInventory().getQuantity}" style="background: #dedce0; width: 70%"></td>
+        <td class="view-off"><input readonly="true" type="text" th:value="${productList.getInventory().getQuantity}"
+                                    style="background: #dedce0; width: 70%"></td>
         <!--     sell_quantity     -->
         <td class="view" th:text="${productList.getSelling().getQuantity + '개'}"></td>
-        <td class="view-off"><input readonly="true" type="text" th:value="${productList.getSelling().getQuantity}" style="background: #dedce0; width: 70%"></td>
+        <td class="view-off"><input readonly="true" type="text" th:value="${productList.getSelling().getQuantity}"
+                                    style="background: #dedce0; width: 70%"></td>
         <!--     sell_price     -->
         <td class="view" th:text="${#numbers.formatInteger(productList.getSellPrice(), 3, 'COMMA') + '원'}" }>-</td>
-        <td class="view-off"><input type="text" th:value="${productList.getSellPrice()}" id="sellPrice" style="width: 80%;"></td>
+        <td class="view-off"><input type="text" th:value="${productList.getSellPrice()}" id="sellPrice"
+                                    style="width: 80%;"></td>
         <!--     total_price     -->
         <td class="view" th:if="${productList.getSelling().getTotalPrice} == 0" }>-</td>
         <td class="view" th:if="${productList.getSelling().getTotalPrice} != 0"
             th:text="${#numbers.formatInteger(productList.getSelling().getTotalPrice, 3, 'COMMA') + '원'}" }>
             -
         </td>
-        <td class="view-off"><input readonly="true" type="text" th:value="${productList.getSelling().getTotalPrice}" style="background: #dedce0; width: 80%;"></td>
+        <td class="view-off"><input readonly="true" type="text" th:value="${productList.getSelling().getTotalPrice}"
+                                    style="background: #dedce0; width: 80%;"></td>
         <!--     check_product     -->
         <td class="view" th:if="${productList.isCheckProduct()} == false" } style="color: red;">Y</td>
         <td class="view" th:if="${productList.isCheckProduct()} == true" }>N</td>
         <td class="view-off">-</td>
         <!--     register_date     -->
         <td class="view" th:text="${#dates.format(productList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}"></td>
-        <td class="view-off"><input readonly="true" type="text" th:value="${#dates.format(productList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}" style="background: #dedce0; width: 85%"></td>
+        <td class="view-off"><input readonly="true" type="text"
+                                    th:value="${#dates.format(productList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}"
+                                    style="background: #dedce0; width: 85%"></td>
         <!--     cate btn     -->
         <td class="view" style="text-align: center;">
             <button class="category-delete cancel-btn" th:if="${productList.getCategory().isCheckCategory()} == true"
@@ -77,6 +83,10 @@
                     th:value="${productList.productId}">-
             </button>
         </td>
-        <td class="view-off"><button class="product-recover-btn recover-btn" th:value="${productList.getProductId()}" style="width: 55%; margin-left: 20%;" >수정 완료</button></td>
+        <td class="view-off">
+            <button class="product-recover-btn recover-btn" th:value="${productList.getProductId()}"
+                    style="width: 55%; margin-left: 20%;">수정 완료
+            </button>
+        </td>
     </tr>
 </th:block>

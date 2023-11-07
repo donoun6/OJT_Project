@@ -19,7 +19,7 @@ public class AdminController {
 
     @GetMapping()
     public String adminPage(Model model) {
-        model.addAttribute("admin",new Admin());
+        model.addAttribute("admin", new Admin());
         return "admin/admin";
     }
 

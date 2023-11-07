@@ -14,8 +14,6 @@ public class ProductApi {
 
     /**
      * 상품 삭제 API
-     * @param productId
-     * @return
      */
     @DeleteMapping("/api/product/{productId}")
     public HttpStatus productDelete(@PathVariable int productId) {
@@ -25,8 +23,6 @@ public class ProductApi {
 
     /**
      * 삭제 상품 복구
-     * @param productId
-     * @return
      */
     @PutMapping("/api/product/{productId}")
     public HttpStatus productRecover(@PathVariable int productId) {
@@ -36,8 +32,6 @@ public class ProductApi {
 
     /**
      * 상품 정보 수정
-     * @param product
-     * @return
      */
     @PatchMapping("/api/product")
     public HttpStatus productUpdate(@RequestBody Product product) {

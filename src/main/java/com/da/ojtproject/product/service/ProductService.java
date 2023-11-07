@@ -1,6 +1,5 @@
 package com.da.ojtproject.product.service;
 
-import com.da.ojtproject.category.domain.Category;
 import com.da.ojtproject.product.domain.Product;
 
 import java.util.List;
@@ -24,19 +23,16 @@ public interface ProductService {
 
     /**
      * 상품 삭제
-     * @param productId
      */
     void DeleteProduct(int productId);
 
     /**
      * 상품 복구
-     * @param productId
      */
     void RecoverProdcut(int productId);
 
     /**
      * 상품 정보 수정
-     * @param product
      */
     void updateProduct(Product product);
 }

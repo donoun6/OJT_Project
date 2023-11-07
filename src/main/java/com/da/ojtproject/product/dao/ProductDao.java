@@ -25,10 +25,9 @@ public class ProductDao {
 
     /**
      * 전체 product list 반환
-     * @return
      */
     public List<Product> getAllProducts() {
-                String sql = "SELECT " +
+        String sql = "SELECT " +
                 "product.product_id, " +
                 "product.name, " +
                 "product.code, " +
@@ -57,12 +56,12 @@ public class ProductDao {
                 "product.image, product.category_id, category.name, " +
                 "inventory.inventory_id, inventory.quantity";
         return template.query(sql, new ProductListRowMapper());
-    };
+    }
+
+    ;
 
     /**
      * 검색 조건에 맞는 product list 반환
-     * @param data 해당 데이터의 검색 조건에 맞게 쿼리문 추가
-     * @return
      */
     public List<Product> getSelectProducts(Map<String, Object> data) {
         StringBuilder sb = new StringBuilder();
@@ -92,40 +91,40 @@ public class ProductDao {
         /**
          * categoryDeleteCheck : 카테고리 삭제 여부 출력
          */
-        if(data.get("categoryDeleteCheck").equals("N")){
+        if (data.get("categoryDeleteCheck").equals("N")) {
             sb.append("WHERE category.check_category = true ");
-        }else {
+        } else {
             sb.append("WHERE product.check_product IS NOT NULL ");
         }
         /**
          * deleteCheck : 상품 삭제 여부 출력
          */
-        if(data.get("productDeleteCheck").equals("N")){
+        if (data.get("productDeleteCheck").equals("N")) {
             sb.append("AND product.check_product = true ");
-        }else {
+        } else {
             sb.append("AND product.check_product IS NOT NULL ");
         }
         /**
          * checkName : 검색 value (상품 이름 검색, 초성 검색)
          */
-        if(data.get("checkName").equals("Y")) {
-            sb.append("AND fn_choSearch(Product.name) LIKE CONCAT('%', '"+data.get("name")+"', '%')");
+        if (data.get("checkName").equals("Y")) {
+            sb.append("AND fn_choSearch(Product.name) LIKE CONCAT('%', '" + data.get("name") + "', '%')");
         } else {
-            sb.append("AND Product.name LIKE'%"+data.get("name")+"%'" );
+            sb.append("AND Product.name LIKE'%" + data.get("name") + "%'");
         }
         /**
          * startRegisterDate : 시작 날짜
          * endRegisterDate : 종료 날짜
          * 범위 지정 검색
          */
-        if(!data.get("startRegisterDate").equals("") && !data.get("endRegisterDate").equals("")) {
-            sb.append("AND DATE(product.register_date) BETWEEN '"+data.get("startRegisterDate")+"' AND '"+data.get("endRegisterDate")+"'");
+        if (!data.get("startRegisterDate").equals("") && !data.get("endRegisterDate").equals("")) {
+            sb.append("AND DATE(product.register_date) BETWEEN '" + data.get("startRegisterDate") + "' AND '" + data.get("endRegisterDate") + "'");
         }
         /**
          * category : 카테고리 별 상품 출력
          */
-        if(!data.get("category").equals("all") ) {
-            sb.append("AND product.category_id = "+data.get("category")+" ");
+        if (!data.get("category").equals("all")) {
+            sb.append("AND product.category_id = " + data.get("category") + " ");
         }
         sb.append("GROUP BY product.product_id, product.name, product.code, product.sell_price, " +
                 "product.image, product.category_id, category.name, " +
@@ -134,25 +133,25 @@ public class ProductDao {
          * col : 조건 컬럼
          * order : 정렬 상태
          */
-        if(!data.get("col").equals("") && !data.get("order").equals("")) {
-            sb.append("ORDER BY "+data.get("col")+" "+data.get("order"));
+        if (!data.get("col").equals("") && !data.get("order").equals("")) {
+            sb.append("ORDER BY " + data.get("col") + " " + data.get("order"));
         }
         String sql = sb.toString();
         return template.query(sql, new ProductListRowMapper());
-    };
+    }
+
+    ;
 
     /**
      * product 등록, 재고 수량 등록
-     * @param product
      */
     public void saveProduct(Product product) {
-        AddProductAndAddInventory.execute(product.getCategoryId(), product.getName(),product.getCode(),
-                product.getSellPrice(), product.getImage(),product.getInventory().getQuantity());
+        AddProductAndAddInventory.execute(product.getCategoryId(), product.getName(), product.getCode(),
+                product.getSellPrice(), product.getImage(), product.getInventory().getQuantity());
     }
 
     /**
      * 상품삭제
-     * @param productId
      */
     public void deleteProduct(int productId) {
         String sql = "UPDATE Product SET check_product = FALSE " +
@@ -162,9 +161,8 @@ public class ProductDao {
 
     /**
      * 상품 복구
-     * @param productId
      */
-    public void recoverProdcut (int productId) {
+    public void recoverProdcut(int productId) {
         String sql = "UPDATE Product SET check_product = TRUE " +
                 "WHERE product_id = ?";
         template.update(sql, productId);
@@ -172,7 +170,6 @@ public class ProductDao {
 
     /**
      * 상품 수정
-     * @param product
      */
     public void updateProduct(Product product) {
         String sql = "UPDATE Product SET name = ?, code = ?, " +

@@ -15,6 +15,6 @@ public class AdminDao {
     public void saveAdmin(String passWord) {
         String sql = "INSERT INTO daojt.admin (password)" +
                 "VALUES (?)";
-        tmeTemplate.update(sql,passWord);
+        tmeTemplate.update(sql, passWord);
     }
 }

@@ -12,11 +12,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CategoryApi {
 
-    private  final CategoryService categoryService;
+    private final CategoryService categoryService;
 
     /**
      * 전체 카테고리 조회
-     * @return
      */
     @GetMapping("/api/category")
     public List<Category> category() {
@@ -25,8 +24,6 @@ public class CategoryApi {
 
     /**
      * 카테고리 저장
-     * @param category
-     * @return
      */
     @PostMapping("/api/category")
     public HttpStatus categorySave(@RequestBody Category category) {
@@ -36,8 +33,6 @@ public class CategoryApi {
 
     /**
      * 카테고리 삭제 처리
-     * @param categoryId
-     * @return
      */
     @DeleteMapping("/api/category/{categoryId}")
     public HttpStatus categoryDelete(@PathVariable int categoryId) {
@@ -47,8 +42,6 @@ public class CategoryApi {
 
     /**
      * 상품 복구
-     * @param categoryId
-     * @return
      */
     @PutMapping("/api/category/{categoryId}")
     public HttpStatus categoryRecover(@PathVariable int categoryId) {

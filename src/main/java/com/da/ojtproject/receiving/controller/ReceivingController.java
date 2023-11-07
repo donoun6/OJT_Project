@@ -28,8 +28,8 @@ public class ReceivingController {
     @GetMapping()
     public String receiving(Model model) {
         model.addAttribute("receivingList", receivingService.getAllReceiving());
-        model.addAttribute("categoryList",categoryService.getAllCategory());
-        model.addAttribute("productList",productService.getAllProducts());
+        model.addAttribute("categoryList", categoryService.getAllCategory());
+        model.addAttribute("productList", productService.getAllProducts());
         return "admin/receiving/receiving";
     }
 
@@ -39,10 +39,13 @@ public class ReceivingController {
     @GetMapping("/receiving-list")
     public String receivingList(Model model,
                                 @RequestParam(required = false) Map<String, Object> data) {
-        model.addAttribute("receivingList",receivingService.getSelectReceiving(data));
+        model.addAttribute("receivingList", receivingService.getSelectReceiving(data));
         return "admin/receiving/ajax/receivingList";
     }
 
+    /**
+     * product List Ajax 출력
+     */
     @GetMapping("/product-list")
     public String productList(Model model,
                               @RequestParam(required = false) Map<String, Object> data) {

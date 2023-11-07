@@ -25,8 +25,7 @@ public class ProductController {
     private static final String UPLOAD_DIR = "src/main/resources/static/img/";
 
     /**
-     * @param model
-     * @return
+     * product 기본 화면
      */
     @GetMapping()
     public String productForm(Model model) {
@@ -38,9 +37,6 @@ public class ProductController {
 
     /**
      * product , inventory 등록
-     * @param product
-     * @return
-     * @throws IOException
      */
     @PostMapping("/save")
     public String productSave(@ModelAttribute Product product) throws IOException {
@@ -55,7 +51,7 @@ public class ProductController {
 
             product.setImage("img/" + fileName);
         }
-        
+
         productService.saveProduct(product);
 
         return "redirect:/admin/product";
@@ -63,9 +59,6 @@ public class ProductController {
 
     /**
      * Ajax html 비동기 화면 반환
-     * @param model
-     * @param data
-     * @return
      */
     @GetMapping("/product-list")
     public String productList(Model model,

@@ -13,7 +13,7 @@ public class ProductListRowMapper implements RowMapper<Product> {
 
     /**
      * RowMapper override
-     * @param rs the {@code ResultSet} to map (pre-initialized for the current row)
+     * @param rs     the {@code ResultSet} to map (pre-initialized for the current row)
      * @param rowNum the number of the current row
      * @return
      * @throws SQLException

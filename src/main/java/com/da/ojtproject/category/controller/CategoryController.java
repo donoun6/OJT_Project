@@ -17,8 +17,6 @@ public class CategoryController {
 
     /**
      * Ajax 비동기 통신 카테고리 저장 form 출력
-     * @param model
-     * @return
      */
     @GetMapping("/save")
     public String categoryForm(Model model) {

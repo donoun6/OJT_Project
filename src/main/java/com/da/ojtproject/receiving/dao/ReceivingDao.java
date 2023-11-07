@@ -1,10 +1,6 @@
 package com.da.ojtproject.receiving.dao;
 
-import com.da.ojtproject.category.domain.Category;
-import com.da.ojtproject.inventory.domain.Inventory;
-import com.da.ojtproject.product.domain.Product;
 import com.da.ojtproject.receiving.domain.Receiving;
-import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,8 +52,6 @@ public class ReceivingDao {
 
     /**
      * 조건 검색
-     * @param data
-     * @return
      */
     public List<Receiving> getSelectReceiving(Map<String, Object> data) {
         StringBuilder sb = new StringBuilder();
@@ -108,9 +102,9 @@ public class ReceivingDao {
         /**
          * 등록일자 별 정렬
          */
-        if(data.get("order").equals("asc")){
+        if (data.get("order").equals("asc")) {
             sb.append("ORDER BY receiving.register_date ASC ");
-        }else {
+        } else {
             sb.append("ORDER BY receiving.register_date DESC ");
         }
         String sql = sb.toString();

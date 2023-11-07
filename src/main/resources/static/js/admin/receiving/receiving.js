@@ -58,7 +58,7 @@ $(document).ready(function () {
         receivingList(data, receivingListUrl);
     });
 
-    $(".trigger-btn").click(function (){
+    $(".trigger-btn").click(function () {
         receivingList(data, receivingListUrl);
     })
 
@@ -73,7 +73,7 @@ $(document).ready(function () {
     /**
      * 입고 취소처리
      */
-    $(document).on("click", ".receiving-cancel-btn", function (){
+    $(document).on("click", ".receiving-cancel-btn", function () {
         let data = {
             quantity: $(this).next().val() * -1,
             productId: $(this).next().next().val(),
@@ -83,9 +83,9 @@ $(document).ready(function () {
         Cancel(data, url);
     });
 
-    $(".save-btn").click(function (){
-        $(".receiving-save-form-wrap").css("display","flex");
-        $(".receiving-save-form").css("display","flex");
+    $(".save-btn").click(function () {
+        $(".receiving-save-form-wrap").css("display", "flex");
+        $(".receiving-save-form").css("display", "flex");
     });
 
 
@@ -93,7 +93,7 @@ $(document).ready(function () {
     /**
      * 카테고리 별 product List 출력
      */
-    $(document).on("change", ".select-category", function (){
+    $(document).on("change", ".select-category", function () {
         let data = {
             "category": $(this).val(),
             "checkName": "Y",
@@ -107,13 +107,13 @@ $(document).ready(function () {
         }
         productList(data);
     });
-    
+
     /**
      * list 클릭 해당 product id를 가져옴
      */
     let productId;
     $(".category-list").on("click", ".category-hover", function () {
-        $(this).closest(".category-list").children("tr").children("td").css("color","black")
+        $(this).closest(".category-list").children("tr").children("td").css("color", "black")
         $(this).children().css("color", "red");
         productId = $(this).children("input").val();
     });
@@ -121,31 +121,31 @@ $(document).ready(function () {
     /**
      * 아이템 선택 후 다음단계 display on
      */
-    $(".category-select-next").click(function (){
-        if(productId != null) {
-            $(".receiving-save-form").css("display","none");
-            $(".receiving-save-form2").css("display","flex");
+    $(".category-select-next").click(function () {
+        if (productId != null) {
+            $(".receiving-save-form").css("display", "none");
+            $(".receiving-save-form2").css("display", "flex");
         }
     });
 
     /**
      * 취소버튼 누를시 pop-up 종료
      */
-    $(".category-select-cancel").click(function (){
-        $(".receiving-save-form-wrap").css("display","none");
-        $(".receiving-save-form2").css("display","none");
+    $(".category-select-cancel").click(function () {
+        $(".receiving-save-form-wrap").css("display", "none");
+        $(".receiving-save-form2").css("display", "none");
     });
 
     /**
      * 입고 등록
      */
-    $(".category-select-last").click(function (){
+    $(".category-select-last").click(function () {
         let data = {
             quantity: $(".quantity").val(),
             productId: productId,
             description: $(".description").val()
         }
-        save(data,url);
+        save(data, url);
     });
 
     /**
@@ -202,9 +202,9 @@ $(document).ready(function () {
             contentType: 'application/json; charset=UTF-8',
             success: function (data) {
                 alert("입고 완료");
-                $(".receiving-save-form-wrap").css("display","none");
-                $(".receiving-save-form2").css("display","none");
-                $(".receiving-save-form1").css("display","flex");
+                $(".receiving-save-form-wrap").css("display", "none");
+                $(".receiving-save-form2").css("display", "none");
+                $(".receiving-save-form1").css("display", "flex");
                 $(".quantity").val(null);
                 $(".description").val(null);
                 $(".trigger-btn").trigger("click");

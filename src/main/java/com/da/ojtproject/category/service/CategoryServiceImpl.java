@@ -2,9 +2,7 @@ package com.da.ojtproject.category.service;
 
 import com.da.ojtproject.category.dao.CategoryDao;
 import com.da.ojtproject.category.domain.Category;
-import com.da.ojtproject.product.domain.Product;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

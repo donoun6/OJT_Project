@@ -22,6 +22,9 @@ public class ReceivingApi {
         return HttpStatus.OK;
     }
 
+    /**
+     * 입고 등록
+     */
     @PostMapping("/api/receiving")
     public HttpStatus receivingSave(@RequestBody Receiving receiving) {
         receivingService.saveReceiving(receiving);
