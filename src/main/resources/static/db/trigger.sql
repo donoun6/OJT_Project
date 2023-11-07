@@ -45,23 +45,23 @@ BEGIN
     WHERE orders_id = var_orders_id;
 END;
 
-# 판매취소 -> 재고처리
-CREATE TRIGGER SellingCancelAndCountInventory
-    AFTER UPDATE ON Selling
-    FOR EACH ROW
-BEGIN
-    -- 변수 선언
-    DECLARE var_quantity INT;
-    DECLARE var_product_id INT;
-
-    SET var_quantity = NEW.quantity;
-    SET var_product_id = NEW.product_id;
-
-    -- 재고 업데이트
-    UPDATE Inventory
-    SET quantity = quantity + var_quantity
-    WHERE product_id = var_product_id;
-END;
+# # 판매취소 -> 재고처리
+# CREATE TRIGGER SellingCancelAndCountInventory
+#     AFTER UPDATE ON Selling
+#     FOR EACH ROW
+# BEGIN
+#     -- 변수 선언
+#     DECLARE var_quantity INT;
+#     DECLARE var_product_id INT;
+#
+#     SET var_quantity = NEW.quantity;
+#     SET var_product_id = NEW.product_id;
+#
+#     -- 재고 업데이트
+#     UPDATE Inventory
+#     SET quantity = quantity + var_quantity
+#     WHERE product_id = var_product_id;
+# END;
 
 # 카테 삭제 -> 아이템 삭제
 CREATE TRIGGER CategoryCencelAndProductCencel

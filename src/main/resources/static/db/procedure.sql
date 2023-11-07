@@ -86,6 +86,9 @@ BEGIN
 
 END;
 
+call ProcessRefund(2);
+
+
 -- 환불을 위한 프로시저 Orders 테이블의 orders_id 컬럼을 바탕으로 환불을 진행합니다.
 CREATE PROCEDURE ProcessRefund(IN input_orders_id INT)
 BEGIN
