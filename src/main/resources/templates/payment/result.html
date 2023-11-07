@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <meta charset="UTF-8">
+    <title>결제 성공</title>
+    <!-- <link rel="stylesheet" th:href="@{/css/payment-success.css}"> -->
+    <!-- <link rel="stylesheet" href="/css/order/order.css"> -->
+    <style>
+        /* global*/
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f8fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .kiosk-success {
+            background-color: #ffffff;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        .success-message {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .order-number {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        .home-button {
+            background-color: #4CAF50;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .home-button:hover {
+            background-color: #45a049;
+        }
+        .receipt-button {
+            background-color: #4CAF50;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .receipt-button:hover {
+            background-color: #45a049;
+        }
+        .checkmark-circle {
+            width: 120px;  /* 크기를 조금 더 키웠습니다. */
+            height: 120px; /* 크기를 조금 더 키웠습니다. */
+            border-radius: 50%;
+            background-color: #fff;  /* 배경색을 흰색으로 변경했습니다. */
+            border: 6px solid #4CAF50;  /* 초록색 테두리를 추가했습니다. */
+            display: inline-block;
+            margin: 20px auto;
+        }
+        .checkmark-circle:after {
+            content: "";
+            display: block;
+            width: 35px;  /* 크기를 조금 더 키웠습니다. */
+            height: 70px; /* 크기를 조금 더 키웠습니다. */
+            border: solid #4CAF50;  /* 체크 표시의 색을 초록색으로 변경했습니다 */
+            border-width: 0 8px 8px 0;
+            position: relative;
+            top: 50px;
+            left: 25px;
+            transform: rotate(45deg) translateX(-50%) translateY(-50%); /* 이 부분을 수정했습니다 */
+        }
+    </style>
+</head>
+<body>
+<div class="kiosk-success">
+    <h1>결제 성공</h1>
+    <p class="success-message">주문이 성공적으로 완료되었습니다!</p>
+    <div class="checkmark-circle"></div>
+    <p class="order-number">주문 번호: <span th:text="${currentOrderUid}"></span></p>
+    <br>
+    <div class="kiosk-success">
+        <!-- ... [기존의 div.kiosk-success 내용] ... -->
+        <a href="/home/menu-list" class="home-button">홈으로</a>
+        <a href="#" class="receipt-button">영수증 출력</a>
+        <br>
+        <br>
+        <br>
+        <span id="countdown">7</span>초 후에 메인화면으로 이동합니다.
+    </div>
+</div>
+<script>
+    /* 가라로 작성한 코드.... */
+    (function() {
+        var timeLeft = 7; // 5초 카운트다운
+        var countdownElement = document.getElementById('countdown');
+        var countdownTimer = setInterval(function() {
+            timeLeft--;
+            countdownElement.textContent = timeLeft;
+            if(timeLeft <= 0) {
+                clearInterval(countdownTimer);
+                window.location.href = '/home/menu-list'; // 리디렉트 실행
+            }
+        }, 1000);
+    })();
+</script>
+</body>
+</html>

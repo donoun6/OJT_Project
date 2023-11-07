@@ -75,9 +75,50 @@ public class HomeDao {
         });
     }
 
-    public void deleteCategory(int id) {
-
+    public List<Product> findItemsOfFirstCategory() {
+        String sql = "SELECT p.*, i.quantity FROM Product p " +
+                "LEFT JOIN inventory i ON p.product_id = i.product_id " +
+                "WHERE p.category_id = ?";
+        int firstCategoryId = 1; // 첫 번째 카테고리의 ID (실제 ID에 따라 변경해야 합니다.)
+        return jdbcTemplate.query(sql, new Object[]{firstCategoryId}, (resultSet, rowNum) -> {
+            Product product = new Product();
+            try {
+                product.setProductId(resultSet.getInt("product_id"));
+                product.setCategoryId(resultSet.getInt("category_id"));
+                product.setName(resultSet.getString("name"));
+                product.setCode(resultSet.getString("code"));
+                product.setSellPrice(resultSet.getInt("sell_price"));
+                product.setImage(resultSet.getString("image"));
+                product.setCheckProduct(resultSet.getBoolean("check_product"));
+                product.setRegisterDate(resultSet.getTimestamp("register_date"));
+                product.setQuantity(resultSet.getInt("quantity"));  // 이 부분을 추가
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return product;
+        });
     }
 
-
+    // 해당 카테고리의 제품 목록을 가져오는 메서드
+    // 재고가 없는 상품을 조회하기 위해 inventory 메서드의 quantity 컬럼이 필요하다.
+    // 해당 카테고리의 제품 목록을 가져오는 메서드
+    // 재고가 없는 상품을 조회하기 위해 inventory 메서드의 quantity 컬럼이 필요하다.
+    public List<Product> findProductsByCategoryId(int categoryId) {
+        String sql = "SELECT p.*, i.quantity FROM Product p " +
+                "LEFT JOIN inventory i ON p.product_id = i.product_id " +
+                "WHERE p.category_id = ?";
+        return jdbcTemplate.query(sql, new Object[]{categoryId}, (resultSet, rowNum) -> {
+            Product product = new Product();
+            product.setProductId(resultSet.getInt("product_id"));
+            product.setCategoryId(resultSet.getInt("category_id"));
+            product.setName(resultSet.getString("name"));
+            product.setCode(resultSet.getString("code"));
+            product.setSellPrice(resultSet.getInt("sell_price"));
+            product.setImage(resultSet.getString("image"));
+            product.setCheckProduct(resultSet.getBoolean("check_product"));
+            product.setRegisterDate(resultSet.getTimestamp("register_date"));
+            product.setQuantity(resultSet.getInt("quantity"));  // 이 부분을 추가
+            return product;
+        });
+    }
 }

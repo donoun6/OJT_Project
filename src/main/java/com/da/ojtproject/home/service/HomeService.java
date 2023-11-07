@@ -1,20 +1,14 @@
 package com.da.ojtproject.home.service;
 
-import com.da.ojtproject.category.domain.Category;
 import com.da.ojtproject.home.domain.Home;
+import com.da.ojtproject.product.domain.Product;
 
 import java.util.List;
 
 public interface HomeService {
 
-
-    void addOrResetCategory(String categoryName);
-
-    void editCategoryName(String oldName, String newName);
-
     List<Home> findAllCategories();
-
-    //    void deleteBoard(int );
-    void deleteCategory(int id);
+    List<Product> findItemsOfFirstCategory();
+    List<Product> findProductsByCategoryId(int categoryId);
 
 }

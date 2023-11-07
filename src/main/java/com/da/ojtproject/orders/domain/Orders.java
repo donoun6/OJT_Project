@@ -15,4 +15,5 @@ public class Orders {
     private int ordersId;
     private boolean checkOrders;
     private Date registerDate;
+//    private String impUid; // 결제 고유번호
 }

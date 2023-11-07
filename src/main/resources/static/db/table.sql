@@ -28,6 +28,13 @@ DROP TABLE Product;
 DROP TABLE Category;
 DROP TABLE Admin;
 
+# 테이블 수정
+ALTER TABLE Cart ADD product_name VARCHAR(20) NOT NULL;
+ALTER TABLE Cart ADD image VARCHAR(20);
+ALTER TABLE orders ADD COLUMN imp_uid VARCHAR(255);
+# 쿼리 연습
+SELECT * FROM Inventory WHERE product_id = 1;
+
 # 테이블 생성
 CREATE TABLE Admin (
 admin_id            INT                     PRIMARY KEY AUTO_INCREMENT,

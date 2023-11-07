@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
     <!--  초기화,고정 css  -->
     <link rel="stylesheet" href="/css/global/init.css">
     <link rel="stylesheet" href="/css/global/default.css">
@@ -10,9 +10,92 @@
     <link rel="stylesheet" href="/css/style.css">
     <!--  jquey cdn  -->
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <!--  script  -->
+    <!--  포트원 결제 : 예비  -->
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+    <!--  포트원 결제 : 예비 -->
     <script src="/js/common.js"></script>
+    <!--  jQuery UI  -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <title>main</title>
+    <!-- 버튼 클래스를 참조하기 위한 임시 CSS -->
+    <style>
+        .add-to-cart {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            margin-left: 5px;
+        }
+
+        .delete-from-cart {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            margin-left: 5px;
+        }
+
+        .order-button {
+            text-align: center;
+            font-size: 20px;
+        }
+
+        #payment, #delete-all-btn {
+            font-size: 20px;
+            padding: 10px 30px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            background-color: #f5f5f5;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .decrease-quantity, .increase-quantity, .delete-from-cart {
+            font-size: 25px; /* 버튼의 글자 크기 조정 */
+            padding: 5px 15px; /* 버튼 내부 여백 조정 */
+            margin: 0 5px; /* 버튼들 사이의 간격 조정 */
+        }
+
+        .quantity-count {
+            font-size: 30px;
+            text-align: center;
+            align-items: center;
+        }
+
+        .button-quantity {
+            align-items: center;
+            display: flex;
+            margin-left: 135px;
+        }
+
+        .item-box {
+            position: relative;
+        }
+
+        .sold-out {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 300px;
+            height: 300px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 38px;
+        }
+
+        .sold-out > p {
+            margin: 0;
+            font-size: 40px;
+            align-items: center;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 <div class="logo">
@@ -20,6 +103,8 @@
     <span>kiosk</span>
 </div>
 <main>
+    <div>
+    </div>
     <!--  main area  -->
     <div id="product-list-wrap">
         <!--  product list area  -->
@@ -27,68 +112,31 @@
             <h2>CHOOSE CATEGORY</h2>
             <!--  nav area  -->
             <ol>
-                <li th:each="category : ${categories}" th:text="${category.name}" th:value="${category.categoryId}"></li>
+                <li th:each="category : ${categories}" th:text="${category.name}"
+                    th:data-category-id="${category.categoryId}"></li>
             </ol>
         </nav>
         <div class="product-list">
             <h2>CHOOSE PRODUCT</h2>
             <div class="item-wrap">
-                <div class="item">
-                    <img src="dd">
-                    <h3>제품이름</h3>
-                    <span>30,000원</span>
+                <div class="item" th:each="item : ${items}">
+                    <div class="item-box">
+                        <div class="image">
+                            <img style="width: 300px; height: 300px; border-radius: 5%" th:src="@{${item.image}}"
+                                 alt="상품 이미지" width="100" class="add-to-cart" th:data-product-id="${item.productId}"/>
+                            <div class="sold-out" th:if="${item.quantity == 0}">
+                                <p>SOLD OUT</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 th:text="${item.name}"></h3>
+                    <span th:text="${item.sellPrice} + '원'"></span>
                 </div>
-                <div class="item">
-                    <img src="dd">
-                    <h3>제품이름</h3>
-                    <span>30,000원</span>
-                </div>
-                <div class="item">
-                    <img src="dd">
-                    <h3>제품이름</h3>
-                    <span>30,000원</span>
-                </div>
-                <div class="item">
-                    <img src="dd">
-                    <h3>제품이름</h3>
-                    <span>30,000원</span>
-                </div>
-                <div class="item">
-                    <img src="dd">
-                    <h3>제품이름</h3>
-                    <span>30,000원</span>
-                </div>
-                <div class="item">
-                    <img src="dd">
-                    <h3>제품이름</h3>
-                    <span>30,000원</span>
-                </div>
-                <div class="item">
-                    <img src="dd">
-                    <h3>제품이름</h3>
-                    <span>30,000원</span>
-                </div>
-                <div class="item">
-                    <img src="dd">
-                    <h3>제품이름</h3>
-                    <span>30,000원</span>
-                </div>
-                <div class="item">
-                    <img src="dd">
-                    <h3>제품이름</h3>
-                    <span>30,000원</span>
-                </div>
-                <div class="item">
-                    <img src="dd">
-                    <h3>제품이름</h3>
-                    <span>30,000원</span>
-                </div>
-
             </div>
         </div>
         <footer>
             <!--  footer area  -->
-            <span>&copycopyright</span><br>
+            <span>&copycopyright DA INFORMATION</span><br>
         </footer>
     </div>
     <div id="order-list-wrap">
@@ -97,97 +145,7 @@
             <div class="order-wrap">
                 <ul>
                     <li>
-                        <div class="order">
-                            <img src="dd">
-                            <div class="text-box">
-                                <h3>제품이름</h3><br>
-                                <span>30,000원</span>
-                            </div>
-                            <div>수량</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="order">
-                            <img src="dd">
-                            <div class="text-box">
-                                <h3>제품이름</h3><br>
-                                <span>30,000원</span>
-                            </div>
-                            <div>수량</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="order">
-                            <img src="dd">
-                            <div class="text-box">
-                                <h3>제품이름</h3><br>
-                                <span>30,000원</span>
-                            </div>
-                            <div>수량</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="order">
-                            <img src="dd">
-                            <div class="text-box">
-                                <h3>제품이름</h3><br>
-                                <span>30,000원</span>
-                            </div>
-                            <div>수량</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="order">
-                            <img src="dd">
-                            <div class="text-box">
-                                <h3>제품이름</h3><br>
-                                <span>30,000원</span>
-                            </div>
-                            <div>수량</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="order">
-                            <img src="dd">
-                            <div class="text-box">
-                                <h3>제품이름</h3><br>
-                                <span>30,000원</span>
-                            </div>
-                            <div>수량</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="order">
-                            <img src="dd">
-                            <div class="text-box">
-                                <h3>제품이름</h3><br>
-                                <span>30,000원</span>
-                            </div>
-                            <div>수량</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="order">
-                            <img src="dd">
-                            <div class="text-box">
-                                <h3>제품이름</h3><br>
-                                <span>30,000원</span>
-                            </div>
-                            <div>수량</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="order">
-                            <img src="dd">
-                            <div class="text-box">
-                                <h3>제품이름</h3><br>
-                                <span>30,000원</span>
-                            </div>
-                            <div>수량</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="order">
+                        <div class="order" style="display: none">
                             <img src="dd">
                             <div class="text-box">
                                 <h3>제품이름</h3><br>
@@ -199,12 +157,222 @@
                 </ul>
             </div>
             <div class="order-button">
-                <button>결제하기</button>
-                <button>모두삭제</button>
+                <h2>총금액: <span id="total-amount-display">0</span>원</h2>
+                <br>
+                <button id="payment">구매하기</button> <!-- 결제하기 버튼 생성 -->
+                <button id="delete-all-btn">모두비우기</button>
             </div>
         </div>
         <!--  order list area  -->
     </div>
 </main>
+<script>
+
+    let totalAmount = 0; // 초기 장바구니 총액은 0입니다.
+    let selectedCategoryId = null; // 1. 현재 선택된 카테고리 ID 값을 저장할 전역 변수
+    var currentMerchantUid = [[${currentMerchantUid}]];
+    var currentOrderUid = [[${currentOrderUid}]];
+
+    $(document).ready(function () {
+        $("ol li").click(function () {
+            var categoryId = $(this).data("category-id");
+            selectedCategoryId = categoryId
+            loadProductsByCategory(categoryId);
+        });
+        $(document).on('click', '.add-to-cart', function () {
+            var productId = $(this).data("product-id");
+            addProductToCart(productId);
+        });
+        $("#delete-all-btn").click(function () {
+            deleteAllCartItems();
+        });
+        $(document).on('click', '.delete-from-cart', function () {
+            var cartId = $(this).data("cart-id");
+            deleteCartItem(cartId);
+        });
+        $(document).on('click', '.increase-quantity', function () {
+            var cartId = $(this).data("cart-id");
+            var productId = $(this).data("product-id"); // 상품 ID 검색
+            increaseCartQuantity(cartId, productId);
+        });
+        $(document).on('click', '.decrease-quantity', function () {
+            var cartId = $(this).data("cart-id");
+            decreaseCartQuantity(cartId, 'decrease');
+        });
+        $("#payment").click(function () {
+            IMP.init('imp57652837');
+            IMP.request_pay({
+                pg: 'kakaopay',
+                pay_method: 'card',
+                merchant_uid: "IMP" + currentMerchantUid.toString(),
+                name: '주문명:결제테스트',
+                amount: totalAmount,
+                buyer_name: currentOrderUid.toString(),
+            }, function (rsp) {
+                if (rsp.success) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/payment/process/' + rsp.imp_uid
+                    }).done(function (data) {
+                        if (data) {
+                            /*alert("결제 성공");*/
+                            window.location.href = '/orders/result?imp_uid=' + rsp.imp_uid;
+                            $(".order-wrap ul").empty(); // 장바구니 목록을 화면에서 제거합니다.
+                            loadProductsByCategory(selectedCategoryId);
+                        } else {
+                            alert("결제 검증에 실패하였습니다.");
+                        }
+                    });
+                } else {
+                    alert(" 결제를 취소하셨습니다. ");
+                    var msg = '결제에 실패하였습니다. 에러내용 : ' + rsp.error_msg;
+                }
+            });
+        });
+
+    })
+
+    /* 카테고리별로 상품을 보여주는 함수 */
+    function loadProductsByCategory(categoryId) {
+        $.ajax({
+            url: "/home/products/byCategory/" + categoryId,
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                $(".item-wrap").empty();
+                $.each(data, function (index, product) {
+                    var productHtml = `
+                    <div class="item">
+                        <div class="item-box">
+                            <div class="image">
+                                <img style="width: 300px; height: 300px; border-radius: 5%" src="${product.image}" alt="상품 이미지" width="100" class="add-to-cart" data-product-id="${product.productId}" />
+                            </div>
+                            ${product.quantity === 0 ? '<div class="sold-out"><p>SOLD OUT</p></div>' : ''}
+                        </div>
+                        <h3>${product.name}</h3>
+                        <span>${product.sellPrice}원</span>
+                    </div>
+                    `;
+                    $(".item-wrap").append(productHtml);
+                });
+            },
+            error: function (error) {
+                console.error("Error fetching products: ", error);
+            }
+        });
+    }
+
+    //productId로 상품을 장바구니에 넣어주는 함수.
+    function addProductToCart(productId) {
+        $.ajax({
+            url: "/cart/cart/add",
+            type: "POST",
+            data: {productId: productId},
+            dataType: "json",
+            success: function (data) {
+                /* 장바구니에 상품을 집어넣는것을 성공했다면 장바구니 리스트를 업데이트합니다. */
+                updateOrderList(data); // 장바구니 목록 업데이트
+            },
+            error: function (error) {
+                console.error("Error adding product to cart : ", error);
+            }
+        });
+    }
+
+    function deleteAllCartItems() {
+        $.ajax({
+            url: "/cart/cart/deleteAll",
+            type: "POST",
+            success: function () {
+                $(".order-wrap ul").empty(); // 장바구니 목록을 화면에서 제거합니다.
+            },
+            error: function (error) {
+                console.error("Error deleting all cart items ", error);
+            }
+        });
+        totalAmount = 0;
+        $("#total-amount-display").text(totalAmount);
+    }
+
+    function deleteCartItem(cartId) {
+        $.ajax({
+            url: "/cart/cart/delete/" + cartId,
+            type: "POST",
+            success: function (data) {
+                updateOrderList(data);
+            },
+            error: function (error) {
+                console.error("Error deleting cart item: ", error);
+            }
+        });
+    }
+
+    function updateOrderList(data) {
+        $(".order-wrap ul").empty();
+        totalAmount = 0; // 매번 새롭게 계산하기 위해 0으로 초기화합니다.
+        $.each(data, function (index, orderItem) {
+            var orderHtml = `
+            <li>
+                <div class="order">
+                    <img src="${orderItem.image}" alt="상품 이미지" style="border-radius: 10%" width="100"/>
+                    <div class="text-box">
+                        <h3>${orderItem.productName || 'Unknown Item'}</h3>
+                        <span>${orderItem.totalPrice || 0}원</span>
+                    </div>
+                    <div class="quantity-wrap">
+                        <!-- quantity-count 부분 수정했음 -->
+                        <div class="quantity-count">수량: ${orderItem.quantity || 0}</div>
+                        <br>
+                        <div class =" button-quantity">
+                        <button class="decrease-quantity" data-cart-id="${orderItem.cartId}">-</button>
+                        <button class="increase-quantity" data-cart-id="${orderItem.cartId}" data-product-id="${orderItem.productId}">+</button>
+                        <button class="delete-from-cart" data-cart-id="${orderItem.cartId}">삭제</button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            `;
+            $(".order-wrap ul").append(orderHtml);
+            totalAmount += (orderItem.totalPrice || 0); // 장바구니 총액 계산
+        });
+        $("#total-amount-display").text(totalAmount); // 총액 표시 업데이트
+    }
+
+    // 동적으로 생성된 버튼 increaseCartQuantity 버튼입니다. 버튼을 클릭하면 increaseQuantity 주소로 cartId와 productId를 넘겨서
+    function increaseCartQuantity(cartId, productId) {
+        $.ajax({
+            url: "/cart/cart/increaseQuantity",
+            type: "POST",
+            data: {
+                cartId: cartId,
+                productId: productId
+            },
+            dataType: "json",
+            success: function (data) {
+                updateOrderList(data);
+            },
+            error: function (error) {
+                console.error("Error updating cart quantity: ", error);
+            }
+        });
+    }
+
+    function decreaseCartQuantity(cartId) {
+        $.ajax({
+            url: "/cart/cart/decreaseQuantity",
+            type: "POST",
+            data: {
+                cartId: cartId
+            },
+            dataType: "json",
+            success: function (data) {
+                updateOrderList(data);
+            },
+            error: function (error) {
+                console.error("Error updating cart quantity: ", error);
+            }
+        });
+    }
+</script>
 </body>
 </html>
