@@ -251,8 +251,8 @@ $(document).ready(function() {
     $(document).on("mouseover",".gallery",function(e){
         var image_data = $(this).data("image");
         var add_caption = (image_data != undefined) ? "<br/>" + image_data : "" ;
-        $("body").append("<p id='preview' style='position: absolute; z-index: 9'>" +
-            "<img style='opacity: 0.9' src='"+ $(this).attr("src") +"' width='230px' />"+ add_caption +"</p>");
+        $("body").append("<p id='preview' style='position: absolute; z-index: 9; border-radius: 50%; overflow: hidden'>" +
+            "<img style='opacity: 0.9; width: 230px; height: 230px' src='"+ $(this).attr("src") +"'/>"+ add_caption +"</p>");
         $("#preview")
             .css("top",(e.pageY - xOffset) + "px")
             .css("left",(e.pageX + yOffset) + "px")
