@@ -216,58 +216,34 @@ jQuery.extend(jQuery.easing, {
     }
 });
 
-$(function () {
-    /**
-     * start/end date picker
-     */
-    $("#startDate").datepicker({
-        dateFormat: "yy-mm-dd", // 날짜의 형식
-        nextText: ">",
-        prevText: "<",
-        onSelect: function (date) {
-            var endDate = $('#endDate');
-            var startDate = $(this).datepicker('getDate');
-            var minDate = $(this).datepicker('getDate');
-            endDate.datepicker('setDate', minDate);
-            startDate.setDate(startDate.getDate() + 30);
-            endDate.datepicker('option', 'minDate', minDate);
-        }
-    });
-    $('#endDate').datepicker({
-        dateFormat: "yy-mm-dd", // 날짜의 형식
-        nextText: ">",
-        prevText: "<"
-    });
-});
-
 /**
  * mouse over img preview
  */
-$(document).ready(function() {
+$(document).ready(function () {
     var xOffset = 210;
     var yOffset = 10;
 
     //마우스 오버시 preview 생성
-    $(document).on("mouseover",".gallery",function(e){
+    $(document).on("mouseover", ".gallery", function (e) {
         var image_data = $(this).data("image");
-        var add_caption = (image_data != undefined) ? "<br/>" + image_data : "" ;
+        var add_caption = (image_data != undefined) ? "<br/>" + image_data : "";
         $("body").append("<p id='preview' style='position: absolute; z-index: 9; border-radius: 50%; overflow: hidden'>" +
-            "<img style='opacity: 0.9; width: 230px; height: 230px' src='"+ $(this).attr("src") +"'/>"+ add_caption +"</p>");
+            "<img style='opacity: 0.9; width: 230px; height: 230px' src='" + $(this).attr("src") + "'/>" + add_caption + "</p>");
         $("#preview")
-            .css("top",(e.pageY - xOffset) + "px")
-            .css("left",(e.pageX + yOffset) + "px")
+            .css("top", (e.pageY - xOffset) + "px")
+            .css("left", (e.pageX + yOffset) + "px")
             .fadeIn("fast");
     });
 
     //마우스 이동시 preview 이동
-    $(document).on("mousemove",".gallery",function(e){
+    $(document).on("mousemove", ".gallery", function (e) {
         $("#preview")
-            .css("top",(e.pageY - xOffset) + "px")
-            .css("left",(e.pageX + yOffset) + "px");
+            .css("top", (e.pageY - xOffset) + "px")
+            .css("left", (e.pageX + yOffset) + "px");
     });
 
     //마우스 아웃시 preview 제거
-    $(document).on("mouseout",".gallery",function(){
+    $(document).on("mouseout", ".gallery", function () {
         $("#preview").remove();
     });
 });

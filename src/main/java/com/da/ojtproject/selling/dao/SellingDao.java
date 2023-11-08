@@ -169,8 +169,8 @@ public class SellingDao {
         /**
          * column 별 정렬
          */
-        if (!data.get("order").equals("") && !data.get("col").equals("register_date")) {
-            sb.append("ORDER BY " + data.get("col") + " " + data.get("order"));
+        if (!data.get("order").equals("") && !data.get("").equals("register_date")) {
+            sb.append("ORDER BY " + data.get("") + " " + data.get("order"));
         }
         String sql = sb.toString();
         return template.query(sql, (rs, rowNum) -> {
@@ -196,4 +196,21 @@ public class SellingDao {
             return selling;
         });
     }
+
+//    public List<Selling> getTotalSelling(Map<String, Object> data) {
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("SELECT " +
+//                "SUM(selling.quantity) AS quantity, " +
+//                "SUM(selling.total_price) AS total_price " +
+//                "FROM " +
+//                "selling " +
+//                "INNER JOIN " +
+//                "product ON selling.product_id = product.product_id " +
+//                "INNER JOIN " +
+//                "category ON product.category_id = category.category_id " +
+//                "INNER JOIN " +
+//                "orders ON selling.orders_id = orders.orders_id " +
+//                "WHERE 1 = 1");
+//        template.query()
+//    }
 }

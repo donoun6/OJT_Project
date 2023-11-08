@@ -50,6 +50,7 @@ FROM selling
     INNER JOIN orders
         ON selling.orders_id = orders.orders_id
 where 1 = 1
+group by rollup()
 and DATE(selling.register_date) = '2023-11-07';
 
 SELECT selling.selling_id,
@@ -89,7 +90,7 @@ SELECT product.product_id,
        category.name,
        category.check_category,
        SUM(selling.quantity) as quantity,
-       SUM(selling.total_price) as total_price
+       SUM(selling.total_price) as total_price,
 FROM selling
          INNER JOIN product
                     ON selling.product_id = product.product_id
@@ -98,9 +99,92 @@ FROM selling
          INNER JOIN orders
                     ON selling.orders_id = orders.orders_id
 WHERE 1 =1
-AND selling.register_date = 20231108
+# AND DATE(selling.register_date) = '20231108'
+GROUP BY product.product_id, product.name, product.code, product.sell_price,
+         product.image, product.check_product, category.name, category.check_category;
+
+SELECT product.product_id,
+       product.name,
+       product.code,
+       product.sell_price,
+       product.image,
+       product.check_product,
+       category.name,
+       category.check_category,
+       SUM(selling.quantity) as quantity,
+       SUM(selling.total_price) as total_price
+FROM selling
+         INNER JOIN product
+                    ON selling.product_id = product.product_id
+         INNER JOIN category
+                    ON product.category_id = category.category_id
+         INNER JOIN orders
+                    ON selling.orders_id = orders.orders_id
+WHERE 1 = 1
 GROUP BY product.product_id, product.name, product.code, product.sell_price,
          product.image, product.check_product, category.name, category.check_category
-ORDER BY total_price DESC;
+WITH ROLLUP;
 
 
+SELECT IFNULL(product.product_id, 'N/A') as product_id,
+       IFNULL(product.name, 'N/A') as name,
+       IFNULL(product.code, 'N/A') as code,
+       IFNULL(product.sell_price, 0) as sell_price,
+       IFNULL(product.image, 'N/A') as image,
+       IFNULL(product.check_product, 'N/A') as check_product,
+       IFNULL(category.name, 'N/A') as category_name,
+       IFNULL(category.check_category, 'N/A') as check_category,
+       IFNULL(SUM(selling.quantity), 0) as quantity,
+       IFNULL(SUM(selling.total_price), 0) as total_price
+FROM selling
+         INNER JOIN product
+                    ON selling.product_id = product.product_id
+         INNER JOIN category
+                    ON product.category_id = category.category_id
+         INNER JOIN orders
+                    ON selling.orders_id = orders.orders_id
+WHERE 1 = 1
+GROUP BY product.product_id, product.name, product.code, product.sell_price,
+         product.image, product.check_product, category.name, category.check_category
+WITH ROLLUP;
+
+
+-- 상품 및 판매 정보 가져오기
+SELECT
+    product.product_id,
+    product.name,
+    product.code,
+    product.sell_price,
+    product.image,
+    product.check_product,
+    category.name AS category_name,
+    category.check_category,
+    SUM(selling.quantity) AS quantity,
+    SUM(selling.total_price) AS total_price
+FROM
+    selling
+        INNER JOIN
+    product ON selling.product_id = product.product_id
+        INNER JOIN
+    category ON product.category_id = category.category_id
+        INNER JOIN
+    orders ON selling.orders_id = orders.orders_id
+WHERE 1 = 1
+GROUP BY
+    product.product_id, product.name, product.code, product.sell_price,
+    product.image, product.check_product, category.name, category.check_category;
+
+# union all
+-- 총 합계 계산
+SELECT
+    SUM(selling.quantity) AS quantity,
+    SUM(selling.total_price) AS total_price
+FROM
+    selling
+        INNER JOIN
+    product ON selling.product_id = product.product_id
+        INNER JOIN
+    category ON product.category_id = category.category_id
+        INNER JOIN
+    orders ON selling.orders_id = orders.orders_id
+WHERE 1 = 1;

@@ -17,6 +17,7 @@
     <!--  script  -->
     <script src="/js/common.js"></script>
     <script src="/js/admin/aside.js"></script>
+    <script src="/js/admin/datepicker.js"></script>
     <script src="/js/admin/selling/selling.js"></script>
     <!--  jQuery UI  -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -75,6 +76,13 @@
                             <th style="width: 4%;">삭제</th>
                             <th style="width: 7%;">주문번호</th>
                             <th style="width: 7%;">판매가격</th>
+                            <th style="width: 14%;">판매일자
+                                <span id="register_date-desc"
+                                      class="material-symbols-outlined desc order">expand_less</span>
+                                <span id="register_date-asc"
+                                      class="material-symbols-outlined asc order">expand_more</span>
+                            </th>
+                            <th style="width: 7%;">취소여부</th>
                             <th style="width: 7%;">판매수량
                                 <span id="quantity-desc" class="material-symbols-outlined desc order">expand_less</span>
                                 <span id="quantity-asc" class="material-symbols-outlined asc order">expand_more</span>
@@ -85,13 +93,6 @@
                                 <span id="total_price-asc"
                                       class="material-symbols-outlined asc order">expand_more</span>
                             </th>
-                            <th style="width: 14%;">판매일자
-                                <span id="register_date-desc"
-                                      class="material-symbols-outlined desc order">expand_less</span>
-                                <span id="register_date-asc"
-                                      class="material-symbols-outlined asc order">expand_more</span>
-                            </th>
-                            <th style="width: 7%;">취소여부</th>
                         </tr>
                         </thead>
                         <tbody class="selling-list">

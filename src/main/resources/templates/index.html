@@ -209,7 +209,6 @@
                 name: '주문명:결제테스트',
                 amount: totalAmount,
                 buyer_name: currentOrderUid.toString(),
-                m_redirect_url : 'http://localhost:8080/',
             }, function (rsp) {
                 if (rsp.success) {
                     $.ajax({
@@ -218,7 +217,7 @@
                     }).done(function (data) {
                         if (data) {
                             /*alert("결제 성공");*/
-                            window.location.href = '/orders/result?imp_uid=' + rsp.imp_uid;
+                            window.location.href = '/home/result?imp_uid=' + rsp.imp_uid;
                             $(".order-wrap ul").empty(); // 장바구니 목록을 화면에서 제거합니다.
                             loadProductsByCategory(selectedCategoryId);
                         } else {

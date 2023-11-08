@@ -22,14 +22,19 @@
             th:text="${sellingList.getOrders().getOrdersId()}"></td>
         <!--  sell_price  -->
         <td th:text="${#numbers.formatInteger(sellingList.getProduct().getSellPrice(), 3, 'COMMA') + '원'}" }></td>
-        <!--  sell_quantity  -->
-        <td th:text="${sellingList.getQuantity()+ 'EA'}"></td>
-        <!--  total_price  -->
-        <td th:text="${#numbers.formatInteger(sellingList.getTotalPrice(), 3, 'COMMA') + '원'}" }></td>
         <!--  receiving_register_date  -->
         <td th:text="${#dates.format(sellingList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}"></td>
         <!--  order_cancel_check      -->
         <td th:if="${sellingList.getOrders().isCheckOrders()} == false" } style="color: red;">취소처리</td>
         <td th:if="${sellingList.getOrders().isCheckOrders()} == true" }>-</td>
+        <!--  sell_quantity  -->
+        <td th:text="${sellingList.getQuantity()+ 'EA'}"></td>
+        <!--  total_price  -->
+        <td th:text="${#numbers.formatInteger(sellingList.getTotalPrice(), 3, 'COMMA') + '원'}" }></td>
     </tr>
 </th:block>
+<tr>
+    <td colspan="10" style="text-align: center; height: 30px"></td>
+    <td class="total-quantity"></td>
+    <td class="total-price"></td>
+</tr>

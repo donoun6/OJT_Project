@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 @RequiredArgsConstructor
@@ -40,9 +41,11 @@ public class HomeController {
         Integer currentMerchantUid = (Integer) session.getAttribute("currentMerchantUid");
         Integer currentOrderUid = (Integer) session.getAttribute("currentOrderUid");
 
+        Random random = new Random();
+
         if (currentMerchantUid == null || currentOrderUid == null) {
-            currentMerchantUid = 15654; // 시작 값 설정
-            currentOrderUid = 245156; // 시작 값 설정
+            currentMerchantUid = random.nextInt(); // 시작 값 설정
+            currentOrderUid = random.nextInt(); // 시작 값 설정
         } else {
             currentMerchantUid++;
             currentOrderUid++;
