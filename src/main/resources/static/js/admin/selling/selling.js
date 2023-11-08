@@ -56,7 +56,6 @@ $(document).ready(function () {
 
         data.checkName = checkName;
         data.name = name;
-        console.log(name);
         sellingList(data, sellingListUrl);
     });
 

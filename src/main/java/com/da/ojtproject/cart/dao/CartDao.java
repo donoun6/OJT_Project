@@ -49,7 +49,6 @@ public class CartDao {
     public void deleteCartItem(int id) {
         String sql = "DELETE FROM Cart WHERE Cart_id = ?";
         jdbcTemplate.update(sql, id);
-        System.out.println("해당 카테고리 아이템을 삭제하였습니다.");
     }
 
     // *****************************************************************************

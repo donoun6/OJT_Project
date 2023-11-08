@@ -249,7 +249,6 @@ $(document).ready(function() {
 
     //마우스 오버시 preview 생성
     $(document).on("mouseover",".gallery",function(e){
-        console.log($(this).attr("src"));
         var image_data = $(this).data("image");
         var add_caption = (image_data != undefined) ? "<br/>" + image_data : "" ;
         $("body").append("<p id='preview' style='position: absolute; z-index: 9'>" +
@@ -262,7 +261,6 @@ $(document).ready(function() {
 
     //마우스 이동시 preview 이동
     $(document).on("mousemove",".gallery",function(e){
-        console.log("ddd")
         $("#preview")
             .css("top",(e.pageY - xOffset) + "px")
             .css("left",(e.pageX + yOffset) + "px");
@@ -270,7 +268,6 @@ $(document).ready(function() {
 
     //마우스 아웃시 preview 제거
     $(document).on("mouseout",".gallery",function(){
-        console.log("dddcxxx")
         $("#preview").remove();
     });
 });

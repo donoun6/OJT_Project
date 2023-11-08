@@ -211,7 +211,6 @@
                 buyer_name: currentOrderUid.toString(),
                 m_redirect_url : 'http://localhost:8080/',
             }, function (rsp) {
-                console.log(rsp)
                 if (rsp.success) {
                     $.ajax({
                         type: 'POST',
