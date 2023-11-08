@@ -2,7 +2,7 @@
 
 <th:block th:each="productList : ${productList}">
     <tr class="category-hover">
-        <td><img th:src="@{${productList.getImage()}}" style="width: 30px; height: 30px"></td>
+        <td><img th:src="@{${productList.getImage()}}" style="width: 30px; height: 30px" class="gallery"></td>
         <td th:text="${productList.getName()}"></td>
         <input class="category-select-id" type="hidden" th:value="${productList.getProductId()}">
         <td th:text="${productList.getInventory().getQuantity()}"></td>

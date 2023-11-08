@@ -5,8 +5,8 @@
         <td class="view" th:text="${productListStat.count}"></td>
         <td class="view-off" th:text="${productListStat.count}"></td>
         <!--     product_img     -->
-        <td class="view" style="text-align: center;"><img th:src="@{${productList.getImage()}}"></td>
-        <td class="view-off" style="text-align: center;"><img th:src="@{${productList.getImage()}}"></td>
+        <td class="view" style="text-align: center;"><img th:src="@{${productList.getImage()}}" class="gallery"></td>
+        <td class="view-off" style="text-align: center;"><img th:src="@{${productList.getImage()}}" class="gallery"></td>
         <!--     product_name     -->
         <td class="view" th:text="${productList.getName()}"></td>
         <td class="view-off"><input type="text" th:value="${productList.getName()}" id="name" style="width: 85%;"></td>
