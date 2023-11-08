@@ -99,6 +99,7 @@ public class ReceivingDao {
         } else {
             sb.append("AND receiving.receiving_id LIKE'%" + data.get("name") + "%'");
         }
+
         /**
          * 등록일자 별 정렬
          */

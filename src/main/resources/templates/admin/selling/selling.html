@@ -19,9 +19,16 @@
     <script src="/js/admin/aside.js"></script>
     <script src="/js/admin/selling/selling.js"></script>
     <!--  jQuery UI  -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!--    google icon 커스텀    -->
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'wght' 350;
+            font-size: 20px;
+        }
+    </style>
     <title>selling</title>
 </head>
 <body>
@@ -39,6 +46,65 @@
 <!--    main area    -->
 <main>
     <div id="main-wrap">
+        <section class="section1">
+            <h1>Selling</h1>
+            <div class="date-picker-wrap">
+                <input type="text" id="startDate" value="" placeholder=" 연-월-일" style="width: 100px;"> -
+                <input type="text" id="endDate" value="" placeholder=" 연-월-일" style="width: 100px;">
+                <button class="date-search btn" type="button">검색</button>
+            </div>
+            <div class="selling-list-wrap">
+                <div class="selling-save">
+                    <button class="all-search btn" type="button" style="width: 75px">전체조회</button>
+                    <button class="btn bundle-btn" type="button" style="margin-left: 10px;width: 75px">묶음조회</button>
+                </div>
+                <div class="search-bar">
+                    <input class="search-name" type="text">
+                    <span class="material-symbols-outlined search-img">search</span>
+                    <button class="trigger-btn" type="button" style="position: absolute; right: -100%"></button>
+                </div>
+                <div class="selling-list-layout">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th style="width: 3%;">No</th>
+                            <th style="width: 4%;">img</th>
+                            <th style="width: 8%;">상품이름</th>
+                            <th style="width: 11%;">상품코드</th>
+                            <th style="width: 7%;">카테고리</th>
+                            <th style="width: 4%;">삭제</th>
+                            <th style="width: 7%;">주문번호</th>
+                            <th style="width: 7%;">판매가격</th>
+                            <th style="width: 7%;">판매수량
+                                <span id="quantity-desc" class="material-symbols-outlined desc order">expand_less</span>
+                                <span id="quantity-asc" class="material-symbols-outlined asc order">expand_more</span>
+                            </th>
+                            <th style="width: 9%;">총 판매금액
+                                <span id="total_price-desc"
+                                      class="material-symbols-outlined desc order">expand_less</span>
+                                <span id="total_price-asc"
+                                      class="material-symbols-outlined asc order">expand_more</span>
+                            </th>
+                            <th style="width: 14%;">판매일자
+                                <span id="register_date-desc"
+                                      class="material-symbols-outlined desc order">expand_less</span>
+                                <span id="register_date-asc"
+                                      class="material-symbols-outlined asc order">expand_more</span>
+                            </th>
+                            <th style="width: 7%;">취소여부</th>
+                        </tr>
+                        </thead>
+                        <tbody class="selling-list">
+                        <th:block th:replace="admin/selling/ajax/sellingList"></th:block>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="page-nav">
+                    &copy copyright
+                    <!--                    [1] [2] [3] [4] [5] [6]-->
+                </div>
+            </div>
+        </section>
     </div>
 </main>
 </body>

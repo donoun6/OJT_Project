@@ -1,5 +1,8 @@
 package com.da.ojtproject.selling.domain;
 
+import com.da.ojtproject.category.domain.Category;
+import com.da.ojtproject.orders.domain.Orders;
+import com.da.ojtproject.product.domain.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,4 +22,9 @@ public class Selling {
     private int totalPrice;
     private boolean checkSelling;
     private Date registerDate;
+
+    //외부 객체
+    private Product product;
+    private Category category;
+    private Orders orders;
 }
