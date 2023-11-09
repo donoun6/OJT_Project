@@ -124,6 +124,7 @@ public class SellingDao {
      * 묶음 조회
      */
     public List<Selling> getSelectBundleSelling(Map<String, Object> data) {
+        System.out.println(data);
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT " +
                 "product.product_id, " +
@@ -169,8 +170,8 @@ public class SellingDao {
         /**
          * column 별 정렬
          */
-        if (!data.get("order").equals("") && !data.get("").equals("register_date")) {
-            sb.append("ORDER BY " + data.get("") + " " + data.get("order"));
+        if (!data.get("order").equals("") && !data.get("col").equals("register_date")) {
+            sb.append("ORDER BY " + data.get("col") + " " + data.get("order"));
         }
         String sql = sb.toString();
         return template.query(sql, (rs, rowNum) -> {

@@ -188,3 +188,8 @@ FROM
         INNER JOIN
     orders ON selling.orders_id = orders.orders_id
 WHERE 1 = 1;
+
+SELECT *
+FROM selling
+    INNER JOIN
+    product ON selling.product_id = product.product_id;

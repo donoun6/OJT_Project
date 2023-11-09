@@ -66,11 +66,13 @@ $(document).ready(function () {
         spl = this.getAttribute('id').split('-');
         data.col = spl.at(0);
         data.order = spl.at(1);
+        console.log(data);
         sellingList(data, sellingListUrl);
     });
 
     $(".bundle-btn").click(function () {
         data.bundle = "Y";
+        console.log(data);
         sellingList(data, sellingListUrl);
     });
 

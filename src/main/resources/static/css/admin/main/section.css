@@ -12,13 +12,117 @@
     width: 50%;
 }
 
-#section1 div {
-    display: block;
+#section1 .rank-box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+}
+
+#section1 .rank-box h1 {
+    position: absolute;
+    left: 5%;
+    top: 10%;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+#section1 .rank-box select {
+    position: absolute;
+    top: 20%;
+    right: 5%;
+}
+
+#section1 .rank-box table {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 15%;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+#section1 .rank-box th, #section1 .rank-box td {
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+#section1 .rank-box th {
+    font-size: 16px;
+    font-weight: bold;
+    height: 30px;
+}
+
+#section1 .rank-box td {
+    font-size: 12px;
+}
+
+#section1 .rank-box th:first-child, #section1 .rank-box td:first-child {
+    border-left: none;
 }
 
 /* section1*/
 #section2 {
     width: 50%;
+}
+
+#section2 .order-selling-box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+}
+
+#section2 .order-selling-box h1 {
+    position: absolute;
+    left: 5%;
+    top: 10%;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+#section2 .order-selling-box h2 {
+    position: absolute;
+    right: 5%;
+    top: 20%;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#section2 .order-selling-box select {
+    position: absolute;
+    top: 20%;
+    right: 5%;
+}
+
+#section2 .order-selling-box table {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 15%;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+#section2 .order-selling-box th, #section2 .order-selling-box td {
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+#section2 .order-selling-box th {
+    font-size: 16px;
+    font-weight: bold;
+    height: 30px;
+}
+
+#section2 .order-selling-box td {
+    font-size: 12px;
+}
+
+#section2 .order-selling-box th:first-child, #section2 .order-selling-box td:first-child {
+    border-left: none;
 }
 
 /* section3*/
