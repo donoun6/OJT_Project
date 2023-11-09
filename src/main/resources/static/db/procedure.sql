@@ -6,6 +6,7 @@ DROP PROCEDURE AddOrCountCart;
 DROP PROCEDURE AddSellingAndClearCart;
 # DROP PROCEDURE ProcessSpecificRefund;
 DROP PROCEDURE ProcessSpecificOrFullRefund;
+DROP PROCEDURE ProcessSpecificOrFullRefund2;
 # 프로시저 생성
 -- 카테고리 등록 이전에 삭제했던 카테고리면 등록 X, 아니면 새로 등록
 CREATE PROCEDURE AddOrResetCategory(IN param_name VARCHAR(20))
@@ -124,7 +125,27 @@ BEGIN
             WHERE orders_id = input_orders_id;
         END IF;
     END IF;
-    END;
+END;
+
+
+CREATE PROCEDURE ProcessSpecificOrFullRefund2(IN input_orders_id INT)
+BEGIN
+    DECLARE refundable INT DEFAULT 0;
+    -- Selling 테이블에서 해당 orders_id로 환불 가능한 (check_selling = TRUE) 상품이 있는지 확인
+    SELECT COUNT(*) INTO refundable
+    FROM Selling
+    WHERE orders_id = input_orders_id AND check_selling = TRUE;
+
+    -- 환불 가능한 상품이 없으면 Orders 테이블의 check_orders를 FALSE로 업데이트
+    IF refundable = 0 THEN
+        UPDATE Orders
+        SET check_orders = FALSE
+        WHERE orders_id = input_orders_id;
+    END IF;
+END;
+
+
+
 
 DELIMITER ;
 
@@ -145,9 +166,17 @@ END;
 
 
 
+
+
+
+
+
 CALL ProcessSpecificOrFullRefund(87654, 9);
 CALL ProcessSpecificOrFullRefund(87654, 6);
 CALL ProcessSpecificOrFullRefund(87654, null);
+CALL ProcessSpecificOrFullRefund(87660, 3);
+CALL ProcessSpecificOrFullRefund(87660, 7);
+CALL ProcessSpecificOrFullRefund2(87660);
 SELECT * FROM PRODUCT;
 SELECT * FROM Selling;
 SELECT * FROM Orders;

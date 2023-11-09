@@ -84,7 +84,7 @@ CREATE TABLE Orders (
 orders_id               INT                 PRIMARY KEY AUTO_INCREMENT,
 check_orders            BOOLEAN             NOT NULL DEFAULT TRUE,
 register_date           TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP
-)AUTO_INCREMENT = 87652;
+)AUTO_INCREMENT = 14736;
 
 CREATE TABLE Selling (
 selling_id              INT                 PRIMARY KEY AUTO_INCREMENT,
@@ -101,45 +101,3 @@ CONSTRAINT Selling_orders_id_FK FOREIGN KEY (orders_id) REFERENCES Orders(orders
 # 테이블 수정
 ALTER TABLE Cart ADD product_name VARCHAR(20) NOT NULL;
 ALTER TABLE Cart ADD image VARCHAR(20);
-
-
-# CREATE PROCEDURE ProcessSpecificOrFullRefund(IN input_orders_id INT, IN input_product_id INT)
-# BEGIN
-#     DECLARE refundable INT DEFAULT 0;
-#
-#     IF input_product_id IS NOT NULL THEN
-#         -- 개별 상품 환불 로직
-#         UPDATE Inventory i
-#             JOIN Selling s ON i.product_id = s.product_id
-#         SET i.quantity = i.quantity + s.quantity
-#         WHERE s.orders_id = input_orders_id AND s.product_id = input_product_id AND s.check_selling = TRUE;
-#
-#         UPDATE Selling
-#         SET check_selling = FALSE
-#         WHERE orders_id = input_orders_id AND product_id = input_product_id AND check_selling = TRUE;
-#     ELSE
-#         -- 전체 주문 환불 로직
-#         UPDATE Inventory i
-#             JOIN Selling s ON i.product_id = s.product_id
-#         SET i.quantity = i.quantity + s.quantity
-#         WHERE s.orders_id = input_orders_id AND s.check_selling = TRUE;
-#
-#         UPDATE Selling
-#         SET check_selling = FALSE
-#         WHERE orders_id = input_orders_id AND check_selling = TRUE;
-#
-#         -- Selling 테이블에서 해당 orders_id로 환불 가능한 (check_selling = TRUE) 상품이 있는지 확인
-#         SELECT COUNT(*) INTO refundable
-#         FROM Selling
-#         WHERE orders_id = input_orders_id AND check_selling = TRUE;
-#
-#         -- 환불 가능한 상품이 없으면 Orders 테이블의 check_orders를 FALSE로 업데이트
-#         IF refundable = 0 THEN
-#             UPDATE Orders
-#             SET check_orders = FALSE
-#             WHERE orders_id = input_orders_id;
-#         END IF;
-#     END IF;
-# END;
-# 근데 이 프로시저에 문제가 있어 이 프로시저를 이용해서 부분환불을 모두 진행하면 orders 테이블의 check_orders가 0이 안돼. 즉 Selling 테이블의 check_selling이 모두 0이되면
-# orders 테이블의 check_orders도 0이되게 프로시저를 수정해줘.

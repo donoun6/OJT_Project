@@ -25,12 +25,16 @@ public class OrdersDao {
     private SimpleJdbcCall AddProductAndAddInventory;
     private SimpleJdbcCall ProcessSpecificOrFullRefund;
 
+    private SimpleJdbcCall ProcessSpecificOrFullRefund2;
+
     public OrdersDao(DataSource dataSource) {
         this.template = new JdbcTemplate(dataSource);
         this.AddProductAndAddInventory = new SimpleJdbcCall(template)
                 .withProcedureName("AddProductAndAddInventory");
         this.ProcessSpecificOrFullRefund = new SimpleJdbcCall(template)
                 .withProcedureName("ProcessSpecificOrFullRefund");
+        this.ProcessSpecificOrFullRefund2 = new SimpleJdbcCall(template)
+                .withProcedureName("ProcessSpecificOrFullRefund2");
 
     }
     public List<Orders> getAllOrdersProducts() {
@@ -82,10 +86,11 @@ public class OrdersDao {
         SqlParameterSource inParams = new MapSqlParameterSource()
                 .addValue("input_orders_id", ordersId)
                 .addValue("input_product_id", productId);
-        // 프로시저를 실행.
+        // 부분환불 프로시저를 우선 실행해보자.
         ProcessSpecificOrFullRefund.execute(inParams);
+        // 그다음에 전체 환불 프로시저를 실행해본다.
+        ProcessSpecificOrFullRefund2.execute(ordersId);
         // 부분환불 결과 처리 로직입니다. fullRefund와 마찬가지로 파라미터값을 inParams 값으로 넘겨줘야 합니다.
-
         return true;
     }
 }
