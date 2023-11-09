@@ -1,5 +1,6 @@
 package com.da.ojtproject.admin.dao;
 
+import com.da.ojtproject.inventory.domain.Inventory;
 import com.da.ojtproject.orders.domain.Orders;
 import com.da.ojtproject.product.domain.Product;
 import com.da.ojtproject.selling.dao.SellingRowMapper;
@@ -47,7 +48,7 @@ public class AdminDao {
                 "product.name, product.sell_price, product.image " +
                 "ORDER BY quantity desc , total_price DESC " +
                 "limit 10;";
-        return tmeTemplate.query(sql,(rs, rowNum) -> {
+        return tmeTemplate.query(sql, (rs, rowNum) -> {
             Product product = new Product();
             Selling selling = new Selling();
             product.setName(rs.getString("name"));
@@ -84,28 +85,46 @@ public class AdminDao {
         });
     }
 
-    public Selling getTodayTotalPrice() {
+    public Integer getTodayTotalPrice() {
         String sql = "SELECT " +
                 "SUM(selling.total_price) AS total_price " +
                 "FROM " +
                 "selling " +
                 "WHERE 1 = 1 " +
                 "AND check_selling = TRUE " +
-                "AND DATE (selling.register_date) = '"+ format +"' ";
-        return tmeTemplate.queryForObject(sql,(rs, rowNum) -> {
-            Selling selling = new Selling();
-            selling.setTotalPrice(rs.getInt("total_price"));
-            return selling;
+                "AND DATE (selling.register_date) = '" + format + "' ";
+        return tmeTemplate.queryForObject(sql, (rs, rowNum) -> {
+            Integer totalPrice = rs.getInt("total_price");
+            return totalPrice;
         });
     }
 
     public Integer getOrderCount() {
         String sql = "SELECT count(*) AS count FROM orders";
-        return tmeTemplate.queryForObject(sql,(rs, rowNum) -> {
+        return tmeTemplate.queryForObject(sql, (rs, rowNum) -> {
             Integer count = rs.getInt("count");
             return count;
         });
     }
 
-
+    public List<Product> getLowQuantity() {
+        String sql = "SELECT " +
+                "name, " +
+                "image,  " +
+                "quantity " +
+                "FROM product " +
+                "INNER JOIN inventory " +
+                "ON product.product_id = inventory.product_id " +
+                "where product.check_product =true " +
+                "AND inventory.quantity <= 5";
+        return tmeTemplate.query(sql, (rs, rowNum) -> {
+            Product product = new Product();
+            Inventory inventory = new Inventory();
+            product.setName(rs.getString("name"));
+            product.setImage(rs.getString("image"));
+            inventory.setQuantity(rs.getInt("quantity"));
+            product.setInventory(inventory);
+            return product;
+        });
+    }
 }

@@ -237,3 +237,12 @@ ON orders.orders_id = selling.orders_id
 where orders.check_orders = TRUE
 AND DATE (orders.register_date) = '2023-11-09'
 GROUP BY orders.orders_id;
+
+SELECT
+    name,
+    quantity
+FROM product
+INNER JOIN inventory
+ON product.product_id = inventory.product_id
+where product.check_product =true
+AND inventory.quantity <= -1;

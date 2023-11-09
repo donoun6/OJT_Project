@@ -18,7 +18,18 @@
     <script src="/js/admin/aside.js"></script>
     <script src="/js/admin/main/section.js"></script>
     <title>admin</title>
-
+    <!--  google icon  -->
+    <style>
+        .alarm {
+            font-variation-settings: 'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24;
+            font-size: 60px;
+            opacity: 0.7;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <!--  aside area  -->
@@ -37,19 +48,19 @@
     <div id="main-wrap">
         <section id="section1" class="section">
             <div class="rank-box">
-                <h1>Rank</h1>
-                <!--        <select>-->
-                <!--            <option selected>판매순</option>-->
-                <!--            <option>금액순</option>-->
-                <!--        </select>-->
+                <h1>Product</h1>
+                <!--                <select>-->
+                <!--                    <option selected>판매순</option>-->
+                <!--                    <option>금액순</option>-->
+                <!--                </select>-->
                 <table>
                     <thead>
                     <tr>
                         <th>Rank</th>
                         <th>img</th>
-                        <th>product</th>
-                        <th>sell quantity</th>
-                        <th>total price</th>
+                        <th>제품명</th>
+                        <th>판매수량</th>
+                        <th>판매금액</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -61,7 +72,8 @@
                                                                 class="gallery"></td>
                             <td th:text="${sellingRankList.getProduct().getName()}"></td>
                             <td th:text="${sellingRankList.getQuantity()} + EA"></td>
-                            <td th:text="${#numbers.formatInteger(sellingRankList.getTotalPrice(), 3, 'COMMA') + '원'}" }></td>
+                            <td th:text="${#numbers.formatInteger(sellingRankList.getTotalPrice(), 3, 'COMMA') + '원'}"
+                                }></td>
                         </tr>
                     </th:block>
                     </tbody>
@@ -70,16 +82,17 @@
         </section>
         <section id="section2" class="section">
             <div class="order-selling-box">
-                <h1>Sell</h1>
-                <h2 th:text="'order : ' + ${orderCount} + '건 &nbsp&nbsp&nbsp&nbsp&nbsp sell price : ' + ${#numbers.formatInteger(todayTotalPrice.getTotalPrice(), 3, 'COMMA') + '원'}" }></h2>
+                <h1>주문현황</h1>
+                <h2 th:text="${date} + '&nbsp&nbsp&nbsp&nbsp&nbsp order : ' + ${orderCount} + '건 &nbsp&nbsp&nbsp&nbsp&nbsp sell price : ' + ${#numbers.formatInteger(todayTotalPrice, 3, 'COMMA') + '원'}"
+                    }></h2>
                 <table>
                     <thead>
                     <tr>
                         <th>no</th>
-                        <th>order number</th>
-                        <th>quantity</th>
-                        <th>price</th>
-                        <th>register date</th>
+                        <th>주문번호</th>
+                        <th>주문수량</th>
+                        <th>주문가격</th>
+                        <th>주문일자</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -88,7 +101,8 @@
                             <td th:text="${todayOrderListStat.count}"></td>
                             <td th:text="${todayOrderList.getOrdersId()}"></td>
                             <td th:text="${todayOrderList.getSelling().getQuantity()} + EA"></td>
-                            <td th:text="${#numbers.formatInteger(todayOrderList.getSelling().getTotalPrice(), 3, 'COMMA') + '원'}" }></td>
+                            <td th:text="${#numbers.formatInteger(todayOrderList.getSelling().getTotalPrice(), 3, 'COMMA') + '원'}"
+                                }></td>
                             <td th:text="${#dates.format(todayOrderList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}"></td>
                         </tr>
                     </th:block>
@@ -104,9 +118,24 @@
             <div id="chart_div2" style="width: 100%; height: 50%; position: absolute; bottom: 0"></div>
         </section>
     </div>
-    <div class="alarm-box">
-        <span class="material-symbols-outlined">alarm_smart_wake</span>
-    </div>
+    <th:block th:if="${lowQuantity.size()} != 0">
+        <p th:text="${lowQuantity.size()}"></p>
+        <div class="alarm-box">
+            <span class="material-symbols-outlined alarm">alarm_smart_wake</span>
+        </div>
+        <div class="low-quantity-box">
+            <th:block th:each="lowQuantity : ${lowQuantity}">
+                <div class="low-quantity">
+                    <img th:src="@{${lowQuantity.getImage()}}">
+                    <div class="text-box">
+                        <p th:text="${lowQuantity.getName()}"></p>
+                        <p style="color: red; margin-top: 7px"
+                           th:text="${lowQuantity.getInventory().getQuantity()} + 'EA'"></p>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+    </th:block>
 </main>
 <!--  google chart area -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

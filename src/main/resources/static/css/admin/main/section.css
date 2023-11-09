@@ -36,7 +36,7 @@
 #section1 .rank-box table {
     width: 90%;
     margin-left: 5%;
-    margin-top: 15%;
+    margin-top: 12%;
     border-top: 1px solid #444444;
     border-collapse: collapse;
     text-align: center;
@@ -89,7 +89,7 @@
 #section2 .order-selling-box h2 {
     position: absolute;
     right: 5%;
-    top: 20%;
+    top: 15%;
     font-size: 16px;
     font-weight: bold;
 }
@@ -100,14 +100,14 @@
 
 #section2 .order-selling-box select {
     position: absolute;
-    top: 20%;
+    top: 17%;
     right: 5%;
 }
 
 #section2 .order-selling-box table {
     width: 90%;
     margin-left: 5%;
-    margin-top: 15%;
+    margin-top: 12%;
     border-top: 1px solid #444444;
     border-collapse: collapse;
     text-align: center;
@@ -146,3 +146,135 @@
 #section4 {
     width: 50%;
 }
+
+/* alarm area */
+.alarm-box {
+    position: absolute;
+    right: 1%;
+    bottom: 2%;
+    opacity: .7;
+}
+
+.alarm {
+    animation-name: alarm;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes alarm {
+    0% {
+        transform: rotate(0deg);
+        margin-bottom: 2%;
+    }
+    2% {
+        transform: rotate(-10deg);
+    }
+    4% {
+        transform: rotate(10deg);
+    }
+    6% {
+        transform: rotate(-10deg);
+        margin-bottom: 4%;
+    }
+    8% {
+        transform: rotate(10deg);
+    }
+    10% {
+        transform: rotate(-10deg);
+    }
+    12% {
+        transform: rotate(10deg);
+        margin-bottom: 2%;
+    }
+    14% {
+        transform: rotate(-10deg);
+    }
+    16% {
+        transform: rotate(10deg);
+    }
+    18% {
+        transform: rotate(-10deg);
+    }
+    20% {
+        transform: rotate(10deg);
+    }
+    22% {
+        transform: rotate(-10deg);
+    }
+    24% {
+        transform: rotate(10deg);
+    }
+    26% {
+        transform: rotate(-10deg);
+        margin-bottom: 4%;
+    }
+    28% {
+        transform: rotate(10deg);
+    }
+    30% {
+        transform: rotate(-10deg);
+    }
+    32% {
+        transform: rotate(10deg);
+        margin-bottom: 2%;
+    }
+    34% {
+        transform: rotate(-10deg);
+    }
+    36% {
+        transform: rotate(10deg);
+    }
+    38% {
+        transform: rotate(-10deg);
+    }
+    40% {
+        transform: rotate(10deg);
+    }
+    42% {
+        transform: rotate(0deg);
+    }
+
+}
+
+.low-quantity-box {
+    position: fixed;
+    display: none;
+    flex-direction: column;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 4%;
+    margin-right: 1%;
+    overflow: scroll;
+}
+
+.on {
+    display: flex;
+}
+
+.low-quantity {
+    position: relative;
+    margin-right: 20%;
+    margin-bottom: 10%;
+    width: 200px;
+    background: #ffffffde;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 85px;
+}
+
+.low-quantity img {
+    position: absolute;
+    width: 85px;
+    height: 85px;
+    margin-right: 20px;
+    opacity: .7;
+}
+
+.low-quantity .text-box {
+    width: 90px;
+    position: absolute;
+    right: 30px;
+    top: 24px;
+    text-align: center;
+}
+

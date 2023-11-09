@@ -2,6 +2,7 @@ package com.da.ojtproject.admin.service;
 
 import com.da.ojtproject.admin.dao.AdminDao;
 import com.da.ojtproject.orders.domain.Orders;
+import com.da.ojtproject.product.domain.Product;
 import com.da.ojtproject.selling.domain.Selling;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,12 +28,17 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Selling getTodayTotalPrice() {
+    public Integer getTodayTotalPrice() {
         return adminDao.getTodayTotalPrice();
     }
 
     @Override
     public Integer getOrderCount() {
         return adminDao.getOrderCount();
+    }
+
+    @Override
+    public List<Product> getLowQuantity() {
+        return adminDao.getLowQuantity();
     }
 }

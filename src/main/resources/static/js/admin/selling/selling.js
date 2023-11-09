@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    total();
+
     const sellingListUrl = "selling/selling-list";
 
     $('#startDate').datepicker("setDate", "today");
@@ -66,7 +68,6 @@ $(document).ready(function () {
         spl = this.getAttribute('id').split('-');
         data.col = spl.at(0);
         data.order = spl.at(1);
-        console.log(data);
         sellingList(data, sellingListUrl);
     });
 
@@ -89,6 +90,7 @@ $(document).ready(function () {
             contentType: 'application/json; charset=UTF-8',
             success: function (data) {
                 $(".selling-list").html(data);
+                total();
             },
             error: function (data) {
                 alert("잠시후 다시 시도해 주세요");
@@ -119,6 +121,29 @@ $(document).ready(function () {
             if (code > -1 && code < 11172) result += cho[Math.floor(code / 588)];
         }
         return result;
+    }
+
+    /**
+     * total
+     */
+    function total() {
+        $(document).ready(function () {
+            let totalQuantity = 0;
+            let totalPrice = 0;
+
+            let spl = $(".add-quantity").text().split("EA");
+            let spl2 = $(".add-price").text().split("원");
+
+            for (let i = 0; i < spl.length; i++) {
+                totalQuantity += Number(spl.at(i));
+                totalPrice += Number(spl2.at(i).replace(",", ""));
+            }
+
+            totalPrice = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+            $(".total-quantity").text(totalQuantity + "EA");
+            $(".total-price").text(totalPrice + "원")
+        });
     }
 
 });
