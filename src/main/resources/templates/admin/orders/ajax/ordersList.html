@@ -1,92 +1,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<th:block th:each="productList : ${productList}">
+
+<th:block th:each="ordersList : ${ordersList}">
     <tr class="product-hover">
-        <!--     index     -->
-        <td class="view" th:text="${productListStat.count}"></td>
-        <td class="view-off" th:text="${productListStat.count}"></td>
-        <!--     product_img     -->
-        <td class="view" style="text-align: center;"><img th:src="@{${productList.getImage()}}"></td>
-        <td class="view-off" style="text-align: center;"><img th:src="@{${productList.getImage()}}"></td>
-        <!--     product_name     -->
-        <td class="view" th:text="${productList.getName()}"></td>
-        <td class="view-off"><input type="text" th:value="${productList.getName()}" id="name" style="width: 85%;"></td>
-        <!--     product_code     -->
-        <td class="view" th:text="${productList.getCode()}"></td>
-        <td class="view-off"><input type="text" th:value="${productList.getCode()}" id="code" style="width: 85%;"></td>
-        <!--     category     -->
-        <td class="view" th:if="${productList.getCategory().isCheckCategory()} == false"
-            th:text="${productList.getCategory().getName()}" style="color: red;"></td>
-        <td class="view" th:if="${productList.getCategory().isCheckCategory()} == true"
-            th:text="${productList.getCategory().getName()}"></td>
-        <td class="view-off">
-            <select style="width: 80%" id="categoryId" class="categoryId-list">
-                <option disabled selected>선택</option>
-            </select>
-        </td>
-        <!--     inventory_quantity     -->
-        <td class="view" th:if="${productList.getInventory().getQuantity} <= 5"
-            th:text="${productList.getInventory().getQuantity+ '개'}"
-            style="color: red"></td>
-        <td class="view" th:if="${productList.getInventory().getQuantity} > 5"
-            th:text="${productList.getInventory().getQuantity+ '개'}"></td>
-        <td class="view-off"><input readonly="true" type="text" th:value="${productList.getInventory().getQuantity}"
-                                    style="background: #dedce0; width: 70%"></td>
-        <!--     sell_quantity     -->
-        <td class="view" th:text="${productList.getSelling().getQuantity + '개'}"></td>
-        <td class="view-off"><input readonly="true" type="text" th:value="${productList.getSelling().getQuantity}"
-                                    style="background: #dedce0; width: 70%"></td>
-        <!--     sell_price     -->
-        <td class="view" th:text="${#numbers.formatInteger(productList.getSellPrice(), 3, 'COMMA') + '원'}" }>-</td>
-        <td class="view-off"><input type="text" th:value="${productList.getSellPrice()}" id="sellPrice"
-                                    style="width: 80%;"></td>
-        <!--     total_price     -->
-        <td class="view" th:if="${productList.getSelling().getTotalPrice} == 0" }>-</td>
-        <td class="view" th:if="${productList.getSelling().getTotalPrice} != 0"
-            th:text="${#numbers.formatInteger(productList.getSelling().getTotalPrice, 3, 'COMMA') + '원'}" }>
-            -
-        </td>
-        <td class="view-off"><input readonly="true" type="text" th:value="${productList.getSelling().getTotalPrice}"
-                                    style="background: #dedce0; width: 80%;"></td>
-        <!--     check_product     -->
-        <td class="view" th:if="${productList.isCheckProduct()} == false" } style="color: red;">Y</td>
-        <td class="view" th:if="${productList.isCheckProduct()} == true" }>N</td>
-        <td class="view-off">-</td>
-        <!--     register_date     -->
-        <td class="view" th:text="${#dates.format(productList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}"></td>
-        <td class="view-off"><input readonly="true" type="text"
-                                    th:value="${#dates.format(productList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}"
-                                    style="background: #dedce0; width: 85%"></td>
-        <!--     cate btn     -->
-        <td class="view" style="text-align: center;">
-            <button class="category-delete cancel-btn" th:if="${productList.getCategory().isCheckCategory()} == true"
-                    th:value="${productList.getCategoryId()}">삭제
-            </button>
-            <button class="category-recover recover-btn" th:if="${productList.getCategory().isCheckCategory()} == false"
-                    th:value="${productList.getCategoryId()}">복구
-            </button>
-        </td>
-        <td class="view-off">-</td>
-        <!--     product btn     -->
-        <td class="view pro-box">
-            <button class="product-update-btn check-btn" style="margin-right: 10px" th:value="${productList.productId}">
-                수정
-            </button>
-            <button class="product-delete-btn cancel-btn" th:if="${productList.isCheckProduct()} == true"
-                    th:value="${productList.productId}">삭제
-            </button>
-            <button class="product-recover recover-btn"
-                    th:if="${productList.isCheckProduct()} == false AND ${productList.getCategory().isCheckCategory()} == true"
-                    th:value="${productList.productId}">복구
-            </button>
-            <button class="none-btn"
-                    th:if="${productList.isCheckProduct()} == false AND ${productList.getCategory().isCheckCategory()} == false"
-                    th:value="${productList.productId}">-
-            </button>
-        </td>
-        <td class="view-off">
-            <button class="product-recover-btn recover-btn" th:value="${productList.getProductId()}"
-                    style="width: 55%; margin-left: 20%;">수정 완료
-            </button>
-        </td>
+        <!--  index  -->
+        <td th:text="${ordersListStat.count}"></td>
+
+        <!--  product_name : 주문번호 -->
+        <td th:text="${ordersList.getOrdersId()}"></td>
+
+        <!--  product_code : 상품코드 -->
+        <td th:text="${ordersList.isCheckOrders()} ? '미환불' : '환불성공'"></td>
+
+        <!--  receiving_register_date : 결제일자 -->
+        <td th:text="${#dates.format(ordersList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}"></td>
+
+        <!-- 전체환불 버튼 -->
+        <td><button type="button" class="btn-full-refund" th:data-orders-id="${ordersList.ordersId}">전체환불</button></td>
+        <!-- 부분환불 버튼 -->
+        <td><button type="button" class="btn-partial-refund" th:data-orders-id="${ordersList.ordersId}">부분환불</button></td>
+
     </tr>
+
 </th:block>

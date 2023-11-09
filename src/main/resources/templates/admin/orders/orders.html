@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/global/default.css">
     <!--  커스텀 css  -->
     <link rel="stylesheet" href="/css/admin/admin.css">
-    <link rel="stylesheet" href="/css/admin/product/product.css">
+    <link rel="stylesheet" href="/css/admin/receiving/receiving.css">
     <link rel="stylesheet" href="/css/global/jqueryUi.css">
     <!--  svg link  -->
     <link rel="stylesheet"
@@ -17,29 +17,51 @@
     <!--  script  -->
     <script src="/js/common.js"></script>
     <script src="/js/admin/aside.js"></script>
-    <script src="/js/admin/product/product.js"></script>
+    <script src="/js/admin/receiving/receiving.js"></script>
     <!--  jQuery UI  -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <title>product</title>
     <!--    google icon 커스텀    -->
     <style>
         .material-symbols-outlined {
             font-variation-settings: 'wght' 350;
             font-size: 20px;
         }
-
-        .up-slide {
-            position: absolute;
-            bottom: 8px;
-        }
-
-        .down-slide {
-            position: absolute;
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
             top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
         }
     </style>
+    <title>admin</title>
 </head>
 <body>
 <!--  aside area  -->
@@ -56,181 +78,150 @@
 <!--    main area    -->
 <main>
     <div id="main-wrap">
-        <!--    section1 area    -->
         <section class="section1">
-            <h1>Product</h1>
-            <div class="search-wrap">
-                <div class="search-box">
-                    <table class="search-table">
+            <h1>결제관리</h1>
+            <div class="date-picker-wrap">
+                <input type="text" id="startDate" value="" placeholder=" 연-월-일" style="width: 100px;"> -
+                <input type="text" id="endDate" value="" placeholder=" 연-월-일" style="width: 100px;">
+                <button class="date-search btn" type="button">검색</button>
+            </div>
+            <div class="receiving-list-wrap">
+                <div class="receiving-save">
+                    <button class="all-search btn" type="button" style="width: 75px">전체조회</button>
+                    <!--                    <button class="select-search search-btn" style="width: 80px;height: 32px;">검색하기</button>-->
+                    <button class="btn save-btn" type="button" style="margin-left: 10px">등록</button>
+                </div>
+                <div class="search-bar">
+                    <select>
+                        <option selected value="product">상품명</option>
+                        <option value="receiving_number">입고번호</option>
+                    </select>
+                    <input class="search-name" type="text">
+                    <span class="material-symbols-outlined search-img">search</span>
+                    <button class="trigger-btn" type="button" style="position: absolute; right: -100%"></button>
+                </div>
+                <div class="receiving-list-layout">
+                    <table>
+                        <thead>
                         <tr>
-                            <th scope="row">카테고리</th>
-                            <td>
-                                <select class="select-category" style="width: 130px">
-                                    <option selected value="all">전체</option>
-                                    <th:block th:each="categoryList : ${categoryList}">
-                                        <option th:text="${categoryList.getName()}"
-                                                th:value="${categoryList.getCategoryId()}"></option>
-                                    </th:block>
-                                </select>
-                            </td>
-                            <th scope="row">상품 삭제</th>
-                            <td>
-                                <input type="radio" id="product-include" class="product-delete-check"
-                                       name="product-delete" value="N" checked>
-                                <label for="product-include">미포함</label>
-                                <input type="radio" id="product-notInclude" class="product-delete-check"
-                                       name="product-delete" value="Y">
-                                <label for="product-notInclude">포함</label>
-                            </td>
+                            <th style="width: 3%;">No</th>
+                            <th style="width: 8%;">주문번호</th>
+                            <th style="width: 11%;">환불상태</th>
+                            <th style="width: 14%;">결제일자
+                                <span id="desc" class="material-symbols-outlined desc order">expand_less</span>
+                                <span id="asc" class="material-symbols-outlined asc order">expand_more</span>
+                            </th>
+                            <th>전체환불</th>
+                            <th>부분환불</th>
                         </tr>
-                        <tr>
-                            <th scope="row">기간 조회</th>
-                            <td>
-                                <input type="text" id="startDate" value="" placeholder=" 연-월-일" style="width: 100px;"> -
-                                <input type="text" id="endDate" value="" placeholder=" 연-월-일" style="width: 100px;">
-                            </td>
-                            <th scope="row">카테고리 삭제</th>
-                            <td>
-                                <input type="radio" id="cateogory-include" class="category-delete-check"
-                                       name="category-delete" value="N" checked>
-                                <label for="cateogory-include">미포함</label>
-                                <input type="radio" id="cateogory-notInclude" class="category-delete-check"
-                                       name="category-delete" value="Y">
-                                <label for="cateogory-notInclude">포함</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">-</th>
-                            <td>
-                            </td>
-                            <th scope="row">-</th>
-                            <td>
-                                -
-                            </td>
-                        </tr>
+                        </thead>
+                        <tbody class="orders-list">
+                        <th:block th:replace="admin/orders/ajax/ordersList"></th:block>
+                        </tbody>
                     </table>
-                    <div class="search-btn-box">
-                        <button class="all-search search-btn" style="width: 80px;height: 32px;">전체조회</button>
-                        <button class="select-search search-btn" style="width: 80px;height: 32px;">검색하기</button>
-                        <button class="save-btn check-btn" style="width: 90px;height: 32px;">등록하기</button>
-                    </div>
-                    <div class="search-bar">
-                        <input class="search-name" type="text" placeholder="상품명을 입력하세요.">
-                        <span class="material-symbols-outlined search-img">search</span>
-                    </div>
+                </div>
+                <div class="page-nav">
                 </div>
             </div>
         </section>
-        <div class="up-slide-box">
-            <span class="material-symbols-outlined up-slide" style="font-size: 50px">stat_2</span>
-        </div>
-        <div class="down-slide-box">
-            <span class="material-symbols-outlined down-slide" style="font-size: 50px">stat_minus_2</span>
-        </div>
-        <!--    section2 area    -->
-        <section class="section2">
-            <table>
-                <thead>
-                <tr>
-                    <th style="width: 1%;">no</th>
-                    <th style="width: 2%;">img</th>
-                    <th style="width: 10%;">상품명
-                        <span id="product.name-desc" class="material-symbols-outlined desc order">expand_less</span>
-                        <span id="product.name-asc" class="material-symbols-outlined asc order">expand_more</span>
-                    </th>
-                    <th style="width: 10%;">상품코드
-                        <span id="product.code-desc" class="material-symbols-outlined desc order">expand_less</span>
-                        <span id="product.code-asc" class="material-symbols-outlined asc order">expand_more</span>
-                    </th>
-                    <th style="width: 8%;">카테고리
-                        <span id="category.name-desc" class="material-symbols-outlined desc order">expand_less</span>
-                        <span id="category.name-asc" class="material-symbols-outlined asc order">expand_more</span>
-                    </th>
-                    <th style="width: 7%;">재고
-                        <span id="inventory.quantity-desc"
-                              class="material-symbols-outlined desc order">expand_less</span>
-                        <span id="inventory.quantity-asc" class="material-symbols-outlined asc order">expand_more</span>
-                    </th>
-                    <th style="width: 7%;">판매수량
-                        <span id="selling_quantity-desc" class="material-symbols-outlined desc order">expand_less</span>
-                        <span id="selling_quantity-asc" class="material-symbols-outlined asc order">expand_more</span>
-                    </th>
-                    <th style="width: 8%;">판매금액
-                        <span id="product.sell_price-desc"
-                              class="material-symbols-outlined desc order">expand_less</span>
-                        <span id="product.sell_price-asc" class="material-symbols-outlined asc order">expand_more</span>
-                    </th>
-                    <th style="width: 8%;">총 판매금액
-                        <span id="total_price-desc" class="material-symbols-outlined desc order">expand_less</span>
-                        <span id="total_price-asc" class="material-symbols-outlined asc order">expand_more</span>
-                    </th>
-                    <th style="width: 5%;">삭제</th>
-                    <th style="width: 13%;">등록일자
-                        <span id="product.register_date-desc"
-                              class="material-symbols-outlined desc order">expand_less</span>
-                        <span id="product.register_date-asc"
-                              class="material-symbols-outlined asc order">expand_more</span>
-                    </th>
-                    <th>카테고리</th>
-                    <th>상품</th>
-                </tr>
-                <img>
-                </thead>
-                <tbody class="product-list">
-                <th:block th:replace="admin/product/ajax/productList.html"></th:block>
-                </tbody>
-            </table>
-            <div class="page-nav">&copy copyright</div>
-        </section>
     </div>
-    <!--   delete pop-up     -->
-    <div class="category-delete-from-wrap">
-        <div class="category-delete-form">
-            <div class="text-box">
-                <p class="text">카테고리를 삭제하면 해당 카테고리에 등록된 모든 상품이 삭제처리 됩니다.</p>
-                <P>그래도 삭제하시겠습니까?</P>
-            </div>
-            <div class="category-delete-btn-box">
-                <button type="button" class="category-delete-btn cancel-btn" style="margin-right: 17px;">삭제</button>
-                <button type="button" class="category-delete-cancel-btn check-btn">취소</button>
-            </div>
+    <!-- 부분 환불 팝업 섹션 -->
+    <div id="partial-refund-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>부분 환불</h2>
+            <div id="partial-refund-details"></div>
         </div>
-    </div>
-    <!--   product / category add form     -->
-    <div class="product-save-from-wrap">
-        <form class="product-save-form" action="product/save" method="post" enctype="multipart/form-data"
-              th:object="${orders}">
-            <ol>
-                <li><label for="categoryId">category</label></li>
-                <li>
-                    <select class="category" id="categoryId" name="categoryId" style="width: 87px">
-                        <option disabled selected>선택</option>
-                    </select>
-                    <button class="category-save" type="button" style="width: 80px">카테추가</button>
-                </li>
-                <li><label for="name">상품명</label></li>
-                <li><input class="product-name" type="text" th:field="*{name}" placeholder="상품명을 입력하세요."></li>
-                <li><label for="code">상품코드</label></li>
-                <li><input class="product-code" type="text" th:field="*{code}" placeholder="상품코드를 입력하세요."></li>
-                <li><label for="sellPrice">판매금액</label></li>
-                <li><input class="product-sellPrice" type="text" th:field="*{sellPrice}" placeholder="판매금액을 입력하세요.">
-                </li>
-                <li><label for="inventory.quantity">재고수량</label></li>
-                <li><input class="inventory-quantity" type="text" th:field="*{inventory.quantity}"
-                           placeholder="재고수량을 입력하세요."></li>
-                <li><label for="imageFile">사진</label></li>
-                <li><input class="product-image" type="file" th:field="*{imageFile}" accept="image/*"
-                           style="margin-left: 15%"></li>
-            </ol>
-            <div class="product-save-btn-box">
-                <button class="product-save-btn check-btn" style="margin-right: 15px;">추가</button>
-                <button type="reset" class="product-save-cancel-btn cancel-btn">취소</button>
-            </div>
-        </form>
-    </div>
-    <div class="category-form-wrap">
-        <!--  category save form -->
     </div>
 </main>
+<script>
+    $(document).ready(function () {
+        // 기존의 전체 환불 버튼 이벤트 핸들러는 그대로 유지됩니다.
+        $(document).on('click', '.btn-full-refund', function () {
+            var ordersId = $(this).data('orders-id');
+            allRefund(ordersId);
+        });
+
+        // 팝업 닫기 버튼 이벤트 핸들러도 그대로 유지됩니다.
+        $('.close').on('click', function() {
+            $('#partial-refund-modal').hide();
+        });
+
+        // 이벤트 위임을 사용하여 버튼에 대한 클릭 이벤트를 처리합니다.
+        // 이제 .orders-list 내부의 모든 .btn-partial-refund 요소에 대해 이벤트를 처리합니다.
+        $(document).on('click', '.btn-partial-refund', function() {
+            var ordersId = $(this).data('orders-id');
+            fetchPartialRefundDetails(ordersId);
+        });
+
+        // 드디어 부분환불 기능을 시작합니다. 부분환불 기능 스크립트 코드도 여기서 작성해야 합니다. 파이팅!!
+        // 제발 성공해라!!!!!!
+        $(document).on('click', '.btn-product-refund', function() {
+            var ordersId = $(this).data('orders_id');
+            var productId = $(this).data('product_id');
+            partialRefund(ordersId, productId); // 부분함수를 호출하는 스크립트 코드입니다.
+        });
+
+    });
+
+    /**
+     * 전체 주문 목록 조회
+     */
+    function orderList(data) {
+        $.ajax({
+            type: 'GET',
+            data: data,
+            url: '/admin/order/orders-list',
+            dataType: 'html', // 서버로부터 HTML 응답을 기대합니다.
+            success: function (response) {
+                // 서버로부터 받은 HTML로 주문 목록 컨테이너를 업데이트합니다.
+                $('.orders-list').html(response);
+            },
+            error: function () {
+                alert("잠시 후 다시 시도해 주세요.");
+            }
+        });
+    }
+    function allRefund(ordersId) {
+        $.ajax({
+            url: "/admin/order/refundAll",
+            type: "POST",
+            data: {
+                ordersId: ordersId
+            },
+            dataType: "json",
+            success: function (data) {
+                alert(data.message); // 환불 처리 성공 메시지를 표시합니다.
+                orderList(); // 주문 목록을 새로고침합니다.
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log(xhr, textStatus, errorThrown);
+                alert('전체 환불 처리가 실패하였습니다.');
+            }
+        });
+    }
+    // 판매 목록 가져오기
+    function fetchPartialRefundDetails(ordersId) {
+        $.ajax({
+            url: '/admin/order/getPartialRefundDetails',
+            type: 'GET',
+            data: {
+                ordersId: ordersId
+            },
+            success: function (response) {
+                $('#partial-refund-details').html(response);
+                $('#partial-refund-modal').show();
+            },
+            error: function (error) {
+                console.error('Error fetching partial refund details:', error);
+                alert('부분 환불 정보를 불러오는데 실패하였습니다.');
+            }
+        });
+    }
+
+    // 드디어 부분함수 부분최종 스크립트 코드입니다!!!
+
+
+</script>
 </body>
 </html>

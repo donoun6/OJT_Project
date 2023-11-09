@@ -22,6 +22,7 @@ public class Selling {
     private int totalPrice;
     private boolean checkSelling;
     private Date registerDate;
+    private String productName; // Product의 name에 해당하는 필드
 
     //외부 객체
     private Product product;

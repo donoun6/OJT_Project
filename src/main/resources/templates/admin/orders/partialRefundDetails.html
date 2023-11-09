@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>부분 환불 정보</title>
+    <!-- 여기에 필요한 CSS와 JavaScript 파일을 포함하세요 -->
+</head>
+<body>
+<!-- 부분 환불 정보 테이블 -->
+<div th:fragment="partial-refund-details">
+    <h3>부분 환불 정보</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>판매 ID</th>
+            <th>상품명</th>
+            <th>주문 ID</th>
+            <th>수량</th>
+            <th>총 가격</th>
+            <th>환불 상태</th>
+            <th>부분환불</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="selling : ${sellingList}">
+            <td th:text="${selling.sellingId}"></td>
+            <td th:text="${selling.product.name}"></td> <!-- 상품명 표시를 위해 product 객체의 name 필드를 사용 -->
+            <td th:text="${selling.ordersId}"></td>
+            <td th:text="${selling.quantity}"></td>
+            <td th:text="${selling.totalPrice}"></td>
+            <td th:text="${selling.checkSelling} ? '대기' : '환불완료'"></td>
+            <td>
+                <!-- 부분 환불 버튼, 필요한 데이터 속성을 추가하세요 -->
+                <!-- 부분 환불 버튼에 주문 ID와 상품 ID 데이터 속성 추가 -->
+                <button th:if="${selling.checkSelling}"
+                        th:data-orders-id="${selling.ordersId}"
+                        th:data-product-id="${selling.productId}"
+                        class="btn btn-product-refund">환불</button>
+            </td>
+            <!-- 그런데 궁금한게 스크립트 코드를 partialRefundDetails.html에 작성해야돼. 아니면 orders.html에 작성해야 돼?
+             -->
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

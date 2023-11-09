@@ -4,7 +4,8 @@
 DROP PROCEDURE AddOrResetCategory;
 DROP PROCEDURE AddOrCountCart;
 DROP PROCEDURE AddSellingAndClearCart;
-
+# DROP PROCEDURE ProcessSpecificRefund;
+DROP PROCEDURE ProcessSpecificOrFullRefund;
 # 프로시저 생성
 -- 카테고리 등록 이전에 삭제했던 카테고리면 등록 X, 아니면 새로 등록
 CREATE PROCEDURE AddOrResetCategory(IN param_name VARCHAR(20))
@@ -12,8 +13,8 @@ BEGIN
     SET @cate_id = NULL;
     -- check_category 값 변수에 입력
     SELECT category_id INTO @cate_id
-                       FROM Category
-                       WHERE name = param_name;
+    FROM Category
+    WHERE name = param_name;
 
     IF (@cate_id IS NULL) THEN
         INSERT INTO Category (name, check_category)
@@ -86,58 +87,46 @@ BEGIN
 
 END;
 
-call ProcessRefund(2);
-
-
--- 환불을 위한 프로시저 Orders 테이블의 orders_id 컬럼을 바탕으로 환불을 진행합니다.
-CREATE PROCEDURE ProcessRefund(IN input_orders_id INT)
+CREATE PROCEDURE ProcessSpecificOrFullRefund(IN input_orders_id INT, IN input_product_id INT)
 BEGIN
-    -- 재고를 업데이트하기 위해 Selling 테이블에서 판매 내역을 가져옵니다.
-    -- 'done'은 커서의 끝을 확인하기 위한 플래그, 'prod_id'와 'sold_qty'는 판매된 제품의 ID와 수량을 저장합니다.
-    DECLARE done INT DEFAULT FALSE;
-    DECLARE prod_id INT;
-    DECLARE sold_qty INT;
+    DECLARE refundable INT DEFAULT 0;
 
-    -- 판매된 제품의 정보를 가져오기 위한 커서를 선언합니다. 입력된 'orders_id'에 해당하는 모든 판매 레코드를 선택합니다.
-    DECLARE cur CURSOR FOR
-        SELECT product_id, quantity FROM Selling WHERE orders_id = input_orders_id;
+    IF input_product_id IS NOT NULL THEN
+        -- 개별 상품 환불 로직
+        UPDATE Inventory i
+            JOIN Selling s ON i.product_id = s.product_id
+        SET i.quantity = i.quantity + s.quantity
+        WHERE s.orders_id = input_orders_id AND s.product_id = input_product_id AND s.check_selling = TRUE;
 
-    -- 커서에서 더 이상 행이 없을 경우 'done'을 TRUE로 설정하여 루프를 종료하기 위한 핸들러를 선언합니다.
-    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+        UPDATE Selling
+        SET check_selling = FALSE
+        WHERE orders_id = input_orders_id AND product_id = input_product_id AND check_selling = TRUE;
+    ELSE
+        -- 전체 주문 환불 로직
+        UPDATE Inventory i
+            JOIN Selling s ON i.product_id = s.product_id
+        SET i.quantity = i.quantity + s.quantity
+        WHERE s.orders_id = input_orders_id AND s.check_selling = TRUE;
 
-    -- Cursor를 사용하여 각 제품에 대해 재고를 되돌립니다.
-    OPEN cur;
+        UPDATE Selling
+        SET check_selling = FALSE
+        WHERE orders_id = input_orders_id AND check_selling = TRUE;
 
-    -- 'read_loop' 라벨을 사용하여 루프를 시작합니다. 이 루프는 커서의 모든 행을 순회하며 작업을 수행합니다.
-    read_loop: LOOP
-        -- 커서에서 다음 행을 가져옵니다.
-        FETCH cur INTO prod_id, sold_qty;
-        -- 'done' 플래그가 TRUE이면 루프를 종료합니다.
-        IF done THEN
-            LEAVE read_loop;
+        -- Selling 테이블에서 해당 orders_id로 환불 가능한 (check_selling = TRUE) 상품이 있는지 확인
+        SELECT COUNT(*) INTO refundable
+        FROM Selling
+        WHERE orders_id = input_orders_id AND check_selling = TRUE;
+
+        -- 환불 가능한 상품이 없으면 Orders 테이블의 check_orders를 FALSE로 업데이트
+        IF refundable = 0 THEN
+            UPDATE Orders
+            SET check_orders = FALSE
+            WHERE orders_id = input_orders_id;
         END IF;
+    END IF;
+    END;
 
-        -- Inventory 테이블을 업데이트하여 제품 재고를 원래대로 돌려놓습니다.
-        -- 가져온 판매 데이터를 바탕으로 재고를 업데이트 합니다. 판매된 수량만큼 재고를 늘립니다.
-        UPDATE Inventory SET quantity = quantity + sold_qty
-        WHERE product_id = prod_id;
-    END LOOP;
-
-    -- 커서를 닫습니다.
-    CLOSE cur;
-
-    -- Selling 테이블에서 환불된 orders_id에 해당하는 모든 레코드를 삭제합니다.
-    -- DELETE FROM Selling WHERE orders_id = input_orders_id;
-
-    -- 필요한 경우 Orders 테이블의 상태를 업데이트합니다.
-    -- 예를 들어, check_orders를 FALSE로 설정하여 환불된 것을 표시할 수 있습니다.
-
-    -- Selling 테이블에서 해당 'orders_id'의 모든 레코드를 환불 상태로 업데이트합니다.
-    UPDATE Orders SET check_orders = FALSE WHERE orders_id = input_orders_id;
-
-    -- Orders 테이블에서 해당 'orders_id'의 레코드를 환불 상태로 업데이트합니다.
-    UPDATE selling SET check_selling = FALSE WHERE orders_id = input_orders_id;
-END;
+DELIMITER ;
 
 CREATE PROCEDURE AddProductAndAddInventory(IN category_id INT, IN product_name VARCHAR(255),
                                            IN product_code VARCHAR(255), IN product_sell_price INT, IN product_image VARCHAR(255), IN inventory_quantity INT)
@@ -152,4 +141,4 @@ BEGIN
     -- Add inventory
     INSERT INTO inventory (product_id, quantity)
     VALUES (@product_id, inventory_quantity);
-END
+END;

@@ -4,6 +4,7 @@ package com.da.ojtproject.home.controller;
 import com.da.ojtproject.category.domain.Category;
 import com.da.ojtproject.home.domain.Home;
 import com.da.ojtproject.home.service.HomeService;
+import com.da.ojtproject.payment.dao.PaymentDao;
 import com.da.ojtproject.product.domain.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -37,15 +38,16 @@ public class HomeController {
     @GetMapping("/menu-list")
     public String Categories(Model model, HttpSession session) {
 
+        /* 새롭게 작성된 주문번호 부분 */
+        int lastOrderNumber = homeService.getLastOrderNumber();
+
         // 서버 사이드에서 UIDs 초기화 및 증가
         Integer currentMerchantUid = (Integer) session.getAttribute("currentMerchantUid");
         Integer currentOrderUid = (Integer) session.getAttribute("currentOrderUid");
 
-        Random random = new Random();
-
         if (currentMerchantUid == null || currentOrderUid == null) {
-            currentMerchantUid = random.nextInt(); // 시작 값 설정
-            currentOrderUid = random.nextInt(); // 시작 값 설정
+            currentMerchantUid = lastOrderNumber; // 시작 값 설정
+            currentOrderUid = lastOrderNumber; // 시작 값 설정
         } else {
             currentMerchantUid++;
             currentOrderUid++;
@@ -57,16 +59,14 @@ public class HomeController {
         List<Home> categories = homeService.findAllCategories();
         model.addAttribute("items", itemsOfFirstCategory);
         model.addAttribute("categories", categories);
+
         model.addAttribute("currentMerchantUid", currentMerchantUid); // 모델에 추가
         model.addAttribute("currentOrderUid", currentOrderUid); // 모델에 추가
 
+        /* 다른걸로 변경해 줍니다.
+         *  sequence++;
+         */
+        lastOrderNumber ++;
         return "index";
-
-    }
-
-    @GetMapping("/result")
-    public String resultPage(Model model) {
-        model.addAttribute("category", new Category());
-        return "payment/result";
     }
 }

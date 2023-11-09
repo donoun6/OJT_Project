@@ -10,5 +10,6 @@ public interface HomeService {
     List<Home> findAllCategories();
     List<Product> findItemsOfFirstCategory();
     List<Product> findProductsByCategoryId(int categoryId);
+    int getLastOrderNumber();
 
 }
