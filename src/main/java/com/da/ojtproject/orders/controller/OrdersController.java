@@ -6,6 +6,7 @@ import com.da.ojtproject.home.service.HomeService;
 import com.da.ojtproject.inventory.domain.Inventory;
 import com.da.ojtproject.orders.domain.Orders;
 import com.da.ojtproject.orders.service.OrdersService;
+import com.da.ojtproject.payment.service.PaymentService;
 import com.da.ojtproject.product.domain.Product;
 import com.da.ojtproject.product.service.ProductService;
 import com.da.ojtproject.receiving.service.ReceivingService;
@@ -32,6 +33,7 @@ public class OrdersController {
     private final OrdersService ordersService;
     private final CategoryService categoryService;
     private final HomeService homeService;
+    private final PaymentService paymentService;
 
     @ResponseBody
     @PostMapping("/refundAll")
@@ -90,6 +92,23 @@ public class OrdersController {
         return "admin/orders/partialRefundDetails";
     }
 
+    // 부분환불 처리 코드
+    @ResponseBody
+    @PostMapping("/partialRefund")
+    public ResponseEntity<?> partialRefund(@RequestParam int ordersId2, @RequestParam int productId2) {
+        boolean result = ordersService.partialRefund(ordersId2, productId2);
+        System.out.println("ordersId2 : " + ordersId2);
 
+        System.out.println("productId2 : " + productId2);
+
+        Map<String, String> response = new HashMap<>();
+        if (result) {
+            response.put("message", "환불 처리가 완료되었습니다.");
+            return ResponseEntity.ok(response);
+        } else {
+            response.put("message", "환불 처리에 실패하였습니다.");
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
 
 }

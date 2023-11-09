@@ -33,8 +33,8 @@
                 <!-- 부분 환불 버튼, 필요한 데이터 속성을 추가하세요 -->
                 <!-- 부분 환불 버튼에 주문 ID와 상품 ID 데이터 속성 추가 -->
                 <button th:if="${selling.checkSelling}"
-                        th:data-orders-id="${selling.ordersId}"
-                        th:data-product-id="${selling.productId}"
+                        th:data-orders-id2="${selling.ordersId}"
+                        th:data-product-id2="${selling.productId}"
                         class="btn btn-product-refund">환불</button>
             </td>
             <!-- 그런데 궁금한게 스크립트 코드를 partialRefundDetails.html에 작성해야돼. 아니면 orders.html에 작성해야 돼?

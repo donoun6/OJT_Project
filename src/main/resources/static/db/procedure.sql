@@ -142,3 +142,12 @@ BEGIN
     INSERT INTO inventory (product_id, quantity)
     VALUES (@product_id, inventory_quantity);
 END;
+
+
+
+CALL ProcessSpecificOrFullRefund(87654, 9);
+CALL ProcessSpecificOrFullRefund(87654, 6);
+CALL ProcessSpecificOrFullRefund(87654, null);
+SELECT * FROM PRODUCT;
+SELECT * FROM Selling;
+SELECT * FROM Orders;

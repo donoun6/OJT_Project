@@ -34,6 +34,6 @@ public class PaymentDao {
     public int getLastOrderNumber() {
         String sql = "SELECT MAX(orders_id) FROM Orders";
         Integer lastOrderId = jdbcTemplate.queryForObject(sql, Integer.class);
-        return (lastOrderId != null) ? lastOrderId : 6124; // 주문이 없는 경우 0을 반환
+        return (lastOrderId != null) ? lastOrderId : 87652; // 주문이 없는 경우 0을 반환
     }
 }

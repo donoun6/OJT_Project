@@ -15,4 +15,5 @@ public interface OrdersService {
     List<Orders> getSearchOrders(Map<String, Object> data);
     List<Selling> getSellingsByOrdersId(int ordersId);
     boolean refundAll(int ordersId);
+    boolean partialRefund(int ordersId, int productId);
 }

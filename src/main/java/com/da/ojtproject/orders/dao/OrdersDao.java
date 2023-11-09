@@ -23,7 +23,6 @@ public class OrdersDao {
 
     private final JdbcTemplate template;
     private SimpleJdbcCall AddProductAndAddInventory;
-
     private SimpleJdbcCall ProcessSpecificOrFullRefund;
 
     public OrdersDao(DataSource dataSource) {
@@ -35,13 +34,9 @@ public class OrdersDao {
 
     }
     public List<Orders> getAllOrdersProducts() {
-
         String sql = "SELECT * FROM Orders";
-
         return template.query(sql, new OrdersRowMapper());
-
     }
-
 
     public List<Selling> findSellingsByOrdersId(int ordersId) {
         // JOIN을 사용하여 Selling과 Product 테이블을 연결하고, 필요한 정보를 선택합니다.
@@ -58,7 +53,6 @@ public class OrdersDao {
         return (rs, rowNum) -> {
             Selling selling = new Selling();
             Product product = new Product();
-
             selling.setSellingId(rs.getInt("selling_id"));
             selling.setProductId(rs.getInt("product_id"));
             selling.setOrdersId(rs.getInt("orders_id"));
@@ -66,12 +60,10 @@ public class OrdersDao {
             selling.setTotalPrice(rs.getInt("total_price"));
             selling.setCheckSelling(rs.getBoolean("check_selling"));
             selling.setRegisterDate(rs.getTimestamp("register_date"));
-
             // Product 객체에 상품명을 설정합니다.
             product.setName(rs.getString("product_name"));
             // Selling 객체에 Product 객체를 설정합니다.
             selling.setProduct(product);
-
             return selling;
         };
     }
@@ -83,6 +75,17 @@ public class OrdersDao {
         // 프로시저 실행
         ProcessSpecificOrFullRefund.execute(inParams);
         // 결과 처리 로직이 필요합니다. 성공 여부에 따라 true 또는 false를 반환합니다.
+        return true;
+    }
+
+    public boolean partialRefund(int ordersId, int productId) {
+        SqlParameterSource inParams = new MapSqlParameterSource()
+                .addValue("input_orders_id", ordersId)
+                .addValue("input_product_id", productId);
+        // 프로시저를 실행.
+        ProcessSpecificOrFullRefund.execute(inParams);
+        // 부분환불 결과 처리 로직입니다. fullRefund와 마찬가지로 파라미터값을 inParams 값으로 넘겨줘야 합니다.
+
         return true;
     }
 }
