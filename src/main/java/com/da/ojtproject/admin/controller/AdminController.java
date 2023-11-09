@@ -19,13 +19,10 @@ public class AdminController {
 
     @GetMapping()
     public String adminPage(Model model) {
-        model.addAttribute("admin", new Admin());
+        model.addAttribute("sellingRankList", adminService.getSellingRank());
+        model.addAttribute("todayOrderList", adminService.getTodayOrders());
+        model.addAttribute("todayTotalPrice", adminService.getTodayTotalPrice());
+        model.addAttribute("orderCount", adminService.getOrderCount());
         return "admin/admin";
-    }
-
-    @PostMapping()
-    public String adminFrom(@ModelAttribute("admin") Admin admin) {
-        adminService.saveAdmin(admin.getPassword());
-        return "redirect:/";
     }
 }

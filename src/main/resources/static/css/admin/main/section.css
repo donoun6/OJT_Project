@@ -49,13 +49,17 @@
 }
 
 #section1 .rank-box th {
+    position: sticky;
+    top: 0;
+    background: #42444e;
+    color: white;
     font-size: 16px;
     font-weight: bold;
-    height: 30px;
+    height: 20px;
 }
 
 #section1 .rank-box td {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 #section1 .rank-box th:first-child, #section1 .rank-box td:first-child {
@@ -90,6 +94,10 @@
     font-weight: bold;
 }
 
+#section2 .order-selling-box h2:first-child {
+    right: 15%;
+}
+
 #section2 .order-selling-box select {
     position: absolute;
     top: 20%;
@@ -112,13 +120,17 @@
 }
 
 #section2 .order-selling-box th {
+    position: sticky;
+    top: 0;
+    background: #42444e;
+    color: white;
     font-size: 16px;
     font-weight: bold;
-    height: 30px;
+    height: 20px;
 }
 
 #section2 .order-selling-box td {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 #section2 .order-selling-box th:first-child, #section2 .order-selling-box td:first-child {

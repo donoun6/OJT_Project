@@ -180,6 +180,18 @@ SELECT
     SUM(selling.quantity) AS quantity,
     SUM(selling.total_price) AS total_price
 FROM
+selling
+WHERE 1 = 1
+AND DATE (selling.register_date) = '2023-11-09';
+
+SELECT count(*) as count FROM orders;
+
+SELECT
+    product.name,
+    product.image,
+    SUM(selling.quantity) AS quantity,
+    SUM(selling.total_price) AS total_price
+FROM
     selling
         INNER JOIN
     product ON selling.product_id = product.product_id
@@ -187,9 +199,41 @@ FROM
     category ON product.category_id = category.category_id
         INNER JOIN
     orders ON selling.orders_id = orders.orders_id
-WHERE 1 = 1;
+WHERE 1 = 1
+AND product.check_product = TRUE
+GROUP BY
+    product.name, product.sell_price, product.image
+ORDER BY quantity desc , total_price DESC
+limit 10;
 
-SELECT *
-FROM selling
-    INNER JOIN
-    product ON selling.product_id = product.product_id;
+SELECT
+    product.name,
+    product.image,
+    SUM(selling.quantity) AS quantity,
+    SUM(selling.total_price) AS total_price
+FROM
+    selling
+        INNER JOIN
+    product ON selling.product_id = product.product_id
+        INNER JOIN
+    category ON product.category_id = category.category_id
+        INNER JOIN
+    orders ON selling.orders_id = orders.orders_id
+WHERE 1 = 1
+  AND product.check_product = TRUE
+  AND DATE(selling.register_date) = '2023-11-09'
+GROUP BY
+    product.name, product.sell_price, product.image
+ORDER BY quantity desc , total_price DESC;
+
+SELECT
+    orders.orders_id,
+    SUM(selling.quantity) as quantity,
+    SUM(selling.total_price) as total_price,
+    orders.register_date
+FROM orders
+INNER JOIN selling
+ON orders.orders_id = selling.orders_id
+where orders.check_orders = TRUE
+AND DATE (orders.register_date) = '2023-11-09'
+GROUP BY orders.orders_id;
