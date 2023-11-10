@@ -9,7 +9,9 @@
         <td th:text="${ordersList.getOrdersId()}"></td>
 
         <!--  product_code : 상품코드 -->
-        <td th:text="${ordersList.isCheckOrders()} ? '미환불' : '환불성공'"></td>
+        <!--<td th:text="${ordersList.isCheckOrders()} ? '미환불' : '환불성공'"></td>-->
+        <td th:style="${ordersList.isCheckOrders()} ? 'color: blue;' : 'color: red;'"
+            th:text="${ordersList.isCheckOrders()} ? '미환불' : '환불성공'"></td>
 
         <!--  receiving_register_date : 결제일자 -->
         <td th:text="${#dates.format(ordersList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}"></td>
