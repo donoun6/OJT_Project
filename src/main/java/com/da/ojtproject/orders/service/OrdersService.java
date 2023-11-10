@@ -22,4 +22,6 @@ public interface OrdersService {
     boolean refundAll(int ordersId);
 
     boolean refundAllCancel(int ordersId3);
+
+    boolean partialRefundCancel(int ordersId4, int productId4);
 }

@@ -86,20 +86,20 @@
                 <button class="date-search btn" type="button">검색</button>
             </div>
             <div class="receiving-list-wrap">
-                <div class="receiving-save">
-                    <button class="all-search btn" type="button" style="width: 75px">전체조회</button>
-                    <!--                    <button class="select-search search-btn" style="width: 80px;height: 32px;">검색하기</button>-->
-                    <button class="btn save-btn" type="button" style="margin-left: 10px">등록</button>
-                </div>
-                <div class="search-bar">
-                    <select>
-                        <option selected value="product">상품명</option>
-                        <option value="receiving_number">입고번호</option>
-                    </select>
-                    <input class="search-name" type="text">
-                    <span class="material-symbols-outlined search-img">search</span>
-                    <button class="trigger-btn" type="button" style="position: absolute; right: -100%"></button>
-                </div>
+<!--                <div class="receiving-save">-->
+<!--                    <button class="all-search btn" type="button" style="width: 75px">전체조회</button>-->
+<!--                    &lt;!&ndash;                    <button class="select-search search-btn" style="width: 80px;height: 32px;">검색하기</button>&ndash;&gt;-->
+<!--                    <button class="btn save-btn" type="button" style="margin-left: 10px">등록</button>-->
+<!--                </div>-->
+<!--                <div class="search-bar">-->
+<!--                    <select>-->
+<!--                        <option selected value="product">상품명</option>-->
+<!--                        <option value="receiving_number">입고번호</option>-->
+<!--                    </select>-->
+<!--                    <input class="search-name" type="text">-->
+<!--                    <span class="material-symbols-outlined search-img">search</span>-->
+<!--                    <button class="trigger-btn" type="button" style="position: absolute; right: -100%"></button>-->
+<!--                </div>-->
                 <div class="receiving-list-layout">
                     <table>
                         <thead>
@@ -155,6 +155,13 @@
             partialRefund(ordersId2, productId2); // 부분함수를 호출하는 스크립트 코드입니다.
         });
 
+        //부분환불 취소버튼 기능 구현을 시작!!!!
+        $(document).on('click', '.btn-partial-refund-cancel', function() {
+            var ordersId3 = $(this).data('orders-id3');
+            var productId4 = $(this).data('product-id4');
+            partialRefundCancel(ordersId3, productId4); // 부분함수를 호출하는 스크립트 코드입니다.
+        });
+
         // 팝업 닫기 버튼 이벤트 핸들러도 그대로 유지됩니다.
         $('.close').on('click', function() {
             $('#partial-refund-modal').hide();
@@ -169,7 +176,6 @@
             var ordersId = $(this).data('orders-id');
             fetchPartialRefundDetails(ordersId);
         });
-
     });
 
     /**
@@ -220,12 +226,12 @@
             dataType: "json",
             success: function (data) {
                 alert(data.message);
-                // location.reload();
                 window.location.reload();
             },
             error: function (xhr, textStatus, errorThrown) {
                 console.log(xhr, textStatus, errorThrown);
                 alert('전체 환불 취소처리를 실패하였습니다.');
+            //     아니 그게 아니라 orders.html에서 전체환불은 진행이 되는데
             }
         });
     }
@@ -246,11 +252,31 @@
                 alert(data.message); // 환불 처리 성공 메시지를 표시합니다.
                 // location.reload(); 페이지를 새로고침하는건데 불편하다. 그자리 그대로 있게 동작하도록 해야한다.
                 fetchPartialRefundDetails(ordersId2);
-
             },
             error: function (xhr, textStatus, errorThrown) {
                 console.log(xhr, textStatus, errorThrown);
-                alert('전체 환불 처리가 실패하였습니다.');
+                alert('환불 처리가 실패하였습니다.');
+            }
+        });
+    }
+
+    // partialRefundCancel 함수를 구현합니다!!
+    function partialRefundCancel(ordersId3, productId4) {
+        $.ajax({
+            url: '/admin/order/partialRefundCancel',
+            type: 'POST',
+            data: {
+                ordersId4: ordersId3,
+                productId4: productId4
+            },
+            dataType: 'json',
+            success: function (data) {
+                alert(data.message); // 부분 환불 처리 성공 메시지를 표시합니다.
+                fetchPartialRefundDetails(ordersId3);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log(xhr, textStatus, errorThrown);
+                alert('환불 처리가 실패하였습니다.');
             }
         });
     }

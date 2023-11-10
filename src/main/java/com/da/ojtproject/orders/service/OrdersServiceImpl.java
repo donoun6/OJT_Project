@@ -24,39 +24,22 @@ public class OrdersServiceImpl implements OrdersService {
     private final OrdersDao ordersDao;
 
     @Override
-    public List<Orders> getAllOrdersProducts() { return ordersDao.getAllOrdersProducts() ;
-    }
-
+    public List<Orders> getAllOrdersProducts() { return ordersDao.getAllOrdersProducts() ; }
     @Override
     public List<Orders> getSearchOrders(Map<String, Object> data) { return ordersDao.getAllOrdersProducts(); }
-
     @Override
     public List<Selling> getSellingsByOrdersId(int ordersId) { return ordersDao.findSellingsByOrdersId(ordersId); }
-
     // 전체 주문 목록 환불 ServiceImpl
     @Override
     public boolean refundAll(int ordersId) { return ordersDao.refundAll(ordersId); }
-
-    @Override
-    public boolean refundAllCancel(int ordersId3) { return ordersDao.refundAllCancel(ordersId3); }
-
     @Override
     public boolean partialRefund(int ordersId, int productId) { return ordersDao.partialRefund(ordersId,productId); }
+    @Override
+    public boolean refundAllCancel(int ordersId3) { return ordersDao.refundAllCancel(ordersId3); }
+    @Override
+    public boolean partialRefundCancel(int ordersId4, int productId4) { return ordersDao.partialRefundCancel(ordersId4,productId4); }
 
-//    @ResponseBody
-//    @PostMapping("/refundAll")
-//    public ResponseEntity<?> fullRefund(@RequestParam int ordersId) {
-//        boolean result = ordersService.refundAll(ordersId);
-//
-//        Map<String, String> response = new HashMap<>();
-//        if (result) {
-//            response.put("message", "환불 처리가 완료되었습니다.");
-//            return ResponseEntity.ok(response);
-//        } else {
-//            response.put("message", "환불 처리에 실패하였습니다.");
-//            return ResponseEntity.badRequest().body(response);
-//        }
-//    }
+
 }
 
 

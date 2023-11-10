@@ -29,12 +29,10 @@ import java.util.Map;
 @RequestMapping("admin/order")
 @RequiredArgsConstructor
 public class OrdersController {
-
     private final OrdersService ordersService;
     private final CategoryService categoryService;
     private final HomeService homeService;
     private final PaymentService paymentService;
-
     /**
      * 결제 성공시 결과 화면
      */
@@ -44,7 +42,6 @@ public class OrdersController {
         model.addAttribute("currentOrderUid", lastOrderNumber);
         return "/payment/result"; // result.html 페이지 이름
     }
-
     /**
      * Order 기본 화면
      */
@@ -55,7 +52,6 @@ public class OrdersController {
         model.addAttribute("categoryList", categoryService.getAllCategory());
         return "admin/orders/orders";
     }
-
     /**
      * Ajax html 비동기 화면 반환
      */
@@ -65,7 +61,6 @@ public class OrdersController {
         model.addAttribute("ordersList", ordersService.getSearchOrders(data));
         return "admin/orders/ajax/ordersList";
     }
-
     @ResponseBody
     @PostMapping("/refundAll")
     public ResponseEntity<?> fullRefund(@RequestParam int ordersId) {
@@ -80,11 +75,11 @@ public class OrdersController {
             return ResponseEntity.badRequest().body(response);
         }
     }
-
     @ResponseBody
     @PostMapping("/refundAllCancel")
     public ResponseEntity<?> fullRefundCancel(@RequestParam int ordersId3) {
         boolean result = ordersService.refundAllCancel(ordersId3);
+        System.out.println("ordersId3 : " + ordersId3);
 
         Map<String, String> response = new HashMap<>();
         if (result) {
@@ -95,7 +90,6 @@ public class OrdersController {
             return ResponseEntity.badRequest().body(response);
         }
     }
-
     // AJAX를 통해 부분 환불 정보를 불러오는 엔드포인트
     @GetMapping("/getPartialRefundDetails")
     public String getPartialRefundDetails(@RequestParam("ordersId") int ordersId, Model model) {
@@ -106,7 +100,6 @@ public class OrdersController {
         // "partialRefundDetails"는 src/main/resources/templates/admin/order 디렉터리 내에 있는 .html 파일의 이름입니다.
         return "admin/orders/partialRefundDetails";
     }
-
     // 부분환불 처리 코드
     @ResponseBody
     @PostMapping("/partialRefund")
@@ -122,6 +115,24 @@ public class OrdersController {
             return ResponseEntity.ok(response);
         } else {
             response.put("message", "환불 처리에 실패하였습니다.");
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+    // 부분환불 취소 처리 코드
+    @ResponseBody
+    @PostMapping("/partialRefundCancel")
+    public ResponseEntity<?> partialRefundCancel(@RequestParam int ordersId4, @RequestParam int productId4) {
+        boolean result = ordersService.partialRefundCancel(ordersId4, productId4);
+        System.out.println("ordersId4 : " + ordersId4);
+
+        System.out.println("productId4 : " + productId4);
+
+        Map<String, String> response = new HashMap<>();
+        if (result) {
+            response.put("message", "부분 환불 처리가 완료되었습니다.");
+            return ResponseEntity.ok(response);
+        } else {
+            response.put("message", "부분 환불 처리에 실패하였습니다.");
             return ResponseEntity.badRequest().body(response);
         }
     }
