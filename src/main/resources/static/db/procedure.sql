@@ -4,10 +4,11 @@
 DROP PROCEDURE AddOrResetCategory;
 DROP PROCEDURE AddOrCountCart;
 DROP PROCEDURE AddSellingAndClearCart;
-# DROP PROCEDURE ProcessSpecificRefund;
 DROP PROCEDURE ProcessSpecificOrFullRefund;
 DROP PROCEDURE ProcessSpecificOrFullRefund2;
 DROP PROCEDURE ProcessRefundCancellation;
+DROP PROCEDURE ProcessSpecificOrFullRefund3;
+
 # 프로시저 생성
 -- 카테고리 등록 이전에 삭제했던 카테고리면 등록 X, 아니면 새로 등록
 CREATE PROCEDURE AddOrResetCategory(IN param_name VARCHAR(20))
@@ -146,6 +147,23 @@ BEGIN
     END IF;
 END;
 
+CREATE PROCEDURE ProcessSpecificOrFullRefund3(IN input_orders_id INT)
+BEGIN
+    DECLARE not_refunded INT DEFAULT 0;
+
+    -- Selling 테이블에서 해당 orders_id에 대해 아직 환불되지 않은 (check_selling = FALSE) 상품의 수를 확인
+    SELECT COUNT(*) INTO not_refunded
+    FROM Selling
+    WHERE orders_id = input_orders_id AND check_selling = FALSE;
+
+    -- 환불되지 않은 상품이 없으면 (모든 상품이 환불된 상태면) Orders 테이블의 check_orders를 TRUE로 업데이트
+    IF not_refunded = 0 THEN
+        UPDATE Orders
+        SET check_orders = TRUE
+        WHERE orders_id = input_orders_id;
+    END IF;
+END;
+
 DELIMITER ;
 
 CREATE PROCEDURE AddProductAndAddInventory(IN category_id INT, IN product_name VARCHAR(255),
@@ -202,7 +220,3 @@ BEGIN
         END IF;
     END IF;
 END;
-
-select * from orders;
-select * from selling;
-select * from inventory;
