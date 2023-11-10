@@ -3,7 +3,6 @@ package com.da.ojtproject.admin.dao;
 import com.da.ojtproject.inventory.domain.Inventory;
 import com.da.ojtproject.orders.domain.Orders;
 import com.da.ojtproject.product.domain.Product;
-import com.da.ojtproject.selling.dao.SellingRowMapper;
 import com.da.ojtproject.selling.domain.Selling;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -72,6 +71,9 @@ public class AdminDao {
         });
     }
 
+    /**
+     * 판매 정보
+     */
     public List<Selling> getSellingInfo() {
         String sql = "SELECT " +
                 "product.name, " +
@@ -98,6 +100,9 @@ public class AdminDao {
         });
     }
 
+    /**
+     * 금일 판매정보
+     */
     public List<Orders> getTodayOrders() {
         String sql = "SELECT " +
                 "orders.orders_id, " +
@@ -124,6 +129,9 @@ public class AdminDao {
         });
     }
 
+    /**
+     * 금일 매출
+     */
     public Integer getTodayTotalPrice() {
         String sql = "SELECT " +
                 "SUM(selling.total_price) AS total_price " +
@@ -138,6 +146,10 @@ public class AdminDao {
         });
     }
 
+    /**
+     * 금일 주문건
+     * @return
+     */
     public Integer getOrderCount() {
         String sql = "SELECT count(*) AS count FROM orders " +
                 "WHERE DATE (register_date) = '" + format + "' " +
@@ -148,6 +160,10 @@ public class AdminDao {
         });
     }
 
+    /**
+     * 재고 알림
+     * @return
+     */
     public List<Product> getLowQuantity() {
         String sql = "SELECT " +
                 "name, " +
@@ -169,6 +185,10 @@ public class AdminDao {
         });
     }
 
+    /**
+     * 날짜별 판매정보
+     * @return
+     */
     public List<Selling> getSellingDay() {
         String sql = "SELECT " +
                 "DATE(selling.register_date) AS register_date, " +
@@ -179,10 +199,10 @@ public class AdminDao {
                 "ON selling.orders_id = orders.orders_id " +
                 "WHERE selling.check_selling = TRUE " +
                 "AND orders.check_orders = TRUE " +
-                "AND DATE(orders.register_date) BETWEEN  '" +oneWeekAgo+ "' AND '" + format + "' " +
+                "AND DATE(orders.register_date) BETWEEN  '" + oneWeekAgo + "' AND '" + format + "' " +
                 "GROUP BY register_date " +
                 "ORDER BY register_date ";
-        return tmeTemplate.query(sql,(rs, rowNum) -> {
+        return tmeTemplate.query(sql, (rs, rowNum) -> {
             Selling selling = new Selling();
             selling.setRegisterDate(rs.getTimestamp("register_date"));
             selling.setQuantity(rs.getInt("quantity"));

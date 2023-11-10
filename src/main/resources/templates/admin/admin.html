@@ -185,7 +185,7 @@
         var data = google.visualization.arrayToDataTable([
             ['date', 'totalPrice', 'totalPrice'],
             /*[# th:each="sellingDay : ${sellingDay}"]*/
-            [`[(${#dates.format(sellingDay.registerDate,'yyyy.MM.dd')})]`, [(${sellingDay.totalPrice})], [(${sellingDay.totalPrice})]],
+            [`[(${#dates.format(sellingDay.registerDate, 'yyyy.MM.dd')})]`, [(${sellingDay.totalPrice})], [(${sellingDay.totalPrice})]],
             /*[/]*/
         ]);
 
@@ -214,7 +214,7 @@
         var data = google.visualization.arrayToDataTable([
             ['date', 'quantity', 'line'],
             /*[# th:each="sellingDay : ${sellingDay}"]*/
-            [`[(${#dates.format(sellingDay.registerDate,'yyyy.MM.dd')})]`, [(${sellingDay.quantity})], [(${sellingDay.quantity})]],
+            [`[(${#dates.format(sellingDay.registerDate, 'yyyy.MM.dd')})]`, [(${sellingDay.quantity})], [(${sellingDay.quantity})]],
             /*[/]*/
         ]);
 
