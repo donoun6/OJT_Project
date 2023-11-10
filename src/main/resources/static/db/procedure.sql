@@ -220,3 +220,7 @@ BEGIN
         END IF;
     END IF;
 END;
+
+select * from orders;
+select * from selling;
+select * from inventory;

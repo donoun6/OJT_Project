@@ -1,0 +1,271 @@
+/* receiving section area */
+h1 {
+    position: absolute;
+    left: 5%;
+    top: 5%;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+button {
+    cursor: pointer;
+}
+
+.date-picker-wrap {
+    position: absolute;
+    top: 7%;
+    right: 5%;
+}
+
+/* receiving list area */
+.receiving-list-wrap {
+    position: absolute;
+    top: 11%;
+    width: 100%;
+    height: 89%;
+    border-top: 2px solid #333333;
+}
+
+.receiving-list-wrap .receiving-save {
+    position: absolute;
+    left: 5%;
+    top: 1.5%;
+}
+
+.receiving-list-wrap .search-bar {
+    position: absolute;
+    right: 5%;
+    top: 2%;
+}
+
+.receiving-list-wrap .search-bar input {
+    width: 150px;
+}
+
+.receiving-list-wrap .search-bar .search-img {
+    position: absolute;
+    right: 2%;
+    top: 2%;
+}
+
+.receiving-list-layout {
+    position: relative;
+    margin-top: 3%;
+    margin-left: 5%;
+    width: 90%;
+    height: 80%;
+    overflow: scroll;
+}
+
+/* table area */
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+}
+
+th, td {
+    padding: 6px 15px;
+}
+
+th {
+    background: #42444e;
+    color: #fff;
+    text-align: center;
+}
+
+tr:first-child th:first-child {
+    border-top-left-radius: 6px;
+}
+
+tr:first-child th:last-child {
+    border-top-right-radius: 6px;
+}
+
+td {
+    border-right: 1px solid #c6c9cc;
+    border-bottom: 1px solid #c6c9cc;
+}
+
+td:first-child {
+    border-left: 1px solid #c6c9cc;
+}
+
+tr:nth-child(even) td {
+    background: #eaeaed;
+}
+
+tr:last-child td:first-child {
+    border-bottom-left-radius: 6px;
+}
+
+tr:last-child td:last-child {
+    border-bottom-right-radius: 6px;
+}
+
+.section1 th, .section1 td {
+    padding: 6px 10px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.section1 th {
+    position: sticky;
+    top: 0;
+    border: 1px solid rgb(86, 88, 100);
+    background: #42444e;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    height: 30px;
+}
+
+.section1 td img {
+    width: 30px;
+    height: 30px;
+}
+
+.section1 .page-nav {
+    margin-top: 3%;
+    text-align: center;
+    width: 100%;
+    height: 10%;
+}
+
+.section1 th .asc {
+    position: absolute;
+    bottom: 6%;
+    right: 5%;
+    cursor: pointer;
+    height: 50%;
+    transition: .3s;
+}
+
+.section1 th .asc:hover {
+    color: #2e6da4;
+}
+
+.section1 th .desc {
+    position: absolute;
+    top: 12%;
+    right: 5%;
+    cursor: pointer;
+    height: 50%;
+}
+
+/* receiving save form wrap area*/
+.receiving-save-form-wrap {
+    display: none;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    backdrop-filter: blur(4px);
+    z-index: 2;
+}
+
+.receiving-save-form-wrap .receiving-save-form, .receiving-save-form2 {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 20%;
+    height: 80%;
+    background: #F3F1F5;
+    box-shadow: 0 7px 30px rgb(0 0 0 / 40%);
+    border-radius: 20px;
+}
+
+.receiving-save-form2 {
+    display: none;
+}
+
+.receiving-save-form-wrap .receiving-save-form span, .receiving-save-form-wrap .receiving-save-form2 span {
+    font-size: 18px;
+}
+
+.receiving-save-form-wrap .receiving-save-form select {
+    width: 130px;
+    margin-top: 20px;
+}
+
+.receiving-save-form-wrap .receiving-save-form .product-list-wrap {
+    margin-top: 20px;
+    height: 60%;
+    overflow: scroll;
+    width: 250px;
+}
+
+.receiving-save-form-wrap .receiving-save-form .product-list-wrap table {
+    text-align: center;
+    border-top: 1px solid #c6c9cc;
+    border-bottom: 1px solid #c6c9cc;
+}
+
+.receiving-save-form-wrap .receiving-save-form .product-list-wrap table th {
+    text-align: center;
+    position: sticky;
+    top: 0;
+}
+
+.receiving-save-form-wrap .receiving-save-form .product-list-wrap table td {
+    vertical-align: middle;
+}
+
+.receiving-save-form-wrap .receiving-save-form .category-select-btn {
+    margin-top: 32px;
+}
+
+.receiving-save-form-wrap .receiving-save-form .category-select-btn button:first-child {
+    margin-right: 20px;
+}
+
+.receiving-save-form-wrap .receiving-save-form2 input {
+    margin-top: 20px;
+}
+
+.receiving-save-form-wrap .receiving-save-form textarea {
+    margin-top: 20px;
+}
+
+
+/* button hover */
+.section1 th .desc:hover {
+    color: #2e6da4;
+}
+
+.btn {
+    background: #939393;
+    border: none;
+    width: 60px;
+    height: 30px;
+    border-radius: 10px;
+    color: white;
+    transition: .2s;
+}
+
+.btn:hover {
+    background: #595959;
+    font-weight: bold;
+}
+
+.save-btn, .select-btn {
+    background: #a1a8be;
+}
+
+.save-btn:hover, .select-btn:hover {
+    background: #7f8ebb;
+}
+
+.receiving-cancel-btn, .select-cancel-btn {
+    background: #be9a9a;
+}
+
+.receiving-cancel-btn:hover, .select-cancel-btn:hover {
+    background: #aa6e6e;
+}
