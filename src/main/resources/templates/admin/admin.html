@@ -183,18 +183,22 @@
         // Some raw data (not necessarily accurate)
 
         var data = google.visualization.arrayToDataTable([
-            ['date', 'totalPrice', 'totalPrice'],
+            ['date', 'totalPrice', 'quantity', 'totalPrice', 'quantity'],
             /*[# th:each="sellingDay : ${sellingDay}"]*/
-            [`[(${#dates.format(sellingDay.registerDate, 'yyyy.MM.dd')})]`, [(${sellingDay.totalPrice})], [(${sellingDay.totalPrice})]],
+            [`[(${#dates.format(sellingDay.registerDate, 'yyyy.MM.dd')})]`, [(${sellingDay.totalPriceMinimal})], [(${sellingDay.quantity})],
+                [(${sellingDay.totalPriceMinimal})], [(${sellingDay.quantity})]],
             /*[/]*/
         ]);
 
         var options = {
-            title: '일일 매출',
-            vAxis: {title: 'price'},
+            title: 'daily',
+            vAxis: {title: 'price = 1 = 1,000'},
             hAxis: {title: 'day'},
             seriesType: 'bars',
-            series: {1: {type: 'line'}},
+            series: {
+                2: {type: 'line'},
+                3: {type: 'line'}
+            },
             backgroundColor: "F3F1F5",
             titleTextStyle: {
                 fontSize: 21,
@@ -212,23 +216,26 @@
         // Some raw data (not necessarily accurate)
 
         var data = google.visualization.arrayToDataTable([
-            ['date', 'quantity', 'line'],
+            ['date', 'totalPrice', 'line'],
             /*[# th:each="sellingDay : ${sellingDay}"]*/
-            [`[(${#dates.format(sellingDay.registerDate, 'yyyy.MM.dd')})]`, [(${sellingDay.quantity})], [(${sellingDay.quantity})]],
+            [`[(${#dates.format(sellingDay.registerDate, 'yyyy.MM.dd')})]`, [(${sellingDay.totalPrice})], [(${sellingDay.totalPrice})]],
             /*[/]*/
         ]);
 
         var options = {
-            title: '일일 제품 판매',
-            vAxis: {title: 'quantity'},
-            hAxis: {title: 'week'},
+            title: '매출',
+            vAxis: {title: 'Total price'},
+            hAxis: {title: 'date'},
             seriesType: 'bars',
-            series: {1: {type: 'line'}},
+            series: {
+                0: {color: '#a561bd'},
+                1: {type: 'line'},
+            },
             backgroundColor: "F3F1F5",
             titleTextStyle: {
                 fontSize: 21,
                 bold: true,
-            }
+            },
         };
 
         var chart = new google.visualization.ComboChart(document.getElementById('chart_div2'));

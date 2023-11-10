@@ -148,6 +148,7 @@ public class AdminDao {
 
     /**
      * 금일 주문건
+     *
      * @return
      */
     public Integer getOrderCount() {
@@ -162,6 +163,7 @@ public class AdminDao {
 
     /**
      * 재고 알림
+     *
      * @return
      */
     public List<Product> getLowQuantity() {
@@ -187,6 +189,7 @@ public class AdminDao {
 
     /**
      * 날짜별 판매정보
+     *
      * @return
      */
     public List<Selling> getSellingDay() {
@@ -207,6 +210,8 @@ public class AdminDao {
             selling.setRegisterDate(rs.getTimestamp("register_date"));
             selling.setQuantity(rs.getInt("quantity"));
             selling.setTotalPrice(rs.getInt("total_price"));
+            selling.setTotalPriceMinimal((double) selling.getTotalPrice() / 1000);
+            System.out.println(selling.getTotalPriceMinimal());
             return selling;
         });
     }
