@@ -73,7 +73,6 @@ $(document).ready(function () {
 
     $(".bundle-btn").click(function () {
         data.bundle = "Y";
-        console.log(data);
         sellingList(data, sellingListUrl);
     });
 

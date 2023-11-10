@@ -91,9 +91,6 @@ public class OrdersController {
     @PostMapping("/partialRefund")
     public ResponseEntity<?> partialRefund(@RequestParam int ordersId2, @RequestParam int productId2) {
         boolean result = ordersService.partialRefund(ordersId2, productId2);
-        System.out.println("ordersId2 : " + ordersId2);
-
-        System.out.println("productId2 : " + productId2);
 
         Map<String, String> response = new HashMap<>();
         if (result) {
@@ -109,9 +106,6 @@ public class OrdersController {
     @PostMapping("/partialRefundCancel")
     public ResponseEntity<?> partialRefundCancel(@RequestParam int ordersId4, @RequestParam int productId4) {
         boolean result = ordersService.partialRefundCancel(ordersId4, productId4);
-        System.out.println("ordersId4 : " + ordersId4);
-
-        System.out.println("productId4 : " + productId4);
 
         Map<String, String> response = new HashMap<>();
         if (result) {
@@ -129,7 +123,6 @@ public class OrdersController {
     @PostMapping("/refundAllCancel")
     public ResponseEntity<?> fullRefundCancel(@RequestParam int ordersId3) {
         boolean result = ordersService.refundAllCancel(ordersId3);
-        System.out.println("ordersId3 : " + ordersId3);
 
         Map<String, String> response = new HashMap<>();
         if (result) {

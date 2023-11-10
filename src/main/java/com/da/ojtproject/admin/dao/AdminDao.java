@@ -211,7 +211,6 @@ public class AdminDao {
             selling.setQuantity(rs.getInt("quantity"));
             selling.setTotalPrice(rs.getInt("total_price"));
             selling.setTotalPriceMinimal((double) selling.getTotalPrice() / 1000);
-            System.out.println(selling.getTotalPriceMinimal());
             return selling;
         });
     }

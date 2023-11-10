@@ -196,7 +196,6 @@
                 orderList(); // 주문 목록을 새로고침합니다.
             },
             error: function (xhr, textStatus, errorThrown) {
-                console.log(xhr, textStatus, errorThrown);
                 alert('전체 환불 처리가 실패하였습니다.');
             }
         });
@@ -215,7 +214,6 @@
                 window.location.reload();
             },
             error: function (xhr, textStatus, errorThrown) {
-                console.log(xhr, textStatus, errorThrown);
                 alert('전체 환불 취소처리를 실패하였습니다.');
             }
         });
@@ -239,7 +237,6 @@
                 fetchPartialRefundDetails(ordersId2);
             },
             error: function (xhr, textStatus, errorThrown) {
-                console.log(xhr, textStatus, errorThrown);
                 alert('환불 처리가 실패하였습니다.');
             }
         });
@@ -260,7 +257,6 @@
                 fetchPartialRefundDetails(ordersId3);
             },
             error: function (xhr, textStatus, errorThrown) {
-                console.log(xhr, textStatus, errorThrown);
                 alert('환불 처리가 실패하였습니다.');
             }
         });
@@ -279,7 +275,6 @@
                 $('#partial-refund-modal').show();
             },
             error: function (error) {
-                console.error('Error fetching partial refund details:', error);
                 alert('부분 환불 정보를 불러오는데 실패하였습니다.');
             }
         });
