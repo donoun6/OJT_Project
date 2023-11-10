@@ -23,6 +23,11 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public List<Selling> getSellingInfo() {
+        return adminDao.getSellingInfo();
+    }
+
+    @Override
     public List<Orders> getTodayOrders() {
         return adminDao.getTodayOrders();
     }

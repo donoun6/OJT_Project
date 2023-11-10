@@ -10,6 +10,8 @@ public interface AdminService {
 
     List<Selling> getSellingRank();
 
+    List<Selling> getSellingInfo();
+
     List<Orders> getTodayOrders();
 
     Integer getTodayTotalPrice();

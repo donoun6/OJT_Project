@@ -35,6 +35,7 @@ public class AdminController {
         model.addAttribute("orderCount", adminService.getOrderCount());
         model.addAttribute("date", format);
         model.addAttribute("lowQuantity", adminService.getLowQuantity());
+        model.addAttribute("sellingInfo", adminService.getSellingInfo());
         return "admin/admin";
     }
 }

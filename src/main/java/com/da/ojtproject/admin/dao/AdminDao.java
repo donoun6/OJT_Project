@@ -60,6 +60,31 @@ public class AdminDao {
         });
     }
 
+    public List<Selling> getSellingInfo() {
+        String sql = "SELECT " +
+                "product.name, " +
+                "SUM(selling.quantity) AS quantity " +
+                "FROM " +
+                "selling " +
+                "INNER JOIN " +
+                "product ON selling.product_id = product.product_id " +
+                "INNER JOIN " +
+                "orders ON selling.orders_id = orders.orders_id " +
+                "WHERE 1 = 1 " +
+                "AND product.check_product = TRUE " +
+                "AND orders.check_orders = TRUE " +
+                "GROUP BY " +
+                "product.name ";
+        return tmeTemplate.query(sql, (rs, rowNum) -> {
+            Product product = new Product();
+            Selling selling = new Selling();
+            product.setName(rs.getString("name"));
+            selling.setQuantity(rs.getInt("quantity"));
+            selling.setProduct(product);
+            return selling;
+        });
+    }
+
     public List<Orders> getTodayOrders() {
         String sql = "SELECT " +
                 "orders.orders_id, " +
@@ -100,7 +125,8 @@ public class AdminDao {
     }
 
     public Integer getOrderCount() {
-        String sql = "SELECT count(*) AS count FROM orders";
+        String sql = "SELECT count(*) AS count FROM orders " +
+                "WHERE DATE (register_date) = '" + format + "' ";
         return tmeTemplate.queryForObject(sql, (rs, rowNum) -> {
             Integer count = rs.getInt("count");
             return count;

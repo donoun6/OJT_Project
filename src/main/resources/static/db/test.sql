@@ -246,3 +246,5 @@ INNER JOIN inventory
 ON product.product_id = inventory.product_id
 where product.check_product =true
 AND inventory.quantity <= -1;
+
+SELECT * FROM selling
