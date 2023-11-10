@@ -13,12 +13,24 @@
 
         <!--  receiving_register_date : 결제일자 -->
         <td th:text="${#dates.format(ordersList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}"></td>
+        <!-- 환불 취소 버튼, isCheckOrders가 false일 때만 표시 -->
+        <td th:if="${!ordersList.isCheckOrders()}">
+            <button type="button"
+                    class="btn-refund-cancel"
+                    th:data-orders-id3="${ordersList.ordersId}">
+                환불취소
+            </button>
+        </td>
 
-        <!-- 전체환불 버튼 -->
-        <td><button type="button" class="btn-full-refund" th:data-orders-id="${ordersList.ordersId}">전체환불</button></td>
-        <!-- 부분환불 버튼 -->
+        <!-- 전체환불 버튼, isCheckOrders가 true일 때만 표시 -->
+        <td th:if="${ordersList.isCheckOrders()}">
+            <button type="button"
+                    class="btn-full-refund"
+                    th:data-orders-id="${ordersList.ordersId}">
+                전체환불
+            </button>
+        </td>
         <td><button type="button" class="btn-partial-refund" th:data-orders-id="${ordersList.ordersId}">부분환불</button></td>
-
     </tr>
 
 </th:block>

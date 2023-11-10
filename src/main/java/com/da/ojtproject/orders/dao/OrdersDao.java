@@ -25,6 +25,8 @@ public class OrdersDao {
     private SimpleJdbcCall AddProductAndAddInventory;
     private SimpleJdbcCall ProcessSpecificOrFullRefund;
 
+    private SimpleJdbcCall ProcessRefundCancellation;
+
     private SimpleJdbcCall ProcessSpecificOrFullRefund2;
 
     public OrdersDao(DataSource dataSource) {
@@ -35,6 +37,8 @@ public class OrdersDao {
                 .withProcedureName("ProcessSpecificOrFullRefund");
         this.ProcessSpecificOrFullRefund2 = new SimpleJdbcCall(template)
                 .withProcedureName("ProcessSpecificOrFullRefund2");
+        this.ProcessRefundCancellation = new SimpleJdbcCall(template)
+                .withProcedureName("ProcessRefundCancellation");
 
     }
     public List<Orders> getAllOrdersProducts() {
@@ -82,15 +86,29 @@ public class OrdersDao {
         return true;
     }
 
+    // 전체 환불 취소 함수
+    public boolean refundAllCancel(int ordersId3) {
+        SqlParameterSource inParams = new MapSqlParameterSource()
+                .addValue("input_orders_id", ordersId3)
+                .addValue("input_product_id", null); // 전체 환불 취소를 위해 product_id에 null값을 전달합니다.
+        ProcessRefundCancellation.execute(inParams);
+
+        // 결과 처리 로직이 필요합니다. 성공 여부에 따라 true 또는 false를 반환합니다.
+        return true;
+    }
+
     public boolean partialRefund(int ordersId, int productId) {
         SqlParameterSource inParams = new MapSqlParameterSource()
                 .addValue("input_orders_id", ordersId)
                 .addValue("input_product_id", productId);
         // 부분환불 프로시저를 우선 실행해보자.
         ProcessSpecificOrFullRefund.execute(inParams);
+        // 일부분만 부분환불만 진행해도 계속해서 그 다음 ProcessSpecificOrFullRefund2 프로시저를 불러온다.
+        // 과부하가 일어날 수 있지만 동시에 현재 내 실력으로는 이게 최상이다.
         // 그다음에 전체 환불 프로시저를 실행해본다.
         ProcessSpecificOrFullRefund2.execute(ordersId);
         // 부분환불 결과 처리 로직입니다. fullRefund와 마찬가지로 파라미터값을 inParams 값으로 넘겨줘야 합니다.
         return true;
     }
+
 }

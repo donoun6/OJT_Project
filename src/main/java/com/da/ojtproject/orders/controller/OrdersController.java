@@ -35,21 +35,6 @@ public class OrdersController {
     private final HomeService homeService;
     private final PaymentService paymentService;
 
-    @ResponseBody
-    @PostMapping("/refundAll")
-    public ResponseEntity<?> fullRefund(@RequestParam int ordersId) {
-        boolean result = ordersService.refundAll(ordersId);
-
-        Map<String, String> response = new HashMap<>();
-        if (result) {
-            response.put("message", "환불 처리가 완료되었습니다.");
-            return ResponseEntity.ok(response);
-        } else {
-            response.put("message", "환불 처리에 실패하였습니다.");
-            return ResponseEntity.badRequest().body(response);
-        }
-    }
-
     /**
      * 결제 성공시 결과 화면
      */
@@ -79,6 +64,36 @@ public class OrdersController {
         model.addAttribute("orders", new Orders());
         model.addAttribute("ordersList", ordersService.getSearchOrders(data));
         return "admin/orders/ajax/ordersList";
+    }
+
+    @ResponseBody
+    @PostMapping("/refundAll")
+    public ResponseEntity<?> fullRefund(@RequestParam int ordersId) {
+        boolean result = ordersService.refundAll(ordersId);
+
+        Map<String, String> response = new HashMap<>();
+        if (result) {
+            response.put("message", "환불 처리가 완료되었습니다.");
+            return ResponseEntity.ok(response);
+        } else {
+            response.put("message", "환불 처리에 실패하였습니다.");
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+
+    @ResponseBody
+    @PostMapping("/refundAllCancel")
+    public ResponseEntity<?> fullRefundCancel(@RequestParam int ordersId3) {
+        boolean result = ordersService.refundAllCancel(ordersId3);
+
+        Map<String, String> response = new HashMap<>();
+        if (result) {
+            response.put("message", "전체 환불 처리가 완료되었습니다.");
+            return ResponseEntity.ok(response);
+        } else {
+            response.put("message", "전체 환불 처리에 실패하였습니다.");
+            return ResponseEntity.badRequest().body(response);
+        }
     }
 
     // AJAX를 통해 부분 환불 정보를 불러오는 엔드포인트

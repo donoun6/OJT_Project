@@ -138,10 +138,8 @@
     $(document).ready(function () {
         // 기존의 전체 환불 버튼 이벤트 핸들러는 그대로 유지됩니다.
         $(document).on('click', '.btn-full-refund', function () {
-
             var ordersId = $(this).data('orders-id');
             allRefund(ordersId);
-
         });
 
         // 드디어 부분환불 기능을 시작합니다. 부분환불 기능 스크립트 코드도 여기서 작성해야 합니다. 파이팅!!
@@ -165,6 +163,13 @@
             var ordersId = $(this).data('orders-id');
             fetchPartialRefundDetails(ordersId);
         });
+
+        // 전체 환불 취소 기능
+        $(document).on('click', '.btn-refund-cancel', function () {
+            var ordersId3 = $(this).data('orders-id3');
+            allRefundCancel(ordersId3);
+        });
+
     });
 
     /**
@@ -204,6 +209,27 @@
             }
         });
     }
+    // 전체 환불 처리 취소함수
+    function allRefundCancel(ordersId3) {
+        $.ajax({
+            url: "/admin/order/refundAllCancel",
+            type: "POST",
+            data: {
+                ordersId3: ordersId3
+            },
+            dataType: "json",
+            success: function (data) {
+                alert(data.message);
+                // location.reload();
+                window.location.reload();
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log(xhr, textStatus, errorThrown);
+                alert('전체 환불 취소처리를 실패하였습니다.');
+            }
+        });
+    }
+
     // version 1
     // 부분환불을중 모든 품목을 환불했을때 전체리스트에서 환불상태가 환불성공으로 바뀌어야 한다.
     // 어떻게 구현하지?

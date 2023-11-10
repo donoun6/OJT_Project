@@ -12,8 +12,14 @@ public interface OrdersService {
      * 전체 Order list 반환
      */
     List<Orders> getAllOrdersProducts();
+
     List<Orders> getSearchOrders(Map<String, Object> data);
+
     List<Selling> getSellingsByOrdersId(int ordersId);
-    boolean refundAll(int ordersId);
+
     boolean partialRefund(int ordersId, int productId);
+
+    boolean refundAll(int ordersId);
+
+    boolean refundAllCancel(int ordersId3);
 }

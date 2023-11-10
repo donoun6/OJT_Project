@@ -38,6 +38,9 @@ public class OrdersServiceImpl implements OrdersService {
     public boolean refundAll(int ordersId) { return ordersDao.refundAll(ordersId); }
 
     @Override
+    public boolean refundAllCancel(int ordersId3) { return ordersDao.refundAllCancel(ordersId3); }
+
+    @Override
     public boolean partialRefund(int ordersId, int productId) { return ordersDao.partialRefund(ordersId,productId); }
 
 //    @ResponseBody

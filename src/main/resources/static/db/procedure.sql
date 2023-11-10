@@ -7,6 +7,7 @@ DROP PROCEDURE AddSellingAndClearCart;
 # DROP PROCEDURE ProcessSpecificRefund;
 DROP PROCEDURE ProcessSpecificOrFullRefund;
 DROP PROCEDURE ProcessSpecificOrFullRefund2;
+DROP PROCEDURE ProcessRefundCancellation;
 # 프로시저 생성
 -- 카테고리 등록 이전에 삭제했던 카테고리면 등록 X, 아니면 새로 등록
 CREATE PROCEDURE AddOrResetCategory(IN param_name VARCHAR(20))
@@ -127,7 +128,8 @@ BEGIN
     END IF;
 END;
 
-
+/* Selling 테이블의 check_selling을 조회하면서 Selling테이블의 orders_id가 모두 0이면 Orders테이블의
+   check_orders값을 0으로 바꿔놓는다. */
 CREATE PROCEDURE ProcessSpecificOrFullRefund2(IN input_orders_id INT)
 BEGIN
     DECLARE refundable INT DEFAULT 0;
@@ -143,9 +145,6 @@ BEGIN
         WHERE orders_id = input_orders_id;
     END IF;
 END;
-
-
-
 
 DELIMITER ;
 
@@ -164,19 +163,45 @@ BEGIN
     VALUES (@product_id, inventory_quantity);
 END;
 
+# 환불취소 기능입니다.
+CREATE PROCEDURE ProcessRefundCancellation(IN input_orders_id INT, IN input_product_id INT)
+BEGIN
+    DECLARE restockable INT DEFAULT 0;
 
+    IF input_product_id IS NOT NULL THEN
+        -- 개별 상품 환불 취소 로직
+        UPDATE Inventory i
+            JOIN Selling s ON i.product_id = s.product_id
+        SET i.quantity = i.quantity - s.quantity
+        WHERE s.orders_id = input_orders_id AND s.product_id = input_product_id AND s.check_selling = FALSE;
 
+        UPDATE Selling
+        SET check_selling = TRUE
+        WHERE orders_id = input_orders_id AND product_id = input_product_id AND check_selling = FALSE;
+    ELSE
+        -- 전체 주문 환불 취소 로직
+        UPDATE Inventory i
+            JOIN Selling s ON i.product_id = s.product_id
+        SET i.quantity = i.quantity - s.quantity
+        WHERE s.orders_id = input_orders_id AND s.check_selling = FALSE;
 
+        UPDATE Selling
+        SET check_selling = TRUE
+        WHERE orders_id = input_orders_id AND check_selling = FALSE;
 
+        -- Selling 테이블에서 해당 orders_id로 환불 취소 가능한 (check_selling = FALSE) 상품이 있는지 확인
+        SELECT COUNT(*) INTO restockable
+        FROM Selling
+        WHERE orders_id = input_orders_id AND check_selling = FALSE;
 
+        -- 환불 취소 가능한 상품이 없으면 Orders 테이블의 check_orders를 TRUE로 업데이트
+        IF restockable = 0 THEN
+            UPDATE Orders
+            SET check_orders = TRUE
+            WHERE orders_id = input_orders_id;
+        END IF;
+    END IF;
+END;
 
-
-CALL ProcessSpecificOrFullRefund(87654, 9);
-CALL ProcessSpecificOrFullRefund(87654, 6);
-CALL ProcessSpecificOrFullRefund(87654, null);
-CALL ProcessSpecificOrFullRefund(87660, 3);
-CALL ProcessSpecificOrFullRefund(87660, 7);
-CALL ProcessSpecificOrFullRefund2(87660);
-SELECT * FROM PRODUCT;
-SELECT * FROM Selling;
-SELECT * FROM Orders;
+select * from orders;
+select * from selling;
