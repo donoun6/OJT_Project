@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +30,15 @@ public class AdminDao {
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");   // yyyy-MM-dd HH:mm:ss
     String format = formatter.format(date);
 
+    /**
+     * 일주일전 날
+     */
+    LocalDate currentDate = LocalDate.now();
+    // 현재 날짜에서 7일을 빼기
+    LocalDate oneWeekAgoLocalDate = currentDate.minusDays(7);
+    // LocalDate를 Date로 변환
+    String oneWeekAgo = formatter.format(Date.from(oneWeekAgoLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+
     public List<Selling> getSellingRank() {
         String sql = "SELECT " +
                 "product.name, " +
@@ -44,6 +55,7 @@ public class AdminDao {
                 "orders ON selling.orders_id = orders.orders_id " +
                 "WHERE 1 = 1 " +
                 "AND product.check_product = TRUE " +
+                "AND selling.check_selling = TRUE " +
                 "GROUP BY " +
                 "product.name, product.sell_price, product.image " +
                 "ORDER BY quantity desc , total_price DESC " +
@@ -73,6 +85,7 @@ public class AdminDao {
                 "WHERE 1 = 1 " +
                 "AND product.check_product = TRUE " +
                 "AND orders.check_orders = TRUE " +
+                "AND selling.check_selling = TRUE " +
                 "GROUP BY " +
                 "product.name ";
         return tmeTemplate.query(sql, (rs, rowNum) -> {
@@ -95,6 +108,7 @@ public class AdminDao {
                 "INNER JOIN selling " +
                 "ON orders.orders_id = selling.orders_id " +
                 "where orders.check_orders = TRUE " +
+                "AND selling.check_selling = TRUE " +
                 "AND DATE (orders.register_date) = '" + format + "' " +
                 "GROUP BY orders.orders_id " +
                 "ORDER BY orders.register_date DESC ";
@@ -126,7 +140,8 @@ public class AdminDao {
 
     public Integer getOrderCount() {
         String sql = "SELECT count(*) AS count FROM orders " +
-                "WHERE DATE (register_date) = '" + format + "' ";
+                "WHERE DATE (register_date) = '" + format + "' " +
+                "AND check_orders = TRUE ";
         return tmeTemplate.queryForObject(sql, (rs, rowNum) -> {
             Integer count = rs.getInt("count");
             return count;
@@ -151,6 +166,28 @@ public class AdminDao {
             inventory.setQuantity(rs.getInt("quantity"));
             product.setInventory(inventory);
             return product;
+        });
+    }
+
+    public List<Selling> getSellingDay() {
+        String sql = "SELECT " +
+                "DATE(selling.register_date) AS register_date, " +
+                "SUM(selling.quantity) AS quantity, " +
+                "SUM(selling.total_price) AS total_price " +
+                "FROM selling " +
+                "INNER JOIN orders " +
+                "ON selling.orders_id = orders.orders_id " +
+                "WHERE selling.check_selling = TRUE " +
+                "AND orders.check_orders = TRUE " +
+                "AND DATE(orders.register_date) BETWEEN  '" +oneWeekAgo+ "' AND '" + format + "' " +
+                "GROUP BY register_date " +
+                "ORDER BY register_date ";
+        return tmeTemplate.query(sql,(rs, rowNum) -> {
+            Selling selling = new Selling();
+            selling.setRegisterDate(rs.getTimestamp("register_date"));
+            selling.setQuantity(rs.getInt("quantity"));
+            selling.setTotalPrice(rs.getInt("total_price"));
+            return selling;
         });
     }
 }

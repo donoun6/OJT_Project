@@ -19,4 +19,6 @@ public interface AdminService {
     Integer getOrderCount();
 
     List<Product> getLowQuantity();
+
+    List<Selling> getSellingDay();
 }

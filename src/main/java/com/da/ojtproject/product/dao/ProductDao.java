@@ -41,8 +41,8 @@ public class ProductDao {
                 "inventory.inventory_id, " +
                 "inventory.quantity, " +
                 "IFNULL(SUM(selling.selling_id), 0) AS selling_id, " +
-                "IFNULL(SUM(selling.quantity), 0) AS selling_quantity, " +
-                "IFNULL(SUM(selling.total_price), 0) AS total_price " +
+                "IFNULL(SUM(CASE WHEN selling.check_selling = true THEN selling.quantity ELSE 0 END), 0) AS selling_quantity, " +
+                "IFNULL(SUM(CASE WHEN selling.check_selling = true THEN selling.total_price ELSE 0 END), 0) AS total_price " +
                 "FROM product " +
                 "INNER JOIN category " +
                 "ON product.category_id = category.category_id " +
@@ -79,8 +79,8 @@ public class ProductDao {
                 "inventory.inventory_id, " +
                 "inventory.quantity, " +
                 "IFNULL(SUM(selling.selling_id), 0) AS selling_id, " +
-                "IFNULL(SUM(selling.quantity), 0) AS selling_quantity, " +
-                "IFNULL(SUM(selling.total_price), 0) AS total_price " +
+                "IFNULL(SUM(CASE WHEN selling.check_selling = true THEN selling.quantity ELSE 0 END), 0) AS selling_quantity, " +
+                "IFNULL(SUM(CASE WHEN selling.check_selling = true THEN selling.total_price ELSE 0 END), 0) AS total_price " +
                 "FROM product " +
                 "INNER JOIN category " +
                 "ON product.category_id = category.category_id " +

@@ -58,6 +58,8 @@ public class SellingDao {
                 "ON selling.orders_id = orders.orders_id " +
                 "WHERE 1 = 1 " +
                 "AND DATE(selling.register_date) = '" + format + "' " +
+                "AND selling.check_selling = true " +
+                "AND orders.check_orders = true " +
                 "ORDER BY selling.register_date DESC ";
         return template.query(sql, new SellingRowMapper());
     }
@@ -91,7 +93,9 @@ public class SellingDao {
                 "ON product.category_id = category.category_id " +
                 "INNER JOIN orders " +
                 "ON selling.orders_id = orders.orders_id " +
-                "WHERE 1= 1 ");
+                "WHERE 1= 1 " +
+                "AND orders.check_orders = true " +
+                "AND selling.check_selling = true ");
         /**
          * startDate : 시작 날짜
          * endDate : 종료 날짜
@@ -124,7 +128,6 @@ public class SellingDao {
      * 묶음 조회
      */
     public List<Selling> getSelectBundleSelling(Map<String, Object> data) {
-        System.out.println(data);
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT " +
                 "product.product_id, " +
@@ -144,7 +147,9 @@ public class SellingDao {
                 "ON product.category_id = category.category_id " +
                 "INNER JOIN orders " +
                 "ON selling.orders_id = orders.orders_id " +
-                "WHERE 1 = 1 ");
+                "WHERE 1 = 1 " +
+                "AND orders.check_orders = true " +
+                "AND selling.check_selling = true ");
         /**
          * startDate : 시작 날짜
          * endDate : 종료 날짜

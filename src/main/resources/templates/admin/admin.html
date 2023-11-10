@@ -78,8 +78,10 @@
         <section id="section2" class="section">
             <div class="order-selling-box">
                 <h1>주문현황</h1>
-                <h2 th:if="${todayTotalPrice} != 0" th:text="${date} + '&nbsp&nbsp&nbsp&nbsp&nbsp 주문 : ' + ${orderCount} + '건 &nbsp&nbsp&nbsp&nbsp&nbsp 매출 : ' + ${#numbers.formatInteger(todayTotalPrice, 3, 'COMMA') + '원'}"></h2>
-                <h2 th:if="${todayTotalPrice} == 0" th:text="${date} + '&nbsp&nbsp&nbsp&nbsp&nbsp 주문 : ' + ${orderCount} + '건 &nbsp&nbsp&nbsp&nbsp&nbsp 매출 : ' + ${todayTotalPrice + '원'}"></h2>
+                <h2 th:if="${todayTotalPrice} != 0"
+                    th:text="${date} + '&nbsp&nbsp&nbsp&nbsp&nbsp 주문 : ' + ${orderCount} + '건 &nbsp&nbsp&nbsp&nbsp&nbsp 매출 : ' + ${#numbers.formatInteger(todayTotalPrice, 3, 'COMMA') + '원'}"></h2>
+                <h2 th:if="${todayTotalPrice} == 0"
+                    th:text="${date} + '&nbsp&nbsp&nbsp&nbsp&nbsp 주문 : ' + ${orderCount} + '건 &nbsp&nbsp&nbsp&nbsp&nbsp 매출 : ' + ${todayTotalPrice + '원'}"></h2>
                 <table>
                     <thead>
                     <tr>
@@ -97,7 +99,8 @@
                             <td th:text="${todayOrderList.getOrdersId()}"></td>
                             <td th:text="${todayOrderList.getSelling().getQuantity()} + EA"></td>
                             <td th:text="${#dates.format(todayOrderList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}"></td>
-                            <td class="add-price" th:text="${#numbers.formatInteger(todayOrderList.getSelling().getTotalPrice(), 3, 'COMMA') + '원'}"></td>
+                            <td class="add-price"
+                                th:text="${#numbers.formatInteger(todayOrderList.getSelling().getTotalPrice(), 3, 'COMMA') + '원'}"></td>
                         </tr>
                     </th:block>
                     <tr style="background: #e3e3e3">
@@ -143,7 +146,7 @@
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
-        const da = /*[[${sellingInfo}]]*/;
+        const get = /*[[${sellingInfo}]]*/;
 
         var data = new google.visualization.DataTable();
 
@@ -152,8 +155,8 @@
 
         chart_data = [];
 
-        for(let i = 0; i < da.length; i++){
-            chart_data.push([da[i].product.name, da[i].quantity])
+        for (let i = 0; i < get.length; i++) {
+            chart_data.push([get[i].product.name, get[i].quantity])
         }
 
         data.addRows(chart_data);
@@ -162,7 +165,7 @@
             title: '상품 판매 점유율',
             backgroundColor: "F3F1F5",
             fontSize: 16,
-            chartArea:{left:100,bottom:20, width:'100%',height:'80%'},
+            chartArea: {left: 100, bottom: 20, width: '100%', height: '80%'},
             titleTextStyle: {
                 fontSize: 24,
                 bold: true,
@@ -178,22 +181,25 @@
 
     function drawVisualization() {
         // Some raw data (not necessarily accurate)
+
         var data = google.visualization.arrayToDataTable([
-            ['Month', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
-            ['2004/05', 165, 938, 522, 998, 450, 614.6],
-            ['2005/06', 135, 1120, 599, 1268, 288, 682],
-            ['2006/07', 157, 1167, 587, 807, 397, 623],
-            ['2007/08', 139, 1110, 615, 968, 215, 609.4],
-            ['2008/09', 136, 691, 629, 1026, 366, 569.6]
+            ['date', 'totalPrice', 'totalPrice'],
+            /*[# th:each="sellingDay : ${sellingDay}"]*/
+            [`[(${#dates.format(sellingDay.registerDate,'yyyy.MM.dd')})]`, [(${sellingDay.totalPrice})], [(${sellingDay.totalPrice})]],
+            /*[/]*/
         ]);
 
         var options = {
-            title: 'Monthly sales',
+            title: '일일 매출',
             vAxis: {title: 'price'},
-            hAxis: {title: 'Month'},
+            hAxis: {title: 'day'},
             seriesType: 'bars',
-            series: {2: {type: 'line'}},
-            backgroundColor: "F3F1F5"
+            series: {1: {type: 'line'}},
+            backgroundColor: "F3F1F5",
+            titleTextStyle: {
+                fontSize: 21,
+                bold: true,
+            }
         };
 
         var chart = new google.visualization.ComboChart(document.getElementById('chart_div1'));
@@ -204,34 +210,31 @@
 
     function drawVisualization2() {
         // Some raw data (not necessarily accurate)
+
         var data = google.visualization.arrayToDataTable([
-            ['Month', 'Bolivia', 'Average'],
-            ['2004/05', 165, 56],
-            ['2004/05', 57, 100],
-            ['2004/05', 123, 32],
-            ['2004/05', 55, 78],
-            ['2004/05', 66, 66],
-            ['2004/05', 170, 150],
-            ['2004/05', 122, 100],
-            ['2004/05', 165, 100],
-            ['2005/06', 135, 42],
-            ['2006/07', 157, 57],
-            ['2007/08', 139, 200],
-            ['2008/09', 136, 150]
+            ['date', 'quantity', 'line'],
+            /*[# th:each="sellingDay : ${sellingDay}"]*/
+            [`[(${#dates.format(sellingDay.registerDate,'yyyy.MM.dd')})]`, [(${sellingDay.quantity})], [(${sellingDay.quantity})]],
+            /*[/]*/
         ]);
 
         var options = {
-            title: 'Weekly sales',
-            vAxis: {title: 'price'},
+            title: '일일 제품 판매',
+            vAxis: {title: 'quantity'},
             hAxis: {title: 'week'},
             seriesType: 'bars',
             series: {1: {type: 'line'}},
-            backgroundColor: "F3F1F5"
+            backgroundColor: "F3F1F5",
+            titleTextStyle: {
+                fontSize: 21,
+                bold: true,
+            }
         };
 
         var chart = new google.visualization.ComboChart(document.getElementById('chart_div2'));
         chart.draw(data, options);
     }
+
     /*]]>*/
 
     $(document).ready(function () {

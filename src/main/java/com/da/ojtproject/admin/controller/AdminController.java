@@ -11,7 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,6 +31,7 @@ public class AdminController {
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");   // yyyy-MM-dd HH:mm:ss
     String format = formatter.format(date);
 
+
     @GetMapping()
     public String adminPage(Model model) {
         model.addAttribute("sellingRankList", adminService.getSellingRank());
@@ -36,6 +41,7 @@ public class AdminController {
         model.addAttribute("date", format);
         model.addAttribute("lowQuantity", adminService.getLowQuantity());
         model.addAttribute("sellingInfo", adminService.getSellingInfo());
+        model.addAttribute("sellingDay", adminService.getSellingDay());
         return "admin/admin";
     }
 }

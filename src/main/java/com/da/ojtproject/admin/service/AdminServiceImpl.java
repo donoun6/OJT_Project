@@ -46,4 +46,9 @@ public class AdminServiceImpl implements AdminService {
     public List<Product> getLowQuantity() {
         return adminDao.getLowQuantity();
     }
+
+    @Override
+    public List<Selling> getSellingDay() {
+        return adminDao.getSellingDay();
+    }
 }

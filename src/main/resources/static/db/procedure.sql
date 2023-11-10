@@ -63,9 +63,10 @@ BEGIN
 END //
 DELIMITER ;
 
-
+call AddSellingAndClearCart;
 
 -- 결제 완료시 판매정보 넘기고 장바구니 비우기 V2
+# 주문 완료 - 데이터 입력시 사용
 CREATE PROCEDURE AddSellingAndClearCart()
 
 BEGIN
