@@ -2,6 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <!--  jQuery UI  -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <title>부분 환불 정보</title>
     <!-- 여기에 필요한 CSS와 JavaScript 파일을 포함하세요 -->
 </head>
@@ -34,16 +38,12 @@
                 <button th:if="${selling.checkSelling}"
                         th:data-orders-id2="${selling.ordersId}"
                         th:data-product-id2="${selling.productId}"
-                        class="btn btn-product-refund">
-                    환불
-                </button>
+                        class="btn btn-product-refund"> 환불 </button>
                 <!-- 환불 취소 버튼 -->
                 <button th:if="${!selling.checkSelling}"
                         th:data-orders-id3="${selling.ordersId}"
                         th:data-product-id4="${selling.productId}"
-                        class="btn btn-refund-cancel">
-                    취소
-                </button>
+                        class="btn btn-refund-cancel2"> 취소 </button>
             </td>
         </tr>
         </tbody>

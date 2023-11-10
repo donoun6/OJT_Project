@@ -101,3 +101,5 @@ CONSTRAINT Selling_orders_id_FK FOREIGN KEY (orders_id) REFERENCES Orders(orders
 # 테이블 수정
 ALTER TABLE Cart ADD product_name VARCHAR(20) NOT NULL;
 ALTER TABLE Cart ADD image VARCHAR(20);
+
+

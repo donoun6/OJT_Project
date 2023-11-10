@@ -75,21 +75,7 @@ public class OrdersController {
             return ResponseEntity.badRequest().body(response);
         }
     }
-    @ResponseBody
-    @PostMapping("/refundAllCancel")
-    public ResponseEntity<?> fullRefundCancel(@RequestParam int ordersId3) {
-        boolean result = ordersService.refundAllCancel(ordersId3);
-        System.out.println("ordersId3 : " + ordersId3);
 
-        Map<String, String> response = new HashMap<>();
-        if (result) {
-            response.put("message", "전체 환불 처리가 완료되었습니다.");
-            return ResponseEntity.ok(response);
-        } else {
-            response.put("message", "전체 환불 처리에 실패하였습니다.");
-            return ResponseEntity.badRequest().body(response);
-        }
-    }
     // AJAX를 통해 부분 환불 정보를 불러오는 엔드포인트
     @GetMapping("/getPartialRefundDetails")
     public String getPartialRefundDetails(@RequestParam("ordersId") int ordersId, Model model) {
@@ -133,6 +119,24 @@ public class OrdersController {
             return ResponseEntity.ok(response);
         } else {
             response.put("message", "부분 환불 처리에 실패하였습니다.");
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+
+
+    /* 여기서 자꾸 문제가 발생합니다. 원인이 뭔지 모르겠음...*/
+    @ResponseBody
+    @PostMapping("/refundAllCancel")
+    public ResponseEntity<?> fullRefundCancel(@RequestParam int ordersId3) {
+        boolean result = ordersService.refundAllCancel(ordersId3);
+        System.out.println("ordersId3 : " + ordersId3);
+
+        Map<String, String> response = new HashMap<>();
+        if (result) {
+            response.put("message", "전체 환불 처리가 완료되었습니다. - OrdersController");
+            return ResponseEntity.ok(response);
+        } else {
+            response.put("message", "전체 환불 처리에 실패하였습니다.");
             return ResponseEntity.badRequest().body(response);
         }
     }
