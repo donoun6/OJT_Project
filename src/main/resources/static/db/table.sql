@@ -84,7 +84,7 @@ CREATE TABLE Orders (
 orders_id               INT                 PRIMARY KEY AUTO_INCREMENT,
 check_orders            BOOLEAN             NOT NULL DEFAULT TRUE,
 register_date           TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP
-)AUTO_INCREMENT = 14736;
+)AUTO_INCREMENT = 55111;
 
 CREATE TABLE Selling (
 selling_id              INT                 PRIMARY KEY AUTO_INCREMENT,
