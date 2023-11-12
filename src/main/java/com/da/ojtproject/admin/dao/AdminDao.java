@@ -38,6 +38,9 @@ public class AdminDao {
     // LocalDate를 Date로 변환
     String oneWeekAgo = formatter.format(Date.from(oneWeekAgoLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
 
+    /**
+     * 판매 랭크
+     */
     public List<Selling> getSellingRank() {
         String sql = "SELECT " +
                 "product.name, " +

@@ -1,19 +1,12 @@
 package com.da.ojtproject.orders.controller;
 
-import com.da.ojtproject.cart.domain.Cart;
 import com.da.ojtproject.category.service.CategoryService;
 import com.da.ojtproject.home.service.HomeService;
-import com.da.ojtproject.inventory.domain.Inventory;
 import com.da.ojtproject.orders.domain.Orders;
 import com.da.ojtproject.orders.service.OrdersService;
 import com.da.ojtproject.payment.service.PaymentService;
-import com.da.ojtproject.product.domain.Product;
-import com.da.ojtproject.product.service.ProductService;
-import com.da.ojtproject.receiving.service.ReceivingService;
 import com.da.ojtproject.selling.domain.Selling;
-import com.da.ojtproject.selling.service.SellingService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

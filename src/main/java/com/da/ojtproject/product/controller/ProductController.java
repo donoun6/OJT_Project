@@ -23,7 +23,6 @@ public class ProductController {
 
     private final ProductService productService;
     private final CategoryService categoryService;
-//    private final ReceivingService receivingService;
     private static final String UPLOAD_DIR = "src/main/resources/static/img/";
 
     /**

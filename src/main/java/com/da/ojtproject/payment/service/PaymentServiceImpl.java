@@ -3,7 +3,6 @@ package com.da.ojtproject.payment.service;
 import com.da.ojtproject.payment.dao.PaymentDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor

@@ -1,11 +1,8 @@
 package com.da.ojtproject.orders.dao;
 
 import com.da.ojtproject.orders.domain.Orders;
-import com.da.ojtproject.product.dao.ProductListRowMapper;
 import com.da.ojtproject.product.domain.Product;
 import com.da.ojtproject.selling.domain.Selling;
-import lombok.RequiredArgsConstructor;
-import org.springframework.core.annotation.Order;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;

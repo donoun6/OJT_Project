@@ -14,7 +14,7 @@ public interface AdminService {
     List<Selling> getSellingRank();
 
     /**
-     * 판매정보
+     * 판매 정보
      */
     List<Selling> getSellingInfo();
 
@@ -40,7 +40,6 @@ public interface AdminService {
 
     /**
      * 날짜별 판매 정보
-     * @return
      */
     List<Selling> getSellingDay();
 }

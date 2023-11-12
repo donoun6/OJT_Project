@@ -1,7 +1,6 @@
 package com.da.ojtproject.orders.service;
 
 import com.da.ojtproject.orders.domain.Orders;
-import com.da.ojtproject.product.domain.Product;
 import com.da.ojtproject.selling.domain.Selling;
 
 import java.util.List;
