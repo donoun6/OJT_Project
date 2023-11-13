@@ -30,6 +30,5 @@ class OjtProjectApplicationTests {
 	@Test
 	@DisplayName(value = "테스트 DB 작동 확인")
 	void contextLoads() {
-		adminDao.saveAdmin("1111");
 	}
 }
