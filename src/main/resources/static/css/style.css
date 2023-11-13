@@ -159,7 +159,6 @@ main {
     width: 80%;
     height: 65%;
     background: bisque;
-    opacity: .3;
     box-shadow: 0 5px 30px rgba(0, 0, 0, 60%);
 }
 

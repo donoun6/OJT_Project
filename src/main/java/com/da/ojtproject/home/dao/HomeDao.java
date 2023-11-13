@@ -1,6 +1,5 @@
 package com.da.ojtproject.home.dao;
 
-import com.da.ojtproject.category.domain.Category;
 import com.da.ojtproject.home.domain.Home;
 import com.da.ojtproject.product.domain.Product;
 import org.springframework.jdbc.core.JdbcTemplate;

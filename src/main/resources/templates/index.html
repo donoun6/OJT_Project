@@ -217,7 +217,6 @@
                         url: '/payment/process/' + rsp.imp_uid
                     }).done(function (data) {
                         if (data) {
-                            /*alert("결제 성공");*/
                             window.location.href = '/admin/order/result?imp_uid=' + rsp.imp_uid;
                             $(".order-wrap ul").empty(); // 장바구니 목록을 화면에서 제거합니다.
                             loadProductsByCategory(selectedCategoryId);
