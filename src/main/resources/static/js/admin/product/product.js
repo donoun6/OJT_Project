@@ -302,12 +302,16 @@ $(function () {
                 url: '/api/category',
                 dataType: 'json',
                 contentType: 'application/json; charset=UTF-8',
-                success: function (data) {
-                    alert("카테고리가 등록 되었습니다.")
-                    $(".category-form-wrap").css("display", "none");
-                    $(".save-btn").trigger("click");
+                success: function (status, data) {
+                    if (status === 'BAD_REQUEST') {
+                        alert("카테고리 명을 입력하세요.");
+                    } else {
+                        alert("카테고리가 등록 되었습니다.");
+                        $(".category-form-wrap").css("display", "none");
+                        $(".save-btn").trigger("click");
+                    }
                 },
-                error: function (data) {
+                error: function (xhr, status, error) {
                     alert("잠시후 다시 시도해 주세요");
                 }
             });
@@ -354,6 +358,16 @@ $(function () {
                     alert("잠시후 다시 시도해 주세요");
                 }
             });
+        });
+
+        $(document).on("click", ".product-save-btn", function () {
+            if ($(".category").val() == null || $(".product-name").val() == null ||
+                $(".product-code").val() == null || $(".product-sellPrice").val() == null ||
+                $(".inventory-quantity").val() == null || $(".product-image").val() == "") {
+                alert("모든 입력란은 필수 사항입니다.")
+            } else {
+                $(".product-save-form").submit();
+            }
         });
 
         /**

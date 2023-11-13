@@ -7,6 +7,9 @@ import com.da.ojtproject.receiving.service.ReceivingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -40,7 +43,8 @@ public class ProductController {
      * product , inventory 등록
      */
     @PostMapping("/save")
-    public String productSave(@ModelAttribute Product product) throws IOException {
+    public String productSave(@ModelAttribute Product product, BindingResult bindingResult) throws IOException {
+
         MultipartFile imageFile = product.getImageFile();
 
         if (!imageFile.isEmpty()) {

@@ -285,8 +285,8 @@ WHERE selling.check_selling = TRUE
 GROUP BY register_date;
 
 
-CALL AddOrCountCart(1);
-call AddSellingAndClearCartTest('2023-11-10');
+CALL AddOrCountCart(2);
+call AddSellingAndClearCartTest('2023-11-13');
 
 drop procedure AddSellingAndClearCartTest
 

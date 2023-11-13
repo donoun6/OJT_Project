@@ -4,6 +4,7 @@ import com.da.ojtproject.category.domain.Category;
 import com.da.ojtproject.category.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +28,9 @@ public class CategoryApi {
      */
     @PostMapping("/api/category")
     public HttpStatus categorySave(@RequestBody Category category) {
+        if (category.getName() == null || category.getName().trim().isEmpty()) {
+            return HttpStatus.BAD_REQUEST;
+        }
         categoryService.addOrResetCategory(category);
         return HttpStatus.OK;
     }
