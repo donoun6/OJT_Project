@@ -52,7 +52,7 @@ public class CategoryDao {
     /**
      * 카테고리 삭제 처리
      */
-    public void deleteCateogory(int categoryId) {
+    public void deleteCategory(int categoryId) {
         String sql = "UPDATE Category set check_category = FALSE " +
                 "WHERE category_id = ?";
         template.update(sql, categoryId);
@@ -61,7 +61,7 @@ public class CategoryDao {
     /**
      * 카테고리 복구
      */
-    public void recoverCateogory(int categoryId) {
+    public void recoverCategory(int categoryId) {
         String sql = "UPDATE Category set check_category = TRUE " +
                 "WHERE category_id = ?";
         template.update(sql, categoryId);

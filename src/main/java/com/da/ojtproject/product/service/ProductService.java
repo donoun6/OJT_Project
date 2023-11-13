@@ -24,12 +24,12 @@ public interface ProductService {
     /**
      * 상품 삭제
      */
-    void DeleteProduct(int productId);
+    void deleteProduct(int productId);
 
     /**
      * 상품 복구
      */
-    void RecoverProdcut(int productId);
+    void recoverProduct(int productId);
 
     /**
      * 상품 정보 수정

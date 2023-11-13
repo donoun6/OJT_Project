@@ -18,7 +18,7 @@ public interface CategoryService {
     /**
      * 카테고리 삭제처리
      */
-    void deleteCateogory(int categoryId);
+    void deleteCategory(int categoryId);
 
     /**
      * 카테고리 복구

@@ -39,7 +39,7 @@ public class CategoryApi {
      */
     @DeleteMapping("/api/category/{categoryId}")
     public HttpStatus categoryDelete(@PathVariable int categoryId) {
-        categoryService.deleteCateogory(categoryId);
+        categoryService.deleteCategory(categoryId);
         return HttpStatus.OK;
     }
 

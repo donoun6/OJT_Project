@@ -2,7 +2,7 @@
 
 # 카테고리 등록
 INSERT INTO Category (name)
-VALUES ('커피'),('디저트'),('음료');
+VALUES ('커피'),('디저트'),('음료'),('스낵');
 
 # 물품 등록
 INSERT INTO Product (category_id, code, name, sell_price, image)

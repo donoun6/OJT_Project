@@ -85,14 +85,15 @@ public class ProductDao {
                 "LEFT JOIN inventory " +
                 "ON product.product_id = inventory.product_id " +
                 "LEFT JOIN selling " +
-                "ON product.product_id = selling.product_id ");
+                "ON product.product_id = selling.product_id " +
+                "WHERE 1 = 1 ");
         /**
          * categoryDeleteCheck : 카테고리 삭제 여부 출력
          */
         if (data.get("categoryDeleteCheck").equals("N")) {
-            sb.append("WHERE category.check_category = true ");
+            sb.append("AND category.check_category = true ");
         } else {
-            sb.append("WHERE product.check_product IS NOT NULL ");
+            sb.append("AND product.check_product IS NOT NULL ");
         }
         /**
          * deleteCheck : 상품 삭제 여부 출력
@@ -147,7 +148,7 @@ public class ProductDao {
     }
 
     /**
-     * 상품삭제
+     * 상품 삭제
      */
     public void deleteProduct(int productId) {
         String sql = "UPDATE Product SET check_product = FALSE " +
@@ -158,7 +159,7 @@ public class ProductDao {
     /**
      * 상품 복구
      */
-    public void recoverProdcut(int productId) {
+    public void recoverProduct(int productId) {
         String sql = "UPDATE Product SET check_product = TRUE " +
                 "WHERE product_id = ?";
         template.update(sql, productId);
