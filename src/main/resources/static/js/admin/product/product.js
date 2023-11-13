@@ -177,9 +177,13 @@ $(function () {
                 url: '/api/product',
                 dataType: 'json',
                 contentType: 'application/json; charset=UTF-8',
-                success: function (data) {
-                    // alert("수정이 완료되었습니다.")
-                    $(".select-search").trigger("click");
+                success: function (status, data) {
+                    if (status === 'BAD_REQUEST') {
+                        alert("올바른 정보를 입력하세요.")
+                    }else {
+                        alert("수정이 완료 되었습니다.")
+                        $(".select-search").trigger("click");
+                    }
                 },
                 error: function (data) {
                     alert("잠시후 다시 시도해 주세요");

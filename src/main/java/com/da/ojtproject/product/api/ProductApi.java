@@ -35,6 +35,10 @@ public class ProductApi {
      */
     @PatchMapping("/api/product")
     public HttpStatus productUpdate(@RequestBody Product product) {
+        if (product.getName() == null || product.getCode() == null ||
+                product.getCategoryId() == 0 || product.getSellPrice() == 0) {
+            return HttpStatus.BAD_REQUEST;
+        }
         productService.updateProduct(product);
         return HttpStatus.OK;
     }
