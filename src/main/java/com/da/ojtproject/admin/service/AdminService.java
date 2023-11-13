@@ -34,7 +34,7 @@ public interface AdminService {
     Integer getOrderCount();
 
     /**
-     * 재고알림
+     * 재고 알림
      */
     List<Product> getLowQuantity();
 

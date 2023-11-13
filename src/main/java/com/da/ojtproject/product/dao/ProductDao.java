@@ -58,8 +58,6 @@ public class ProductDao {
         return template.query(sql, new ProductListRowMapper());
     }
 
-    ;
-
     /**
      * 검색 조건에 맞는 product list 반환
      */
@@ -139,8 +137,6 @@ public class ProductDao {
         String sql = sb.toString();
         return template.query(sql, new ProductListRowMapper());
     }
-
-    ;
 
     /**
      * product 등록, 재고 수량 등록
