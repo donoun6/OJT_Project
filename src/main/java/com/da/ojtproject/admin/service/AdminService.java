@@ -14,7 +14,7 @@ public interface AdminService {
     List<Selling> getSellingRank();
 
     /**
-     * 판매정보
+     * 판매 정보
      */
     List<Selling> getSellingInfo();
 
@@ -34,13 +34,12 @@ public interface AdminService {
     Integer getOrderCount();
 
     /**
-     * 재고알림
+     * 재고 알림
      */
     List<Product> getLowQuantity();
 
     /**
      * 날짜별 판매 정보
-     * @return
      */
     List<Selling> getSellingDay();
 }

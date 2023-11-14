@@ -24,12 +24,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void deleteCateogory(int categoryId) {
-        categoryDao.deleteCateogory(categoryId);
+    public void deleteCategory(int categoryId) {
+        categoryDao.deleteCategory(categoryId);
     }
 
     @Override
     public void recoverCategory(int categoryId) {
-        categoryDao.recoverCateogory(categoryId);
+        categoryDao.recoverCategory(categoryId);
     }
 }

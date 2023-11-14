@@ -158,8 +158,6 @@ main {
     margin: 10%;
     width: 80%;
     height: 65%;
-    background: bisque;
-    opacity: .3;
     box-shadow: 0 5px 30px rgba(0, 0, 0, 60%);
 }
 
@@ -205,19 +203,6 @@ main {
     color: #F3F1F5;
 }
 
-#order-list-wrap .order-list h2:after {
-    content: '';
-    display: block;
-    position: absolute;
-    bottom: -50px;
-    left: 0;
-    width: 80%;
-    margin: 0 10%;
-    height: 2px;
-    background: #F3F1F5;
-    opacity: 0.6;
-}
-
 #order-list-wrap .order-list .order-wrap {
     position: relative;
     overflow: scroll;
@@ -251,7 +236,6 @@ main {
         width: 30%;
         height: 40%;
         background: bisque;
-        opacity: .3;
         box-shadow: 0 5px 30px rgba(0, 0, 0, 60%);
 }
 

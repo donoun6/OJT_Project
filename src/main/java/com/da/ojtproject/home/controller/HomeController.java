@@ -4,7 +4,6 @@ package com.da.ojtproject.home.controller;
 import com.da.ojtproject.category.domain.Category;
 import com.da.ojtproject.home.domain.Home;
 import com.da.ojtproject.home.service.HomeService;
-import com.da.ojtproject.payment.dao.PaymentDao;
 import com.da.ojtproject.product.domain.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Random;
 
 @Controller
 @RequiredArgsConstructor

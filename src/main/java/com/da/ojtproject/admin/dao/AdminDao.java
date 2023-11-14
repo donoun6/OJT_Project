@@ -38,6 +38,9 @@ public class AdminDao {
     // LocalDate를 Date로 변환
     String oneWeekAgo = formatter.format(Date.from(oneWeekAgoLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
 
+    /**
+     * 판매 랭크
+     */
     public List<Selling> getSellingRank() {
         String sql = "SELECT " +
                 "product.name, " +
@@ -148,8 +151,6 @@ public class AdminDao {
 
     /**
      * 금일 주문건
-     *
-     * @return
      */
     public Integer getOrderCount() {
         String sql = "SELECT count(*) AS count FROM orders " +
@@ -163,8 +164,6 @@ public class AdminDao {
 
     /**
      * 재고 알림
-     *
-     * @return
      */
     public List<Product> getLowQuantity() {
         String sql = "SELECT " +
@@ -189,8 +188,6 @@ public class AdminDao {
 
     /**
      * 날짜별 판매정보
-     *
-     * @return
      */
     public List<Selling> getSellingDay() {
         String sql = "SELECT " +

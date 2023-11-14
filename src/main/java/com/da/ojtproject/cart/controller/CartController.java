@@ -2,17 +2,14 @@ package com.da.ojtproject.cart.controller;
 
 import com.da.ojtproject.cart.domain.Cart;
 import com.da.ojtproject.cart.service.CartService;
-import com.da.ojtproject.home.domain.Home;
 import com.da.ojtproject.home.service.HomeService;
 import com.da.ojtproject.inventory.domain.Inventory;
 import com.da.ojtproject.inventory.service.InventoryService;
-import com.da.ojtproject.product.domain.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

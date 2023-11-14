@@ -1,9 +1,6 @@
 package com.da.ojtproject.cart.service;
 
 import com.da.ojtproject.cart.domain.Cart;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 

@@ -2,7 +2,7 @@
 
 # 카테고리 등록
 INSERT INTO Category (name)
-VALUES ('커피'),('디저트'),('음료');
+VALUES ('커피'),('디저트'),('음료'),('스낵');
 
 # 물품 등록
 INSERT INTO Product (category_id, code, name, sell_price, image)
@@ -22,19 +22,19 @@ VALUES (1,'AAA-0000-0001','아메리카노',2500,'/img/am.png')
 ,(3,'AAA-0000-0024','사이다',1500,'/img/hb.jpg')
 ,(3,'AAA-0000-0025','박카스',1000,'/img/it.jpg');
 
-
 # 재고 수량 등록
 INSERT INTO Inventory (product_id, quantity)
 VALUES (1,50),(2,24),(3,12),(4,34),(5,22),
 (6,12),(7,5),(8,0),(9,2),(10,32),
 (11,4),(12,12),(13,21),(14,18),(15,22);
 
-# 관리자 직접 등록
-INSERT INTO Admin (password)
-VALUES (1111);
-
 #입고 등록
 INSERT INTO Receiving (product_id, quantity, description)
 VALUES (1,50,'50개 입고'),(2,2,'소량 입고'),(1,8,''),(9,12,''),(15,82,'입고')
      ,(12,2,''),(12,5,'추가 입고'),(6,3,''),(11,15,''),(1,50,'50개 입고')
      ,(4,2,'');
+
+
+# 관리자 직접 등록
+INSERT INTO Admin (password)
+VALUES (1111);

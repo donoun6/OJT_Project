@@ -202,21 +202,4 @@ public class SellingDao {
             return selling;
         });
     }
-
-//    public List<Selling> getTotalSelling(Map<String, Object> data) {
-//        StringBuilder sb = new StringBuilder();
-//        sb.append("SELECT " +
-//                "SUM(selling.quantity) AS quantity, " +
-//                "SUM(selling.total_price) AS total_price " +
-//                "FROM " +
-//                "selling " +
-//                "INNER JOIN " +
-//                "product ON selling.product_id = product.product_id " +
-//                "INNER JOIN " +
-//                "category ON product.category_id = category.category_id " +
-//                "INNER JOIN " +
-//                "orders ON selling.orders_id = orders.orders_id " +
-//                "WHERE 1 = 1");
-//        template.query()
-//    }
 }

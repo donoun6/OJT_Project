@@ -17,7 +17,7 @@ public class ProductApi {
      */
     @DeleteMapping("/api/product/{productId}")
     public HttpStatus productDelete(@PathVariable int productId) {
-        productService.DeleteProduct(productId);
+        productService.deleteProduct(productId);
         return HttpStatus.OK;
     }
 
@@ -26,7 +26,7 @@ public class ProductApi {
      */
     @PutMapping("/api/product/{productId}")
     public HttpStatus productRecover(@PathVariable int productId) {
-        productService.RecoverProdcut(productId);
+        productService.recoverProduct(productId);
         return HttpStatus.OK;
     }
 
@@ -35,6 +35,10 @@ public class ProductApi {
      */
     @PatchMapping("/api/product")
     public HttpStatus productUpdate(@RequestBody Product product) {
+        if (product.getName() == null || product.getCode() == null ||
+                product.getCategoryId() == 0 || product.getSellPrice() == 0) {
+            return HttpStatus.BAD_REQUEST;
+        }
         productService.updateProduct(product);
         return HttpStatus.OK;
     }

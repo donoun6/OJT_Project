@@ -20,8 +20,8 @@ public class CategoryController {
      */
     @GetMapping("/save")
     public String categoryForm(Model model) {
-        model.addAttribute("cateogry", new Category());
-        return "category/ajax/cateogrySave";
+        model.addAttribute("category", new Category());
+        return "category/ajax/categorySave";
     }
 
 }

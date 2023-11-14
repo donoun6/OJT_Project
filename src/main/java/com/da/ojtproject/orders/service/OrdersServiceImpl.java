@@ -2,17 +2,11 @@ package com.da.ojtproject.orders.service;
 
 import com.da.ojtproject.orders.dao.OrdersDao;
 import com.da.ojtproject.orders.domain.Orders;
-import com.da.ojtproject.product.domain.Product;
 import com.da.ojtproject.selling.domain.Selling;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

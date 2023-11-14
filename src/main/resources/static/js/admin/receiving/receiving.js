@@ -200,16 +200,20 @@ $(document).ready(function () {
             url: url,
             dataType: 'json',
             contentType: 'application/json; charset=UTF-8',
-            success: function (data) {
-                alert("입고 완료");
-                $(".receiving-save-form-wrap").css("display", "none");
-                $(".receiving-save-form2").css("display", "none");
-                $(".receiving-save-form1").css("display", "flex");
-                $(".quantity").val(null);
-                $(".description").val(null);
-                $(".trigger-btn").trigger("click");
+            success: function (status, data) {
+                if (status === 'BAD_REQUEST') {
+                    alert("수량은 0보다 커야 합니다.");
+                } else {
+                    alert("입고 완료");
+                    $(".receiving-save-form-wrap").css("display", "none");
+                    $(".receiving-save-form2").css("display", "none");
+                    $(".receiving-save-form1").css("display", "flex");
+                    $(".quantity").val(null);
+                    $(".description").val(null);
+                    $(".trigger-btn").trigger("click");
+                }
             },
-            error: function (data) {
+            error: function (status, data) {
                 alert("잠시후 다시 시도해 주세요");
             }
         });

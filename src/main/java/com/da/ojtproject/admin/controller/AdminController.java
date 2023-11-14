@@ -17,16 +17,12 @@ public class AdminController {
 
     private final AdminService adminService;
 
-    /**
-     * 현재 날짜 yyyy-MM-dd 형태로 date format
-     */
-    Date date = new Date();
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");   // yyyy-MM-dd HH:mm:ss
-    String format = formatter.format(date);
-
-
     @GetMapping()
     public String adminPage(Model model) {
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");   // yyyy-MM-dd HH:mm:ss
+        String format = formatter.format(date);
+
         model.addAttribute("sellingRankList", adminService.getSellingRank());
         model.addAttribute("todayOrderList", adminService.getTodayOrders());
         model.addAttribute("todayTotalPrice", adminService.getTodayTotalPrice());

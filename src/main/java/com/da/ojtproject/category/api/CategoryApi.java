@@ -27,6 +27,9 @@ public class CategoryApi {
      */
     @PostMapping("/api/category")
     public HttpStatus categorySave(@RequestBody Category category) {
+        if (category.getName() == null || category.getName().trim().isEmpty()) {
+            return HttpStatus.BAD_REQUEST;
+        }
         categoryService.addOrResetCategory(category);
         return HttpStatus.OK;
     }
@@ -36,7 +39,7 @@ public class CategoryApi {
      */
     @DeleteMapping("/api/category/{categoryId}")
     public HttpStatus categoryDelete(@PathVariable int categoryId) {
-        categoryService.deleteCateogory(categoryId);
+        categoryService.deleteCategory(categoryId);
         return HttpStatus.OK;
     }
 

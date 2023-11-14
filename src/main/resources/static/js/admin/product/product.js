@@ -1,11 +1,10 @@
+/**
+ * 개선해야할 사항
+ * const로 url을 동적으로 구현
+ * Ajax 코드가 너무 많아 필요한 function을 만들고
+ * 파라미터 값을 받아 동적으로 적용
+ */
 $(function () {
-    /**
-     * 개선해야할 사항
-     * const로 url을 동적으로 구현
-     * Ajax 코드가 너무 많아 필요한 function을 만들고
-     * 파라미터 값을 받아 동적으로 적용
-     */
-
     /**
      * 문서 객체 모델(DOM)이 완전히 로드된 후 스크립트가 실행
      */
@@ -177,9 +176,13 @@ $(function () {
                 url: '/api/product',
                 dataType: 'json',
                 contentType: 'application/json; charset=UTF-8',
-                success: function (data) {
-                    // alert("수정이 완료되었습니다.")
-                    $(".select-search").trigger("click");
+                success: function (status, data) {
+                    if (status === 'BAD_REQUEST') {
+                        alert("올바른 정보를 입력하세요.")
+                    }else {
+                        alert("수정이 완료 되었습니다.")
+                        $(".select-search").trigger("click");
+                    }
                 },
                 error: function (data) {
                     alert("잠시후 다시 시도해 주세요");
@@ -302,12 +305,16 @@ $(function () {
                 url: '/api/category',
                 dataType: 'json',
                 contentType: 'application/json; charset=UTF-8',
-                success: function (data) {
-                    alert("카테고리가 등록 되었습니다.")
-                    $(".category-form-wrap").css("display", "none");
-                    $(".save-btn").trigger("click");
+                success: function (status, data) {
+                    if (status === 'BAD_REQUEST') {
+                        alert("카테고리 명을 입력하세요.");
+                    } else {
+                        alert("카테고리가 등록 되었습니다.");
+                        $(".category-form-wrap").css("display", "none");
+                        $(".save-btn").trigger("click");
+                    }
                 },
-                error: function (data) {
+                error: function (xhr, status, error) {
                     alert("잠시후 다시 시도해 주세요");
                 }
             });
@@ -354,6 +361,16 @@ $(function () {
                     alert("잠시후 다시 시도해 주세요");
                 }
             });
+        });
+
+        $(document).on("click", ".product-save-btn", function () {
+            if ($(".category").val() == null || $(".product-name").val() == null ||
+                $(".product-code").val() == null || $(".product-sellPrice").val() == null ||
+                $(".inventory-quantity").val() == null || $(".product-image").val() == "") {
+                alert("모든 입력란은 필수 사항입니다.")
+            } else {
+                $(".product-save-form").submit();
+            }
         });
 
         /**
