@@ -60,17 +60,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <th:block th:each="sellingRankList : ${sellingRankList}">
-                        <tr>
-                            <td th:text="${sellingRankListStat.count}"></td>
-                            <td style="text-align: center"><img style="width: 50px; height: 50px"
-                                                                th:src="@{${sellingRankList.getProduct().getImage()}}"
-                                                                class="gallery"></td>
-                            <td th:text="${sellingRankList.getProduct().getName()}"></td>
-                            <td th:text="${sellingRankList.getQuantity()} + EA"></td>
-                            <td th:text="${#numbers.formatInteger(sellingRankList.getTotalPrice(), 3, 'COMMA') + '원'}"></td>
-                        </tr>
-                    </th:block>
+                        <th:block th:replace="admin/main/rankAjax"></th:block>
                     </tbody>
                 </table>
             </div>
@@ -110,7 +100,7 @@
             </div>
         </section>
         <section id="section3" class="section">
-            <div id="piechart" style="width: 100%; height: 100%; position: absolute; margin-left: 15%;"></div>
+            <th:block th:replace="admin/main/chartAjax"></th:block>
         </section>
         <section id="section4" class="section">
             <div id="chart_div1" style="width: 100%; height: 50%; position: absolute; top: 0"></div>
@@ -141,39 +131,7 @@
 <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
     google.charts.load('current', {'packages': ['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
 
-    function drawChart() {
-        const get = /*[[${sellingInfo}]]*/;
-
-        var data = new google.visualization.DataTable();
-
-        data.addColumn('string', '상품명');
-        data.addColumn('number', '판매수');
-
-        chart_data = [];
-
-        for (let i = 0; i < get.length; i++) {
-            chart_data.push([get[i].product.name, get[i].quantity])
-        }
-
-        data.addRows(chart_data);
-
-        var options = {
-            title: '판매 점유율',
-            backgroundColor: "F3F1F5",
-            fontSize: 16,
-            chartArea: {left: 100, bottom: 20, width: '100%', height: '80%'},
-            titleTextStyle: {
-                fontSize: 24,
-                bold: true,
-            }
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-    }
 
     google.charts.setOnLoadCallback(drawVisualization);
 

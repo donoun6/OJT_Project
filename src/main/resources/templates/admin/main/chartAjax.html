@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div id="piechart" style="width: 100%; height: 100%; position: absolute; margin-left: 15%;"></div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+    google.charts.load('current', {'packages': ['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        const get = /*[[${sellingInfo}]]*/;
+
+        var data = new google.visualization.DataTable();
+
+        data.addColumn('string', '상품명');
+        data.addColumn('number', '판매수');
+
+        chart_data = [];
+
+        for (let i = 0; i < get.length; i++) {
+            chart_data.push([get[i].product.name, get[i].quantity])
+        }
+
+        data.addRows(chart_data);
+
+        var options = {
+            title: '판매 점유율',
+            backgroundColor: "F3F1F5",
+            fontSize: 16,
+            chartArea: {left: 100, bottom: 20, width: '100%', height: '80%'},
+            titleTextStyle: {
+                fontSize: 24,
+                bold: true,
+            }
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+    }
+
+    /*]]>*/
+</script>

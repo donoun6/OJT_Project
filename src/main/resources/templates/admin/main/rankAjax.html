@@ -1,0 +1,13 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:each="sellingRankList : ${sellingRankList}">
+    <tr>
+        <td th:text="${sellingRankListStat.count}"></td>
+        <td style="text-align: center"><img style="width: 40px; height: 40px"
+                                            th:src="@{${sellingRankList.getProduct().getImage()}}"
+                                            class="gallery"></td>
+        <td th:text="${sellingRankList.getProduct().getName()}"></td>
+        <td th:text="${sellingRankList.getQuantity()} + EA"></td>
+        <td th:text="${#numbers.formatInteger(sellingRankList.getTotalPrice(), 3, 'COMMA') + '원'}"></td>
+    </tr>
+</th:block>

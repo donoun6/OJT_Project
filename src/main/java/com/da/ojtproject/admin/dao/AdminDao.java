@@ -61,7 +61,7 @@ public class AdminDao {
                 "GROUP BY " +
                 "product.name, product.sell_price, product.image " +
                 "ORDER BY quantity desc , total_price DESC " +
-                "limit 10;";
+                "limit 5";
         return tmeTemplate.query(sql, (rs, rowNum) -> {
             Product product = new Product();
             Selling selling = new Selling();
