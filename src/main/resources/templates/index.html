@@ -32,8 +32,6 @@
 
         .delete-from-cart {
             cursor: pointer;
-            color: blue;
-            text-decoration: underline;
             margin-left: 5px;
         }
 
@@ -96,6 +94,25 @@
             color: red;
             font-weight: bold;
         }
+
+        .btn {
+            background: #939393;
+            border: none;
+            width: 130px;
+            height: 50px;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .btn-de, .btn-in {
+            cursor: pointer;
+            background: #F3F1F5;
+            color: #494949;
+            width: 50px;
+            font-weight: bold;
+            font-size: 30px;
+        }
+
     </style>
 </head>
 <body>
@@ -159,8 +176,14 @@
             <div class="order-button">
                 <h2>총금액: <span id="total-amount-display">0</span>원</h2>
                 <br>
-                <button id="payment">구매하기</button> <!-- 결제하기 버튼 생성 -->
-                <button id="delete-all-btn">모두비우기</button>
+                <button id="payment" class="btn"
+                        style="width: 200px; color: black; font-size: 24px; font-weight: bold; height: 70px; background: #a1a8be; color: white; border: none;">
+                    구매하기
+                </button> <!-- 결제하기 버튼 생성 -->
+                <button id="delete-all-btn" class="btn"
+                        style="width: 200px; color: black; font-size: 24px; font-weight: bold; height: 70px; background: #be9a9a; color: white; border: none;">
+                    모두비우기
+                </button>
             </div>
         </div>
         <!--  order list area  -->
@@ -208,7 +231,7 @@
                 name: '주문명:결제테스트',
                 amount: totalAmount,
                 buyer_name: currentOrderUid.toString(),
-                m_redirect_url : 'http://localhost:8080/',
+                m_redirect_url: 'http://localhost:8080/',
             }, function (rsp) {
                 if (rsp.success) {
                     $.ajax({
@@ -320,9 +343,9 @@
                         <div class="quantity-count">수량: ${orderItem.quantity || 0}</div>
                         <br>
                         <div class =" button-quantity">
-                        <button class="decrease-quantity" data-cart-id="${orderItem.cartId}">-</button>
-                        <button class="increase-quantity" data-cart-id="${orderItem.cartId}" data-product-id="${orderItem.productId}">+</button>
-                        <button class="delete-from-cart" data-cart-id="${orderItem.cartId}">삭제</button>
+                        <button class="decrease-quantity btn btn-de" data-cart-id="${orderItem.cartId}">-</button>
+                        <button class="delete-from-cart btn" data-cart-id="${orderItem.cartId}">삭제</button>
+                        <button class="increase-quantity btn btn-in" data-cart-id="${orderItem.cartId}" data-product-id="${orderItem.productId}">+</button>
                         </div>
                     </div>
                 </div>
@@ -369,7 +392,42 @@
     }
 </script>
 <script>
-    (function(){var w=window;if(w.ChannelIO){return w.console.error("ChannelIO script included twice.");}var ch=function(){ch.c(arguments);};ch.q=[];ch.c=function(args){ch.q.push(args);};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}if(document.readyState==="complete"){l();}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l);}})();
+    (function () {
+        var w = window;
+        if (w.ChannelIO) {
+            return w.console.error("ChannelIO script included twice.");
+        }
+        var ch = function () {
+            ch.c(arguments);
+        };
+        ch.q = [];
+        ch.c = function (args) {
+            ch.q.push(args);
+        };
+        w.ChannelIO = ch;
+
+        function l() {
+            if (w.ChannelIOInitialized) {
+                return;
+            }
+            w.ChannelIOInitialized = true;
+            var s = document.createElement("script");
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://cdn.channel.io/plugin/ch-plugin-web.js";
+            var x = document.getElementsByTagName("script")[0];
+            if (x.parentNode) {
+                x.parentNode.insertBefore(s, x);
+            }
+        }
+
+        if (document.readyState === "complete") {
+            l();
+        } else {
+            w.addEventListener("DOMContentLoaded", l);
+            w.addEventListener("load", l);
+        }
+    })();
 
     ChannelIO('boot', {
         "pluginKey": "0aebc2fb-3b78-4781-9239-cebfc891448c"
