@@ -285,22 +285,22 @@ WHERE selling.check_selling = TRUE
 GROUP BY register_date;
 
 
-CALL AddOrCountCart(12);
-call AddSellingAndClearCartTest('2023-11-08');
+CALL AddOrCountCart(8);
+call AddSellingAndClearCartTest(0);
 
-drop procedure AddSellingAndClearCartTest
+drop procedure AddSellingAndClearCartTest;
 
 # 주문 완료 - 데이터 입력시 사용
-CREATE PROCEDURE AddSellingAndClearCartTest(IN date DATE)
+CREATE PROCEDURE AddSellingAndClearCartTest(IN num INT)
 
 BEGIN
     INSERT INTO Orders (check_orders,register_date)
-    VALUES (TRUE,date);
+    VALUES (TRUE,DATE_SUB(NOW(), INTERVAL num DAY));
 
     SET @orders_id = NULL;
     SET @orders_registerDate = NULL;
 
-    SELECT orders_id, STR_TO_DATE(register_date, '%Y-%m-%d') INTO @orders_id, @orders_registerDate
+    SELECT orders_id, register_date INTO @orders_id, @orders_registerDate
     FROM Orders
     ORDER BY orders_id DESC
     LIMIT 1;
