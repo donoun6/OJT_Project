@@ -25,6 +25,11 @@ public interface AdminService {
     List<Selling> getSellingInfo();
 
     /**
+     * 판매 정보 기간 조회
+     */
+    List<Selling> getSellingInfoDate(Map<String, Object> data);
+
+    /**
      * 금일 주문
      */
     List<Orders> getTodayOrders();

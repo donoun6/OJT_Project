@@ -34,6 +34,11 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public List<Selling> getSellingInfoDate(Map<String, Object> data) {
+        return adminDao.getSellingInfoDate(data);
+    }
+
+    @Override
     public List<Orders> getTodayOrders() {
         return adminDao.getTodayOrders();
     }

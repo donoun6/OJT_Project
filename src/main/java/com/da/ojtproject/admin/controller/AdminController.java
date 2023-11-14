@@ -41,8 +41,18 @@ public class AdminController {
      */
     @GetMapping("/rank-list")
     public String rankList(Model model,
-                                @RequestParam(required = false) Map<String, Object> data) {
+                           @RequestParam(required = false) Map<String, Object> data) {
         model.addAttribute("sellingRankList", adminService.getSellingRankDate(data));
         return "admin/main/rankAjax";
+    }
+
+    /**
+     * chart list 출력 Ajax
+     */
+    @GetMapping("/chart-list")
+    public String chartList(Model model,
+                            @RequestParam(required = false) Map<String, Object> data) {
+        model.addAttribute("sellingInfo", adminService.getSellingInfoDate(data));
+        return "admin/main/chartAjax";
     }
 }

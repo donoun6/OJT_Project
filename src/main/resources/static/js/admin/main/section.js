@@ -8,13 +8,18 @@ $(function () {
         }
     });
 
-    $(document).ready(function (){
+    $(document).ready(function () {
 
-        $(".date-search").click(function (){
+        $(".date-search").click(function () {
             let data = {
-                startDate : $("#startDate").val(),
-                endDate : $("#endDate").val()
+                startDate: $("#startDate").val(),
+                endDate: $("#endDate").val()
             }
+            rankList(data);
+            chartList(data);
+        });
+
+        function rankList(data) {
             $.ajax({
                 async: true,
                 type: 'GET',
@@ -29,6 +34,24 @@ $(function () {
                     alert("잠시후 다시 시도해 주세요");
                 }
             });
-        });
+        }
+
+        function chartList(data) {
+            $.ajax({
+                async: true,
+                type: 'GET',
+                data: data,
+                url: "admin/chart-list",
+                dataType: 'html',
+                contentType: 'application/json; charset=UTF-8',
+                success: function (data) {
+                    $("#section3").html(data);
+                },
+                error: function (data) {
+                    alert("잠시후 다시 시도해 주세요");
+                }
+            });
+        }
+
     });
 });

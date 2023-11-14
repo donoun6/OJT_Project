@@ -96,19 +96,19 @@ public class AdminDao {
                 "WHERE 1 = 1 " +
                 "AND product.check_product = TRUE " +
                 "AND selling.check_selling = TRUE ");
-                /**
-                 * startDate : 시작 날짜
-                 * endDate : 종료 날짜
-                 * 범위 지정 검색
-                 */
-                if (!data.get("startDate").equals("") && !data.get("endDate").equals("")) {
-                    sb.append("AND DATE(orders.register_date) BETWEEN '" + data.get("startDate") + "' AND '" + data.get("endDate") + "'");
-                }
-                sb.append("GROUP BY " +
+        /**
+         * startDate : 시작 날짜
+         * endDate : 종료 날짜
+         * 범위 지정 검색
+         */
+        if (!data.get("startDate").equals("") && !data.get("endDate").equals("")) {
+            sb.append("AND DATE(orders.register_date) BETWEEN '" + data.get("startDate") + "' AND '" + data.get("endDate") + "'");
+        }
+        sb.append("GROUP BY " +
                 "product.name, product.sell_price, product.image " +
                 "ORDER BY quantity desc , total_price DESC " +
                 "limit 10");
-                String sql = sb.toString();
+        String sql = sb.toString();
         return tmeTemplate.query(sql, (rs, rowNum) -> {
             Product product = new Product();
             Selling selling = new Selling();
@@ -140,6 +140,45 @@ public class AdminDao {
                 "AND selling.check_selling = TRUE " +
                 "GROUP BY " +
                 "product.name ";
+        return tmeTemplate.query(sql, (rs, rowNum) -> {
+            Product product = new Product();
+            Selling selling = new Selling();
+            product.setName(rs.getString("name"));
+            selling.setQuantity(rs.getInt("quantity"));
+            selling.setProduct(product);
+            return selling;
+        });
+    }
+
+    /**
+     * 판매 정보 기간 조회
+     */
+    public List<Selling> getSellingInfoDate(Map<String, Object> data) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT " +
+                "product.name, " +
+                "SUM(selling.quantity) AS quantity " +
+                "FROM " +
+                "selling " +
+                "INNER JOIN " +
+                "product ON selling.product_id = product.product_id " +
+                "INNER JOIN " +
+                "orders ON selling.orders_id = orders.orders_id " +
+                "WHERE 1 = 1 " +
+                "AND product.check_product = TRUE " +
+                "AND orders.check_orders = TRUE " +
+                "AND selling.check_selling = TRUE ");
+        /**
+         * startDate : 시작 날짜
+         * endDate : 종료 날짜
+         * 범위 지정 검색
+         */
+        if (!data.get("startDate").equals("") && !data.get("endDate").equals("")) {
+            sb.append("AND DATE(orders.register_date) BETWEEN '" + data.get("startDate") + "' AND '" + data.get("endDate") + "'");
+        }
+        sb.append("GROUP BY " +
+                "product.name ");
+        String sql = sb.toString();
         return tmeTemplate.query(sql, (rs, rowNum) -> {
             Product product = new Product();
             Selling selling = new Selling();
