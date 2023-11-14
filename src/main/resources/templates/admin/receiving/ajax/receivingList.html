@@ -2,8 +2,8 @@
 
 <th:block th:each="receivingList : ${receivingList}">
     <tr class="product-hover">
-        <!--  index  -->
-        <td th:text="${receivingListStat.count}"></td>
+        <!--  receiving_id  -->
+        <td th:text="${receivingList.getReceivingId()}" style="text-align: center"></td>
         <!--  product_img  -->
         <td style="text-align: center"><img style="width: 30px; height: 30px"
                                             th:src="@{${receivingList.getProduct().getImage()}}" class="gallery"></td>
@@ -18,8 +18,6 @@
         <!--  product_delete_check  -->
         <td th:if="${receivingList.getProduct().isCheckProduct()} == false" } style="color: red;">Y</td>
         <td th:if="${receivingList.getProduct().isCheckProduct()} == true" }>N</td>
-        <!--  receiving_id  -->
-        <td th:text="${receivingList.getReceivingId()}" style="text-align: center"></td>
         <!--  receiving_quantity  -->
         <td th:if="${receivingList.getQuantity()} < 0" th:text="${receivingList.getQuantity()+ '개'}"
             style="color: red;"></td>

@@ -170,7 +170,7 @@ public class ProductDao {
      */
     public void updateProduct(Product product) {
         String sql = "UPDATE Product SET name = ?, code = ?, " +
-                "category_id = ?, sell_price = ? " +
+                "category_id = ?, sell_price = ?, register_date = NOW() " +
                 "WHERE product_id = ?";
         template.update(sql,
                 product.getName(),

@@ -24,9 +24,35 @@ VALUES (1,'AAA-0000-0001','아메리카노',2500,'/img/am.png')
 
 # 재고 수량 등록
 INSERT INTO Inventory (product_id, quantity)
-VALUES (1,50),(2,24),(3,12),(4,34),(5,22),
-(6,12),(7,5),(8,0),(9,2),(10,32),
-(11,4),(12,12),(13,21),(14,18),(15,22);
+VALUES (1,50);
+INSERT INTO Inventory (product_id, quantity)
+VALUES (2,24);
+INSERT INTO Inventory (product_id, quantity)
+VALUES (3,12);
+INSERT INTO Inventory (product_id, quantity)
+VALUES (4,34);
+INSERT INTO Inventory (product_id, quantity)
+VALUES (5,22);
+INSERT INTO Inventory (product_id, quantity)
+VALUES (6,12);
+INSERT INTO Inventory (product_id, quantity)
+VALUES (7,5);
+INSERT INTO Inventory (product_id, quantity)
+VALUES (8,0);
+INSERT INTO Inventory (product_id, quantity)
+VALUES (9,2);
+INSERT INTO Inventory (product_id, quantity)
+VALUES(10,32);
+INSERT INTO Inventory (product_id, quantity)
+VALUES (11,4);
+INSERT INTO Inventory (product_id, quantity)
+VALUES (12,12);
+INSERT INTO Inventory (product_id, quantity)
+VALUES (13,21);
+INSERT INTO Inventory (product_id, quantity)
+VALUES (14,18);
+INSERT INTO Inventory (product_id, quantity)
+VALUES (15,22);
 
 #입고 등록
 INSERT INTO Receiving (product_id, quantity, description)

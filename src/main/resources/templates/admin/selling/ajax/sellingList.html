@@ -2,8 +2,10 @@
 
 <th:block th:each="sellingList : ${sellingList}">
     <tr class="product-hover">
-        <!--  index  -->
-        <td th:text="${sellingListStat.count}"></td>
+        <!--  order_num  -->
+        <td th:if="${sellingList.getOrders().getOrdersId()} == 0" style="text-align: center">-</td>
+        <td th:if="${sellingList.getOrders().getOrdersId()} != 0"
+            th:text="${sellingList.getOrders().getOrdersId()}"  style="text-align: center"></td>
         <!--  product_img  -->
         <td style="text-align: center"><img style="width: 30px; height: 30px"
                                             th:src="@{${sellingList.getProduct().getImage()}}" class="gallery"></td>
@@ -16,10 +18,6 @@
         <!--  product_delete_check  -->
         <td th:if="${sellingList.getProduct().isCheckProduct()} == false" } style="color: red;">Y</td>
         <td th:if="${sellingList.getProduct().isCheckProduct()} == true" }>N</td>
-        <!--  order_num  -->
-        <td th:if="${sellingList.getOrders().getOrdersId()} == 0">-</td>
-        <td th:if="${sellingList.getOrders().getOrdersId()} != 0"
-            th:text="${sellingList.getOrders().getOrdersId()}"></td>
         <!--  sell_price  -->
         <td th:text="${#numbers.formatInteger(sellingList.getProduct().getSellPrice(), 3, 'COMMA') + '원'}" }></td>
         <!--  receiving_register_date  -->
@@ -34,7 +32,7 @@
     </tr>
 </th:block>
 <tr style="background: #e3e3e3;">
-    <td colspan="10" style="text-align: center; height: 30px"></td>
+    <td colspan="9" style="text-align: center; height: 30px"></td>
     <td class="total-quantity"></td>
     <td class="total-price"></td>
 </tr>

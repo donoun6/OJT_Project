@@ -85,7 +85,6 @@
                 <table>
                     <thead>
                     <tr>
-                        <th>no</th>
                         <th>주문번호</th>
                         <th>주문수량</th>
                         <th>주문일자</th>
@@ -95,7 +94,6 @@
                     <tbody>
                     <th:block th:each="todayOrderList : ${todayOrderList}">
                         <tr>
-                            <td th:text="${todayOrderListStat.count}"></td>
                             <td th:text="${todayOrderList.getOrdersId()}"></td>
                             <td th:text="${todayOrderList.getSelling().getQuantity()} + EA"></td>
                             <td th:text="${#dates.format(todayOrderList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}"></td>
@@ -104,7 +102,7 @@
                         </tr>
                     </th:block>
                     <tr style="background: #e3e3e3">
-                        <td colspan="4"></td>
+                        <td colspan="3"></td>
                         <td class="total-price"></td>
                     </tr>
                     </tbody>

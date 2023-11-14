@@ -59,7 +59,7 @@
     <div id="main-wrap">
         <!--    section1 area    -->
         <section class="section1">
-            <h1>Product</h1>
+            <h1>상품관리</h1>
             <div class="search-wrap">
                 <div class="search-box">
                     <table class="search-table">
@@ -74,7 +74,7 @@
                                     </th:block>
                                 </select>
                             </td>
-                            <th scope="row">상품 삭제</th>
+                            <th scope="row">상품 삭제여부</th>
                             <td>
                                 <input type="radio" id="product-include" class="product-delete-check"
                                        name="product-delete" value="N" checked>
@@ -90,23 +90,14 @@
                                 <input type="text" id="startDate" value="" placeholder=" 연-월-일" style="width: 100px;"> -
                                 <input type="text" id="endDate" value="" placeholder=" 연-월-일" style="width: 100px;">
                             </td>
-                            <th scope="row">카테고리 삭제</th>
+                            <th scope="row">카테고리 삭제여부</th>
                             <td>
-                                <input type="radio" id="cateogory-include" class="category-delete-check"
+                                <input type="radio" id="category-include" class="category-delete-check"
                                        name="category-delete" value="N" checked>
-                                <label for="cateogory-include">미포함</label>
-                                <input type="radio" id="cateogory-notInclude" class="category-delete-check"
+                                <label for="category-include">미포함</label>
+                                <input type="radio" id="category-notInclude" class="category-delete-check"
                                        name="category-delete" value="Y">
-                                <label for="cateogory-notInclude">포함</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">-</th>
-                            <td>
-                            </td>
-                            <th scope="row">-</th>
-                            <td>
-                                -
+                                <label for="category-notInclude">포함</label>
                             </td>
                         </tr>
                     </table>
@@ -166,7 +157,7 @@
                         <span id="total_price-asc" class="material-symbols-outlined asc order">expand_more</span>
                     </th>
                     <th style="width: 5%;">삭제</th>
-                    <th style="width: 13%;">등록일자
+                    <th style="width: 13%;">수정일자
                         <span id="product.register_date-desc"
                               class="material-symbols-outlined desc order">expand_less</span>
                         <span id="product.register_date-asc"
