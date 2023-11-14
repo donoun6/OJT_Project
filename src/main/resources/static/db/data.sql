@@ -2,7 +2,7 @@
 
 # 카테고리 등록
 INSERT INTO Category (name)
-VALUES ('커피'),('디저트'),('음료'),('스낵');
+VALUES ('커피'),('디저트'),('음료');
 
 # 물품 등록
 INSERT INTO Product (category_id, code, name, sell_price, image)
@@ -56,11 +56,57 @@ VALUES (15,22);
 
 #입고 등록
 INSERT INTO Receiving (product_id, quantity, description)
-VALUES (1,50,'50개 입고'),(2,2,'소량 입고'),(1,8,''),(9,12,''),(15,82,'입고')
-     ,(12,2,''),(12,5,'추가 입고'),(6,3,''),(11,15,''),(1,50,'50개 입고')
-     ,(4,2,'');
+VALUES (1,50,'50개 입고');
+INSERT INTO Receiving (product_id, quantity, description)
+VALUES (2,2,'소량 입고');
+INSERT INTO Receiving (product_id, quantity, description)
+VALUES (1,8,'');
+INSERT INTO Receiving (product_id, quantity, description)
+VALUES (9,12,'');
+INSERT INTO Receiving (product_id, quantity, description)
+VALUES (15,82,'입고');
+INSERT INTO Receiving (product_id, quantity, description)
+VALUES (12,2,'');
+INSERT INTO Receiving (product_id, quantity, description)
+VALUES (12,5,'추가 입고');
+INSERT INTO Receiving (product_id, quantity, description)
+VALUES (6,3,'');
+INSERT INTO Receiving (product_id, quantity, description)
+VALUES (11,15,'');
+INSERT INTO Receiving (product_id, quantity, description)
+VALUES (1, 50, '50개 입고');
+INSERT INTO Receiving (product_id, quantity, description)
+VALUES (4, 2, '');
 
+CALL AddOrCountCart(8);
+call AddSellingAndClearCartTest(0);
 
-# 관리자 직접 등록
-INSERT INTO Admin (password)
-VALUES (1111);
+# 판매정보 날짜별 넣기
+drop procedure AddSellingAndClearCartTest;
+
+# 주문 완료 - 데이터 입력시 사용
+CREATE PROCEDURE AddSellingAndClearCartTest(IN num INT)
+
+BEGIN
+    INSERT INTO Orders (check_orders,register_date)
+    VALUES (TRUE,DATE_SUB(NOW(), INTERVAL num DAY));
+
+    SET @orders_id = NULL;
+    SET @orders_registerDate = NULL;
+
+    SELECT orders_id, register_date INTO @orders_id, @orders_registerDate
+    FROM Orders
+    ORDER BY orders_id DESC
+    LIMIT 1;
+
+    INSERT INTO Selling (product_id, orders_id, quantity, total_price, register_date)
+    SELECT product_id, @orders_id, quantity, total_price, @orders_registerDate FROM Cart;
+
+    UPDATE Inventory
+        JOIN Selling ON Inventory.product_id = Selling.product_id
+    SET Inventory.quantity = Inventory.quantity - Selling.quantity
+    WHERE Selling.orders_id = @orders_id;
+
+    TRUNCATE TABLE Cart;
+
+END;

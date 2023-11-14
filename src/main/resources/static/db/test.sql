@@ -252,12 +252,13 @@ where product.check_product = true
 SELECT *
 FROM selling
 
-SELECT * FROM selling
-INNER join orders
-on selling.orders_id = orders.orders_id
+SELECT *
+FROM selling
+         INNER join orders
+                    on selling.orders_id = orders.orders_id
 WHERE 1 = 1
-AND selling.check_selling = TRUE
-AND orders.check_orders = TRUE;
+  AND selling.check_selling = TRUE
+  AND orders.check_orders = TRUE;
 
 SELECT MONTH(selling.register_date) AS month,
        selling.selling_id,
@@ -276,49 +277,17 @@ GROUP BY month, selling.selling_id, selling.quantity, selling.total_price,
 ORDER BY month, selling.register_date DESC;
 
 SELECT DATE(selling.register_date) AS register_date,
-       SUM(selling.quantity) AS quantity,
-       SUM(selling.total_price) AS total_price
+       SUM(selling.quantity)       AS quantity,
+       SUM(selling.total_price)    AS total_price
 FROM selling
          INNER JOIN orders ON selling.orders_id = orders.orders_id
 WHERE selling.check_selling = TRUE
   AND orders.check_orders = TRUE
 GROUP BY register_date;
 
-
-CALL AddOrCountCart(8);
-call AddSellingAndClearCartTest(0);
-
-drop procedure AddSellingAndClearCartTest;
-
-# 주문 완료 - 데이터 입력시 사용
-CREATE PROCEDURE AddSellingAndClearCartTest(IN num INT)
-
-BEGIN
-    INSERT INTO Orders (check_orders,register_date)
-    VALUES (TRUE,DATE_SUB(NOW(), INTERVAL num DAY));
-
-    SET @orders_id = NULL;
-    SET @orders_registerDate = NULL;
-
-    SELECT orders_id, register_date INTO @orders_id, @orders_registerDate
-    FROM Orders
-    ORDER BY orders_id DESC
-    LIMIT 1;
-
-    INSERT INTO Selling (product_id, orders_id, quantity, total_price, register_date)
-    SELECT product_id, @orders_id, quantity, total_price, @orders_registerDate FROM Cart;
-
-    UPDATE Inventory
-        JOIN Selling ON Inventory.product_id = Selling.product_id
-    SET Inventory.quantity = Inventory.quantity - Selling.quantity
-    WHERE Selling.orders_id = @orders_id;
-
-    TRUNCATE TABLE Cart;
-
-END;
-
-SELECT count(*) AS count FROM orders
-                WHERE DATE (register_date) = '2023-11-10'
-                AND check_orders = TRUE
+SELECT count(*) AS count
+FROM orders
+WHERE DATE(register_date) = '2023-11-10'
+  AND check_orders = TRUE
 
 
