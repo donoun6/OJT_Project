@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 @Transactional
@@ -61,7 +62,53 @@ public class AdminDao {
                 "GROUP BY " +
                 "product.name, product.sell_price, product.image " +
                 "ORDER BY quantity desc , total_price DESC " +
-                "limit 5";
+                "limit 10";
+        return tmeTemplate.query(sql, (rs, rowNum) -> {
+            Product product = new Product();
+            Selling selling = new Selling();
+            product.setName(rs.getString("name"));
+            product.setImage(rs.getString("image"));
+            selling.setQuantity(rs.getInt("quantity"));
+            selling.setTotalPrice(rs.getInt("total_price"));
+            selling.setProduct(product);
+            return selling;
+        });
+    }
+
+    /**
+     * 판매 랭크 기간 조회
+     */
+    public List<Selling> getSellingRankDate(Map<String, Object> data) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT " +
+                "product.name, " +
+                "product.image, " +
+                "SUM(selling.quantity) AS quantity, " +
+                "SUM(selling.total_price) AS total_price " +
+                "FROM " +
+                "selling " +
+                "INNER JOIN " +
+                "product ON selling.product_id = product.product_id " +
+                "INNER JOIN " +
+                "category ON product.category_id = category.category_id " +
+                "INNER JOIN " +
+                "orders ON selling.orders_id = orders.orders_id " +
+                "WHERE 1 = 1 " +
+                "AND product.check_product = TRUE " +
+                "AND selling.check_selling = TRUE ");
+                /**
+                 * startDate : 시작 날짜
+                 * endDate : 종료 날짜
+                 * 범위 지정 검색
+                 */
+                if (!data.get("startDate").equals("") && !data.get("endDate").equals("")) {
+                    sb.append("AND DATE(orders.register_date) BETWEEN '" + data.get("startDate") + "' AND '" + data.get("endDate") + "'");
+                }
+                sb.append("GROUP BY " +
+                "product.name, product.sell_price, product.image " +
+                "ORDER BY quantity desc , total_price DESC " +
+                "limit 10");
+                String sql = sb.toString();
         return tmeTemplate.query(sql, (rs, rowNum) -> {
             Product product = new Product();
             Selling selling = new Selling();

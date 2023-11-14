@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +21,11 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<Selling> getSellingRank() {
         return adminDao.getSellingRank();
+    }
+
+    @Override
+    public List<Selling> getSellingRankDate(Map<String, Object> data) {
+        return adminDao.getSellingRankDate(data);
     }
 
     @Override

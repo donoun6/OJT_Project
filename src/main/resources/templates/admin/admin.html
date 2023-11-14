@@ -8,6 +8,7 @@
     <!--  커스텀 css  -->
     <link rel="stylesheet" href="/css/admin/admin.css">
     <link rel="stylesheet" href="/css/admin/main/section.css">
+    <link rel="stylesheet" href="/css/global/jqueryUi.css">
     <!--  svg link  -->
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
@@ -16,7 +17,12 @@
     <!--  script  -->
     <script src="/js/common.js"></script>
     <script src="/js/admin/aside.js"></script>
+    <script src="/js/admin/datepicker.js"></script>
     <script src="/js/admin/main/section.js"></script>
+    <!--  jQuery UI  -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <title>admin</title>
     <!--  google icon  -->
     <style>
@@ -49,6 +55,11 @@
         <section id="section1" class="section">
             <div class="rank-box">
                 <h1>인기상품</h1>
+                <div class="date-picker-wrap">
+                    <input type="text" id="startDate" value="" placeholder=" 연-월-일" style="width: 100px;"> -
+                    <input type="text" id="endDate" value="" placeholder=" 연-월-일" style="width: 100px;">
+                    <button class="date-search btn" type="button">조회</button>
+                </div>
                 <table>
                     <thead>
                     <tr>
@@ -59,7 +70,7 @@
                         <th>판매금액</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="rank-list">
                         <th:block th:replace="admin/main/rankAjax"></th:block>
                     </tbody>
                 </table>

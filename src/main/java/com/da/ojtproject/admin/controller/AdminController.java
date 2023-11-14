@@ -6,9 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,5 +34,15 @@ public class AdminController {
         model.addAttribute("sellingInfo", adminService.getSellingInfo());
         model.addAttribute("sellingDay", adminService.getSellingDay());
         return "admin/admin";
+    }
+
+    /**
+     * 랭크 list 출력 Ajax
+     */
+    @GetMapping("/rank-list")
+    public String rankList(Model model,
+                                @RequestParam(required = false) Map<String, Object> data) {
+        model.addAttribute("sellingRankList", adminService.getSellingRankDate(data));
+        return "admin/main/rankAjax";
     }
 }

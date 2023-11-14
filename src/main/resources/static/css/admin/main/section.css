@@ -27,6 +27,12 @@
     font-weight: bold;
 }
 
+#section1 .rank-box .date-picker-wrap {
+    position: absolute;
+    right: 5%;
+    top: 10%;
+}
+
 #section1 .rank-box select {
     position: absolute;
     top: 20%;
@@ -278,3 +284,17 @@
     text-align: center;
 }
 
+.btn {
+    background: #939393;
+    border: none;
+    width: 60px;
+    height: 30px;
+    border-radius: 10px;
+    color: white;
+    transition: .2s;
+}
+
+.btn:hover {
+    background: #595959;
+    font-weight: bold;
+}
