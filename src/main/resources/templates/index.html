@@ -140,7 +140,7 @@
                 <div class="item" th:each="item : ${items}">
                     <div class="item-box">
                         <div class="image">
-                            <img style="width: 300px; height: 300px; border-radius: 5%" th:src="@{${item.image}}"
+                            <img style="background: white; width: 300px; height: 300px; border-radius: 5%" th:src="@{${item.image}}"
                                  alt="상품 이미지" width="100" class="add-to-cart" th:data-product-id="${item.productId}"/>
                             <div class="sold-out" th:if="${item.quantity == 0}">
                                 <p>SOLD OUT</p>
@@ -268,7 +268,7 @@
                     <div class="item">
                         <div class="item-box">
                             <div class="image">
-                                <img style="width: 300px; height: 300px; border-radius: 5%" src="${product.image}" alt="상품 이미지" width="100" class="add-to-cart" data-product-id="${product.productId}" />
+                                <img style="background: white; width: 300px; height: 300px; border-radius: 5%" src="${product.image}" alt="상품 이미지" width="100" class="add-to-cart" data-product-id="${product.productId}" />
                             </div>
                             ${product.quantity === 0 ? '<div class="sold-out"><p>SOLD OUT</p></div>' : ''}
                         </div>
