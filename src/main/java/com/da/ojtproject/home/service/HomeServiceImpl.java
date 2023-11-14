@@ -24,9 +24,7 @@ public class HomeServiceImpl implements HomeService{
     @Override
     public List<Product> findProductsByCategoryId(int categoryId) { return homeDao.findProductsByCategoryId(categoryId); }
     @Override
-    public int getLastOrderNumber() {
-        return paymentDao.getLastOrderNumber();
-    }
+    public int getLastOrderNumber() { return paymentDao.getLastOrderNumber(); }
 
 
 }

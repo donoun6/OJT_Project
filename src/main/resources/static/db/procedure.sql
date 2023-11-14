@@ -70,6 +70,7 @@ call AddSellingAndClearCart;
 CREATE PROCEDURE AddSellingAndClearCart()
 
 BEGIN
+
     INSERT INTO Orders (check_orders)
     VALUES (TRUE);
 
@@ -225,3 +226,51 @@ END;
 select * from orders;
 select * from selling;
 select * from inventory;
+
+
+
+CREATE PROCEDURE ProcessSpecificOrFullRefund(IN input_orders_id INT, IN input_product_id INT)
+BEGIN
+#     -- 환불 가능 여부를 확인하기 위한 변수 선언
+#     DECLARE refundable INT DEFAULT 0;
+
+    -- input_product_id가 NULL이 아닐 경우, 특정 상품에 대한 환불을 처리합니다.
+    IF input_product_id IS NOT NULL THEN
+        -- 개별 상품 환불 로직
+        -- Inventory 테이블을 업데이트하여 해당 상품의 재고를 환불된 수량만큼 증가시킵니다.
+        UPDATE Inventory i
+            JOIN Selling s ON i.product_id = s.product_id
+        SET i.quantity = i.quantity + s.quantity
+        WHERE s.orders_id = input_orders_id AND s.product_id = input_product_id AND s.check_selling = TRUE;
+
+        -- Selling 테이블을 업데이트하여 해당 상품의 판매 여부(check_selling)를 FALSE로 설정합니다.
+        UPDATE Selling
+        SET check_selling = FALSE
+        WHERE orders_id = input_orders_id AND product_id = input_product_id AND check_selling = TRUE;
+    ELSE
+        -- input_product_id가 NULL일 경우, 전체 주문에 대한 환불을 처리합니다.
+        -- 전체 주문 환불 로직
+        -- Inventory 테이블을 업데이트하여 해당 주문의 모든 상품의 재고를 환불된 수량만큼 증가시킵니다.
+        UPDATE Inventory i
+            JOIN Selling s ON i.product_id = s.product_id
+        SET i.quantity = i.quantity + s.quantity
+        WHERE s.orders_id = input_orders_id AND s.check_selling = TRUE;
+
+        -- Selling 테이블을 업데이트하여 해당 주문의 모든 상품의 판매 여부(check_selling)를 FALSE로 설정합니다.
+        UPDATE Selling
+        SET check_selling = FALSE
+        WHERE orders_id = input_orders_id AND check_selling = TRUE;
+
+#         -- Selling 테이블에서 해당 주문에 대해 아직 환불되지 않은 상품이 있는지 확인합니다.
+#         SELECT COUNT(*) INTO refundable
+#         FROM Selling
+#         WHERE orders_id = input_orders_id AND check_selling = TRUE;
+#
+#         -- 환불 가능한 상품이 없을 경우(즉, 전체 주문이 환불된 경우), Orders 테이블의 check_orders를 FALSE로 업데이트합니다.
+#         IF refundable = 0 THEN
+#             UPDATE Orders
+#             SET check_orders = FALSE
+#             WHERE orders_id = input_orders_id;
+#         END IF;
+    END IF;
+END;
