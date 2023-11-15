@@ -35,7 +35,7 @@ public class ProductApi {
      */
     @PatchMapping("/api/product")
     public HttpStatus productUpdate(@RequestBody Product product) {
-        if (product.getName() == null || product.getCode() == null ||
+        if (product.getName() == "" || product.getCode() == "" ||
                 product.getCategoryId() == 0 || product.getSellPrice() == 0 ||
                 product.getSellPrice() < 100) {
             return HttpStatus.BAD_REQUEST;
