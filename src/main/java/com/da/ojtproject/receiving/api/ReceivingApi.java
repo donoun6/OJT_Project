@@ -17,8 +17,13 @@ public class ReceivingApi {
      */
     @DeleteMapping("/api/receiving")
     public HttpStatus receivingCancel(@RequestBody Receiving receiving) {
-        receivingService.saveReceiving(receiving);
-        receivingService.updateReceiving(receiving);
+        int check = receiving.getInventory().getQuantity() + receiving.getQuantity();
+        if (check < 0) {
+            return HttpStatus.BAD_REQUEST;
+        } else {
+            receivingService.saveReceiving(receiving);
+            receivingService.updateReceiving(receiving);
+        }
         return HttpStatus.OK;
     }
 

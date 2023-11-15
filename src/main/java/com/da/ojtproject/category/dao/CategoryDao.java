@@ -40,8 +40,6 @@ public class CategoryDao {
         });
     }
 
-    ;
-
     /**
      * 카테고리 저장 Or 재활용
      */

@@ -78,6 +78,9 @@ $(document).ready(function () {
             quantity: $(this).next().val() * -1,
             productId: $(this).next().next().val(),
             receivingId: $(this).next().next().next().val(),
+            inventory: {
+                quantity: $(this).next().next().next().next().val()
+            },
             description: '입고번호 : ' + $(this).val() + ' 취소 처리'
         }
         Cancel(data, url);
@@ -179,9 +182,13 @@ $(document).ready(function () {
             url: url,
             dataType: 'json',
             contentType: 'application/json; charset=UTF-8',
-            success: function (data) {
-                alert("취소 처리 완료");
-                $(".trigger-btn").trigger("click");
+            success: function (status, data) {
+                if (status === 'BAD_REQUEST') {
+                    alert("취소 처리가 불가능 합니다.")
+                } else {
+                    alert("취소 처리 완료");
+                    $(".trigger-btn").trigger("click");
+                }
             },
             error: function (data) {
                 alert("잠시후 다시 시도해 주세요");

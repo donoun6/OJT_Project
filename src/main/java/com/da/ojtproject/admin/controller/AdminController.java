@@ -21,18 +21,20 @@ public class AdminController {
 
     @GetMapping()
     public String adminPage(Model model) {
+
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");   // yyyy-MM-dd HH:mm:ss
-        String format = formatter.format(date);
 
+        //Main Chart/List Data
         model.addAttribute("sellingRankList", adminService.getSellingRank());
         model.addAttribute("todayOrderList", adminService.getTodayOrders());
         model.addAttribute("todayTotalPrice", adminService.getTodayTotalPrice());
         model.addAttribute("orderCount", adminService.getOrderCount());
-        model.addAttribute("date", format);
         model.addAttribute("lowQuantity", adminService.getLowQuantity());
         model.addAttribute("sellingInfo", adminService.getSellingInfo());
         model.addAttribute("sellingDay", adminService.getSellingDay());
+        model.addAttribute("date", formatter.format(date));
+
         return "admin/admin";
     }
 

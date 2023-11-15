@@ -205,10 +205,10 @@
                 <li><label for="code">상품코드</label></li>
                 <li><input class="product-code" type="text" th:field="*{code}" placeholder="상품코드를 입력하세요."></li>
                 <li><label for="sellPrice">판매금액</label></li>
-                <li><input class="product-sellPrice" type="text" th:field="*{sellPrice}" placeholder="판매금액을 입력하세요.">
+                <li><input class="product-sellPrice" type="number" th:min="100" step="100" th th:field="*{sellPrice}" placeholder="판매금액을 입력하세요.">
                 </li>
                 <li><label for="inventory.quantity">재고수량</label></li>
-                <li><input class="inventory-quantity" type="text" th:field="*{inventory.quantity}"
+                <li><input class="inventory-quantity" type="number" th:min="1" th:field="*{inventory.quantity}"
                            placeholder="재고수량을 입력하세요."></li>
                 <li><label for="imageFile">사진</label></li>
                 <li><input class="product-image" type="file" th:field="*{imageFile}" accept="image/*"

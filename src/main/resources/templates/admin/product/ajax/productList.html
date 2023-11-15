@@ -38,7 +38,7 @@
                                     style="background: #dedce0; width: 70%"></td>
         <!--     sell_price     -->
         <td class="view" th:text="${#numbers.formatInteger(productList.getSellPrice(), 3, 'COMMA') + '원'}" }>-</td>
-        <td class="view-off"><input type="text" th:value="${productList.getSellPrice()}" id="sellPrice"
+        <td class="view-off"><input type="number" th:min="100" th:value="${productList.getSellPrice()}" id="sellPrice"
                                     style="width: 80%;"></td>
         <!--     total_price     -->
         <td class="view" th:if="${productList.getSelling().getTotalPrice} == 0" }>-</td>
