@@ -10,7 +10,5 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Admin {
-    private int adminId;
-    private String password;
 }
 
