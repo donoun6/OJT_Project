@@ -176,8 +176,7 @@ public class AdminDao {
         if (!data.get("startDate").equals("") && !data.get("endDate").equals("")) {
             sb.append("AND DATE(orders.register_date) BETWEEN '" + data.get("startDate") + "' AND '" + data.get("endDate") + "'");
         }
-        sb.append("GROUP BY " +
-                "product.name ");
+        sb.append("GROUP BY product.name ");
         String sql = sb.toString();
         return tmeTemplate.query(sql, (rs, rowNum) -> {
             Product product = new Product();

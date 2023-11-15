@@ -20,10 +20,9 @@ public class ReceivingApi {
         int check = receiving.getInventory().getQuantity() + receiving.getQuantity();
         if (check < 0) {
             return HttpStatus.BAD_REQUEST;
-        } else {
-            receivingService.saveReceiving(receiving);
-            receivingService.updateReceiving(receiving);
         }
+        receivingService.saveReceiving(receiving);
+        receivingService.updateReceiving(receiving);
         return HttpStatus.OK;
     }
 
