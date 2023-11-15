@@ -19,6 +19,7 @@
         <td th:if="${!ordersList.isCheckOrders()}">
             <button type="button"
                     class="btn-refund-cancel"
+                    style="width: 200px; color: black; font-size: 24px; font-weight: bold; height: 70px; background: #be9a9a; color: white; border: none;"
                     th:data-orders-id3="${ordersList.ordersId}">
                 환불취소
             </button>
@@ -28,6 +29,7 @@
         <td th:if="${ordersList.isCheckOrders()}">
             <button type="button"
                     class="btn-full-refund"
+                    style="width: 200px; color: black; font-size: 24px; font-weight: bold; height: 70px; background: #a1a8be; color: white; border: none;"
                     th:data-orders-id="${ordersList.ordersId}">
                 전체환불
             </button>
