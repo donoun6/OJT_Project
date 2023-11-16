@@ -90,14 +90,8 @@ public class ReceivingDao {
                 "INNER JOIN category " +
                 "ON product.category_id = category.category_id " +
                 "WHERE 1 = 1 ");
-        /**
-         * startDate : 시작 날짜
-         * endDate : 종료 날짜
-         * 범위 지정 검색
-         */
-        if (!data.get("startDate").equals("N") && !data.get("endDate").equals("N")) {
-            sb.append("AND DATE(receiving.register_date) BETWEEN '" + data.get("startDate") + "' AND '" + data.get("endDate") + "'");
-        }
+
+        sb.append("AND DATE(receiving.register_date) BETWEEN '" + data.get("startDate") + "' AND '" + data.get("endDate") + "'");
         /**
          * option 상품 or 입고번호 검색
          */

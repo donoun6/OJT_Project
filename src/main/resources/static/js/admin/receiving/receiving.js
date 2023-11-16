@@ -6,8 +6,8 @@ $(document).ready(function () {
     $('#endDate').datepicker("setDate", "today");
 
     let data = {
-        startDate: "N",
-        endDate: "N",
+        startDate: $("#startDate").val(),
+        endDate: $("#endDate").val(),
         option: "N",
         checkName: "Y",
         name: "",
