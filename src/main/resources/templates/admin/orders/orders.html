@@ -5,6 +5,7 @@
     <!--  초기화,고정 css  -->
     <link rel="stylesheet" href="/css/global/init.css">
     <link rel="stylesheet" href="/css/global/default.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!--  커스텀 css  -->
     <link rel="stylesheet" href="/css/admin/admin.css">
     <link rel="stylesheet" href="/css/admin/orders/orders.css">
@@ -80,6 +81,12 @@
     <div id="main-wrap">
         <section class="section1">
             <h1>결제관리</h1>
+            <!--     날짜별로 검색기능도 추가했습니다.     -->
+            <div class="date-picker-wrap">
+                <input type="text" id="startDate" value="" placeholder=" 연-월-일" style="width: 100px;"> -
+                <input type="text" id="endDate" value="" placeholder=" 연-월-일" style="width: 100px;">
+                <button class="date-search btn" type="button">검색</button>
+            </div>
             <div class="receiving-list-wrap">
                 <div class="receiving-list-layout">
                     <table>
@@ -88,7 +95,10 @@
                             <th style="width: 3%;">No</th>
                             <th style="width: 8%;">주문번호</th>
                             <th style="width: 11%;">환불상태</th>
-                            <th style="width: 14%;">결제일자</th>
+                            <th style="width: 14%;">결제일자
+                                <span id="desc" class="material-symbols-outlined desc order">expand_less</span>
+                                <span id="asc" class="material-symbols-outlined asc order">expand_more</span>
+                            </th>
                             <th>전체환불</th>
                             <th>부분환불</th>
                         </tr>
@@ -153,6 +163,16 @@
         $(document).on('click', '.btn-partial-refund', function() {
             var ordersId = $(this).data('orders-id');
             fetchPartialRefundDetails(ordersId);
+        });
+
+        // 결제 일자 별로 오름차순 정렬
+        $('#asc').on('click', function() {
+            sortOrdersByDate('asc'); // 오름차순 정렬 요청
+        });
+
+        // 결제 일자 별로 내림차순 정렬
+        $('#desc').on('click', function() {
+            sortOrdersByDate('desc'); // 내림차순 정렬 요청
         });
     });
 
@@ -272,7 +292,40 @@
         });
     }
 
-    // location.reload();
+    // 결제 일자 별로 정렬하는 함수
+    function sortOrdersByDate(orderType) {
+        $.ajax({
+            type: 'GET',
+            url: '/admin/order/sort-by-date', // 새로운 엔드포인트 URL
+            data: { order: orderType },
+            dataType: 'html',
+            success: function (response) {
+                // 서버로부터 받은 HTML로 주문 목록 컨테이너를 업데이트합니다.
+                $('.orders-list').html(response);
+            },
+            error: function () {
+                alert("정렬 요청을 처리할 수 없습니다. 잠시 후 다시 시도해 주세요.");
+            }
+        });
+    }
+    // function orderList(data) {
+    //     $.ajax({
+    //         type: 'GET',
+    //         data: data,
+    //         url: '/admin/order/orders-list',
+    //         dataType: 'html', // 서버로부터 HTML 응답을 기대합니다.
+    //         success: function (response) {
+    //             // 서버로부터 받은 HTML로 주문 목록 컨테이너를 업데이트합니다.
+    //             $('.orders-list').html(response);
+    //         },
+    //         error: function () {
+    //             alert("잠시 후 다시 시도해 주세요.");
+    //         }
+    //     });
+    // }
+
+
+    // location.reload(); 페이지를 새로고침하는 함수
 </script>
 </body>
 </html>

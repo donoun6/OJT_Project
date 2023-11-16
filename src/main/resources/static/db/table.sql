@@ -102,4 +102,4 @@ CONSTRAINT Selling_orders_id_FK FOREIGN KEY (orders_id) REFERENCES Orders(orders
 ALTER TABLE Cart ADD product_name VARCHAR(20) NOT NULL;
 ALTER TABLE Cart ADD image VARCHAR(20);
 
-
+select * from Inventory;

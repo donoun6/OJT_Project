@@ -23,4 +23,6 @@ public interface OrdersService {
     boolean refundAllCancel(int ordersId3);
 
     boolean partialRefundCancel(int ordersId4, int productId4);
+
+    List<Orders> sortOrdersByDate(String order);
 }

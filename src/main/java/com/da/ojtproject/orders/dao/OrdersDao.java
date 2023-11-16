@@ -130,4 +130,15 @@ public class OrdersDao {
         // 부분환불 결과 처리 로직입니다. fullRefund와 마찬가지로 파라미터값을 inParams 값으로 넘겨줘야 합니다.
         return true;
     }
+
+    // 주문 목록을 날짜별로 정렬하는 메서드
+    public List<Orders> sortOrdersByDate(String order) {
+        String sql;
+        if ("desc".equals(order)) {
+            sql = "SELECT * FROM Orders ORDER BY register_date DESC"; // 내림차순 정렬
+        } else {
+            sql = "SELECT * FROM Orders ORDER BY register_date ASC"; // 오름차순 정렬 (기본값)
+        }
+        return template.query(sql, new OrdersRowMapper());
+    }
 }

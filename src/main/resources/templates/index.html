@@ -148,7 +148,7 @@
                         </div>
                     </div>
                     <h3 th:text="${item.name}"></h3>
-                    <span th:text="${item.sellPrice} + '원'"></span>
+                    <span th:text="${#numbers.formatDecimal(item.sellPrice, 0, 'COMMA', 0, 'POINT')} + '원'"></span>
                 </div>
             </div>
         </div>
@@ -264,6 +264,7 @@
             success: function (data) {
                 $(".item-wrap").empty();
                 $.each(data, function (index, product) {
+                    var formattedPrice = product.sellPrice.toLocaleString(); // 콤마를 포함한 가격 포매팅
                     var productHtml = `
                     <div class="item">
                         <div class="item-box">
@@ -273,7 +274,7 @@
                             ${product.quantity === 0 ? '<div class="sold-out"><p>SOLD OUT</p></div>' : ''}
                         </div>
                         <h3>${product.name}</h3>
-                        <span>${product.sellPrice}원</span>
+                        <span>${formattedPrice}원</span> <!-- 수정된 부분 -->
                     </div>
                     `;
                     $(".item-wrap").append(productHtml);
@@ -330,13 +331,14 @@
         $(".order-wrap ul").empty();
         totalAmount = 0; // 매번 새롭게 계산하기 위해 0으로 초기화합니다.
         $.each(data, function (index, orderItem) {
+            var formattedTotalPrice = (orderItem.totalPrice || 0).toLocaleString(); // 콤마를 포함한 가격 포매팅
             var orderHtml = `
             <li>
                 <div class="order">
                     <img src="${orderItem.image}" alt="상품 이미지" style="border-radius: 10%" width="100"/>
                     <div class="text-box">
                         <h3>${orderItem.productName || 'Unknown Item'}</h3>
-                        <span>${orderItem.totalPrice || 0}원</span>
+                        <span>${formattedTotalPrice}원</span> <!-- 수정된 부분 -->
                     </div>
                     <div class="quantity-wrap">
                         <!-- quantity-count 부분 수정했음 -->
@@ -354,7 +356,7 @@
             $(".order-wrap ul").append(orderHtml);
             totalAmount += (orderItem.totalPrice || 0); // 장바구니 총액 계산
         });
-        $("#total-amount-display").text(totalAmount); // 총액 표시 업데이트
+        $("#total-amount-display").text(totalAmount.toLocaleString());
     }
 
     // 동적으로 생성된 버튼 increaseCartQuantity 버튼입니다. 버튼을 클릭하면 increaseQuantity 주소로 cartId와 productId를 넘겨서
@@ -431,6 +433,34 @@
 
     ChannelIO('boot', {
         "pluginKey": "0aebc2fb-3b78-4781-9239-cebfc891448c"
+    });
+
+    $(document).ready(function () {
+        // 오름차순 정렬 버튼 클릭 이벤트
+        $('#asc').on('click', function() {
+            orderList({order: 'asc'}); // 오름차순 정렬 요청
+        });
+
+        // 내림차순 정렬 버튼 클릭 이벤트
+        $('#desc').on('click', function() {
+            orderList({order: 'desc'}); // 내림차순 정렬 요청
+        });
+
+        function orderList(data) {
+            $.ajax({
+                type: 'GET',
+                data: data,
+                url: '/admin/order/orders-list', // 정렬된 데이터를 요청하는 서버의 URL
+                dataType: 'html',
+                success: function (response) {
+                    // 서버로부터 받은 HTML로 주문 목록 컨테이너를 업데이트합니다.
+                    $('.orders-list').html(response);
+                },
+                error: function () {
+                    alert("정렬 요청을 처리할 수 없습니다. 잠시 후 다시 시도해 주세요.");
+                }
+            });
+        }
     });
 </script>
 </body>

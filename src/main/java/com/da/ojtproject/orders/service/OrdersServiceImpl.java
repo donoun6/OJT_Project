@@ -33,6 +33,9 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public boolean partialRefundCancel(int ordersId4, int productId4) { return ordersDao.partialRefundCancel(ordersId4,productId4); }
 
+    @Override
+    public List<Orders> sortOrdersByDate(String order) { return ordersDao.sortOrdersByDate(order); }
+
 
 }
 
