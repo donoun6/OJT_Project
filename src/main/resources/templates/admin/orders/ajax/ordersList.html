@@ -19,7 +19,7 @@
         <td th:if="${!ordersList.isCheckOrders()}">
             <button type="button"
                     class="btn-refund-cancel"
-                    style="width: 200px; color: black; font-size: 24px; font-weight: bold; height: 70px; background: #be9a9a; color: white; border: none;"
+                    style="width: 75px; color: black; font-size: 12px; font-weight: bold; height: 25px; background: #be9a9a; color: white; border-radius: 10px; border: none;"
                     th:data-orders-id3="${ordersList.ordersId}">
                 환불취소
             </button>
@@ -29,13 +29,15 @@
         <td th:if="${ordersList.isCheckOrders()}">
             <button type="button"
                     class="btn-full-refund"
-                    style="width: 200px; color: black; font-size: 24px; font-weight: bold; height: 70px; background: #a1a8be; color: white; border: none;"
+                    style="width: 75px; color: black; font-size: 12px; font-weight: bold; height: 25px; background: #a1a8be; color: white; border-radius: 10px; border: none;"
                     th:data-orders-id="${ordersList.ordersId}">
                 전체환불
             </button>
         </td>
         <td>
-            <button type="button" class="btn-partial-refund" th:data-orders-id="${ordersList.ordersId}">부분환불</button>
+            <button type="button" class="btn-partial-refund"
+                    style="width: 75px; color: black; font-size: 12px; font-weight: bold; height: 25px; background: #a1a8be; color: white; border-radius: 10px; border: none;"
+                    th:data-orders-id="${ordersList.ordersId}">부분환불</button>
         </td>
     </tr>
 
