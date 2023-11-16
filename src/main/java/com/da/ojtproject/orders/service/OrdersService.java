@@ -25,4 +25,12 @@ public interface OrdersService {
     boolean partialRefundCancel(int ordersId4, int productId4);
 
     List<Orders> sortOrdersByDate(String order);
+
+    List<Orders> searchOrdersByDate(String startDate, String endDate);
+
+    List<Orders> searchOrdersByReceivingNumber(String receivingNumber);
+
+    List<Orders> getRefundOrders();
+
+    List<Orders> getNotRefundOrders();
 }

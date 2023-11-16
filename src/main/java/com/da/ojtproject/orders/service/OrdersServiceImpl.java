@@ -36,6 +36,19 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public List<Orders> sortOrdersByDate(String order) { return ordersDao.sortOrdersByDate(order); }
 
+    // 날짜를 통해 조회하기 위한 컨트롤러입니다.
+    @Override
+    public List<Orders> searchOrdersByDate(String startDate, String endDate) { return ordersDao.findOrdersByDateRange(startDate, endDate); }
+
+    @Override
+    public List<Orders> searchOrdersByReceivingNumber(String receivingNumber) { return ordersDao.findOrdersByReceivingNumber(receivingNumber); }
+
+    @Override
+    public List<Orders> getRefundOrders() { return ordersDao.findRefundOrders(); }
+
+    @Override
+    public List<Orders> getNotRefundOrders() { return ordersDao.findNotRefundOrders(); }
+
 
 }
 
