@@ -18,10 +18,9 @@
         <!-- 환불 취소 버튼, isCheckOrders가 false일 때만 표시 -->
         <td th:if="${!ordersList.isCheckOrders()}">
             <button type="button"
-                    class="btn-refund-cancel"
                     style="width: 75px; color: black; font-size: 12px; font-weight: bold; height: 25px; background: #be9a9a; color: white; border-radius: 10px; border: none;"
                     th:data-orders-id3="${ordersList.ordersId}">
-                환불취소
+                환불완료
             </button>
         </td>
 

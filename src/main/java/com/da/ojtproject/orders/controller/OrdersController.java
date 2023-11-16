@@ -7,6 +7,8 @@ import com.da.ojtproject.orders.service.OrdersService;
 import com.da.ojtproject.payment.service.PaymentService;
 import com.da.ojtproject.selling.domain.Selling;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -126,5 +128,20 @@ public class OrdersController {
             return ResponseEntity.badRequest().body(response);
         }
     }
+
+    // 날짜별 정렬을 위한 컨트롤러 메서드
+    @GetMapping("/sort-by-date")
+    public String productList(Model model, @RequestParam(required = false, defaultValue = "asc") String order) {
+        model.addAttribute("orders", new Orders());
+        model.addAttribute("ordersList", ordersService.sortOrdersByDate(order)); // 'asc' 또는 'desc'에 따라 정렬
+        return "admin/orders/ajax/ordersList";
+    }
+
+//    @GetMapping("/orders-list")
+//    public String productList(Model model, @RequestParam(required = false) Map<String, Object> data) {
+//        model.addAttribute("orders", new Orders());
+//        model.addAttribute("ordersList", ordersService.getSearchOrders(data));
+//        return "admin/orders/ajax/ordersList";
+//    }
 
 }
