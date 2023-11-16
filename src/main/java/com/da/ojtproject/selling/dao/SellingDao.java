@@ -103,6 +103,8 @@ public class SellingDao {
          */
         if (!data.get("startDate").equals("N") && !data.get("endDate").equals("N")) {
             sb.append("AND DATE(selling.register_date) BETWEEN '" + data.get("startDate") + "' AND '" + data.get("endDate") + "' ");
+        }else {
+
         }
         /**
          * 상품명 검색

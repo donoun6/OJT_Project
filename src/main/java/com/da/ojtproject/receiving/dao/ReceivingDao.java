@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +20,13 @@ public class ReceivingDao {
     public ReceivingDao(DataSource dataSource) {
         this.template = new JdbcTemplate(dataSource);
     }
+
+    /**
+     * 현재 날짜 yyyy-MM-dd 형태로 date format
+     */
+    Date date = new Date();
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");   // yyyy-MM-dd HH:mm:ss
+    String format = formatter.format(date);
 
     /**
      * 기본 전체 조회
@@ -46,6 +55,8 @@ public class ReceivingDao {
                 "ON product.product_id = inventory.product_id " +
                 "INNER JOIN category " +
                 "ON product.category_id = category.category_id " +
+                "WHERE 1 = 1 " +
+                "AND DATE(receiving.register_date) = '" + format + "' " +
                 "ORDER BY receiving.register_date DESC";
         return template.query(sql, new ReceivingRowMapper());
     }
