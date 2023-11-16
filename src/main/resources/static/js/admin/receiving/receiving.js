@@ -2,6 +2,9 @@ $(document).ready(function () {
     const receivingListUrl = "receiving/receiving-list";
     const url = "/api/receiving";
 
+    $('#startDate').datepicker("setDate", "today");
+    $('#endDate').datepicker("setDate", "today");
+
     let data = {
         startDate: "N",
         endDate: "N",
@@ -16,8 +19,8 @@ $(document).ready(function () {
      */
     $(".all-search").click(function () {
         data = {
-            startDate: "N",
-            endDate: "N",
+            startDate: $("#startDate").val(),
+            endDate: $("#endDate").val(),
             option: "N",
             checkName: "Y",
             name: "",

@@ -8,8 +8,8 @@ $(document).ready(function () {
 
     let data = {
         bundle: "N",
-        startDate: "N",
-        endDate: "N",
+        startDate: $("#startDate").val(),
+        endDate: $("#endDate").val(),
         checkName: "Y",
         name: "",
         order: ""
@@ -21,8 +21,8 @@ $(document).ready(function () {
     $(".all-search").click(function () {
         data = {
             bundle: "N",
-            startDate: "N",
-            endDate: "N",
+            startDate: $("#startDate").val(),
+            endDate: $("#endDate").val(),
             checkName: "Y",
             name: "",
             order: ""
