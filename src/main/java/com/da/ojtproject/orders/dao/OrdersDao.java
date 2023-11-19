@@ -141,4 +141,25 @@ public class OrdersDao {
         }
         return template.query(sql, new OrdersRowMapper());
     }
+
+    // 선택한 날짜들 사이에 있는 주문들 조회...
+    public List<Orders> findOrdersByDateRange(String startDate, String endDate) {
+        String sql = "SELECT * FROM Orders WHERE register_date >= ? AND register_date <= ?";
+        return template.query(sql, new Object[]{startDate, endDate}, new OrdersRowMapper());
+    }
+
+    public List<Orders> findOrdersByReceivingNumber(String receivingNumber) {
+        String sql = "SELECT * FROM Orders WHERE orders_id = ?";
+        return template.query(sql, new Object[]{receivingNumber}, new OrdersRowMapper());
+    }
+
+    public List<Orders> findRefundOrders() {
+        String sql = "SELECT * FROM Orders WHERE check_orders = '0'";
+        return template.query(sql, new OrdersRowMapper());
+    }
+
+    public List<Orders> findNotRefundOrders() {
+        String sql = "SELECT * FROM Orders WHERE check_orders = '1'";
+        return template.query(sql, new OrdersRowMapper());
+    }
 }

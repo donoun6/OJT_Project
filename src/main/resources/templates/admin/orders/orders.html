@@ -88,6 +88,20 @@
                 <button class="date-search btn" type="button">검색</button>
             </div>
             <div class="receiving-list-wrap">
+                <div class="receiving-save">
+                    <button class="all-search2 btn" type="button" style="width: 75px">전체조회</button>
+                    <button class="btn save2-btn" type="button" style="margin-left: 10px; width: 75px">환불조회</button>
+                    <button class="btn save3-btn" type="button" style="margin-left: 10px; width: 80px">미환불조회</button>
+                </div>
+                <!-- 주문번호를 통한 검색기능 제공 근데 나는 동환님처럼 도저히 못하겠다. 그냥 짬통코딩으로 간다. -->
+                <div class="search-bar">
+                    <select id="searchType">
+                        <option selected value="receiving_number">입고번호</option>
+                    </select>
+                    <input class="search-name" id="searchInput" type="text" placeholder="주문번호">
+                    <span class="material-symbols-outlined search-img">search</span>
+                    <button class="trigger-btn" type="button" style="position: absolute; right: -100%"></button>
+                </div>
                 <div class="receiving-list-layout">
                     <table>
                         <thead>
@@ -174,6 +188,82 @@
         $('#desc').on('click', function() {
             sortOrdersByDate('desc'); // 내림차순 정렬 요청
         });
+
+        $('.all-search2').on('click', function() {
+            fetchOrdersData('all');
+        });
+
+        // 환불조회 버튼 클릭 이벤트
+        $('.save2-btn').on('click', function() {
+            fetchOrdersData('refund');
+        });
+
+        $('.save3-btn').on('click', function() {
+            fetchOrdersData('refund2');
+        });
+
+        // DatePicker 초기화
+        $("#startDate, #endDate").datepicker({
+            dateFormat: "yy-mm-dd" // 날짜 형식 지정
+        });
+
+        // 검색 버튼 클릭 이벤트
+        $(".date-search").on("click", function() {
+            var startDate = $("#startDate").val();
+            var endDate = $("#endDate").val();
+
+            // AJAX 요청
+            $.ajax({
+                type: 'GET',
+                url: '/admin/order/search-by-date', // 서버의 검색 API
+                data: {
+                    startDate: startDate,
+                    endDate: endDate
+                },
+                dataType: 'html',
+                success: function (response) {
+                    // 검색 결과를 페이지에 표시
+                    $('.orders-list').html(response);
+                },
+                error: function () {
+                    alert("검색 요청을 처리할 수 없습니다. 잠시 후 다시 시도해 주세요.");
+                }
+            });
+        });
+
+        var today = new Date();
+        var formattedToday = today.toISOString().substring(0, 10); // 'YYYY-MM-DD' 형식으로 변환
+
+        $("#startDate, #endDate").datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+
+        // startDate와 endDate의 기본값을 오늘 날짜로 설정
+        $("#startDate").datepicker("setDate", formattedToday);
+        $("#endDate").datepicker("setDate", formattedToday);
+
+        $('#searchInput').on('keyup', function() {
+            var searchType = $('#searchType').val();
+            var searchQuery = $(this).val();
+
+            // 이 부분은 이전에 사용하신 경로와 방식에 따라 수정하세요.
+            if (searchQuery.length >= 3) { // 최소 3글자 이상 입력될 때 검색 실행
+                $.ajax({
+                    url: '/admin/order/search-by-key', // 여기를 이전에 사용하신 경로로 수정하세요.
+                    type: 'GET',
+                    data: {
+                        type: searchType,
+                        query: searchQuery
+                    },
+                    success: function(response) {
+                        $('.orders-list').html(response);
+                    },
+                    error: function() {
+                        alert('검색을 수행할 수 없습니다.');
+                    }
+                });
+            }
+        });
     });
 
     /**
@@ -195,6 +285,20 @@
         });
     }
 
+    function fetchOrdersData(type) {
+        $.ajax({
+            url: '/admin/order/fetch-orders', // 서버의 API URL
+            type: 'GET',
+            data: { type: type },
+            success: function(response) {
+                $('.orders-list').html(response);
+            },
+            error: function() {
+                alert('조회를 수행할 수 없습니다.');
+            }
+        });
+    }
+
     function allRefund(ordersId) {
         $.ajax({
             url: "/admin/order/refundAll",
@@ -212,6 +316,9 @@
             }
         });
     }
+    // 전체 환불 로직
+    function allRe
+
     // 전체 환불 처리 취소함수
     function allRefundCancel(ordersId3) {
         $.ajax({
@@ -308,22 +415,6 @@
             }
         });
     }
-    // function orderList(data) {
-    //     $.ajax({
-    //         type: 'GET',
-    //         data: data,
-    //         url: '/admin/order/orders-list',
-    //         dataType: 'html', // 서버로부터 HTML 응답을 기대합니다.
-    //         success: function (response) {
-    //             // 서버로부터 받은 HTML로 주문 목록 컨테이너를 업데이트합니다.
-    //             $('.orders-list').html(response);
-    //         },
-    //         error: function () {
-    //             alert("잠시 후 다시 시도해 주세요.");
-    //         }
-    //     });
-    // }
-
 
     // location.reload(); 페이지를 새로고침하는 함수
 </script>

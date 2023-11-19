@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,7 @@ public class OrdersController {
     private final CategoryService categoryService;
     private final HomeService homeService;
     private final PaymentService paymentService;
+
     /**
      * 결제 성공시 결과 화면
      */
@@ -37,6 +39,7 @@ public class OrdersController {
         model.addAttribute("currentOrderUid", lastOrderNumber);
         return "/payment/result"; // result.html 페이지 이름
     }
+
     /**
      * Order 기본 화면
      */
@@ -47,6 +50,7 @@ public class OrdersController {
         model.addAttribute("categoryList", categoryService.getAllCategory());
         return "admin/orders/orders";
     }
+
     /**
      * Ajax html 비동기 화면 반환
      */
@@ -56,6 +60,7 @@ public class OrdersController {
         model.addAttribute("ordersList", ordersService.getSearchOrders(data));
         return "admin/orders/ajax/ordersList";
     }
+
     @ResponseBody
     @PostMapping("/refundAll")
     public ResponseEntity<?> fullRefund(@RequestParam int ordersId) {
@@ -81,6 +86,7 @@ public class OrdersController {
         // "partialRefundDetails"는 src/main/resources/templates/admin/order 디렉터리 내에 있는 .html 파일의 이름입니다.
         return "admin/orders/partialRefundDetails";
     }
+
     // 부분환불 처리 코드
     @ResponseBody
     @PostMapping("/partialRefund")
@@ -96,6 +102,7 @@ public class OrdersController {
             return ResponseEntity.badRequest().body(response);
         }
     }
+
     // 부분환불 취소 처리 코드
     @ResponseBody
     @PostMapping("/partialRefundCancel")
@@ -111,7 +118,6 @@ public class OrdersController {
             return ResponseEntity.badRequest().body(response);
         }
     }
-
 
     /* 여기서 자꾸 문제가 발생합니다. 원인이 뭔지 모르겠음...*/
     @ResponseBody
@@ -137,11 +143,49 @@ public class OrdersController {
         return "admin/orders/ajax/ordersList";
     }
 
-//    @GetMapping("/orders-list")
-//    public String productList(Model model, @RequestParam(required = false) Map<String, Object> data) {
-//        model.addAttribute("orders", new Orders());
-//        model.addAttribute("ordersList", ordersService.getSearchOrders(data));
-//        return "admin/orders/ajax/ordersList";
-//    }
+    @GetMapping("/search-by-date")
+    public String searchOrdersByDate(@RequestParam String startDate, @RequestParam String endDate, Model model) {
+        model.addAttribute("orders", new Orders());
+        // 서비스 메서드를 호출하여 해당 날짜 범위의 주문 데이터를 조회합니다.
+        model.addAttribute("ordersList", ordersService.searchOrdersByDate(startDate, endDate));
+        return "admin/orders/ajax/ordersList";
+    }
+
+    @GetMapping("/search-by-key")
+    public String searchOrdersByKey(@RequestParam("type") String searchType,
+                                    @RequestParam("query") String searchQuery,
+                                    Model model) {
+        // 검색 타입에 따라 다른 검색 로직을 수행할 수 있습니다.
+        List<Orders> ordersList;
+        switch (searchType) {
+            case "receiving_number":
+                // 예시: 입고번호에 따른 검색 로직
+                ordersList = ordersService.searchOrdersByReceivingNumber(searchQuery);
+                break;
+            // 다른 검색 타입에 대한 케이스 추가 가능
+            default:
+                // 기본적인 처리 또는 예외 처리
+                ordersList = Collections.emptyList();
+                break;
+        }
+        model.addAttribute("ordersList", ordersList);
+        return "admin/orders/ajax/ordersList"; // 검색 결과를 보여줄 뷰
+    }
+
+    @GetMapping("/fetch-orders")
+    public String fetchOrders(@RequestParam("type") String type, Model model) {
+        List<Orders> ordersList;
+        if ("refund".equals(type)) {
+            ordersList = ordersService.getRefundOrders(); // 환불 주문 조회
+        } else if ("refund2".equals(type)) {
+            ordersList = ordersService.getNotRefundOrders();
+        } else {
+            ordersList = ordersService.getAllOrdersProducts(); // 전체 주문 조회
+        }
+
+        model.addAttribute("ordersList", ordersList);
+        return "admin/orders/ajax/ordersList"; // 주문 목록을 보여줄 뷰
+    }
+
 
 }

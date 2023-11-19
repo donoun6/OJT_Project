@@ -103,3 +103,5 @@ ALTER TABLE Cart ADD product_name VARCHAR(20) NOT NULL;
 ALTER TABLE Cart ADD image VARCHAR(20);
 
 select * from Inventory;
+SELECT * FROM ORDERS;
+SELECT * FROM Orders WHERE check_orders = '1';
