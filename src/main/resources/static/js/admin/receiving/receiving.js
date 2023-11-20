@@ -212,7 +212,7 @@ $(document).ready(function () {
             contentType: 'application/json; charset=UTF-8',
             success: function (status, data) {
                 if (status === 'BAD_REQUEST') {
-                    alert("수량은 0보다 커야 합니다.");
+                    alert("수량을 확인해 주세요.");
                 } else {
                     alert("입고 완료");
                     $(".receiving-save-form-wrap").css("display", "none");

@@ -364,12 +364,13 @@ $(function () {
         });
 
         $(document).on("click", ".product-save-btn", function () {
-            if ($(".category").val() == null || $(".product-name").val() == null ||
+             if ($(".category").val() == null || $(".product-name").val() == null ||
                 $(".product-code").val() == null || $(".product-sellPrice").val() == null ||
                 $(".inventory-quantity").val() == null || $(".product-image").val() == "") {
-                alert("모든 입력란은 필수 사항입니다.")
-            } else if ($(".product-sellPrice").val() < 100 || $(".inventory-quantity").val() < 1) {
-                alert("올바른 정보를 입력하세요.")
+                alert("모든 입력란은 필수 사항입니다.");
+            } else if ($(".product-sellPrice").val() < 100 || $(".inventory-quantity").val() < 1 ||
+                $(".product-sellPrice").val() % 100 != 0 || $(".inventory-quantity").val() > 999) {
+                alert("올바른 정보를 입력하세요.");
             } else {
                 $(".product-save-form").submit();
             }
