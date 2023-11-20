@@ -87,7 +87,7 @@ ALTER TABLE Cart ADD image VARCHAR(20);
 # 카테고리 등록
 INSERT INTO Category (name)
 VALUES ('음료/커피'),('스낵'),('라면/가공식품'),('빵/디저트'),('도시락/김밥'),
-       ('샌드위치/햄버거'),('젤리/캔디/껌'),('아이스크림'),('생활용품');
+       ('샌드위치/햄버거'),('젤리/캔디/껌'),('아이스크림');
 
 # 물품 등록
 INSERT INTO Product (category_id, code, name, sell_price, image)
