@@ -105,3 +105,39 @@ ALTER TABLE Cart ADD image VARCHAR(20);
 select * from Inventory;
 SELECT * FROM ORDERS;
 SELECT * FROM Orders WHERE check_orders = '1';
+select * from product;
+
+SELECT
+    product_id AS '상품번호',
+    name AS '상품이름',
+    CASE
+        WHEN check_product = 1 THEN '수량있음'
+        ELSE '품절'
+        END AS '재고상태'
+FROM
+    Product;
+
+
+select product_id as '상품 이름', quantity as '남은수량' from Inventory;
+
+SELECT
+    orders_id AS '주문번호',
+    CASE
+        WHEN check_orders = 1 THEN '환불 안했습니다'
+        ELSE '환불 완료'
+        END AS '환불상황'
+FROM
+    Orders;
+
+select * from selling;
+select orders_id as '주문번호', quantity as '잔여수량', check_selling as '환불상황' from Selling;
+
+SELECT
+    orders_id AS '주문번호',
+    quantity AS '잔여수량',
+    CASE
+        WHEN check_selling = 1 THEN '수량 있습니다.'
+        ELSE '수량 없습니다.'
+        END AS '재고상태'
+FROM
+    Selling;

@@ -31,11 +31,17 @@
             <td th:text="${selling.product.name}"></td>
             <td th:text="${selling.ordersId}"></td>
             <td th:text="${selling.quantity} + ' 개'"></td>
+<!--            <td th:align="center">-->
+<!--                <button class="quantity-decrease" style="width: 45px; color: black; font-size: 15px; font-weight: bold; height: 18px; background: #a1a8be; color: white; border-radius: 10px; border: none;">-</button>-->
+<!--                <span class="quantity" th:text="${selling.quantity}"></span> 개-->
+<!--                <button class="quantity-increase" style="width: 45px; color: black; font-size: 15px; font-weight: bold; height: 18px; background: #a1a8be; color: white; border-radius: 10px; border: none;">+</button>-->
+<!--                <input type="hidden" class="max-quantity" th:value="${selling.quantity}"/>-->
+<!--            </td>-->
             <td th:text="${#numbers.formatDecimal(selling.totalPrice, 0, 'COMMA', 0, 'POINT')} + ' 원'"></td>
             <!--<td th:text="${selling.checkSelling} ? '대기' : '환불완료'"></td>-->
             <td th:style="${selling.checkSelling} ? 'color: blue' : 'color: red;'"
                 th:text="${selling.checkSelling} ? '대기' : '환불완료'"></td>
-            <td>
+            <td th:align="center">
                 <!-- 환불 버튼 -->
                 <button th:if="${selling.checkSelling}"
                         th:data-orders-id2="${selling.ordersId}"
