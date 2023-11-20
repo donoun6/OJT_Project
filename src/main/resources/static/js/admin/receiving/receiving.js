@@ -19,8 +19,8 @@ $(document).ready(function () {
      */
     $(".all-search").click(function () {
         data = {
-            startDate: $("#startDate").val(),
-            endDate: $("#endDate").val(),
+            startDate: "N",
+            endDate: "N",
             option: "N",
             checkName: "Y",
             name: "",
