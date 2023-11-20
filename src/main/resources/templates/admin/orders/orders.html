@@ -138,11 +138,27 @@
 </main>
 <script>
     $(document).ready(function () {
+
         // 기존의 전체 환불 버튼 이벤트 핸들러는 그대로 유지됩니다.
         $(document).on('click', '.btn-full-refund', function () {
             var ordersId = $(this).data('orders-id');
             allRefund(ordersId);
         });
+
+        /* 미완성작입니다. 수정을 해야 합니다. */
+        // 모달 내의 수량 조절 버튼에 대한 이벤트 핸들러를 추가합니다.
+        $(document).on('click', '.quantity-increase, .quantity-decrease', function() {
+            var $quantitySpan = $(this).siblings('.quantity');
+            var quantity = parseInt($quantitySpan.text());
+            var maxQuantity = parseInt($(this).siblings('.max-quantity').val());
+
+            if ($(this).hasClass('quantity-increase') && quantity < maxQuantity) {
+                $quantitySpan.text(quantity + 1);
+            } else if ($(this).hasClass('quantity-decrease') && quantity > 0) {
+                $quantitySpan.text(quantity - 1);
+            }
+        });
+        /* 미완성작입니다. 수정을 해야합니다. */
 
         // 전체 환불 취소 기능
         $(document).on('click', '.btn-refund-cancel', function () {
@@ -316,8 +332,6 @@
             }
         });
     }
-    // 전체 환불 로직
-    function allRe
 
     // 전체 환불 처리 취소함수
     function allRefundCancel(ordersId3) {
