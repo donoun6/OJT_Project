@@ -144,7 +144,7 @@ public class OrdersDao {
 
     // 선택한 날짜들 사이에 있는 주문들 조회...
     public List<Orders> findOrdersByDateRange(String startDate, String endDate) {
-        String sql = "SELECT * FROM Orders WHERE register_date >= ? AND register_date <= ?";
+        String sql = "SELECT * FROM Orders WHERE DATE(register_date) >= ? AND DATE(register_date) <= ?";
         return template.query(sql, new Object[]{startDate, endDate}, new OrdersRowMapper());
     }
 
