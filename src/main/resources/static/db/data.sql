@@ -128,7 +128,7 @@ CALL AddOrCountCart(1);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(4);
-call AddSellingAndClearCartTest(7);
+call AddSellingAndClearCartTest(0);
 do sleep(0.5);
 
 CALL AddOrCountCart(1);
@@ -139,7 +139,7 @@ CALL AddOrCountCart(1);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(4);
-call AddSellingAndClearCartTest(7);
+call AddSellingAndClearCartTest(0);
 do sleep(0.5);
 
 CALL AddOrCountCart(1);
@@ -150,7 +150,7 @@ CALL AddOrCountCart(1);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(4);
-call AddSellingAndClearCartTest(7);
+call AddSellingAndClearCartTest(0);
 do sleep(0.5);
 
 CALL AddOrCountCart(1);
@@ -161,7 +161,7 @@ CALL AddOrCountCart(1);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(4);
-call AddSellingAndClearCartTest(7);
+call AddSellingAndClearCartTest(0);
 do sleep(0.5);
 
 CALL AddOrCountCart(1);
@@ -172,7 +172,7 @@ CALL AddOrCountCart(1);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(4);
-call AddSellingAndClearCartTest(7);
+call AddSellingAndClearCartTest(0);
 do sleep(0.5);
 
 CALL AddOrCountCart(1);
@@ -183,7 +183,7 @@ CALL AddOrCountCart(1);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(4);
-call AddSellingAndClearCartTest(7);
+call AddSellingAndClearCartTest(0);
 do sleep(0.5);
 
 CALL AddOrCountCart(4);
@@ -194,7 +194,7 @@ CALL AddOrCountCart(1);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(4);
-call AddSellingAndClearCartTest(7);
+call AddSellingAndClearCartTest(0);
 do sleep(0.5);
 
 CALL AddOrCountCart(6);
@@ -205,7 +205,7 @@ CALL AddOrCountCart(14);
 CALL AddOrCountCart(12);
 CALL AddOrCountCart(12);
 CALL AddOrCountCart(10);
-call AddSellingAndClearCartTest(7);
+call AddSellingAndClearCartTest(0);
 do sleep(0.5);
 
 CALL AddOrCountCart(15);
@@ -216,7 +216,7 @@ CALL AddOrCountCart(15);
 CALL AddOrCountCart(5);
 CALL AddOrCountCart(4);
 CALL AddOrCountCart(7);
-call AddSellingAndClearCartTest(7);
+call AddSellingAndClearCartTest(0);
 do sleep(0.5);
 
 CALL AddOrCountCart(8);
@@ -227,7 +227,7 @@ CALL AddOrCountCart(8);
 CALL AddOrCountCart(8);
 CALL AddOrCountCart(8);
 CALL AddOrCountCart(8);
-call AddSellingAndClearCartTest(7);
+call AddSellingAndClearCartTest(0);
 do sleep(0.5);
 
 CALL AddOrCountCart(1);
@@ -238,7 +238,7 @@ CALL AddOrCountCart(1);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(4);
-call AddSellingAndClearCartTest(7);
+call AddSellingAndClearCartTest(0);
 do sleep(0.5);
 
 CALL AddOrCountCart(1);
@@ -249,7 +249,7 @@ CALL AddOrCountCart(4);
 CALL AddOrCountCart(4);
 CALL AddOrCountCart(11);
 CALL AddOrCountCart(11);
-call AddSellingAndClearCartTest(7);
+call AddSellingAndClearCartTest(0);
 do sleep(0.5);
 
 CALL AddOrCountCart(7);
@@ -260,7 +260,7 @@ CALL AddOrCountCart(7);
 CALL AddOrCountCart(8);
 CALL AddOrCountCart(9);
 CALL AddOrCountCart(10);
-call AddSellingAndClearCartTest(7);
+call AddSellingAndClearCartTest(0);
 do sleep(0.5);
 
 CALL AddOrCountCart(15);
@@ -271,7 +271,7 @@ CALL AddOrCountCart(13);
 CALL AddOrCountCart(13);
 CALL AddOrCountCart(12);
 CALL AddOrCountCart(4);
-call AddSellingAndClearCartTest(7);
+call AddSellingAndClearCartTest(0);
 do sleep(0.5);
 
 CALL AddOrCountCart(1);
@@ -282,7 +282,7 @@ CALL AddOrCountCart(1);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(4);
-call AddSellingAndClearCartTest(7);
+call AddSellingAndClearCartTest(0);
 do sleep(0.5);
 
 CALL AddOrCountCart(1);
@@ -293,7 +293,7 @@ CALL AddOrCountCart(1);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(4);
-call AddSellingAndClearCartTest(7);
+call AddSellingAndClearCartTest(0);
 DO SLEEP(0.5);
 
 CALL AddOrCountCart(1);
@@ -304,7 +304,7 @@ CALL AddOrCountCart(1);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(4);
-call AddSellingAndClearCartTest(7);
+call AddSellingAndClearCartTest(0);
 DO SLEEP(0.5);
 
 CALL AddOrCountCart(1);
@@ -315,7 +315,7 @@ CALL AddOrCountCart(12);
 CALL AddOrCountCart(12);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(14);
-call AddSellingAndClearCartTest(7);
+call AddSellingAndClearCartTest(0);
 DO SLEEP(0.5);
 
 CALL AddOrCountCart(13);
@@ -326,7 +326,7 @@ CALL AddOrCountCart(12);
 CALL AddOrCountCart(2);
 CALL AddOrCountCart(12);
 CALL AddOrCountCart(6);
-call AddSellingAndClearCartTest(7);
+call AddSellingAndClearCartTest(0);
 DO SLEEP(0.5);
 
 CALL AddOrCountCart(6);
@@ -337,7 +337,7 @@ CALL AddOrCountCart(2);
 CALL AddOrCountCart(3);
 CALL AddOrCountCart(4);
 CALL AddOrCountCart(4);
-call AddSellingAndClearCartTest(7);
+call AddSellingAndClearCartTest(0);
 DO SLEEP(0.5);
 
 CALL AddOrCountCart(9);
@@ -350,7 +350,32 @@ CALL AddOrCountCart(2);
 CALL AddOrCountCart(4);
 call AddSellingAndClearCartTest(6);
 DO SLEEP(0.5);
-#
+
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+call AddSellingAndClearCartTest(0);
+
+
 # # 판매정보 날짜별 넣기
 # drop procedure AddSellingAndClearCartTest;
 #
