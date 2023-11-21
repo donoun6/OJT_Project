@@ -325,6 +325,7 @@
             success: function (data) {
                 alert(data.message); // 환불 처리 성공 메시지를 표시합니다.
                 orderList(); // 주문 목록을 새로고침합니다.
+                window.location.reload();
             },
             error: function (xhr, textStatus, errorThrown) {
                 alert('전체 환불 처리가 실패하였습니다.');

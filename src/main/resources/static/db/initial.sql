@@ -2409,3 +2409,5 @@ CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 call AddSellingAndClearCartTest(0);
 do sleep(1);
+
+select * from orders;

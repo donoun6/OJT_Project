@@ -32,7 +32,7 @@ CREATE PROCEDURE AddOrCountCart(IN param_product_id INT)
 BEGIN
     DECLARE v_sell_price INT;
     DECLARE v_name VARCHAR(20);
-    DECLARE v_image VARCHAR(20); -- 이미지 파일명 변수
+    DECLARE v_image VARCHAR(50); -- 이미지 파일명 변수
     DECLARE v_cart_quantity INT; -- 현재 장바구니에 있는 제품의 수량
     DECLARE v_inventory_quantity INT; -- 현재 인벤토리에 있는 제품의 수량
     -- 제품 가격, 이름, 이미지 가져오기
@@ -104,6 +104,7 @@ BEGIN
         UPDATE Selling
         SET check_selling = FALSE
         WHERE orders_id = input_orders_id AND product_id = input_product_id AND check_selling = TRUE;
+
     ELSE
 
         UPDATE Inventory i
@@ -121,14 +122,16 @@ BEGIN
         FROM Selling
         WHERE orders_id = input_orders_id AND check_selling = TRUE;
 
-
         IF refundable = 0 THEN
             UPDATE Orders
-            SET check_orders = FALSE
+            SET check_orders = FALSE,
+            register_date = CURRENT_TIMESTAMP -- 현재 시간으로 날짜 업데이트
             WHERE orders_id = input_orders_id;
         END IF;
     END IF;
 END;
+
+SELECT * FROM orders;
 
 /* Selling 테이블의 check_selling을 조회하면서 Selling테이블의 orders_id가 모두 0이면 Orders테이블의
    check_orders값을 0으로 바꿔놓는다. */

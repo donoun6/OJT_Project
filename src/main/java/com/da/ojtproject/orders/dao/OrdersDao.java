@@ -149,17 +149,17 @@ public class OrdersDao {
     }
 
     public List<Orders> findOrdersByReceivingNumber(String receivingNumber) {
-        String sql = "SELECT * FROM Orders WHERE orders_id = ?";
+        String sql = "SELECT * FROM Orders WHERE orders_id = ? ORDER BY orders_id DESC";
         return template.query(sql, new Object[]{receivingNumber}, new OrdersRowMapper());
     }
 
     public List<Orders> findRefundOrders() {
-        String sql = "SELECT * FROM Orders WHERE check_orders = '0'";
+        String sql = "SELECT * FROM Orders WHERE check_orders = '0' ORDER BY orders_id DESC";
         return template.query(sql, new OrdersRowMapper());
     }
 
     public List<Orders> findNotRefundOrders() {
-        String sql = "SELECT * FROM Orders WHERE check_orders = '1'";
+        String sql = "SELECT * FROM Orders WHERE check_orders = '1' ORDER BY orders_id DESC";
         return template.query(sql, new OrdersRowMapper());
     }
 }

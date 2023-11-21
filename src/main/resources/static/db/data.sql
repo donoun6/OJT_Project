@@ -444,3 +444,5 @@ BEGIN
     INSERT INTO Receiving (product_id, quantity, description,register_date)
     VALUES (proid,quan,des,DATE_SUB(NOW(), INTERVAL num DAY));
 END;
+
+SELECT * FROM Orders WHERE check_orders = '0' ORDER BY orders_id DESC
