@@ -19,11 +19,11 @@
         <td th:if="${receivingList.getProduct().isCheckProduct()} == false" } style="color: red;">Y</td>
         <td th:if="${receivingList.getProduct().isCheckProduct()} == true" }>N</td>
         <!--  receiving_quantity  -->
-        <td th:if="${receivingList.getQuantity()} < 0" th:text="${receivingList.getQuantity()+ '개'}"
+        <td th:if="${receivingList.getQuantity()} < 0" th:text="${receivingList.getQuantity()+ 'EA'}"
             style="color: red;"></td>
-        <td th:if="${receivingList.getQuantity()} >= 0" th:text="${receivingList.getQuantity()+ '개'}"></td>
+        <td th:if="${receivingList.getQuantity()} >= 0" th:text="${receivingList.getQuantity()+ 'EA'}"></td>
         <!--  inventory_quantity  -->
-        <td th:text="${receivingList.getInventory().getQuantity()+ '개'}"></td>
+        <td th:text="${receivingList.getInventory().getQuantity()+ 'EA'}"></td>
         <!--  receiving_register_date  -->
         <td th:text="${#dates.format(receivingList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}"></td>
         <!--  receiving_description  -->

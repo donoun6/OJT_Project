@@ -69,35 +69,35 @@ do sleep(1);
 
 # 재고 수량 등록
 INSERT INTO Inventory (product_id, quantity)
-VALUES (1,100);
+VALUES (1,50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (2, 100);
+VALUES (2, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (3, 100);
+VALUES (3, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (4, 100);
+VALUES (4, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (5, 100);
+VALUES (5, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (6, 100);
+VALUES (6, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (7, 100);
+VALUES (7, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (8, 100);
+VALUES (8, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (9, 100);
+VALUES (9, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES(10, 100);
+VALUES(10, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (11, 100);
+VALUES (11, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (12, 100);
+VALUES (12, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (13, 100);
+VALUES (13, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (14, 100);
+VALUES (14, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (15, 100);
+VALUES (15, 50);
 
 #입고 등록
 INSERT INTO Receiving (product_id, quantity, description)
