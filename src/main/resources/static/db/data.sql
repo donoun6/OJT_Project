@@ -69,35 +69,35 @@ do sleep(1);
 
 # 재고 수량 등록
 INSERT INTO Inventory (product_id, quantity)
-VALUES (1,200);
+VALUES (1,100);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (2, 200);
+VALUES (2, 100);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (3, 200);
+VALUES (3, 100);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (4, 200);
+VALUES (4, 100);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (5, 200);
+VALUES (5, 100);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (6, 200);
+VALUES (6, 100);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (7, 200);
+VALUES (7, 100);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (8, 200);
+VALUES (8, 100);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (9, 200);
+VALUES (9, 100);
 INSERT INTO Inventory (product_id, quantity)
-VALUES(10, 200);
+VALUES(10, 100);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (11, 200);
+VALUES (11, 100);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (12, 200);
+VALUES (12, 100);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (13, 200);
+VALUES (13, 100);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (14, 200);
+VALUES (14, 100);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (15, 200);
+VALUES (15, 100);
 
 #입고 등록
 INSERT INTO Receiving (product_id, quantity, description)
@@ -434,4 +434,13 @@ BEGIN
 
     TRUNCATE TABLE Cart;
 
+END;
+
+drop procedure receivingTest;
+
+create
+    definer = root@localhost procedure receivingTest(IN proid int , IN quan int, IN des VARCHAR(50),  IN num int)
+BEGIN
+    INSERT INTO Receiving (product_id, quantity, description,register_date)
+    VALUES (proid,quan,des,DATE_SUB(NOW(), INTERVAL num DAY));
 END;
