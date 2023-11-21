@@ -110,251 +110,251 @@ VALUES ('음료/커피'),
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '코카)코카콜라P500ml', 2500, '/img/5ED4673A0D7C47689870677C71FAB0ED.jpg');
+       , '코카)코카콜라P500ml', 2300, '/img/5ED4673A0D7C47689870677C71FAB0ED.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '코카)코카콜라뚱캔', 3000, '/img/B082A4D4F55B481E95A9303CAECAA935.jpg');
+       , '코카)코카콜라캔355ml', 2000, '/img/B082A4D4F55B481E95A9303CAECAA935.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '코카)코카콜라캔250ml', 2500, '/img/8801094013004.jpg');
+       , '코카)코카콜라캔250ml', 1700, '/img/8801094013004.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '펩시)펩시P500ml', 2000, '/img/27B6C6F57E2A41F0A14E29A53D20A3F6.jpg');
+       , '펩시)펩시P600ml', 2000, '/img/27B6C6F57E2A41F0A14E29A53D20A3F6.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '펩시)펩시뚱캔', 3000, '/img/8801056150013.jpg');
+       , '펩시)펩시캔330mk', 1900, '/img/8801056150013.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '펩시)펩시캔250ml', 6000, '/img/8801056610012.jpg');
+       , '펩시)펩시캔250ml', 1500, '/img/8801056610012.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '동아)포카리스웨트P500ml', 6000, '/img/8801097250079.jpg');
+       , '동아)포카리스웨트P620ml', 2500, '/img/8801097250079.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '동아)포카리스웨트캔250ml', 3000, '/img/8801097150010.jpg');
+       , '동아)포카리스웨트캔240ml', 1600, '/img/8801097150010.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '동아)박카스F', 1500, '/img/8806011615408.jpg');
+       , '동아)박카스F', 900, '/img/8806011615408.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '동아)오로나민C', 1500, '/img/EB25B5B9D10D4E6C93F04924E536D0EA.jpg');
+       , '동아)오로나민C병120ml', 1400, '/img/EB25B5B9D10D4E6C93F04924E536D0EA.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '동아)데미소다', 1000, '/img/8801097160064.jpg');
+       , '동아)데미소다애플캔250ml', 1600, '/img/8801097160064.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '핫식스', 5000, '/img/8801056038861.jpg');
+       , '롯데)핫식스캔250ml', 1500, '/img/8801056038861.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '레드불', 5000, '/img/9002490100070.jpg');
+       , '동서)레드불캔250ml', 2400, '/img/9002490100070.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '레쓰비', 1500, '/img/8801056018979.jpg');
+       , '레쓰비캔200ml', 1200, '/img/8801056018979.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '조지아맥스', 1500, '/img/8801094523206.jpg');
+       , '조지아맥스캔', 1300, '/img/8801094523206.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '조지아라떼', 1000, '/img/8801094513009.jpg');
+       , '조지아라떼캔', 1300, '/img/8801094513009.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '조지아오리지날', 1000, '/img/8801094503000.jpg');
+       , '조지아오리지날캔', 1300, '/img/8801094503000.jpg');
 do sleep(1);
 
 # 스낵
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 2, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '오리온)포카칩오리지날', 2500, '/img/8801117760106.jpg');
+       , '오리온)포카칩오리지날66g', 1700, '/img/8801117760106.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 2, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '오리온)포카칩오리지날대용량', 3000, '/img/8801117760205.jpg');
+       , '오리온)포카칩오리지날137g', 3400, '/img/8801117760205.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 2, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '오리온)포카칩어니언', 2500, '/img/8801117760304.jpg');
+       , '오리온)포카칩어니언66g', 1700, '/img/8801117760304.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 2, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '오리온)포카칩어니언대용량', 2000, '/img/8801117760403.jpg');
+       , '오리온)포카칩어니언137g', 3400, '/img/8801117760403.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 2, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '오리온)스윙칩', 3000, '/img/8801117775001.jpg');
+       , '오리온)스윙칩고추장60g', 1700, '/img/8801117775001.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 2, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '농심)새우깡', 6000, '/img/8801043035989.jpg');
+       , '농심)새우깡90g', 1500, '/img/8801043035989.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 2, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '농심)새우깡매운맛', 6000, '/img/8801043036078.jpg');
+       , '농심)매운새우깡90g', 1500, '/img/8801043036078.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 2, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '롯데)꼬깔콘', 3000, '/img/8801062011315.jpg');
+       , '롯데)꼬깔콘', 1700, '/img/8801062011315.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 2, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '롯데)치토스', 1500, '/img/8801062383436.jpg');
+       , '롯데)치토스', 1700, '/img/8801062383436.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 2, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '해태)허니버터칩', 1000, '/img/8801019606557.jpg');
+       , '해태)허니버터칩', 1700, '/img/8801019606557.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 2, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '해태)맛동산', 5000, '/img/8801019608766.jpg');
+       , '해태)맛동산', 2000, '/img/8801019608766.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 2, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '해태)오예스', 5000, '/img/8801019313219.jpg');
+       , '해태)오예스', 6000, '/img/8801019313219.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 2, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '크라운)쿠크다스', 1500, '/img/8801111186117.jpg');
+       , '크라운)쿠크다스크림', 3000, '/img/8801111186117.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 2, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '오리온)카스타드', 1500, '/img/8801117948511.jpg');
+       , '오리온)카스타드12입', 5400, '/img/8801117948511.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 2, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '오리온)초코파이', 1000, '/img/8801117534912.jpg');
+       , '오리온)초코파이12입', 5400, '/img/8801117534912.jpg');
 do sleep(1);
 
 # 라면/가공식품
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 3, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '농심)신라면', 2500, '/img/8801043015981.jpg');
+       , '농심)신라면', 1400, '/img/8801043015981.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 3, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '농심)신라면작은컵', 3000, '/img/D180E0ECA21F41D09AD5D9EBCFFA94DD.jpg');
+       , '농심)신라면작은컵', 1100, '/img/D180E0ECA21F41D09AD5D9EBCFFA94DD.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 3, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '농심)신라면블랙', 1000, '/img/8801043041447.jpg');
+       , '농심)신라면블랙', 1800, '/img/8801043041447.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 3, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '농심)김치큰사발면', 2500, '/img/8801043015929.jpg');
+       , '농심)김치큰사발면', 1400, '/img/8801043015929.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 3, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '농심)김치사발면', 2000, '/img/8801043015639.jpg');
+       , '농심)김치사발면', 1000, '/img/8801043015639.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 3, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '농심)육개장큰사발면', 3000, '/img/8801043016025.jpg');
+       , '농심)육개장큰사발면', 1400, '/img/8801043016025.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 3, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '농심)육개장사발면', 6000, '/img/8801043015653.jpg');
+       , '농심)육개장사발면', 1000, '/img/8801043015653.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 3, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '농심)짜파게티', 6000, '/img/8801043016049.jpg');
+       , '농심)짜파게티', 1400, '/img/8801043016049.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 3, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '농심)오징어짬뽕', 3000, '/img/8801043016117.jpg');
+       , '농심)오징어짬뽕', 1400, '/img/8801043016117.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 3, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '농심)너구리', 1500, '/img/8801043017602.jpg');
+       , '농심)너구리', 1400, '/img/8801043017602.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 3, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '농심)불닭볶음면', 5000, '/img/8801073210363.jpg');
+       , '농심)불닭볶음면', 1800, '/img/8801073210363.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 3, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '삼양)삼양라면', 5000, '/img/8801073112278.jpg');
+       , '삼양)삼양라면', 1400, '/img/8801073112278.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 3, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '팔도)왕뚜껑', 1500, '/img/8801128503211.jpg');
+       , '팔도)왕뚜껑', 1400, '/img/8801128503211.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 3, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '핫도그', 1500, '/img/8805489001874.jpg');
+       , '우양)크리스피모짜핫도그', 2500, '/img/8805489001874.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 3, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '핫도그2', 1000, '/img/8805489001102.jpg');
+       , '우양)크리스피모짜핫도그', 2500, '/img/8805489001102.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 3, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '핫도그3', 1000, '/img/8805489001607.jpg');
+       , '우양)점보핫도그', 2000, '/img/8805489001607.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 3, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '비엔나소시지', 1000, '/img/8801123309481.jpg');
+       , '롯데)비엔나소시지', 1700, '/img/8801123309481.jpg');
 do sleep(1);
 
 
@@ -362,47 +362,47 @@ do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 4, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '매콤불고기반상', 2500, '/img/8809196618172.jpg');
+       , '도)백종원매콤불고기', 5000, '/img/8809196618172.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 4, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '제육불고기정식', 2500, '/img/8809196618134.jpg');
+       , '도)백종원제육불고기', 4800, '/img/8809196618134.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 4, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '부대볶음정식', 1000, '/img/8809948341495.jpg');
+       , '도)백종원부대볶음', 4900, '/img/8809948341495.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 4, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '묵은지삼겹주먹밥', 2500, '/img/8809948342041.jpg');
+       , '주)구운주먹밥묵은지', 1600, '/img/8809948342041.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 4, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '간장버터치즈주먹밥', 2000, '/img/8809948342089.jpg');
+       , '주)구운주먹치즈', 1600, '/img/8809948342089.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 4, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '제육불고기', 3000, '/img/8809948343154.jpg');
+       , '김)백종원제육불고기', 3000, '/img/8809948343154.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 4, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '비빔밥한줄', 6000, '/img/8809948343192.jpg');
+       , '김)백종원비빔밥한줄', 2900, '/img/8809948343192.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 4, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '고추참치3XL', 6000, '/img/8809948343338.jpg');
+       , '주)고추참치3XL', 1700, '/img/8809948343338.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 4, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '간장직화불고기2XL', 3000, '/img/8809948343413.jpg');
+       , '주)간장직화불고기2XL', 1600, '/img/8809948343413.jpg');
 do sleep(1);
 
 
@@ -410,57 +410,57 @@ do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 5, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '405빵', 2500, '/img/8809895798380.jpg');
+       , '405)오리지널통단팥', 2300, '/img/8809895798380.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 5, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '생크림빵', 2500, '/img/8801753111614.jpg');
+       , '연세)마롱생크림빵', 3500, '/img/8801753111614.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 5, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '롯데)쌀슈크림빵', 2500, '/img/8801062859559.jpg');
+       , '롯데)쌀슈크림빵', 3000, '/img/8801062859559.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 5, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '롯데)단팥생크림', 1000, '/img/8801062859566.jpg');
+       , '롯데)단팥생크림', 3000, '/img/8801062859566.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 5, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '삼립)고추장제육볶음호빵', 2500, '/img/8801068919820.jpg');
+       , '삼립)고추장제육볶음호빵', 2200, '/img/8801068919820.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 5, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '삼립)갈릭페퍼치킨호빵', 2000, '/img/8801068919837.jpg');
+       , '삼립)갈릭페퍼치킨호빵', 2200, '/img/8801068919837.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 5, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '삼립)꿀먹은고구마쿠키', 3000, '/img/8801068920130.jpg');
+       , '삼립)꿀먹은고구마쿠키', 1600, '/img/8801068920130.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 5, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '삼립)밤생크림찹쌀떡', 6000, '/img/8801121287743.jpg');
+       , '삼립)밤생크림찹쌀떡', 2200, '/img/8801121287743.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 5, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '매일)치즈케이크', 6000, '/img/8809844301043.jpg');
+       , '엠즈)치즈케이크', 3800, '/img/8809844301043.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 5, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '매일)초코케이크', 3000, '/img/8809844301050.jpg');
+       , '엠즈)초코케이크', 3800, '/img/8809844301050.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 5, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '매일)소금롤케이크', 1500, '/img/8809844301111.jpg');
+       , '매일)소금롤케이크', 3900, '/img/8809844301111.jpg');
 do sleep(1);
 
 
@@ -468,171 +468,171 @@ do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 6, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '삼립)한돈애쉬포테이토', 2500, '/img/8801068918731.jpg');
+       , '햄)한돈애쉬포테이토', 3800, '/img/8801068918731.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 6, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '삼립)훈제목살버거', 2500, '/img/8801068917055.jpg');
+       , '햄)훈제목살버거', 3500, '/img/8801068917055.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 6, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '국민불고기버거', 1000, '/img/8801771028451.jpg');
+       , '햄)국민불고기버거', 3300, '/img/8801771028451.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 6, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '고추듬뿍유린기버거', 2500, '/img/8809453267952.jpg');
+       , '햄)백종원의유린기버거', 3900, '/img/8809453267952.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 6, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '불불버거', 2000, '/img/8809948342447.jpg');
+       , '햄)불불버거', 3300, '/img/8809948342447.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 6, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '탑티어통닭다리살버거', 3000, '/img/8809383958050.jpg');
+       , '햄)탑티어통닭다리살', 3500, '/img/8809383958050.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 6, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '치즈함박버거', 6000, '/img/8801771029403.jpg');
+       , '햄)치즈함박버거', 3200, '/img/8801771029403.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 6, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '반미샌드위치', 6000, '/img/8809453267839.jpg');
+       , '샘)반미샌드위치', 3400, '/img/8809453267839.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 6, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '치킨데리야끼', 3000, '/img/8809895798922.jpg');
+       , '샘)치킨데리야끼', 3700, '/img/8809895798922.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 6, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '디럭스통밀햄', 3000, '/img/8809895798809.jpg');
+       , '샘)디럭스통밀햄', 3000, '/img/8809895798809.jpg');
 do sleep(1);
 
 # 젤리/캔디/껌
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 7, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '동아)박카스젤리신맛', 2500, '/img/8806011435679.jpg');
+       , '동아)박카스젤리신맛', 1200, '/img/8806011435679.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 7, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '동아)박카스젤리', 2500, '/img/8806011435631.jpg');
+       , '동아)박카스젤리', 1200, '/img/8806011435631.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 7, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '츄파츕스', 1000, '/img/8410031920093.jpg');
+       , '농심)츄파츕스', 300, '/img/8410031920093.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 7, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '해태)해태온단', 2500, '/img/1798B6BD6E764483A87D8E036ECC8BD2.jpg');
+       , '해태)해태온단', 500, '/img/1798B6BD6E764483A87D8E036ECC8BD2.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 7, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '멘토스', 2000, '/img/6921211104292.jpg');
+       , '농심)멘토스', 800, '/img/6921211104292.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 7, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '호올스', 3000, '/img/6924513900098.jpg');
+       , '농심)호올스', 800, '/img/6924513900098.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 7, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '아폴로', 6000, '/img/6943545500014.jpg');
+       , '몽뜨)아폴로', 800, '/img/6943545500014.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 7, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '크라운)마이쮸', 6000, '/img/8801111187879.jpg');
+       , '크라운)마이쮸', 1000, '/img/8801111187879.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 7, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '크라운)새콤달콤복숭아', 6000, '/img/8801111188036.jpg');
+       , '크라운)새콤달콤복숭아', 500, '/img/8801111188036.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 7, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '크라운)새콤달콤레몬', 6000, '/img/8801111907934.jpg');
+       , '크라운)새콤달콤레몬', 500, '/img/8801111907934.jpg');
 do sleep(1);
 
 # 아이스크림
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 8, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '롯데)수박바', 2500, '/img/8801062417117.jpg');
+       , '롯데)수박바', 1500, '/img/8801062417117.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 8, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '롯데)비비빅', 2500, '/img/8801104123181.jpg');
+       , '롯데)비비빅', 1500, '/img/8801104123181.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 8, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '롯데)스크류바', 2500, '/img/8801062417018.jpg');
+       , '롯데)스크류바', 1500, '/img/8801062417018.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 8, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '롯데)죠스바', 1000, '/img/8801062417056.jpg');
+       , '롯데)죠스바', 1500, '/img/8801062417056.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 8, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '해태)누가바', 2500, '/img/8809713220123.jpg');
+       , '해태)누가바', 1500, '/img/8809713220123.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 8, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '해태)바밤바', 2000, '/img/8809713220055.jpg');
+       , '해태)바밤바', 1500, '/img/8809713220055.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 8, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '해태)쌍쌍바', 3000, '/img/8809713220031.jpg');
+       , '해태)쌍쌍바', 1500, '/img/8809713220031.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 8, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '빙그레)메로나', 6000, '/img/8801104123280.jpg');
+       , '빙그레)메로나', 1500, '/img/8801104123280.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 8, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '빙그레)더위사냥', 6000, '/img/8801104111553.jpg');
+       , '빙그레)더위사냥', 1800, '/img/8801104111553.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 8, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '빙그레)구구콘', 6000, '/img/8801118250606.jpg');
+       , '빙그레)구구콘', 2200, '/img/8801118250606.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 8, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '롯데)월드콘', 6000, '/img/8801062623471.jpg');
+       , '롯데)월드콘', 2200, '/img/8801062623471.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 8, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '더블비얀코', 6000, '/img/8801062623488.jpg');
+       , '더블비얀코', 2200, '/img/8801062623488.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 8, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '롯데)와', 6000, '/img/8801062435951.jpg');
+       , '롯데)와', 2200, '/img/8801062435951.jpg');
 do sleep(1);
 
 # 재고 수량 등록
