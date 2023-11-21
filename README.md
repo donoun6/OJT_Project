@@ -5,8 +5,9 @@
 > 무인 편의점 시스템 / 재고 매출 관리 프로젝트
 </br>
 
-<img width="100%" src=""/>
-<img width="100%" src=""/>
+[//]: # (<img width="100%" src=""/>)
+![img_1.png](img_1.png)
+![img.png](img.png)
 </br>
 
 ------

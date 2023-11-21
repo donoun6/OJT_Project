@@ -31,7 +31,7 @@ public class ReceivingApi {
      */
     @PostMapping("/api/receiving")
     public HttpStatus receivingSave(@RequestBody Receiving receiving) {
-        if (receiving.getQuantity() == 0) {
+        if (receiving.getQuantity() <= 0 || receiving.getQuantity() > 999) {
             return HttpStatus.BAD_REQUEST;
         }
         receivingService.saveReceiving(receiving);

@@ -203,7 +203,7 @@
                 <li><label for="name">상품명</label></li>
                 <li><input class="product-name" type="text" th:field="*{name}" placeholder="상품명을 입력하세요."></li>
                 <li><label for="code">상품코드</label></li>
-                <li><input class="product-code" type="text" th:field="*{code}" placeholder="상품코드를 입력하세요."></li>
+                <li><input readonly class="product-code" type="text" th:field="*{code}" placeholder="Auto Create (A-0000-0000)"></li>
                 <li><label for="sellPrice">판매금액</label></li>
                 <li><input class="product-sellPrice" type="number" th:min="100" step="100" th th:field="*{sellPrice}" placeholder="판매금액을 입력하세요.">
                 </li>

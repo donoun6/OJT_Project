@@ -97,7 +97,10 @@ public class ReceivingDao {
          */
         if (!data.get("startDate").equals("N") && !data.get("endDate").equals("N")) {
             sb.append("AND DATE(receiving.register_date) BETWEEN '" + data.get("startDate") + "' AND '" + data.get("endDate") + "'");
+        }else {
+            sb.append("AND DATE(receiving.register_date) = '" + format + "' ");
         }
+
         /**
          * option 상품 or 입고번호 검색
          */

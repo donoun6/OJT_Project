@@ -168,13 +168,13 @@ BEGIN
 END;
 
 DELIMITER ;
-
 CREATE PROCEDURE AddProductAndAddInventory(IN category_id INT, IN product_name VARCHAR(255),
-                                           IN product_code VARCHAR(255), IN product_sell_price INT, IN product_image VARCHAR(255), IN inventory_quantity INT)
+                                IN product_sell_price INT, IN product_image VARCHAR(255), IN inventory_quantity INT)
 BEGIN
     -- Add product
     INSERT INTO product (category_id, name, code, sell_price, image)
-    VALUES (category_id, product_name, product_code, product_sell_price, product_image);
+    VALUES (category_id, product_name, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),  concat(lpad(FLOOR(RAND()*1000),'4','0'),concat('-' ,lpad(FLOOR(RAND()*1000),'4','0'))))
+           , product_sell_price, product_image);
 
     -- Get the last inserted product_id
     SET @product_id = LAST_INSERT_ID();

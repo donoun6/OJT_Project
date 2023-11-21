@@ -107,7 +107,7 @@ public class AdminDao {
         sb.append("GROUP BY " +
                 "product.name, product.sell_price, product.image " +
                 "ORDER BY quantity desc , total_price DESC " +
-                "limit 10");
+                "limit 5");
         String sql = sb.toString();
         return tmeTemplate.query(sql, (rs, rowNum) -> {
             Product product = new Product();
