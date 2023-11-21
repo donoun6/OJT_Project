@@ -16,14 +16,16 @@
         <!--  product_sell_Price  -->
         <td th:text="${#numbers.formatInteger(receivingList.getProduct().getSellPrice(), 3, 'COMMA') + '원'}" }></td>
         <!--  product_delete_check  -->
-        <td th:if="${receivingList.getProduct().isCheckProduct()} == false" } style="color: red;">Y</td>
+        <td th:if="${receivingList.getProduct().isCheckProduct()} == false" } style="color: red;  background: #ff00002b;">Y</td>
         <td th:if="${receivingList.getProduct().isCheckProduct()} == true" }>N</td>
         <!--  receiving_quantity  -->
         <td th:if="${receivingList.getQuantity()} < 0" th:text="${receivingList.getQuantity()+ 'EA'}"
-            style="color: red;"></td>
+            style="color: red;  background: #ff00002b;"></td>
         <td th:if="${receivingList.getQuantity()} >= 0" th:text="${receivingList.getQuantity()+ 'EA'}"></td>
         <!--  inventory_quantity  -->
-        <td th:text="${receivingList.getInventory().getQuantity()+ 'EA'}"></td>
+        <td th:if="${receivingList.getInventory().getQuantity()} <= 5" th:text="${receivingList.getInventory().getQuantity()+ 'EA'}"
+            style="color: red;  background: #ff00002b;"></td>
+        <td th:if="${receivingList.getInventory().getQuantity()} > 5" th:text="${receivingList.getInventory().getQuantity()+ 'EA'}"></td>
         <!--  receiving_register_date  -->
         <td th:text="${#dates.format(receivingList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}"></td>
         <!--  receiving_description  -->
@@ -35,7 +37,7 @@
                     class="receiving-cancel-btn btn" type="button" th:value="${receivingList.getReceivingId()}">취소
             </button>
             <span th:if="${receivingList.getQuantity()} < 0 OR ${receivingList.isCheckReceiving()} == false"
-                  style="color: red">취소처리</span>
+                  style="color: red;">취소처리</span>
             <input type="hidden" th:value="${receivingList.getQuantity()}">
             <input type="hidden" th:value="${receivingList.getProduct().getProductId()}">
             <input type="hidden" th:value="${receivingList.getReceivingId()}">

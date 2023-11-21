@@ -5,6 +5,8 @@
         <td><img th:src="@{${productList.getImage()}}" style="width: 30px; height: 30px" class="gallery"></td>
         <td th:text="${productList.getName()}"></td>
         <input class="category-select-id" type="hidden" th:value="${productList.getProductId()}">
-        <td th:text="${productList.getInventory().getQuantity()}"></td>
+        <td th:if="${productList.getInventory().getQuantity()} <= 5" th:text="${productList.getInventory().getQuantity()}"
+            style="background: #ff00002b"></td>
+        <td th:if="${productList.getInventory().getQuantity()} > 5" th:text="${productList.getInventory().getQuantity()}"></td>
     </tr>
 </th:block>
