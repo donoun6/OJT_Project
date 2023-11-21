@@ -43,7 +43,7 @@ public class OrdersDao {
 
     }
     public List<Orders> getAllOrdersProducts() {
-        String sql = "SELECT * FROM Orders";
+        String sql = "SELECT * FROM Orders ORDER BY orders_id DESC";
         return template.query(sql, new OrdersRowMapper());
     }
 

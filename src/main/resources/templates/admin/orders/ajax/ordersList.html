@@ -11,7 +11,7 @@
         <!--  product_code : 상품코드 -->
         <!--<td th:text="${ordersList.isCheckOrders()} ? '미환불' : '환불성공'"></td>-->
         <td th:style="${ordersList.isCheckOrders()} ? 'color: blue;' : 'color: red;'"
-            th:text="${ordersList.isCheckOrders()} ? '미환불' : '환불성공'"></td>
+            th:text="${ordersList.isCheckOrders()} ? '결제완료' : '결제취소'"></td>
 
         <!--  receiving_register_date : 결제일자 -->
         <td th:text="${#dates.format(ordersList.getRegisterDate(),'yyyy.MM.dd HH:mm:ss')}"></td>
@@ -20,7 +20,7 @@
             <button type="button"
                     style="width: 75px; color: black; font-size: 12px; font-weight: bold; height: 25px; background: #be9a9a; color: white; border-radius: 10px; border: none;"
                     th:data-orders-id3="${ordersList.ordersId}">
-                환불완료
+                취소완료
             </button>
         </td>
 
@@ -28,15 +28,15 @@
         <td th:if="${ordersList.isCheckOrders()}">
             <button type="button"
                     class="btn-full-refund"
-                    style="width: 75px; color: black; font-size: 12px; font-weight: bold; height: 25px; background: #a1a8be; color: white; border-radius: 10px; border: none;"
+                    style="width: 95px; color: black; font-size: 12px; font-weight: bold; height: 25px; background: #a1a8be; color: white; border-radius: 10px; border: none;"
                     th:data-orders-id="${ordersList.ordersId}">
-                전체환불
+                전체 결제취소
             </button>
         </td>
         <td>
             <button type="button" class="btn-partial-refund"
-                    style="width: 75px; color: black; font-size: 12px; font-weight: bold; height: 25px; background: #a1a8be; color: white; border-radius: 10px; border: none;"
-                    th:data-orders-id="${ordersList.ordersId}">부분환불</button>
+                    style="width: 95px; color: black; font-size: 12px; font-weight: bold; height: 25px; background: #a1a8be; color: white; border-radius: 10px; border: none;"
+                    th:data-orders-id="${ordersList.ordersId}">부분 결제취소</button>
         </td>
     </tr>
 

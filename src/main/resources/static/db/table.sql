@@ -123,21 +123,21 @@ select product_id as '상품 이름', quantity as '남은수량' from Inventory;
 SELECT
     orders_id AS '주문번호',
     CASE
-        WHEN check_orders = 1 THEN '환불 안했습니다'
-        ELSE '환불 완료'
+        WHEN check_orders = 1 THEN '결제가 완료되었습니다.'
+        ELSE '결제를 취소하셨습니다.'
         END AS '환불상황'
 FROM
     Orders;
 
 select * from selling;
-select orders_id as '주문번호', quantity as '잔여수량', check_selling as '환불상황' from Selling;
+# select orders_id as '주문번호', quantity as '잔여수량', check_selling as '환불상황' from Selling;
 
 SELECT
     orders_id AS '주문번호',
-    quantity AS '잔여수량',
+    quantity AS '판매수량',
     CASE
-        WHEN check_selling = 1 THEN '수량 있습니다.'
-        ELSE '수량 없습니다.'
-        END AS '재고상태'
+        WHEN check_selling = 1 THEN '결제가 완료되었습니다.'
+        ELSE '결제를 취소하셨습니다.'
+        END AS '결제상태'
 FROM
     Selling;
