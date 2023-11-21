@@ -16,7 +16,7 @@
         <td class="view-off"><input type="text" th:value="${productList.getCode()}" id="code" style="width: 85%;"></td>
         <!--     category     -->
         <td class="view" th:if="${productList.getCategory().isCheckCategory()} == false"
-            th:text="${productList.getCategory().getName()}" style="color: red;"></td>
+            th:text="${productList.getCategory().getName()}" style="color: red; background: #ff00002b;"></td>
         <td class="view" th:if="${productList.getCategory().isCheckCategory()} == true"
             th:text="${productList.getCategory().getName()}"></td>
         <td class="view-off">
@@ -26,14 +26,14 @@
         </td>
         <!--     inventory_quantity     -->
         <td class="view" th:if="${productList.getInventory().getQuantity} <= 5"
-            th:text="${productList.getInventory().getQuantity+ '개'}"
-            style="color: red"></td>
+            th:text="${productList.getInventory().getQuantity+ 'EA'}"
+            style="color: red;  background: #ff00002b;"></td>
         <td class="view" th:if="${productList.getInventory().getQuantity} > 5"
-            th:text="${productList.getInventory().getQuantity+ '개'}"></td>
+            th:text="${productList.getInventory().getQuantity+ 'EA'}"></td>
         <td class="view-off"><input readonly="true" type="text" th:value="${productList.getInventory().getQuantity}"
                                     style="background: #dedce0; width: 70%"></td>
         <!--     sell_quantity     -->
-        <td class="view" th:text="${productList.getSelling().getQuantity + '개'}"></td>
+        <td class="view" th:text="${productList.getSelling().getQuantity + 'EA'}"></td>
         <td class="view-off"><input readonly="true" type="text" th:value="${productList.getSelling().getQuantity}"
                                     style="background: #dedce0; width: 70%"></td>
         <!--     sell_price     -->
@@ -49,7 +49,7 @@
         <td class="view-off"><input readonly="true" type="text" th:value="${productList.getSelling().getTotalPrice}"
                                     style="background: #dedce0; width: 80%;"></td>
         <!--     check_product     -->
-        <td class="view" th:if="${productList.isCheckProduct()} == false" } style="color: red;">Y</td>
+        <td class="view" th:if="${productList.isCheckProduct()} == false" } style="color: red;  background: #ff00002b;">Y</td>
         <td class="view" th:if="${productList.isCheckProduct()} == true" }>N</td>
         <td class="view-off">-</td>
         <!--     register_date     -->

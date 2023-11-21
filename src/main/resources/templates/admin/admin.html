@@ -128,7 +128,7 @@
                 <div class="low-quantity">
                     <img th:src="@{${lowQuantity.getImage()}}">
                     <div class="text-box">
-                        <p th:text="${lowQuantity.getName()}"></p>
+                        <p th:text="${lowQuantity.getName()}" style="width: 100px; height: 20px; overflow: scroll;"></p>
                         <p style="color: red; margin-top: 7px"
                            th:text="${lowQuantity.getInventory().getQuantity()} + 'EA'"></p>
                     </div>
