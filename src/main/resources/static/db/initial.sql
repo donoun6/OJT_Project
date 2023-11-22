@@ -2428,3 +2428,7 @@ CALL AddOrCountCart(14);
 CALL AddOrCountCart(14);
 call AddSellingAndClearCartTest(0);
 do sleep(1);
+
+CALL AddOrCountCart(14);
+call AddSellingAndClearCartTest(0);
+do sleep(1);

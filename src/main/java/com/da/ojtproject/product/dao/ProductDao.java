@@ -88,21 +88,22 @@ public class ProductDao {
                 "ON product.product_id = selling.product_id " +
                 "WHERE 1 = 1 ");
         /**
-         * categoryDeleteCheck : 카테고리 삭제 여부 출력
+         * categoryDeleteCheck : 조회 방식 선택
          */
         if (data.get("categoryDeleteCheck").equals("N")) {
-            sb.append("AND category.check_category = true ");
+            /**
+             * deleteCheck : 삭제상품 포함 여부
+             */
+            if (data.get("productDeleteCheck").equals("N")) {
+                sb.append("AND product.check_product = true " +
+                        "AND category.check_category = true ");
+            } else {
+                sb.append("AND product.check_product IS NOT NULL ");
+            }
         } else {
-            sb.append("AND product.check_product IS NOT NULL ");
+            sb.append("AND product.check_product = false ");
         }
-        /**
-         * deleteCheck : 상품 삭제 여부 출력
-         */
-        if (data.get("productDeleteCheck").equals("N")) {
-            sb.append("AND product.check_product = true ");
-        } else {
-            sb.append("AND product.check_product IS NOT NULL ");
-        }
+
         /**
          * checkName : 검색 value (상품 이름 검색, 초성 검색)
          */
