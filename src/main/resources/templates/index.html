@@ -103,7 +103,6 @@
             border-radius: 10px;
             color: white;
         }
-
         .btn-de, .btn-in {
             cursor: pointer;
             background: #F3F1F5;
@@ -112,7 +111,27 @@
             font-weight: bold;
             font-size: 30px;
         }
-
+        .low-stock {
+            position: absolute;
+            left: 10px;
+            top: -20px;
+            width: 100px;
+            height: 100px;
+            background: red;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            text-align: center;
+            line-height: 1.2;
+            animation: blink 2s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
     </style>
 </head>
 <body>
@@ -144,6 +163,9 @@
                                  alt="상품 이미지" width="100" class="add-to-cart" th:data-product-id="${item.productId}"/>
                             <div class="sold-out" th:if="${item.quantity == 0}">
                                 <p>SOLD OUT</p>
+                            </div>
+                            <div class="low-stock" th:if="${item.name.contains('박카스')}">
+                                <p>Best</p>
                             </div>
                         </div>
                     </div>
@@ -231,7 +253,7 @@
                 name: '주문명:결제테스트',
                 amount: totalAmount,
                 buyer_name: currentOrderUid.toString(),
-                m_redirect_url: 'http://localhost:8080/',
+                // m_redirect_url: 'http://localhost:8080/',
             }, function (rsp) {
                 if (rsp.success) {
                     $.ajax({
@@ -263,19 +285,20 @@
             success: function (data) {
                 $(".item-wrap").empty();
                 $.each(data, function (index, product) {
-                    var formattedPrice = product.sellPrice.toLocaleString(); // 콤마를 포함한 가격 포매팅
+                    var formattedPrice = product.sellPrice.toLocaleString();
                     var productHtml = `
-                    <div class="item">
-                        <div class="item-box">
-                            <div class="image">
-                                <img style="background: white; width: 300px; height: 300px; border-radius: 5%" src="${product.image}" alt="상품 이미지" width="100" class="add-to-cart" data-product-id="${product.productId}" />
-                            </div>
+                <div class="item">
+                    <div class="item-box">
+                        <div class="image">
+                            <img style="background: white; width: 300px; height: 300px; border-radius: 5%" src="${product.image}" alt="상품 이미지" width="100" class="add-to-cart" data-product-id="${product.productId}" />
                             ${product.quantity === 0 ? '<div class="sold-out"><p>SOLD OUT</p></div>' : ''}
+                            ${product.name.includes('박카스') ? '<div class="low-stock"><p>Best</p></div>' : ''}
                         </div>
-                        <h3>${product.name}</h3>
-                        <span>${formattedPrice}원</span> <!-- 수정된 부분 -->
                     </div>
-                    `;
+                    <h3>${product.name}</h3>
+                    <span>${formattedPrice}원</span>
+                </div>
+                `;
                     $(".item-wrap").append(productHtml);
                 });
             },
@@ -283,6 +306,7 @@
             }
         });
     }
+
 
     //productId로 상품을 장바구니에 넣어주는 함수.
     function addProductToCart(productId) {

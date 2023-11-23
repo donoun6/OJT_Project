@@ -21,11 +21,8 @@ public class OrdersDao {
     private final JdbcTemplate template;
     private SimpleJdbcCall AddProductAndAddInventory;
     private SimpleJdbcCall ProcessSpecificOrFullRefund;
-
     private SimpleJdbcCall ProcessRefundCancellation;
-
     private SimpleJdbcCall ProcessSpecificOrFullRefund2;
-
     private SimpleJdbcCall ProcessSpecificOrFullRefund3;
 
     public OrdersDao(DataSource dataSource) {
@@ -119,12 +116,10 @@ public class OrdersDao {
 
         // 부분환불 프로시저를 우선 실행해보자.
         ProcessRefundCancellation.execute(inParams);
-
         // 일부분만 부분환불만 진행해도 계속해서 그 다음 ProcessSpecificOrFullRefund2 프로시저를 불러온다.
         // 과부하가 일어날 수 있지만 동시에 현재 내 실력으로는 이게 최상이다.
         // 그다음에 전체 환불 프로시저를 실행해본다.
         // ProcessSpecificOrFullRefund2.execute(ordersId4);
-
         ProcessSpecificOrFullRefund3.execute(ordersId4);
 
         // 부분환불 결과 처리 로직입니다. fullRefund와 마찬가지로 파라미터값을 inParams 값으로 넘겨줘야 합니다.

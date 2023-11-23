@@ -637,131 +637,131 @@ do sleep(1);
 
 # 재고 수량 등록
 INSERT INTO Inventory (product_id, quantity)
-VALUES (1, 50);
+VALUES (1, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (2, 80);
+VALUES (2, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (3, 50);
+VALUES (3, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (4, 50);
+VALUES (4, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (5, 50);
+VALUES (5, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (6, 50);
+VALUES (6, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (7, 80);
+VALUES (7, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (8, 50);
+VALUES (8, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (9, 50);
+VALUES (9, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (10, 50);
+VALUES (10, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (11, 50);
+VALUES (11, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (12, 50);
+VALUES (12, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (13, 50);
+VALUES (13, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (14, 50);
+VALUES (14, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (15, 50);
+VALUES (15, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (16, 50);
+VALUES (16, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (17, 50);
+VALUES (17, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (18, 50);
+VALUES (18, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (19, 50);
+VALUES (19, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (20, 50);
+VALUES (20, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (21, 50);
+VALUES (21, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (22, 50);
+VALUES (22, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (23, 50);
+VALUES (23, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (24, 50);
+VALUES (24, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (25, 50);
+VALUES (25, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (26, 50);
+VALUES (26, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (27, 50);
+VALUES (27, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (28, 50);
+VALUES (28, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (29, 50);
+VALUES (29, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (30, 50);
+VALUES (30, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (31, 50);
+VALUES (31, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (32, 50);
+VALUES (32, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (33, 80);
+VALUES (33, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (34, 50);
+VALUES (34, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (35, 50);
+VALUES (35, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (36, 70);
+VALUES (36, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (37, 50);
+VALUES (37, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (38, 50);
+VALUES (38, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (39, 50);
+VALUES (39, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (40, 50);
+VALUES (40, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (41, 50);
+VALUES (41, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (42, 50);
+VALUES (42, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (43, 50);
+VALUES (43, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (44, 50);
+VALUES (44, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (45, 50);
+VALUES (45, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (46, 50);
+VALUES (46, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (47, 50);
+VALUES (47, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (48, 50);
+VALUES (48, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (49, 50);
+VALUES (49, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (50, 50);
+VALUES (50, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (51, 50);
+VALUES (51, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (52, 50);
+VALUES (52, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (53, 50);
+VALUES (53, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (54, 50);
+VALUES (54, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (55, 50);
+VALUES (55, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (56, 50);
+VALUES (56, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (57, 50);
+VALUES (57, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (58, 50);
+VALUES (58, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (59, 50);
+VALUES (59, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (60, 50);
+VALUES (60, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (61, 50);
+VALUES (61, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (62, 50);
+VALUES (62, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (63, 50);
+VALUES (63, 5);
 INSERT INTO Inventory (product_id, quantity)
 VALUES (64, 50);
 INSERT INTO Inventory (product_id, quantity)
@@ -833,13 +833,13 @@ VALUES (97, 50);
 INSERT INTO Inventory (product_id, quantity)
 VALUES (98, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (99, 50);
+VALUES (99, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (100, 50);
+VALUES (100, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (101, 50);
+VALUES (101, 5);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (102, 50);
+VALUES (102, 5);
 
 # 아이템 입고시 재고처리
 CREATE TRIGGER ReceivingAndCountInventory
