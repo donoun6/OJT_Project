@@ -74,7 +74,7 @@
                                     </th:block>
                                 </select>
                             </td>
-                            <th scope="row">상품 삭제여부</th>
+                            <th scope="row">삭제여부</th>
                             <td>
                                 <input type="radio" id="product-include" class="product-delete-check"
                                        name="product-delete" value="N" checked>
@@ -85,20 +85,19 @@
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row">기간 조회</th>
+                            <th scope="row">기간조회</th>
                             <td>
                                 <input type="text" id="startDate" value="" placeholder=" 연-월-일" style="width: 100px;"> -
                                 <input type="text" id="endDate" value="" placeholder=" 연-월-일" style="width: 100px;">
                             </td>
-                            <th scope="row">카테고리 삭제여부</th>
+                            <th scope="row">조회방식</th>
                             <td>
                                 <input type="radio" id="category-include" class="category-delete-check"
                                        name="category-delete" value="N" checked>
-                                <label for="category-include">미포함</label>
+                                <label for="category-include">기본조회</label>
                                 <input type="radio" id="category-notInclude" class="category-delete-check"
                                        name="category-delete" value="Y">
-                                <label for="category-notInclude">포함</label>
-                            </td>
+                                <label for="category-notInclude">삭제조회</label>
                         </tr>
                     </table>
                     <div class="search-btn-box">
