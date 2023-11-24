@@ -164,7 +164,7 @@
                             <div class="sold-out" th:if="${item.quantity == 0}">
                                 <p>SOLD OUT</p>
                             </div>
-                            <div class="low-stock" th:if="${item.name.contains('박카스')}">
+                            <div class="low-stock" th:if="${item.name.contains('동아')}">
                                 <p>Best</p>
                             </div>
                         </div>
@@ -292,7 +292,7 @@
                         <div class="image">
                             <img style="background: white; width: 300px; height: 300px; border-radius: 5%" src="${product.image}" alt="상품 이미지" width="100" class="add-to-cart" data-product-id="${product.productId}" />
                             ${product.quantity === 0 ? '<div class="sold-out"><p>SOLD OUT</p></div>' : ''}
-                            ${product.name.includes('박카스') ? '<div class="low-stock"><p>Best</p></div>' : ''}
+                            ${product.name.includes('동아') ? '<div class="low-stock"><p>Best</p></div>' : ''}
                         </div>
                     </div>
                     <h3>${product.name}</h3>
