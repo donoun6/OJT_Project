@@ -139,7 +139,8 @@ public class AdminDao {
                 "AND orders.check_orders = TRUE " +
                 "AND selling.check_selling = TRUE " +
                 "GROUP BY " +
-                "product.name ";
+                "product.name " +
+                "limit 15";
         return tmeTemplate.query(sql, (rs, rowNum) -> {
             Product product = new Product();
             Selling selling = new Selling();
@@ -176,7 +177,8 @@ public class AdminDao {
         if (!data.get("startDate").equals("") && !data.get("endDate").equals("")) {
             sb.append("AND DATE(orders.register_date) BETWEEN '" + data.get("startDate") + "' AND '" + data.get("endDate") + "'");
         }
-        sb.append("GROUP BY product.name ");
+        sb.append("GROUP BY product.name " +
+                "limit 15");
         String sql = sb.toString();
         return tmeTemplate.query(sql, (rs, rowNum) -> {
             Product product = new Product();

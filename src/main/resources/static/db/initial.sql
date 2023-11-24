@@ -110,6 +110,31 @@ VALUES ('음료/커피'),
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
+       , '동아)포카리스웨트P620ml', 2500, '/img/8801097250079.jpg');
+do sleep(1);
+INSERT INTO Product (category_id, code, name, sell_price, image)
+VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
+                   concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
+       , '동아)포카리스웨트캔240ml', 1600, '/img/8801097150010.jpg');
+do sleep(1);
+INSERT INTO Product (category_id, code, name, sell_price, image)
+VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
+                   concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
+       , '동아)박카스F', 900, '/img/8806011615408.jpg');
+do sleep(1);
+INSERT INTO Product (category_id, code, name, sell_price, image)
+VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
+                   concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
+       , '동아)오로나민C병120ml', 1400, '/img/EB25B5B9D10D4E6C93F04924E536D0EA.jpg');
+do sleep(1);
+INSERT INTO Product (category_id, code, name, sell_price, image)
+VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
+                   concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
+       , '동아)데미소다애플캔250ml', 1600, '/img/8801097160064.jpg');
+do sleep(1);
+INSERT INTO Product (category_id, code, name, sell_price, image)
+VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
+                   concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
        , '코카)코카콜라P500ml', 2300, '/img/5ED4673A0D7C47689870677C71FAB0ED.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
@@ -136,31 +161,6 @@ INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
                    concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
        , '펩시)펩시캔250ml', 1500, '/img/8801056610012.jpg');
-do sleep(1);
-INSERT INTO Product (category_id, code, name, sell_price, image)
-VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
-                   concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '동아)포카리스웨트P620ml', 2500, '/img/8801097250079.jpg');
-do sleep(1);
-INSERT INTO Product (category_id, code, name, sell_price, image)
-VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
-                   concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '동아)포카리스웨트캔240ml', 1600, '/img/8801097150010.jpg');
-do sleep(1);
-INSERT INTO Product (category_id, code, name, sell_price, image)
-VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
-                   concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '동아)박카스F', 900, '/img/8806011615408.jpg');
-do sleep(1);
-INSERT INTO Product (category_id, code, name, sell_price, image)
-VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
-                   concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '동아)오로나민C병120ml', 1400, '/img/EB25B5B9D10D4E6C93F04924E536D0EA.jpg');
-do sleep(1);
-INSERT INTO Product (category_id, code, name, sell_price, image)
-VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
-                   concat(lpad(FLOOR(RAND() * 1000), '4', '0'), concat('-', lpad(FLOOR(RAND() * 1000), '4', '0'))))
-       , '동아)데미소다애플캔250ml', 1600, '/img/8801097160064.jpg');
 do sleep(1);
 INSERT INTO Product (category_id, code, name, sell_price, image)
 VALUES ( 1, CONCAT(CONCAT(CHAR(ASCII('A') + FLOOR(RAND() * 26)), '-'),
@@ -637,131 +637,131 @@ do sleep(1);
 
 # 재고 수량 등록
 INSERT INTO Inventory (product_id, quantity)
-VALUES (1, 5);
+VALUES (1, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (2, 5);
+VALUES (2, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (3, 5);
+VALUES (3, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (4, 5);
+VALUES (4, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (5, 5);
+VALUES (5, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (6, 5);
+VALUES (6, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (7, 5);
+VALUES (7, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (8, 5);
+VALUES (8, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (9, 5);
+VALUES (9, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (10, 5);
+VALUES (10, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (11, 5);
+VALUES (11, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (12, 5);
+VALUES (12, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (13, 5);
+VALUES (13, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (14, 5);
+VALUES (14, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (15, 5);
+VALUES (15, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (16, 5);
+VALUES (16, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (17, 5);
+VALUES (17, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (18, 5);
+VALUES (18, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (19, 5);
+VALUES (19, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (20, 5);
+VALUES (20, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (21, 5);
+VALUES (21, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (22, 5);
+VALUES (22, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (23, 5);
+VALUES (23, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (24, 5);
+VALUES (24, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (25, 5);
+VALUES (25, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (26, 5);
+VALUES (26, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (27, 5);
+VALUES (27, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (28, 5);
+VALUES (28, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (29, 5);
+VALUES (29, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (30, 5);
+VALUES (30, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (31, 5);
+VALUES (31, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (32, 5);
+VALUES (32, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (33, 5);
+VALUES (33, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (34, 5);
+VALUES (34, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (35, 5);
+VALUES (35, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (36, 5);
+VALUES (36, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (37, 5);
+VALUES (37, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (38, 5);
+VALUES (38, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (39, 5);
+VALUES (39, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (40, 5);
+VALUES (40, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (41, 5);
+VALUES (41, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (42, 5);
+VALUES (42, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (43, 5);
+VALUES (43, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (44, 5);
+VALUES (44, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (45, 5);
+VALUES (45, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (46, 5);
+VALUES (46, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (47, 5);
+VALUES (47, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (48, 5);
+VALUES (48, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (49, 5);
+VALUES (49, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (50, 5);
+VALUES (50, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (51, 5);
+VALUES (51, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (52, 5);
+VALUES (52, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (53, 5);
+VALUES (53, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (54, 5);
+VALUES (54, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (55, 5);
+VALUES (55, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (56, 5);
+VALUES (56, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (57, 5);
+VALUES (57, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (58, 5);
+VALUES (58, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (59, 5);
+VALUES (59, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (60, 5);
+VALUES (60, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (61, 5);
+VALUES (61, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (62, 5);
+VALUES (62, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (63, 5);
+VALUES (63, 50);
 INSERT INTO Inventory (product_id, quantity)
 VALUES (64, 50);
 INSERT INTO Inventory (product_id, quantity)
@@ -833,13 +833,13 @@ VALUES (97, 50);
 INSERT INTO Inventory (product_id, quantity)
 VALUES (98, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (99, 5);
+VALUES (99, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (100, 5);
+VALUES (100, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (101, 5);
+VALUES (101, 50);
 INSERT INTO Inventory (product_id, quantity)
-VALUES (102, 5);
+VALUES (102, 50);
 
 # 아이템 입고시 재고처리
 CREATE TRIGGER ReceivingAndCountInventory
@@ -889,15 +889,15 @@ BEGIN
 END;
 
 #입고 등록
-Call receivingTest(FLOOR(1 + RAND() * 102), 50, '50개 입고', 7);
+Call receivingTest(FLOOR(1 + RAND() * 102), 10, '10개 입고', 7);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 2, '소량 입고', 7);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 5, '', 7);
 do sleep(1);
-Call receivingTest(FLOOR(1 + RAND() * 102), 24, '수량 조절', 7);
+Call receivingTest(FLOOR(1 + RAND() * 102), 4, '수량 조절', 7);
 do sleep(1);
-Call receivingTest(FLOOR(1 + RAND() * 102), 61, '대량 입고', 7);
+Call receivingTest(FLOOR(1 + RAND() * 102), 21, '21개 입고', 7);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 2, '', 7);
 do sleep(1);
@@ -910,16 +910,15 @@ do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 3, '', 7);
 do sleep(1);
 
-#입고 등록
-Call receivingTest(FLOOR(1 + RAND() * 102), 50, '50개 입고', 6);
+Call receivingTest(FLOOR(1 + RAND() * 102), 10, '10개 입고', 6);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 2, '소량 입고', 6);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 5, '', 6);
 do sleep(1);
-Call receivingTest(FLOOR(1 + RAND() * 102), 24, '수량 조절', 6);
+Call receivingTest(FLOOR(1 + RAND() * 102), 4, '수량 조절', 6);
 do sleep(1);
-Call receivingTest(FLOOR(1 + RAND() * 102), 61, '대량 입고', 6);
+Call receivingTest(FLOOR(1 + RAND() * 102), 21, '21개 입고', 6);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 2, '', 6);
 do sleep(1);
@@ -932,16 +931,15 @@ do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 3, '', 6);
 do sleep(1);
 
-#입고 등록
-Call receivingTest(FLOOR(1 + RAND() * 102), 50, '50개 입고', 5);
+Call receivingTest(FLOOR(1 + RAND() * 102), 10, '10개 입고', 5);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 2, '소량 입고', 5);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 5, '', 5);
 do sleep(1);
-Call receivingTest(FLOOR(1 + RAND() * 102), 24, '수량 조절', 5);
+Call receivingTest(FLOOR(1 + RAND() * 102), 4, '수량 조절', 5);
 do sleep(1);
-Call receivingTest(FLOOR(1 + RAND() * 102), 61, '대량 입고', 5);
+Call receivingTest(FLOOR(1 + RAND() * 102), 21, '21개 입고', 5);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 2, '', 5);
 do sleep(1);
@@ -954,16 +952,15 @@ do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 3, '', 5);
 do sleep(1);
 
-#입고 등록
-Call receivingTest(FLOOR(1 + RAND() * 102), 50, '50개 입고', 4);
+Call receivingTest(FLOOR(1 + RAND() * 102), 10, '10개 입고', 4);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 2, '소량 입고', 4);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 5, '', 4);
 do sleep(1);
-Call receivingTest(FLOOR(1 + RAND() * 102), 24, '수량 조절', 4);
+Call receivingTest(FLOOR(1 + RAND() * 102), 4, '수량 조절', 4);
 do sleep(1);
-Call receivingTest(FLOOR(1 + RAND() * 102), 61, '대량 입고', 4);
+Call receivingTest(FLOOR(1 + RAND() * 102), 21, '21개 입고', 4);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 2, '', 4);
 do sleep(1);
@@ -976,16 +973,15 @@ do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 3, '', 4);
 do sleep(1);
 
-#입고 등록
-Call receivingTest(FLOOR(1 + RAND() * 102), 50, '50개 입고', 3);
+Call receivingTest(FLOOR(1 + RAND() * 102), 10, '10개 입고', 3);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 2, '소량 입고', 3);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 5, '', 3);
 do sleep(1);
-Call receivingTest(FLOOR(1 + RAND() * 102), 24, '수량 조절', 3);
+Call receivingTest(FLOOR(1 + RAND() * 102), 4, '수량 조절', 3);
 do sleep(1);
-Call receivingTest(FLOOR(1 + RAND() * 102), 61, '대량 입고', 3);
+Call receivingTest(FLOOR(1 + RAND() * 102), 21, '21개 입고', 3);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 2, '', 3);
 do sleep(1);
@@ -998,16 +994,15 @@ do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 3, '', 3);
 do sleep(1);
 
-#입고 등록
-Call receivingTest(FLOOR(1 + RAND() * 102), 50, '50개 입고', 2);
+Call receivingTest(FLOOR(1 + RAND() * 102), 10, '10개 입고', 2);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 2, '소량 입고', 2);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 5, '', 2);
 do sleep(1);
-Call receivingTest(FLOOR(1 + RAND() * 102), 24, '수량 조절', 2);
+Call receivingTest(FLOOR(1 + RAND() * 102), 4, '수량 조절', 2);
 do sleep(1);
-Call receivingTest(FLOOR(1 + RAND() * 102), 61, '대량 입고', 2);
+Call receivingTest(FLOOR(1 + RAND() * 102), 21, '21개 입고', 2);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 2, '', 2);
 do sleep(1);
@@ -1020,16 +1015,15 @@ do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 3, '', 2);
 do sleep(1);
 
-#입고 등록
-Call receivingTest(FLOOR(1 + RAND() * 102), 50, '50개 입고', 1);
+Call receivingTest(FLOOR(1 + RAND() * 102), 10, '10개 입고', 1);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 2, '소량 입고', 1);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 5, '', 1);
 do sleep(1);
-Call receivingTest(FLOOR(1 + RAND() * 102), 24, '수량 조절', 1);
+Call receivingTest(FLOOR(1 + RAND() * 102), 4, '수량 조절', 1);
 do sleep(1);
-Call receivingTest(FLOOR(1 + RAND() * 102), 61, '대량 입고', 1);
+Call receivingTest(FLOOR(1 + RAND() * 102), 21, '21개 입고', 1);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 2, '', 1);
 do sleep(1);
@@ -1042,16 +1036,15 @@ do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 3, '', 1);
 do sleep(1);
 
-#입고 등록
-Call receivingTest(FLOOR(1 + RAND() * 102), 50, '50개 입고', 0);
+Call receivingTest(FLOOR(1 + RAND() * 102), 10, '10개 입고', 0);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 2, '소량 입고', 0);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 5, '', 0);
 do sleep(1);
-Call receivingTest(FLOOR(1 + RAND() * 102), 24, '수량 조절', 0);
+Call receivingTest(FLOOR(1 + RAND() * 102), 4, '수량 조절', 0);
 do sleep(1);
-Call receivingTest(FLOOR(1 + RAND() * 102), 61, '대량 입고', 0);
+Call receivingTest(FLOOR(1 + RAND() * 102), 21, '21개 입고', 0);
 do sleep(1);
 Call receivingTest(FLOOR(1 + RAND() * 102), 2, '', 0);
 do sleep(1);
@@ -1075,89 +1068,30 @@ CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 call AddSellingAndClearCartTest(7);
 do sleep(1);
 
+CALL AddOrCountCart(1);
+CALL AddOrCountCart(1);
+CALL AddOrCountCart(1);
+CALL AddOrCountCart(1);
+CALL AddOrCountCart(1);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(3);
+CALL AddOrCountCart(3);
+CALL AddOrCountCart(3);
+CALL AddOrCountCart(3);
+CALL AddOrCountCart(3);
+call AddSellingAndClearCartTest(7);
+do sleep(1);
+
+
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-call AddSellingAndClearCartTest(7);
-do sleep(1);
-
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-call AddSellingAndClearCartTest(7);
-do sleep(1);
-
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-call AddSellingAndClearCartTest(7);
-do sleep(1);
-
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-call AddSellingAndClearCartTest(7);
-do sleep(1);
-
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-call AddSellingAndClearCartTest(7);
-do sleep(1);
-
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-call AddSellingAndClearCartTest(7);
-do sleep(1);
-
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
 call AddSellingAndClearCartTest(7);
 do sleep(1);
 
@@ -1176,28 +1110,6 @@ CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 call AddSellingAndClearCartTest(7);
 do sleep(1);
 
-CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
@@ -1276,6 +1188,25 @@ CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 call AddSellingAndClearCartTest(7);
+do sleep(1);
+
+CALL AddOrCountCart(1);
+CALL AddOrCountCart(1);
+CALL AddOrCountCart(1);
+CALL AddOrCountCart(1);
+CALL AddOrCountCart(1);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(3);
+CALL AddOrCountCart(3);
+CALL AddOrCountCart(3);
+CALL AddOrCountCart(3);
+CALL AddOrCountCart(3);
+call AddSellingAndClearCartTest(6);
 do sleep(1);
 
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
@@ -1335,74 +1266,6 @@ CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-call AddSellingAndClearCartTest(6);
-do sleep(1);
-
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(33);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
-CALL AddOrCountCart(2);
 call AddSellingAndClearCartTest(6);
 do sleep(1);
 
@@ -1490,6 +1353,50 @@ CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 call AddSellingAndClearCartTest(6);
+do sleep(1);
+
+
+CALL AddOrCountCart(4);
+CALL AddOrCountCart(4);
+CALL AddOrCountCart(4);
+CALL AddOrCountCart(4);
+CALL AddOrCountCart(4);
+CALL AddOrCountCart(5);
+CALL AddOrCountCart(5);
+CALL AddOrCountCart(5);
+CALL AddOrCountCart(5);
+CALL AddOrCountCart(5);
+CALL AddOrCountCart(5);
+call AddSellingAndClearCartTest(6);
+do sleep(1);
+
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+call AddSellingAndClearCartTest(5);
+do sleep(1);
+
+CALL AddOrCountCart(80);
+CALL AddOrCountCart(80);
+CALL AddOrCountCart(80);
+CALL AddOrCountCart(80);
+CALL AddOrCountCart(80);
+CALL AddOrCountCart(80);
+CALL AddOrCountCart(80);
+CALL AddOrCountCart(80);
+CALL AddOrCountCart(80);
+CALL AddOrCountCart(80);
+CALL AddOrCountCart(80);
+CALL AddOrCountCart(80);
+call AddSellingAndClearCartTest(5);
 do sleep(1);
 
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
@@ -1529,31 +1436,6 @@ do sleep(1);
 
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-call AddSellingAndClearCartTest(5);
-do sleep(1);
-
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
 call AddSellingAndClearCartTest(5);
 do sleep(1);
 
@@ -1652,6 +1534,44 @@ do sleep(1);
 
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 call AddSellingAndClearCartTest(5);
+do sleep(1);
+
+CALL AddOrCountCart(81);
+CALL AddOrCountCart(81);
+CALL AddOrCountCart(81);
+CALL AddOrCountCart(81);
+CALL AddOrCountCart(81);
+CALL AddOrCountCart(81);
+CALL AddOrCountCart(81);
+CALL AddOrCountCart(81);
+CALL AddOrCountCart(81);
+CALL AddOrCountCart(81);
+CALL AddOrCountCart(81);
+CALL AddOrCountCart(81);
+call AddSellingAndClearCartTest(4);
+do sleep(1);
+
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+call AddSellingAndClearCartTest(4);
 do sleep(1);
 
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
@@ -1713,55 +1633,6 @@ CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-call AddSellingAndClearCartTest(4);
-do sleep(1);
-
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-call AddSellingAndClearCartTest(4);
-do sleep(1);
-
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-call AddSellingAndClearCartTest(4);
-do sleep(1);
-
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-call AddSellingAndClearCartTest(4);
-do sleep(1);
-
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
 call AddSellingAndClearCartTest(4);
 do sleep(1);
 
@@ -2121,70 +1992,6 @@ CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 call AddSellingAndClearCartTest(2);
 do sleep(1);
 
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-call AddSellingAndClearCartTest(1);
-do sleep(1);
-
-CALL AddOrCountCart(36);
-CALL AddOrCountCart(36);
-CALL AddOrCountCart(36);
-CALL AddOrCountCart(36);
-CALL AddOrCountCart(36);
-CALL AddOrCountCart(36);
-CALL AddOrCountCart(36);
-CALL AddOrCountCart(36);
-CALL AddOrCountCart(36);
-CALL AddOrCountCart(36);
-CALL AddOrCountCart(36);
-call AddSellingAndClearCartTest(1);
-do sleep(1);
-
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-call AddSellingAndClearCartTest(1);
-do sleep(1);
-
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-call AddSellingAndClearCartTest(1);
-do sleep(1);
-
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-call AddSellingAndClearCartTest(1);
-do sleep(1);
-
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-call AddSellingAndClearCartTest(1);
-do sleep(1);
-
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-call AddSellingAndClearCartTest(1);
-do sleep(1);
-
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
@@ -2236,25 +2043,13 @@ CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 call AddSellingAndClearCartTest(1);
 do sleep(1);
 
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-call AddSellingAndClearCartTest(1);
-do sleep(1);
-
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-call AddSellingAndClearCartTest(1);
-do sleep(1);
-
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-CALL AddOrCountCart(7);
-call AddSellingAndClearCartTest(1);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+CALL AddOrCountCart(2);
+call AddSellingAndClearCartTest(0);
 do sleep(1);
 
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
@@ -2407,25 +2202,6 @@ CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
 CALL AddOrCountCart(FLOOR(1 + RAND() * 102));
-call AddSellingAndClearCartTest(0);
-do sleep(1);
-
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-CALL AddOrCountCart(3);
-call AddSellingAndClearCartTest(0);
-do sleep(1);
-
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
-CALL AddOrCountCart(14);
 call AddSellingAndClearCartTest(0);
 do sleep(1);
 
